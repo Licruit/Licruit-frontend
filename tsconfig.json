@@ -2,8 +2,11 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/custom.d.ts"],
-  "extends": ["./tsconfig.path.json"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/custom.d.ts"]
 }
