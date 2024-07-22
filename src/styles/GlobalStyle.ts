@@ -1,8 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import 'public/assets/font/font.css';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+
+  body {
+    font-family: 'Pretendard';
+  }
 
   * {
     box-sizing: border-box;
