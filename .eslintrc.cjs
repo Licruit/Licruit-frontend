@@ -32,6 +32,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': ['off'],
@@ -56,7 +57,7 @@ module.exports = {
       },
       {
         selector: 'variable',
-        format: ['camelCase', 'UPPER_CASE'],
+        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
       },
       {
         selector: 'function', // exported function (컴포넌트 명)

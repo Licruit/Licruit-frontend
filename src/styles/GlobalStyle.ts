@@ -6,7 +6,19 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   body {
+    background-color: #FFFFFF;
     font-family: 'Pretendard';
+  }
+
+  #root {
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #141517
   }
 
   * {
@@ -23,10 +35,14 @@ const GlobalStyle = createGlobalStyle`
   button {
     box-sizing: content-box;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
   }
 
   a {
     text-decoration: none;
+    color: #141517
   }
 `;
 

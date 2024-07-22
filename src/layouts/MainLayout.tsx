@@ -1,0 +1,22 @@
+import Header from '@/components/Header/Header';
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+
+function MainLayout() {
+  return (
+    <>
+      <Header />
+      <Container>
+        <Outlet />
+      </Container>
+    </>
+  );
+}
+
+export default MainLayout;
+
+const Container = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  height: fit-content;
+`;
