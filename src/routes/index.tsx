@@ -8,7 +8,7 @@ import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
 import MainLayout from '@/layouts/MainLayout';
-import DefaultLayout from '@/layouts/DefaultLayout';
+import AuthLayout from '@/layouts/AuthLayout';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth',
-    element: <DefaultLayout />,
+    element: <AuthLayout />,
     children: [
       {
         path: 'login',

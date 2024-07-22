@@ -6,18 +6,21 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
 
   body {
+    width: 100vw;
+    height: 100vh;
     background-color: #FFFFFF;
     font-family: 'Pretendard';
   }
 
   #root {
-    width: 100vw;
+    width: 100%;
     height: fit-content;
-    min-height: 100vh;
+    min-height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
     color: #141517
   }
 
