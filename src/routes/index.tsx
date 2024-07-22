@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainPage from '@/pages/MainPage';
 import LoginPage from '@/pages/LoginPage';
-import JoinPage from '@/pages/JoinPage';
+import SignUpPage from '@/pages/SignUpPage';
 import FindPasswordPage from '@/pages/FindPasswordPage';
 import GroupBuyingPage from '@/pages/GroupBuyingPage';
 import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
@@ -47,8 +47,8 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: 'join',
-        element: <JoinPage />,
+        path: 'signUp',
+        element: <SignUpPage />,
       },
       {
         path: 'find-password',
