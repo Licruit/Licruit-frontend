@@ -36,7 +36,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   button {
-    box-sizing: content-box;
     cursor: pointer;
     background: none;
     border: none;
