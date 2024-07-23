@@ -8,9 +8,11 @@ function AuthLayout() {
     <Container>
       <Header />
       <Content>
-        <Poster style={{ height: '100%' }} />
+        <Poster style={{ height: '100%', width: 'fit-content' }} />
         <div className='wrapper'>
-          <Outlet />
+          <FormLayout>
+            <Outlet />
+          </FormLayout>
         </div>
       </Content>
     </Container>
@@ -39,4 +41,13 @@ const Content = styled.div`
     justify-content: center;
     align-items: center;
   }
+`;
+
+const FormLayout = styled.div`
+  width: 100%;
+  max-width: 480px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 `;
