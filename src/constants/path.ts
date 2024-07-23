@@ -1,6 +1,6 @@
 const PATH = {
   login: '/auth/login',
-  join: '/auth/join',
+  join: '/auth/signUp',
   find_password: '/auth/find-password',
   main: '/',
   catalog: '/catalog',
