@@ -9,7 +9,11 @@ function LoginForm() {
     <Container>
       <div className='input-wrapper'>
         <FormInput type='number' placeholder='사업자 등록번호를 입력해주세요' />
-        <FormInput type='password' placeholder='비밀번호를 입력해주세요' />
+        <FormInput
+          type='password'
+          placeholder='비밀번호를 입력해주세요'
+          hasVisibility
+        />
       </div>
       <StyledLink to={PATH.find_password}>비밀번호 찾기</StyledLink>
       <FormButton buttonText='로그인' />
