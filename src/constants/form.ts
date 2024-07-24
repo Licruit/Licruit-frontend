@@ -1,4 +1,13 @@
-export const FORM = {
+interface FormData {
+  [key: number]: {
+    title: string;
+    description: string;
+  };
+}
+
+export const FORM: {
+  [key: string]: FormData;
+} = {
   login: {
     1: {
       title: '당신의 취향에 맞는 주류를 함께',
