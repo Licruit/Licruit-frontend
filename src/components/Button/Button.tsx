@@ -4,17 +4,32 @@ import styled from 'styled-components';
 type ButtonStyle = 'solid' | 'outlined';
 type ButtonTheme = 'primary' | 'neutral';
 type Size = 'sm' | 'md' | 'lg';
+type Width = 'fit' | 'full';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   buttonStyle: ButtonStyle;
   theme: ButtonTheme;
+  width?: Width;
   size: Size;
 }
 
-function Button({ children, buttonStyle, theme, size, ...props }: Props) {
+function Button({
+  children,
+  buttonStyle,
+  theme,
+  size,
+  width = 'fit',
+  ...props
+}: Props) {
   return (
-    <StyledButton $style={buttonStyle} $theme={theme} $size={size} {...props}>
+    <StyledButton
+      $style={buttonStyle}
+      $width={width}
+      $theme={theme}
+      $size={size}
+      {...props}
+    >
       {children}
     </StyledButton>
   );
@@ -25,16 +40,18 @@ export default Button;
 const StyledButton = styled.button<{
   $style: ButtonStyle;
   $theme: ButtonTheme;
+  $width: Width;
   $size: Size;
 }>`
   ${({ theme }) => theme.typo.heading.bold[14]};
-  width: fit-content;
+  width: ${({ $width }) => ($width === 'fit' ? 'fit-content' : '100%')};
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 
   &:disabled {
+    cursor: default;
     color: ${({ theme }) => theme.color.neutral[400]};
     background-color: ${({ $style, theme }) =>
       $style === 'solid' ? theme.color.neutral[200] : 'none'};
@@ -42,7 +59,7 @@ const StyledButton = styled.button<{
       $style === 'outlined' ? theme.color.neutral[400] : 'none'};
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     ${({ $style, $theme, theme }) => {
       const hoverColor =
         $theme === 'primary'

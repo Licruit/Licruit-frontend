@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FormButton from '@/components/Button/FormButton';
+import Button from '@/components/Button/Button';
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
 import MultiStep from '../common/MultiStep';
@@ -40,12 +40,17 @@ function FindPasswordForm() {
           </div>
         )}
         {step === 2 && <PasswordForm />}
-        <FormButton
+        <Button
           type='button'
           disabled={!isValid}
-          buttonText='다음'
+          buttonStyle='solid'
+          theme='primary'
+          width='full'
+          size='lg'
           onClick={() => setStep((prev) => prev + 1)}
-        />
+        >
+          다음
+        </Button>
       </Container>
     </FormProvider>
   );

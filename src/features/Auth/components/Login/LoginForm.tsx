@@ -1,4 +1,4 @@
-import FormButton from '@/components/Button/FormButton';
+import Button from '@/components/Button/Button';
 import FormInput from '@/components/Input/FormInput';
 import PATH from '@/constants/path';
 import { useState } from 'react';
@@ -52,7 +52,16 @@ function LoginForm() {
         <Link to={PATH.find_password}>비밀번호 찾기</Link>
       </ErrorAndLink>
 
-      <FormButton type='submit' disabled={!isValid} buttonText='로그인' />
+      <Button
+        type='submit'
+        disabled={!isValid}
+        buttonStyle='solid'
+        theme='primary'
+        width='full'
+        size='lg'
+      >
+        로그인
+      </Button>
       <JoinGuide>
         <span>아직 리크루트의 계정이 없나요?</span>
         <Link to={PATH.join}>회원가입</Link>
