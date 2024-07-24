@@ -3,6 +3,7 @@ const color = {
     0: '#000000',
     100: '#FFFFFF',
   },
+  error: '#FF3E45',
   primary: {
     50: '#FFF2DF',
     100: '#FFDDB0',

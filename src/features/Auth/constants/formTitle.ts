@@ -1,4 +1,8 @@
-export const FORM_TITLE = {
+export const FORM_TITLE: {
+  [key: string]: {
+    [key: number | string]: string;
+  };
+} = {
   login: {
     title: '당신의 취향에 맞는 주류를 함께',
     1: `로그인하여 맞춤형 주류 공동구매와 전통주 백과사전 같은 카탈로그 기능을 즐기세요.\n원하는 주류를 더 저렴하게 구매하고 다양한 혜택을 누려보세요`,

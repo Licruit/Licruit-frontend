@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import styled from 'styled-components';
 import { ICONS } from '../../constants/icons';
 
@@ -8,12 +8,15 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const FormInput = forwardRef<HTMLInputElement, Props>(
-  ({ hasVisibility, type, ...props }: Props) => {
+  (
+    { hasVisibility, type, ...props }: Props,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
       <Wrapper>
-        <StyledInput type={isVisible ? 'text' : type} {...props} />
+        <StyledInput type={isVisible ? 'text' : type} ref={ref} {...props} />
         {hasVisibility && (
           <Visibility
             type='button'
