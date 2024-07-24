@@ -1,4 +1,4 @@
-import FormTitle from '@/components/Form/FormTitle';
+import FormTitle from '@/features/Auth/components/common/FormTitle';
 import { FindPasswordForm } from '@/features/Auth';
 import { useState } from 'react';
 

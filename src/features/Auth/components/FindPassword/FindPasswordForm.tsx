@@ -1,8 +1,8 @@
 import Button from '@/components/Button/Button';
 import FormButton from '@/components/Button/FormButton';
-import MultiStep from '@/components/Form/MultiStep';
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
+import MultiStep from '../common/MultiStep';
 
 interface Props {
   step: number;

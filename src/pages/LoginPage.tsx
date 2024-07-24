@@ -1,5 +1,5 @@
 import { LoginForm } from '@/features/Auth';
-import FormTitle from '@/components/Form/FormTitle';
+import FormTitle from '@/features/Auth/components/common/FormTitle';
 
 function LoginPage() {
   return (

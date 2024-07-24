@@ -1,13 +1,13 @@
-import { FORM } from '@/constants/form';
+import { FORM_TITLE } from '@/constants/formTitle';
 import styled from 'styled-components';
 
 interface Props {
-  type: keyof typeof FORM;
-  step?: keyof (typeof FORM)[keyof typeof FORM];
+  type: keyof typeof FORM_TITLE;
+  step?: keyof (typeof FORM_TITLE)[keyof typeof FORM_TITLE];
 }
 
 function FormTitle({ type, step = 1 }: Props) {
-  const { title, description } = FORM[type][step];
+  const { title, description } = FORM_TITLE[type][step];
 
   return (
     <Container>
