@@ -32,6 +32,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    'consistent-return': 'off',
     'react/no-array-index-key': 'off',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
