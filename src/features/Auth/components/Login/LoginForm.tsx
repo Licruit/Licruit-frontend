@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import FormButton from '@/components/Button/FormButton';
 import FormInput from '@/components/Input/FormInput';
 import PATH from '@/constants/path';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ function LoginForm() {
         <FormInput type='password' placeholder='비밀번호를 입력해주세요' />
       </div>
       <StyledLink to={PATH.find_password}>비밀번호 찾기</StyledLink>
-      <Button buttonText='로그인' />
+      <FormButton buttonText='로그인' />
       <JoinGuide>
         <span>아직 리크루트의 계정이 없나요?</span>
         <Link to={PATH.join}>회원가입</Link>
@@ -39,7 +39,7 @@ const Container = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 12px;
+  ${({ theme }) => theme.typo.body.medium[12]}
   color: ${({ theme }) => theme.color.neutral[400]};
   align-self: flex-end;
 `;
@@ -48,12 +48,10 @@ const JoinGuide = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
-
-  font-size: 12px;
   color: ${({ theme }) => theme.color.neutral[400]};
+  ${({ theme }) => theme.typo.body.medium[12]}
 
   & > a {
-    font-weight: 500;
     color: ${({ theme }) => theme.color.primary[500]};
     text-decoration: underline;
   }

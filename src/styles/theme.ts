@@ -1,4 +1,4 @@
-export const color = {
+const color = {
   common: {
     0: '#000000',
     100: '#FFFFFF',

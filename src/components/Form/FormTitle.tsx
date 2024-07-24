@@ -28,17 +28,14 @@ export const Container = styled.div`
   h1 {
     width: 100%;
     text-align: center;
-    font-size: 36px;
-    font-weight: 800;
     color: ${({ theme }) => theme.color.neutral[900]};
+    ${({ theme }) => theme.typo.heading.extra_bold[36]}
   }
   p {
     width: 100%;
     text-align: center;
-    font-size: ${({ theme }) => theme.fontSize.base};
-    font-weight: 400;
     color: ${({ theme }) => theme.color.neutral[400]};
-    line-height: 130%;
     white-space: pre-wrap;
+    ${({ theme }) => theme.typo.body.medium[14]}
   }
 `;

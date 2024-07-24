@@ -1,9 +1,8 @@
-import { color } from '@/styles/theme';
 import React from 'react';
 import styled from 'styled-components';
 
 type ButtonStyle = 'solid' | 'outlined';
-type ButtonTheme = keyof typeof color;
+type ButtonTheme = 'primary' | 'neutral';
 type Size = 'sm' | 'md' | 'lg';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,13 +27,12 @@ const StyledButton = styled.button<{
   $theme: ButtonTheme;
   $size: Size;
 }>`
+  ${({ theme }) => theme.typo.heading.bold[14]};
   width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  font-weight: 700;
 
   &:disabled {
     color: ${({ theme }) => theme.color.neutral[400]};

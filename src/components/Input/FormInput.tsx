@@ -13,11 +13,10 @@ const FormInput = forwardRef<HTMLInputElement, Props>((props: Props) => {
 export default FormInput;
 
 const StyledInput = styled.input`
-  width: 100%;
+  flex: 1;
   padding: 18px;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  font-size: ${({ theme }) => theme.fontSize.base};
-  font-weight: 400;
+  ${({ theme }) => theme.typo.body.medium[14]}
 
   &:focus {
     outline: none;

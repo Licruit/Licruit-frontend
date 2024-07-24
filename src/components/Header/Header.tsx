@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from 'public/assets/images/logo.svg?react';
+import Logo from 'public/assets/images/Logo.svg?react';
 import { Link, useLocation } from 'react-router-dom';
 import PATH from '@/constants/path';
 
@@ -58,6 +58,5 @@ const Nav = styled.nav<{ $gap: number }>`
 `;
 
 const NavLink = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSize.base};
-  font-weight: 500;
+  ${({ theme }) => theme.typo.body.medium[14]}
 `;
