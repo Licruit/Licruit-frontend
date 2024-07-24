@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ICONS } from '../../constants/icons';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  // fieldName: 'nickname' | 'password';
   hasVisibility?: boolean;
 }
 
