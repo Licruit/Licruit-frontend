@@ -9,10 +9,18 @@ function Timer() {
     let timeoutId: number;
 
     const updateRemainingTime = () => {
-      setRemainingTime((prev) => prev - 1000);
+      setRemainingTime((prev) => {
+        if (prev > 0) {
+          return prev - 1000;
+        }
+        clearTimeout(timeoutId);
+        return 0;
+      });
       timeoutId = window.setTimeout(updateRemainingTime, 1000);
     };
-    updateRemainingTime();
+    setTimeout(() => {
+      updateRemainingTime();
+    }, 500);
 
     return () => {
       clearTimeout(timeoutId);
