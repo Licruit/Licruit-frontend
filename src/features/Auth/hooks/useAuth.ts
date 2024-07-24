@@ -4,7 +4,7 @@ import { KSIC, Signup } from '../types/signup';
 
 const useAuth = () => {
   const [ksic, setKsic] = useState<KSIC[]>([]);
-  //const [error, setError] = useState<Error | null>(null);
+  // const [error, setError] = useState<Error | null>(null);
 
   /* 
 TODO: Add Error
