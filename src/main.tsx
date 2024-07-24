@@ -20,5 +20,3 @@ Sentry.init({
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
-// 에러 추적 테스트 : 의도적으로 오류 발생시켜보기
-// Sentry.captureException(new Error('에러 발생1'));
