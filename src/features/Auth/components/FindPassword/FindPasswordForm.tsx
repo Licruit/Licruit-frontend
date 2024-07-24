@@ -1,8 +1,9 @@
-import Button from '@/components/Button/Button';
 import FormButton from '@/components/Button/FormButton';
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
 import MultiStep from '../common/MultiStep';
+import AuthForm from '../common/AuthForm';
+import PasswordForm from '../common/PasswordForm';
 
 interface Props {
   step: number;
@@ -13,16 +14,16 @@ function FindPasswordForm({ step, setStep }: Props) {
   return (
     <Container>
       <MultiStep current={step} maxStep={2} />
-      <div className='input-wrapper'>
-        <FormInput type='number' placeholder='사업자 등록번호를 입력해주세요' />
-        <InputWithButton>
-          <FormInput type='tel' placeholder='전화번호를 입력해주세요' />
-          <Button buttonStyle='outlined' size='lg' theme='primary'>
-            인증요청
-          </Button>
-        </InputWithButton>
-        <FormInput type='number' placeholder='인증번호' />
-      </div>
+      {step === 1 && (
+        <div className='input-wrapper'>
+          <FormInput
+            type='number'
+            placeholder='사업자 등록번호를 입력해주세요'
+          />
+          <AuthForm />
+        </div>
+      )}
+      {step === 2 && <PasswordForm />}
       <FormButton
         type='button'
         buttonText='다음'
@@ -36,6 +37,7 @@ export default FindPasswordForm;
 
 const Container = styled.div`
   width: 100%;
+  height: 380px;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
@@ -47,10 +49,4 @@ const Container = styled.div`
     flex-direction: column;
     gap: 10px;
   }
-`;
-
-const InputWithButton = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 10px;
 `;
