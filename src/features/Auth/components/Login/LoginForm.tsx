@@ -55,10 +55,10 @@ function LoginForm() {
       <Button
         type='submit'
         disabled={!isValid}
-        buttonStyle='solid'
-        theme='primary'
-        width='full'
-        size='lg'
+        $style='solid'
+        $theme='primary'
+        $width='full'
+        $size='lg'
       >
         로그인
       </Button>

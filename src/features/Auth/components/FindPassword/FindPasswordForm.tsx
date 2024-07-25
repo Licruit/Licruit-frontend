@@ -43,10 +43,10 @@ function FindPasswordForm() {
         <Button
           type='button'
           disabled={!isValid}
-          buttonStyle='solid'
-          theme='primary'
-          width='full'
-          size='lg'
+          $style='solid'
+          $theme='primary'
+          $width='full'
+          $size='lg'
           onClick={() => setStep((prev) => prev + 1)}
         >
           다음

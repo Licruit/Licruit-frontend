@@ -25,9 +25,9 @@ function AuthForm() {
         <Button
           type='button'
           onClick={handleSendCode}
-          buttonStyle='outlined'
-          size='lg'
-          theme='primary'
+          $style='outlined'
+          $size='lg'
+          $theme='primary'
         >
           인증요청
         </Button>

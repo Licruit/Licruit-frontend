@@ -1,33 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type ButtonStyle = 'solid' | 'outlined';
-type ButtonTheme = 'primary' | 'neutral';
-type Size = 'sm' | 'md' | 'lg';
-type Width = 'fit' | 'full';
-
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  buttonStyle: ButtonStyle;
-  theme: ButtonTheme;
-  width?: Width;
-  size: Size;
+  $style: 'solid' | 'outlined';
+  $theme: 'primary' | 'neutral';
+  $width?: 'fit' | 'full';
+  $size: 'sm' | 'md' | 'lg';
 }
 
 function Button({
   children,
-  buttonStyle,
-  theme,
-  size,
-  width = 'fit',
+  $style,
+  $theme,
+  $size,
+  $width = 'fit',
   ...props
 }: Props) {
   return (
     <StyledButton
-      $style={buttonStyle}
-      $width={width}
-      $theme={theme}
-      $size={size}
+      $style={$style}
+      $width={$width}
+      $theme={$theme}
+      $size={$size}
       {...props}
     >
       {children}
@@ -37,12 +32,7 @@ function Button({
 
 export default Button;
 
-const StyledButton = styled.button<{
-  $style: ButtonStyle;
-  $theme: ButtonTheme;
-  $width: Width;
-  $size: Size;
-}>`
+const StyledButton = styled.button<Omit<Props, 'children'>>`
   ${({ theme }) => theme.typo.heading.bold[14]};
   width: ${({ $width }) => ($width === 'fit' ? 'fit-content' : '100%')};
   display: flex;
