@@ -32,6 +32,12 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    'consistent-return': 'off',
+    'react/no-array-index-key': 'off',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
+    'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': ['off'],
@@ -56,7 +62,7 @@ module.exports = {
       },
       {
         selector: 'variable',
-        format: ['camelCase', 'UPPER_CASE'],
+        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
       },
       {
         selector: 'function', // exported function (컴포넌트 명)
