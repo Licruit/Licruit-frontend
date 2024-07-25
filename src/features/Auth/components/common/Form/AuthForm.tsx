@@ -3,7 +3,7 @@ import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { useFormContext } from 'react-hook-form';
-import Timer from './Timer';
+import Timer from '../Timer';
 
 function AuthForm() {
   const { register } = useFormContext();

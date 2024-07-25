@@ -1,5 +1,5 @@
+import { FORM_TITLE } from '@/features/Auth/constants/formTitle';
 import styled from 'styled-components';
-import { FORM_TITLE } from '../../constants/formTitle';
 
 interface Props {
   type: keyof typeof FORM_TITLE;
