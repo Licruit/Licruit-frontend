@@ -1,7 +1,10 @@
-import { FindPasswordForm } from '@/features/Auth';
-import GenericForm from '@/features/Auth/components/common/Form/GenericForm';
-import TitleAndStep from '@/features/Auth/components/common/FormTitle/TitleAndStep';
-import { useFunnel } from '@/features/Auth/hooks/useFunnel';
+import { FIND_PASSWORD_MAX_STEP } from '@/constants/step';
+import {
+  FindPasswordForm,
+  GenericForm,
+  TitleAndStep,
+  useFunnel,
+} from '@/features/Auth';
 
 interface FindPasswordFormType {
   businessId: number;
@@ -20,14 +23,15 @@ function FindPasswordPage() {
 
   return (
     <GenericForm<FindPasswordFormType>
-      setStep={setStep}
-      formOptions={{ mode: 'onChange' }}
       onSubmit={handleSubmitForm}
+      formOptions={{ mode: 'onChange' }}
+      setStep={setStep}
+      isLastStep={currentStep === FIND_PASSWORD_MAX_STEP}
     >
       <TitleAndStep
         formType='find_password'
         currentStep={currentStep}
-        maxStep={2}
+        maxStep={FIND_PASSWORD_MAX_STEP}
       />
       <FindPasswordForm Funnel={Funnel} Step={Step} />
     </GenericForm>
