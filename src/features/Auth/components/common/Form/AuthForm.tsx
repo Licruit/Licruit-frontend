@@ -3,6 +3,7 @@ import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { useFormContext } from 'react-hook-form';
+import { REGEXP } from '@/features/Auth/constants/form';
 import Timer from '../Timer';
 
 function AuthForm() {
@@ -20,7 +21,7 @@ function AuthForm() {
         <FormInput
           type='tel'
           placeholder='전화번호를 입력해주세요'
-          {...register('phone', { required: true })}
+          {...register('phone', { required: true, pattern: REGEXP.phone })}
         />
         <Button
           type='button'
