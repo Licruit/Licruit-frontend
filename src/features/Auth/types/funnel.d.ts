@@ -2,7 +2,7 @@ import { ReactNode, ReactElement } from 'react';
 
 export interface StepProps {
   stepNum: number;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export interface FunnelProps {

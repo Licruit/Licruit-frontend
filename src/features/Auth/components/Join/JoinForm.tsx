@@ -3,7 +3,6 @@ import AuthForm from '../common/Form/AuthForm';
 import ConsentForm from './ConsentForm';
 import IndustryForm from './IndustryForm';
 import AuthWithIdForm from '../FindPassword/AuthWithIdForm';
-import Complete from './Complete';
 import { ProcessProps } from '../../types/funnel';
 
 function JoinForm({ Funnel, Step }: ProcessProps) {
@@ -21,9 +20,7 @@ function JoinForm({ Funnel, Step }: ProcessProps) {
       <Step stepNum={4}>
         <IndustryForm />
       </Step>
-      <Step stepNum={5}>
-        <Complete />
-      </Step>
+      <Step stepNum={5} />
     </Funnel>
   );
 }
