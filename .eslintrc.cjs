@@ -32,8 +32,10 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    'react/no-unused-prop-types': 'warn',
+    'react/jsx-no-useless-fragment': 'off',
     'consistent-return': 'off',
-    'react/no-array-index-key': 'off',
+    'react/no-array-index-key': 'warn',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
