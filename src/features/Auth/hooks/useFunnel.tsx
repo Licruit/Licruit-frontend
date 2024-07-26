@@ -1,14 +1,6 @@
 /* eslint-disable react/function-component-definition */
-import { ReactElement, ReactNode, useState } from 'react';
-
-export interface StepProps {
-  stepNum: number;
-  children: ReactNode;
-}
-
-export interface FunnelProps {
-  children: Array<ReactElement<StepProps>>;
-}
+import { useState } from 'react';
+import { FunnelProps, StepProps } from '../types/funnel';
 
 export const useFunnel = (defaultStep: number) => {
   const [step, setStep] = useState<number>(defaultStep); // 현재 스텝
