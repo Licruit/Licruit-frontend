@@ -1,5 +1,9 @@
-import { GenericForm, TitleAndStep, useFunnel } from '@/features/Auth';
-import JoinForm from '@/features/Auth/components/Join/JoinForm';
+import {
+  GenericForm,
+  JoinForm,
+  TitleAndStep,
+  useFunnel,
+} from '@/features/Auth';
 import { SIGNUP_MAX_STEP } from '@/constants/step';
 import { FindPasswordFormType } from './FindPasswordPage';
 
@@ -10,7 +14,6 @@ interface SignupFormType extends FindPasswordFormType {
 }
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
-
   const handleSubmitForm = () => {
     // TODO: 회원가입 api
   };
