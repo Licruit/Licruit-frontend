@@ -25,14 +25,10 @@ function IndustryForm() {
       }
     };
 
-    if (isPostcodeVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
+    document.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, [isPostcodeVisible, closePostcode]);
 

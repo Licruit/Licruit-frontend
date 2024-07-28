@@ -14,11 +14,6 @@ export const getKSIC = async (): Promise<KSIC[]> => {
 
 export const VerificationBusiness = async (businessNumber: string) => {
   const data = { b_no: [businessNumber] };
-  try {
-    const response = await axios.post(BUSINESS_URL, data);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  const response = await axios.post(BUSINESS_URL, data);
+  return response.data;
 };
