@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 import { useFormContext } from 'react-hook-form';

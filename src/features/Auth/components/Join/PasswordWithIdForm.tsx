@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
