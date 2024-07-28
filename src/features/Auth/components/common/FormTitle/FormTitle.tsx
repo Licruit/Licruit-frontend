@@ -23,8 +23,8 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-
+  gap: 6px;
+  margin-bottom: 24px;
   h1 {
     width: 100%;
     text-align: center;

@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { getKSIC, signup } from '../api/signup.api';
+import { getKSIC, signup, VerificationBusiness } from '../api/signup.api';
 import { KSIC, Signup } from '../types/signup';
 
 const useAuth = () => {
   const [ksic, setKsic] = useState<KSIC[]>([]);
-  // const [error, setError] = useState<Error | null>(null);
-
   /* 
 TODO: Add Error
 TODO: /login 이동
@@ -29,7 +27,18 @@ TODO: /login 이동
       throw err;
     }
   };
-  return { userSignup, fetchKSIC, ksic };
+
+  const checkBusiness = async (businessNumber: string) => {
+    try {
+      const response = await VerificationBusiness(businessNumber);
+      return response.data;
+    } catch (err) {
+      console.error('진위확인실패', err);
+      throw err;
+    }
+  };
+
+  return { userSignup, fetchKSIC, ksic, checkBusiness };
 };
 
 export default useAuth;
