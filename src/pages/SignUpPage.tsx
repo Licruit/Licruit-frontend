@@ -5,6 +5,8 @@ import {
   TitleAndStep,
   useFunnel,
 } from '@/features/Auth';
+import { useState } from 'react';
+
 import { SIGNUP_MAX_STEP } from '@/constants/step';
 import { FindPasswordFormType } from './FindPasswordPage';
 
@@ -24,9 +26,6 @@ function SignUpPage() {
   return (
     <GenericForm<SignupFormType>
       onSubmit={handleSubmitForm}
-      formOptions={{
-        mode: 'onChange',
-      }}
       setStep={setStep}
       isLastStep={currentStep === SIGNUP_MAX_STEP}
       isCheckVaild={isCheckVaild}

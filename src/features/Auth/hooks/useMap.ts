@@ -1,30 +1,29 @@
 import { useState } from 'react';
-import { Place } from '../types/kakao';
+import { Address } from 'react-daum-postcode';
 
 const useMap = () => {
-  const [placeList, setPlaceList] = useState<Place[]>([]);
+  const [address, setAddress] = useState<Address | null>(null);
+  const [isPostcodeVisible, setPostcodeVisible] = useState(false);
 
-  const searchPlaces = async (place: string) => {
-    if (!place.trim()) {
-      return;
-    }
-    const ps = new kakao.maps.services.Places();
-    ps.keywordSearch(place, placesSearchCB);
+  const handleSelect = (data: Address) => {
+    setAddress(data);
+    setPostcodeVisible(false);
   };
 
-  const placesSearchCB = (data: Place[], status: string) => {
-    if (status === kakao.maps.services.Status.OK) {
-      setPlaceList(data.slice(0.4));
-    }
-    if (status === kakao.maps.services.Status.ZERO_RESULT) {
-      setPlaceList([]);
-    }
-    if (status === kakao.maps.services.Status.ERROR) {
-      setPlaceList([]);
-    }
+  const openPostcode = () => {
+    setPostcodeVisible(true);
+  };
+  const closePostcode = () => {
+    setPostcodeVisible(false);
   };
 
-  return { searchPlaces, placeList };
+  return {
+    address,
+    isPostcodeVisible,
+    handleSelect,
+    openPostcode,
+    closePostcode,
+  };
 };
 
 export default useMap;

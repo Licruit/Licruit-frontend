@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { REGEXP } from '../../constants/form';
 import PasswordForm from '../common/Form/PasswordForm';
+import { VerificationBusiness } from '../../api/signup.api';
 
 function PasswordWithIdForm() {
   const { register } = useFormContext();
 
   const handleSendId = () => {
-    // TODO: 사업자번호 api 연동
+    const businessNum = '1231231231';
+    VerificationBusiness(businessNum);
   };
+
   return (
     <Container>
       <InputWrapper>
