@@ -1,9 +1,9 @@
+import { FORM_TITLE } from '@/features/Auth/constants/formTitle';
 import styled from 'styled-components';
-import { FORM_TITLE } from '../../constants/formTitle';
 
 interface Props {
   type: keyof typeof FORM_TITLE;
-  step?: keyof (typeof FORM_TITLE)[keyof typeof FORM_TITLE];
+  step?: number;
 }
 
 function FormTitle({ type, step = 1 }: Props) {
@@ -12,7 +12,7 @@ function FormTitle({ type, step = 1 }: Props) {
   return (
     <Container>
       <h1>{data.title}</h1>
-      <p>{data[step]}</p>
+      <p>{data.step[step]}</p>
     </Container>
   );
 }
