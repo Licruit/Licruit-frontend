@@ -1,22 +1,24 @@
 import styled from 'styled-components';
-import { ICONS } from '@/constants/icons';
 import { NavLink } from 'react-router-dom';
+import Check from 'public/assets/icons/check.svg?react';
 
 interface Props {
   id: number;
   title: string;
   checked: boolean;
   src?: string;
-  onClick: () => void;
+  onClick: (id: number) => void;
 }
 
 function TermItem({ id, title, checked, onClick, src }: Props) {
   const isOptional = id === 3;
 
   return (
-    <Term onClick={onClick}>
+    <Term onClick={() => onClick(id)}>
       <Option>
-        <CheckIcon checked={checked} />
+        <TermIcon $checked={checked}>
+          <Check />
+        </TermIcon>
         <Essential>
           <span> {isOptional ? '(선택)' : '(필수)'}</span>
           {title}
@@ -29,14 +31,13 @@ function TermItem({ id, title, checked, onClick, src }: Props) {
 
 export default TermItem;
 
-export const CheckIcon = styled.img.attrs(() => ({
-  src: ICONS.check,
-  alt: 'check',
-}))<{ checked: boolean }>`
-  width: 20px;
-  height: 20px;
-  fill: ${({ theme, checked }) =>
-    checked ? theme.color.primary[500] : theme.color.neutral[400]};
+const TermIcon = styled.span<{ $checked: boolean }>`
+  width: 24px;
+  height: 24px;
+  & svg {
+    fill: ${({ $checked, theme }) =>
+      $checked ? theme.color.primary[500] : theme.color.neutral[400]};
+  }
 `;
 
 const Term = styled.li`
