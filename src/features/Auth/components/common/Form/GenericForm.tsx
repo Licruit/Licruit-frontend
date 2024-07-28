@@ -15,6 +15,7 @@ interface FormInterface<FormType extends FieldValues> {
   formOptions?: UseFormProps<FormType>; // useForm option
   setStep?: React.Dispatch<React.SetStateAction<number>> | undefined;
   isLastStep?: boolean; // 마지막 단계인지에 대한 여부
+  isCheckVaild?: boolean;
 }
 
 function GenericForm<FormType extends FieldValues>({
@@ -24,6 +25,7 @@ function GenericForm<FormType extends FieldValues>({
   formOptions,
   setStep = undefined,
   isLastStep = true,
+  isCheckVaild = false,
 }: FormInterface<FormType>) {
   const methods = useForm<FormType>(formOptions);
   const {
@@ -38,7 +40,7 @@ function GenericForm<FormType extends FieldValues>({
         <div className='button-wrapper'>
           <Button
             type={isLastStep ? 'submit' : 'button'}
-            disabled={!isValid}
+            disabled={!isValid || !isCheckVaild}
             $style='solid'
             $theme='primary'
             $width='full'

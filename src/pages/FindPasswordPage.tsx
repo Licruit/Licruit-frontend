@@ -6,7 +6,7 @@ import {
   useFunnel,
 } from '@/features/Auth';
 
-interface FindPasswordFormType {
+export interface FindPasswordFormType {
   businessId: number;
   phone: number;
   code: number;

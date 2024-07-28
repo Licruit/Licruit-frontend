@@ -1,13 +1,8 @@
+import { ProcessProps } from '../../types/funnel';
 import PasswordForm from '../common/Form/PasswordForm';
-import { FunnelProps, StepProps } from '../../hooks/useFunnel';
 import AuthWithIdForm from './AuthWithIdForm';
 
-interface Props {
-  Funnel: ({ children }: FunnelProps) => JSX.Element;
-  Step: ({ children }: StepProps) => JSX.Element;
-}
-
-function FindPasswordForm({ Funnel, Step }: Props) {
+function FindPasswordForm({ Funnel, Step }: ProcessProps) {
   return (
     <Funnel>
       <Step stepNum={1}>
