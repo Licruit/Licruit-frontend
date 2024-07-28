@@ -5,10 +5,10 @@ import { TOS } from '../../constants/tos';
 import TermItem from './TermItem';
 
 function ConsentForm() {
-  const [term, setTerm] = useState(TOS);
+  const [terms, setTerms] = useState(TOS);
 
   const handleChecked = (id: number) => {
-    setTerm((prev) =>
+    setTerms((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, checked: !item.checked } : item
       )
@@ -16,21 +16,21 @@ function ConsentForm() {
   };
 
   const handleAllChecked = () => {
-    setTerm((prev) => prev.map((item) => ({ ...item, checked: true })));
+    setTerms((prev) => prev.map((item) => ({ ...item, checked: true })));
   };
 
   return (
     <Container>
       <AllAgree onClick={handleAllChecked}>
         <div className='checkBox'>
-          <FormIcon $checked={term.every((item) => item.checked)}>
+          <FormIcon $checked={terms.every((item) => item.checked)}>
             <Check />
           </FormIcon>
         </div>
         모두 동의
       </AllAgree>
       <ul>
-        {term.map((item) => {
+        {terms.map((item) => {
           return <TermItem key={item.id} {...item} onClick={handleChecked} />;
         })}
       </ul>
