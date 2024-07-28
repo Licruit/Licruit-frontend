@@ -5,7 +5,6 @@ import {
   TitleAndStep,
   useFunnel,
 } from '@/features/Auth';
-import { useState } from 'react';
 
 import { SIGNUP_MAX_STEP } from '@/constants/step';
 import { FindPasswordFormType } from './FindPasswordPage';
