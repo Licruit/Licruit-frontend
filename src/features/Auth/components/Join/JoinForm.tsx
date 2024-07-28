@@ -5,11 +5,15 @@ import IndustryForm from './IndustryForm';
 import { ProcessProps } from '../../types/funnel';
 import PasswordWithIdForm from './PasswordWithIdForm';
 
-function JoinForm({ Funnel, Step }: ProcessProps) {
+interface Props extends ProcessProps {
+  setIsCheckVaild: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function JoinForm({ Funnel, Step, setIsCheckVaild }: Props) {
   return (
     <Funnel>
       <Step stepNum={1}>
-        <ConsentForm />
+        <ConsentForm setIsCheckVaild={setIsCheckVaild} />
       </Step>
       <Step stepNum={2}>
         <AuthForm />

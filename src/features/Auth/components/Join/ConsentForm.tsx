@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
 import { TOS } from '../../constants/tos';
 import TermItem from './TermItem';
 
-function ConsentForm() {
+interface Props {
+  setIsCheckVaild: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function ConsentForm({ setIsCheckVaild }: Props) {
   const [terms, setTerms] = useState(TOS);
 
   const handleChecked = (id: number) => {
@@ -17,6 +21,7 @@ function ConsentForm() {
 
   const handleAllChecked = () => {
     setTerms((prev) => prev.map((item) => ({ ...item, checked: true })));
+    setIsCheckVaild(true);
   };
 
   return (
@@ -30,9 +35,9 @@ function ConsentForm() {
         모두 동의
       </AllAgree>
       <ul>
-        {terms.map((item) => {
-          return <TermItem key={item.id} {...item} onClick={handleChecked} />;
-        })}
+        {terms.map((item) => (
+          <TermItem key={item.id} {...item} onClick={handleChecked} />
+        ))}
       </ul>
     </Container>
   );
