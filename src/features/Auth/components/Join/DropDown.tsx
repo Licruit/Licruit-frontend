@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { ICONS } from '@/constants/icons';
 import { KSIC } from '../../types/signup';
 
 interface Props {
@@ -10,6 +11,25 @@ interface Props {
 function DropDown({ options, placeholder }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<KSIC | null>(null);
+  const modalRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleSelect = (option: KSIC) => {
     setSelectedOption(option);
@@ -19,10 +39,13 @@ function DropDown({ options, placeholder }: Props) {
   return (
     <DropdownWrapper>
       <DropdownHeader onClick={() => setIsOpen(!isOpen)}>
-        <div>{selectedOption?.name ? selectedOption.name : placeholder}</div>
+        <div className='dropdown_input'>
+          {selectedOption?.name ? selectedOption.name : placeholder}{' '}
+          <img src={ICONS.down_arrow} alt='down-arrow' />
+        </div>
       </DropdownHeader>
       {isOpen && (
-        <DropdownList>
+        <DropdownList ref={modalRef}>
           {options?.map((option) => (
             <DropdownItem key={option.id} onClick={() => handleSelect(option)}>
               {option.name}
@@ -39,6 +62,11 @@ export default DropDown;
 const DropdownWrapper = styled.div`
   position: relative;
   width: 100%;
+  .dropdown_input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const DropdownHeader = styled.div`
@@ -58,7 +86,6 @@ const DropdownList = styled.ul`
   overflow-y: auto;
   background-color: ${({ theme }) => theme.color.common[100]};
   color: ${({ theme }) => theme.color.neutral[300]};
-
   z-index: 1000;
 `;
 
@@ -67,6 +94,8 @@ const DropdownItem = styled.li`
   ${({ theme }) => theme.typo.body.medium[12]}
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.color.neutral[200]};
+    color: ${({ theme }) => theme.color.neutral[400]};
+
+    background-color: ${({ theme }) => theme.color.neutral[100]};
   }
 `;
