@@ -43,9 +43,6 @@ function IndustryForm() {
     { id: 4, name: '양식' },
   ];
 
-  const handleAddress = () => {
-    // TODO: 업종 api 연동
-  };
   return (
     <Container>
       <InputWrapper>
