@@ -7,7 +7,7 @@ import {
 } from '@/features/Auth';
 
 export interface FindPasswordFormType {
-  businessId: number;
+  companyNumber: number;
   phone: number;
   code: number;
   password: string;

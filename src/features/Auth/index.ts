@@ -5,6 +5,7 @@ import FindPasswordForm from './components/FindPassword/FindPasswordForm';
 import LoginForm from './components/Login/LoginForm';
 import JoinForm from './components/Join/JoinForm';
 import { useFunnel } from './hooks/useFunnel';
+import { LoginForm as LoginFormType } from './types/login.d';
 
 export {
   LoginForm,
@@ -15,3 +16,5 @@ export {
   useFunnel,
   JoinForm,
 };
+
+export type { LoginFormType };
