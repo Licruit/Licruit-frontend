@@ -7,8 +7,13 @@ import { REGEXP } from '@/features/Auth/constants/form';
 import Timer from '../Timer';
 
 function AuthForm() {
-  const { register, watch } = useFormContext();
-  const { handleSendCode, expTime, isFailed, setIsFailed } = useCode();
+  const {
+    register,
+    watch,
+    setError,
+    formState: { errors },
+  } = useFormContext();
+  const { handleSendCode, expTime, handleVerifyCode } = useCode();
 
   return (
     <Container>
@@ -22,24 +27,52 @@ function AuthForm() {
           type='button'
           onClick={() => handleSendCode(watch('phone'))}
           $style='outlined'
-          $size='lg'
+          $size={undefined}
           $theme='primary'
         >
-          인증요청
+          {expTime ? '재요청' : '인증요청'}
         </Button>
       </InputWithButton>
       <InputWrapper>
-        <div className='wrapper'>
-          <FormInput
-            type='number'
-            placeholder='인증번호'
-            {...register('code', { required: true })}
-          />
-          {expTime && (
-            <Timer expTime={expTime} onFail={() => setIsFailed(true)} />
-          )}
-        </div>
-        <span className='error'>{isFailed && '인증에 실패했습니다.'}</span>
+        <InputWithButton>
+          <div className='wrapper'>
+            <FormInput
+              type='number'
+              placeholder='인증번호'
+              {...register('code', {
+                required: true,
+                validate: () => {
+                  if (watch('isVerified')) {
+                    return true;
+                  }
+                  return false;
+                },
+              })}
+            />
+            {expTime && (
+              <Timer
+                expTime={expTime}
+                onFail={() =>
+                  setError('code', {
+                    message: '유효시간이 만료되었습니다. 다시 시도해주세요.',
+                  })
+                }
+              />
+            )}
+          </div>
+          <Button
+            type='button'
+            onClick={() => handleVerifyCode(watch('phone'), watch('code'))}
+            $style='outlined'
+            $size={undefined}
+            $theme='primary'
+          >
+            확인
+          </Button>
+        </InputWithButton>
+        <span className='error'>
+          {errors.code && String(errors.code.message)}
+        </span>
       </InputWrapper>
     </Container>
   );
@@ -58,6 +91,10 @@ const InputWithButton = styled.div`
   width: 100%;
   display: flex;
   gap: 10px;
+
+  .wrapper {
+    position: relative;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -65,10 +102,6 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-
-  .wrapper {
-    position: relative;
-  }
 
   .error {
     height: 12px;

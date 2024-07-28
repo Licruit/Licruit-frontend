@@ -10,6 +10,7 @@ export interface FindPasswordFormType {
   companyNumber: number;
   phone: number;
   code: number;
+  isVerified: boolean;
   password: string;
   passwordCheck: string;
 }
@@ -24,7 +25,10 @@ function FindPasswordPage() {
   return (
     <GenericForm<FindPasswordFormType>
       onSubmit={handleSubmitForm}
-      formOptions={{ mode: 'onChange' }}
+      formOptions={{
+        mode: 'onChange',
+        defaultValues: { isVerified: false },
+      }}
       setStep={setStep}
       isLastStep={currentStep === FIND_PASSWORD_MAX_STEP}
     >
