@@ -4,19 +4,13 @@ import {
   GenericForm,
   LoginForm,
   LoginFormType,
+  useLogin,
 } from '@/features/Auth';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function LoginPage() {
-  const [isFailed, setIsFailed] = useState<boolean>(false);
-
-  const handleLogin = (value: LoginFormType) => {
-    // TODO: 서버 연동
-    console.log(value);
-    setIsFailed(true);
-  };
+  const { isFailed, handleLogin } = useLogin();
 
   return (
     <>

@@ -6,6 +6,7 @@ import LoginForm from './components/Login/LoginForm';
 import JoinForm from './components/Join/JoinForm';
 import { useFunnel } from './hooks/useFunnel';
 import { LoginForm as LoginFormType } from './types/login.d';
+import { useLogin } from './hooks/useLogin';
 
 export {
   LoginForm,
@@ -15,6 +16,7 @@ export {
   TitleAndStep,
   useFunnel,
   JoinForm,
+  useLogin,
 };
 
 export type { LoginFormType };
