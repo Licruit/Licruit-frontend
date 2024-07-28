@@ -7,9 +7,6 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
   const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     timeout: DEFAULT_TIMOUT,
-    headers: {
-      'Content-Type': 'application/json',
-    },
     withCredentials: true,
     ...config,
   });
@@ -19,12 +16,9 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
       return res;
     },
     async (err) => {
-      const {
-        response: { status },
-      } = err;
       const { isLoggedIn, setIsLoggedIn } = useSessionStore.getState();
 
-      if (isLoggedIn && status === 401) {
+      if (isLoggedIn && err.response.status === 401) {
         const originRequest = err.config;
         try {
           await axiosInstance.post('/users/refresh');

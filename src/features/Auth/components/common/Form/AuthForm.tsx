@@ -1,19 +1,14 @@
-import { useState } from 'react';
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
+import { useCode } from '@/features/Auth/hooks/useCode';
 import Button from '@/components/Button/Button';
 import { useFormContext } from 'react-hook-form';
 import { REGEXP } from '@/features/Auth/constants/form';
 import Timer from '../Timer';
 
 function AuthForm() {
-  const { register } = useFormContext();
-  const [isSent, setIsSent] = useState(false);
-
-  const handleSendCode = () => {
-    // TODO: 서버 연동
-    setIsSent(true);
-  };
+  const { register, watch } = useFormContext();
+  const { handleSendCode, expTime, isFailed, setIsFailed } = useCode();
 
   return (
     <Container>
@@ -25,7 +20,7 @@ function AuthForm() {
         />
         <Button
           type='button'
-          onClick={handleSendCode}
+          onClick={() => handleSendCode(watch('phone'))}
           $style='outlined'
           $size='lg'
           $theme='primary'
@@ -34,12 +29,17 @@ function AuthForm() {
         </Button>
       </InputWithButton>
       <InputWrapper>
-        <FormInput
-          type='number'
-          placeholder='인증번호'
-          {...register('code', { required: true })}
-        />
-        {isSent && <Timer />}
+        <div className='wrapper'>
+          <FormInput
+            type='number'
+            placeholder='인증번호'
+            {...register('code', { required: true })}
+          />
+          {expTime && (
+            <Timer expTime={expTime} onFail={() => setIsFailed(true)} />
+          )}
+        </div>
+        <span className='error'>{isFailed && '인증에 실패했습니다.'}</span>
       </InputWrapper>
     </Container>
   );
@@ -62,5 +62,17 @@ const InputWithButton = styled.div`
 
 const InputWrapper = styled.div`
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .wrapper {
+    position: relative;
+  }
+
+  .error {
+    height: 12px;
+    color: ${({ theme }) => theme.color.error};
+    ${({ theme }) => theme.typo.body.medium[12]}
+  }
 `;

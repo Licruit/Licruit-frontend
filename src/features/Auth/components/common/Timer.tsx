@@ -1,36 +1,42 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CODE_EXPIRE_TIME } from '../../constants/timer';
 
-function Timer() {
-  const [remainingTime, setRemainingTime] = useState<number>(CODE_EXPIRE_TIME);
+interface Props {
+  expTime: string;
+  onFail: () => void;
+}
+
+function Timer({ expTime, onFail }: Props) {
+  const [remainingTime, setRemainingTime] = useState<number>(0);
 
   useEffect(() => {
     let timeoutId: number;
 
     const updateRemainingTime = () => {
-      setRemainingTime((prev) => {
-        if (prev > 0) {
-          return prev - 1000;
-        }
-        clearTimeout(timeoutId);
-        return 0;
-      });
-      timeoutId = window.setTimeout(updateRemainingTime, 1000);
+      const timeDiff = new Date(expTime).getTime() - new Date().getTime();
+
+      if (timeDiff <= 0) {
+        setRemainingTime(0);
+        onFail();
+      } else {
+        setRemainingTime(timeDiff);
+        timeoutId = window.setTimeout(updateRemainingTime, 1000);
+      }
     };
-    setTimeout(() => {
-      updateRemainingTime();
-    }, 500);
+
+    updateRemainingTime();
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [expTime, onFail]);
+
+  const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+  const seconds = Math.floor((remainingTime / 1000) % 60);
 
   return (
     <TimerStyle>
-      {Math.floor((remainingTime / (1000 * 60)) % 60)}:
-      {String(Math.floor((remainingTime / 1000) % 60)).padStart(2, '0')}
+      {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
     </TimerStyle>
   );
 }
