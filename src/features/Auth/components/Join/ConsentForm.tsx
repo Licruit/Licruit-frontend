@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
 import { TOS } from '../../constants/tos';
