@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 import Badge from '@/components/Badge/Badge';
+import HeaderInfo from '../common/HeaderInfo';
 
 interface Props {
-  enroll: number;
+  headerText: string;
   badgeText: string;
   title: string;
   description: string;
@@ -11,7 +12,7 @@ interface Props {
 }
 
 function LiquorInfoContent({
-  enroll,
+  headerText,
   badgeText,
   title,
   description,
@@ -19,7 +20,7 @@ function LiquorInfoContent({
 }: Props) {
   return (
     <LiquorInfoContainer>
-      <HeaderInfo>{enroll}명 신청</HeaderInfo>
+      <HeaderInfo>{headerText}</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
@@ -37,16 +38,6 @@ const LiquorInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`;
-
-const HeaderInfo = styled.div`
-  width: 100%;
-  padding: 20px;
-
-  color: ${({ theme }) => theme.color.neutral[50]};
-  font-size: ${({ theme }) => theme.typo.heading.bold[16]};
-
-  background: ${({ theme }) => theme.color.primary[500]};
 `;
 
 const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
