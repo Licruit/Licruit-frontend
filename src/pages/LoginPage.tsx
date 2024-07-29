@@ -1,26 +1,20 @@
 import PATH from '@/constants/path';
-import { FormTitle, GenericForm, LoginForm } from '@/features/Auth';
-import { useState } from 'react';
+import {
+  FormTitle,
+  GenericForm,
+  LoginForm,
+  LoginFormType,
+  useLogin,
+} from '@/features/Auth';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface LoginForm {
-  businessId: number;
-  password: string;
-}
-
 function LoginPage() {
-  const [isFailed, setIsFailed] = useState<boolean>(false);
-
-  const handleLogin = (value: LoginForm) => {
-    // TODO: 서버 연동
-    console.log(value);
-    setIsFailed(true);
-  };
+  const { isFailed, handleLogin } = useLogin();
 
   return (
     <>
-      <GenericForm<LoginForm>
+      <GenericForm<LoginFormType>
         onSubmit={handleLogin}
         formOptions={{ mode: 'onChange' }}
         caption={
