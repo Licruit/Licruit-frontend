@@ -17,7 +17,7 @@ function LoginForm({ isFailed }: Props) {
         <FormInput
           type='number'
           placeholder='사업자 등록번호를 입력해주세요'
-          {...register('businessId', { required: true })}
+          {...register('companyNumber', { required: true })}
         />
         <FormInput
           type='password'
