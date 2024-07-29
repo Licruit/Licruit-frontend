@@ -25,6 +25,7 @@ function AuthForm() {
         />
         <Button
           type='button'
+          disabled={!watch('phone')}
           onClick={() => handleSendCode(watch('phone'))}
           $style='outlined'
           $size={undefined}
@@ -62,6 +63,7 @@ function AuthForm() {
           </div>
           <Button
             type='button'
+            disabled={!watch('code')}
             onClick={() => handleVerifyCode(watch('phone'), watch('code'))}
             $style='outlined'
             $size={undefined}

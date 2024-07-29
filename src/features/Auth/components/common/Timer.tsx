@@ -18,10 +18,10 @@ function Timer({ expTime, onFail }: Props) {
       if (timeDiff <= 0) {
         setRemainingTime(0);
         onFail();
-      } else {
-        setRemainingTime(timeDiff);
-        timeoutId = window.setTimeout(updateRemainingTime, 1000);
+        return;
       }
+      setRemainingTime(timeDiff);
+      timeoutId = window.setTimeout(updateRemainingTime, 1000);
     };
 
     updateRemainingTime();
@@ -29,7 +29,7 @@ function Timer({ expTime, onFail }: Props) {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [expTime, onFail]);
+  }, []);
 
   const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
   const seconds = Math.floor((remainingTime / 1000) % 60);
