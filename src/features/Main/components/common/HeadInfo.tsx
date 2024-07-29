@@ -4,11 +4,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-function HeaderInfo({ children }: Props) {
-  return <StyledHeaderInfo>{children}</StyledHeaderInfo>;
+function HeadInfo({ children }: Props) {
+  return <StyledHeadInfo>{children}</StyledHeadInfo>;
 }
 
-const StyledHeaderInfo = styled.div`
+const StyledHeadInfo = styled.div`
   width: 100%;
   padding: 20px;
 
@@ -18,4 +18,4 @@ const StyledHeaderInfo = styled.div`
   background: ${({ theme }) => theme.color.primary[500]};
 `;
 
-export default HeaderInfo;
+export default HeadInfo;

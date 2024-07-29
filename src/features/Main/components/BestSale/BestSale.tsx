@@ -45,21 +45,21 @@ function BestSale() {
       <LiquorContent>
         {/* 추후 서버 데이터로 대체 예정 */}
         <BestLiquorInfo
-          headerText='1400명 신청'
+          headText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
           badgeText='오늘마감'
           imageUrl={LiquorUrl}
         />
         <BestLiquorInfo
-          headerText='1400명 신청'
+          headText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
           badgeText='오늘마감'
           imageUrl={LiquorUrl}
         />
         <BestLiquorInfo
-          headerText='1400명 신청'
+          headText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
           badgeText='오늘마감'
