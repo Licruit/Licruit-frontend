@@ -1,7 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
-import JoinUsUrl from 'public/assets/images/main/join-us.svg';
+
+import { IMAGES } from '@/constants/images';
 import Title from '../common/Title';
+import { BANNER_TEXT } from '../../constants/banner';
 
 function JoinUs() {
   return (
@@ -9,12 +10,9 @@ function JoinUs() {
       <Content>
         <InfoWrapper>
           <Title $size='36' $color='neutral50'>
-            이런 고민, 한 번쯤 해보셨나요 ?
+            {BANNER_TEXT.join.title}
           </Title>
-          <Description>
-            저희가 그 고민을 한 번에 해결해 드립니다 !<br /> 리쿠르트와
-            함께라면, 주류 공동구매가 더 쉽고 편리해 집니다 !
-          </Description>
+          <Description>{BANNER_TEXT.join.description}</Description>
         </InfoWrapper>
         <JoinButton>회원가입 하러가기</JoinButton>
       </Content>
@@ -30,7 +28,7 @@ const JoinUsContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  background: url(${JoinUsUrl}) lightgray 0px -257.75px / 100% 289.522% no-repeat;
+  background: url(${IMAGES.join}) lightgray 0px -257.75px / 100% 289.522% no-repeat;
 `;
 
 const Content = styled.div`

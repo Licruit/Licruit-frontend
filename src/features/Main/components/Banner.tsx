@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import BannerUrl from 'public/assets/images/main/main-banner.svg';
+
+import { IMAGES } from '@/constants/images';
 
 function Banner() {
-  return <BannerContainer />;
+  return <BannerContainer src={IMAGES.banner} />;
 }
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.img`
   width: 100%;
   height: 480px;
-  background: url(${BannerUrl}) lightgray 50% / cover no-repeat;
 `;
 
 export default Banner;
