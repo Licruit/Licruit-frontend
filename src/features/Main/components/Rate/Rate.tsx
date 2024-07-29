@@ -3,14 +3,15 @@ import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
 import Category from '../common/Category';
 import MoreButton from '../common/MoreButton';
 import RateLiquorInfo from './RateLiquorInfo';
+import { CATEGORY_TEXT } from '../../constants/category';
 
 function Rate() {
   return (
     <RateContainer>
       <CategoryHeader>
         <Category
-          title='사장님들의 술직 리뷰'
-          description='솔직한 사장님들의 리뷰 모음 ! 진짜 맛을 여기서 찾아보세요'
+          title={CATEGORY_TEXT.rate.title}
+          description={CATEGORY_TEXT.rate.description}
         />
         <MoreButton>더보기</MoreButton>
       </CategoryHeader>
@@ -78,7 +79,7 @@ const CategoryHeader = styled.div`
   }
 `;
 
-const LiquorContent = styled.div`
+const LiquorContent = styled.ul`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
