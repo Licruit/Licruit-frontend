@@ -6,7 +6,7 @@ function Banner() {
 }
 
 const BannerContainer = styled.div`
-  width: 1400px;
+  width: 100%;
   height: 480px;
   background: url(${BannerUrl}) lightgray 50% / cover no-repeat;
 `;
