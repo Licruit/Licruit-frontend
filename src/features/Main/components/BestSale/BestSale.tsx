@@ -97,7 +97,7 @@ const ButtonCategory = styled.div`
   gap: 10px;
 `;
 
-const LiquorContent = styled.div`
+const LiquorContent = styled.li`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
