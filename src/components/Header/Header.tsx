@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import Logo from 'public/assets/images/logo.svg?react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PATH from '@/constants/path';
+import Navigation from './Navigation';
 
 function Header() {
-  const { pathname } = useLocation();
-
   return (
     <HeaderBar>
       <div className='wrapper'>
@@ -17,12 +16,7 @@ function Header() {
           <NavLink to={PATH.group_buying}>GROUP BUYING</NavLink>
         </Nav>
       </div>
-      {!pathname.startsWith('/auth') && (
-        <Nav $gap={24}>
-          <NavLink to={PATH.login}>LOGIN</NavLink>
-          <NavLink to={PATH.join}>SIGN UP</NavLink>
-        </Nav>
-      )}
+      <Navigation />
     </HeaderBar>
   );
 }
