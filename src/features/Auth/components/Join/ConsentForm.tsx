@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
 import { TOS } from '../../constants/tos';
 import TermItem from './TermItem';
@@ -24,13 +24,18 @@ function ConsentForm({ setIsCheckVaild }: Props) {
     setIsCheckVaild(true);
   };
 
+  const checked = terms.every((item) => item.checked);
+  const theme = useTheme();
+
   return (
     <Container>
       <AllAgree onClick={handleAllChecked}>
         <div className='checkBox'>
-          <FormIcon $checked={terms.every((item) => item.checked)}>
-            <Check />
-          </FormIcon>
+          <Check
+            fill={checked ? theme.color.primary[500] : theme.color.neutral[400]}
+            width={24}
+            height={24}
+          />
         </div>
         모두 동의
       </AllAgree>
@@ -50,15 +55,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-`;
-
-const FormIcon = styled.span<{ $checked: boolean }>`
-  width: 24px;
-  height: 24px;
-  & svg {
-    fill: ${({ $checked, theme }) =>
-      $checked ? theme.color.primary[500] : theme.color.neutral[400]};
   }
 `;
 
