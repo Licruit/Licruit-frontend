@@ -6,6 +6,7 @@ import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import useMap from '../../hooks/useMap';
+import { useSignup } from '../../hooks/useSignup';
 
 function IndustryForm() {
   const { register } = useFormContext();
@@ -17,6 +18,7 @@ function IndustryForm() {
     closePostcode,
   } = useMap();
   const modalRef = useRef<HTMLDivElement>(null);
+  const { industryData } = useSignup();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -31,13 +33,6 @@ function IndustryForm() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [isPostcodeVisible, closePostcode]);
-
-  const mock = [
-    { id: 1, name: '한식' },
-    { id: 2, name: '일식' },
-    { id: 3, name: '중식' },
-    { id: 4, name: '양식' },
-  ];
 
   return (
     <Container>
@@ -76,7 +71,7 @@ function IndustryForm() {
       />
       <FormInput
         isDropdown
-        options={mock}
+        options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
         {...register('industry', {
           required: true,
