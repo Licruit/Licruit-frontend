@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import JoinUsUrl from 'public/assets/images/main/join-us.svg';
+import Title from '../common/Title';
 
 function JoinUs() {
   return (
     <JoinUsContainer>
       <Content>
         <InfoWrapper>
-          <Title>이런 고민, 한 번쯤 해보셨나요 ?</Title>
+          <Title $size='36' $color='neutral50'>
+            이런 고민, 한 번쯤 해보셨나요 ?
+          </Title>
           <Description>
             저희가 그 고민을 한 번에 해결해 드립니다 !<br /> 리쿠르트와
             함께라면, 주류 공동구매가 더 쉽고 편리해 집니다 !
@@ -44,12 +47,6 @@ const InfoWrapper = styled.div`
   gap: 8px;
 `;
 
-const Title = styled.div`
-  ${({ theme }) => theme.typo.heading.bold[36]};
-  color: ${({ theme }) => theme.color.neutral[50]};
-  text-align: center;
-`;
-
 const Description = styled.div`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.common[0]};
@@ -67,6 +64,10 @@ const JoinButton = styled.button`
 
   color: ${({ theme }) => theme.color.neutral[50]};
   background: ${({ theme }) => theme.color.primary[500]};
+
+  &:hover {
+    background: ${({ theme }) => theme.color.primary[700]};
+  }
 `;
 
 export default JoinUs;

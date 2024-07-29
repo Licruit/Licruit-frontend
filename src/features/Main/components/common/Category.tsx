@@ -1,5 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
+import Title from './Title';
 
 interface Props {
   title: string;
@@ -9,7 +9,9 @@ interface Props {
 function Category({ title, description }: Props) {
   return (
     <StyledCategory>
-      <Title>{title}</Title>
+      <Title $size='28' $color='neutral900'>
+        {title}
+      </Title>
       <Description>{description}</Description>
     </StyledCategory>
   );
@@ -21,9 +23,6 @@ const StyledCategory = styled.div`
   gap: 6px;
 `;
 
-const Title = styled.div`
-  ${({ theme }) => theme.typo.heading.bold[28]}
-`;
 const Description = styled.p`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};

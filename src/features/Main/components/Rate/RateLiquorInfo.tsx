@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Badge from '@/components/Badge/Badge';
 import HeadInfo from '../common/HeadInfo';
 import { LiquorInfoProps } from '../../types/main';
+import Title from '../common/Title';
 
 function RateLiquorInfo({
   headText,
@@ -19,14 +20,16 @@ function RateLiquorInfo({
         <Badge $type='black' $size='sm'>
           {badgeText}
         </Badge>
-        <LiquorTitle>{title}</LiquorTitle>
+        <Title $size='20' $color='neutral900'>
+          {title}
+        </Title>
         <LiquorDescription>{description}</LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
   );
 }
 
-const LiquorInfoContainer = styled.div`
+const LiquorInfoContainer = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -34,6 +37,8 @@ const LiquorInfoContainer = styled.div`
   img {
     width: 100%;
   }
+
+  cursor: pointer;
 `;
 
 const LiquorInfo = styled.div`
@@ -43,11 +48,6 @@ const LiquorInfo = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-`;
-
-const LiquorTitle = styled.div`
-  ${({ theme }) => theme.typo.heading.bold[20]};
-  color: ${({ theme }) => theme.color.neutral[900]};
 `;
 
 const LiquorDescription = styled.div`
