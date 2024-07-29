@@ -2,14 +2,7 @@ import styled from 'styled-components';
 
 import Badge from '@/components/Badge/Badge';
 import HeadInfo from '../common/HeadInfo';
-
-interface Props {
-  headText: string;
-  imageUrl: string;
-  badgeText: string;
-  title: string;
-  description: string;
-}
+import { LiquorInfoProps } from '../../types/main';
 
 function RateLiquorInfo({
   headText,
@@ -17,7 +10,7 @@ function RateLiquorInfo({
   badgeText,
   title,
   description,
-}: Props) {
+}: LiquorInfoProps) {
   return (
     <LiquorInfoContainer>
       <HeadInfo>{headText}</HeadInfo>

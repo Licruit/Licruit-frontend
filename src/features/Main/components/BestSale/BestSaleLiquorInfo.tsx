@@ -2,25 +2,18 @@ import styled from 'styled-components';
 
 import Badge from '@/components/Badge/Badge';
 import HeaderInfo from '../common/HeadInfo';
-
-interface Props {
-  headerText: string;
-  badgeText: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-}
+import { LiquorInfoProps } from '../../types/main';
 
 function BestSaleLiquorInfo({
-  headerText,
+  headText,
   badgeText,
   title,
   description,
   imageUrl,
-}: Props) {
+}: LiquorInfoProps) {
   return (
     <LiquorInfoContainer>
-      <HeaderInfo>{headerText}</HeaderInfo>
+      <HeaderInfo>{headText}</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
