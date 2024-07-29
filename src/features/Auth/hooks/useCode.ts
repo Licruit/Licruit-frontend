@@ -8,6 +8,7 @@ export const useCode = () => {
 
   const handleSendCode = (contact: string) => {
     setExpTime(null);
+    setError('code', { message: '' });
 
     requestCode(contact).then((res) => {
       if (res) {
