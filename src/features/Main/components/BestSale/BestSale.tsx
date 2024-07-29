@@ -5,7 +5,7 @@ import Button from '@/components/Button/Button';
 import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
 import MoreButton from '../common/MoreButton';
 import Category from '../common/Category';
-import LiquorInfoContent from './LiquorInfo';
+import BestLiquorInfo from './BestSaleLiquorInfo';
 
 import { CONTENT } from '../../constants/button';
 import { CATEGORY_TEXT } from '../../constants/category';
@@ -44,21 +44,21 @@ function BestSale() {
       </CategoryHeader>
       <LiquorContent>
         {/* 추후 서버 데이터로 대체 예정 */}
-        <LiquorInfoContent
+        <BestLiquorInfo
           headerText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
           badgeText='오늘마감'
           imageUrl={LiquorUrl}
         />
-        <LiquorInfoContent
+        <BestLiquorInfo
           headerText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
           badgeText='오늘마감'
           imageUrl={LiquorUrl}
         />
-        <LiquorInfoContent
+        <BestLiquorInfo
           headerText='1400명 신청'
           title='우아하고 순수한 첫번째 고래백경 13. 탁주'
           description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'

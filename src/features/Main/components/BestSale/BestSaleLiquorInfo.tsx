@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Badge from '@/components/Badge/Badge';
-import HeaderInfo from '../common/HeaderInfo';
+import HeaderInfo from '../common/HeadInfo';
 
 interface Props {
   headerText: string;
@@ -11,7 +11,7 @@ interface Props {
   imageUrl: string;
 }
 
-function LiquorInfoContent({
+function BestSaleLiquorInfo({
   headerText,
   badgeText,
   title,
@@ -73,4 +73,4 @@ const LiquorDescription = styled.p`
   color: ${({ theme }) => theme.color.neutral[500]};
 `;
 
-export default LiquorInfoContent;
+export default BestSaleLiquorInfo;
