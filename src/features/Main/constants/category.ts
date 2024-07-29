@@ -7,4 +7,8 @@ export const CATEGORY_TEXT = {
     title: '사장님들의 솔직 리뷰',
     description: '솔직한 사장님들의 리뷰 모음 ! 진짜 맛을 여기서 찾아보세요',
   },
+  new: {
+    title: '새로운 술이 카탈로그에 추가되었어요 !',
+    description: '신상 술의 맛과 향을 자랑하는 최신 주류를 만나보세요',
+  },
 };
