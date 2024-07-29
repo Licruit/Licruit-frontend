@@ -5,6 +5,7 @@ export interface Signup {
   contact: string;
   address: string;
   sectorId: number;
+  isVerified: boolean;
 }
 
 export interface KSIC {

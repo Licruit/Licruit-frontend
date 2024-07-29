@@ -40,7 +40,7 @@ function GenericForm<FormType extends FieldValues>({
         <div className='button-wrapper'>
           <Button
             type={isLastStep ? 'submit' : 'button'}
-            disabled={!isValid || !isCheckVaild}
+            disabled={!isValid || (isCheckVaild && !isCheckVaild)}
             $style='solid'
             $theme='primary'
             $width='full'

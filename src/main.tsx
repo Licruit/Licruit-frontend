@@ -8,13 +8,13 @@ Sentry.init({
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
   ],
-
-  tracesSampleRate: 1.0,
   tracePropagationTargets: [
     'localhost',
     '5173',
-    /^https:\/\/licruit\.store\/.*/,
+    /^https:\/\/licruit-web.netlify.app\/.*/,
   ],
+  tracesSampleRate: 1.0,
+  tracesSampler: () => 0,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
 });

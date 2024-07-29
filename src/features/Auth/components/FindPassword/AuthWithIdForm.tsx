@@ -12,9 +12,9 @@ function AuthWithIdForm() {
       <FormInput
         type='number'
         placeholder='사업자 등록번호를 입력해주세요'
-        {...register('businessId', {
+        {...register('companyNumber', {
           required: true,
-          pattern: REGEXP.businessId,
+          pattern: REGEXP.companyNumber,
         })}
       />
       <AuthForm />
