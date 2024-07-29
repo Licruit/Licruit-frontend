@@ -6,7 +6,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $style: 'solid' | 'outlined';
   $theme: 'primary' | 'neutral';
   $width?: 'fit' | 'full';
-  $size: 'sm' | 'md' | 'lg' | undefined;
+  $size: 'sm' | 'md' | 'lg' | string;
 }
 
 function Button({
@@ -107,7 +107,7 @@ const StyledButton = styled.button<Omit<Props, 'children'>>`
       };
     }
     return {
-      width: '100px',
+      width: $size,
     };
   }}
 `;

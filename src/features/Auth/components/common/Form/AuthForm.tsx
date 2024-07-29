@@ -28,7 +28,7 @@ function AuthForm() {
           disabled={!watch('phone')}
           onClick={() => handleSendCode(watch('phone'))}
           $style='outlined'
-          $size={undefined}
+          $size='100px'
           $theme='primary'
         >
           {expTime ? '재요청' : '인증요청'}
@@ -66,7 +66,7 @@ function AuthForm() {
             disabled={!watch('code')}
             onClick={() => handleVerifyCode(watch('phone'), watch('code'))}
             $style='outlined'
-            $size={undefined}
+            $size='100px'
             $theme='primary'
           >
             확인
