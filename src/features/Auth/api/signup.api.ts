@@ -12,8 +12,11 @@ export const getKSIC = async (): Promise<KSIC[]> => {
   return response.data;
 };
 
-export const VerificationBusiness = async (businessNumber: string) => {
-  const data = { b_no: [businessNumber] };
+export const verificationBusiness = async (companyNumber: string) => {
+  const data = { b_no: [companyNumber] };
   const response = await axios.post(BUSINESS_URL, data);
-  return response.data;
+
+  if (response.data.data[0].b_stt !== '계속사업자') {
+    throw new Error();
+  }
 };
