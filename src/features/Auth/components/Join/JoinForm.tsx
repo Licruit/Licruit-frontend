@@ -13,7 +13,9 @@ function JoinForm({ Funnel, Step, setIsCheckVaild }: Props) {
   return (
     <Funnel>
       <Step stepNum={1}>
-        <ConsentForm setIsCheckVaild={setIsCheckVaild} />
+        <IndustryForm />
+
+        {/* <ConsentForm setIsCheckVaild={setIsCheckVaild} /> */}
       </Step>
       <Step stepNum={2}>
         <AuthForm />

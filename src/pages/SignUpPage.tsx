@@ -28,6 +28,10 @@ function SignUpPage() {
       setStep={setStep}
       isLastStep={currentStep === SIGNUP_MAX_STEP}
       isCheckVaild={isCheckVaild}
+      formOptions={{
+        mode: 'onChange',
+        defaultValues: { isVerified: false },
+      }}
     >
       <TitleAndStep
         formType='signUp'

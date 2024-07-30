@@ -1,46 +1,45 @@
 import { useEffect, useRef } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-
+import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import FormInput from '@/components/Input/FormInput';
-import styled from 'styled-components';
+import FormSelect from '@/components/Input/FormSelect';
 import Button from '@/components/Button/Button';
 import useMap from '../../hooks/useMap';
 import { useSignup } from '../../hooks/useSignup';
 
 function IndustryForm() {
-  const { register } = useFormContext();
-  const {
-    address,
-    isPostcodeVisible,
-    handleSelect,
-    openPostcode,
-    closePostcode,
-  } = useMap();
-  const modalRef = useRef<HTMLDivElement>(null);
+  const { register, watch } = useFormContext();
+  const { isPostcodeVisible, handleSelect, openPostcode, closePostcode } =
+    useMap();
+  const placeRef = useRef<HTMLDivElement>(null);
   const { industryData } = useSignup();
+  const address = watch('industry');
 
+  const clickOutside = (event: MouseEvent) => {
+    if (
+      isPostcodeVisible &&
+      !placeRef.current?.contains(event.target as Node)
+    ) {
+      closePostcode();
+    }
+  };
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        closePostcode();
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', clickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', clickOutside);
     };
-  }, [isPostcodeVisible, closePostcode]);
+  });
 
   return (
     <Container>
-      <InputWrapper>
+      <InputWrapper ref={placeRef}>
         <InputWithButton>
           <FormInput
             type='string'
             placeholder='주소를 입력해주세요'
+            readOnly
             {...register('address', {
               required: true,
             })}
@@ -56,7 +55,7 @@ function IndustryForm() {
             검색
           </Button>
           {isPostcodeVisible && (
-            <div className='postModal' ref={modalRef}>
+            <div className='postModal' ref={placeRef}>
               <DaumPostcode onComplete={handleSelect} />
             </div>
           )}
@@ -69,8 +68,7 @@ function IndustryForm() {
           required: true,
         })}
       />
-      <FormInput
-        isDropdown
+      <FormSelect
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
         {...register('industry', {
