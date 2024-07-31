@@ -14,14 +14,13 @@ function ConsentForm() {
       name: 'age',
       label: '만 19세 이상입니다.',
       required: true,
-      checked: watch('age'),
+      src: null,
     },
     {
       id: 1,
       name: 'private',
       label: '개인정보 수집 및 이용약관',
       required: true,
-      checked: watch('private'),
       src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
     },
     {
@@ -29,7 +28,6 @@ function ConsentForm() {
       name: 'purchase',
       label: '구매 이용약관',
       required: true,
-      checked: watch('purchase'),
       src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
     },
     {
@@ -37,23 +35,21 @@ function ConsentForm() {
       name: 'marketing',
       label: '마케팅 할용동의',
       required: false,
-      checked: watch('marketing'),
       src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
     },
   ];
+  const watchedTerms = termsData.map((term) => watch(term.name));
 
-  const allChecked = termsData.every((term) => term.checked);
+  const allChecked = termsData.every((term) => watchedTerms[term.id]);
 
   const handleAllChecked = () => {
     termsData.forEach((term) => setValue(term.name, !allChecked));
     setValue('allTerms', !allChecked);
   };
 
-  const agree = (e: React.FormEvent<HTMLInputElement>, target: string) => {
-    if (e.currentTarget.checked) {
-      setValue(target, true);
-    } else {
-      setValue(target, false);
+  const handleTermChecked = (target: string, checked: boolean) => {
+    setValue(target, !checked);
+    if (!checked) {
       setValue('allTerms', false);
     }
   };
@@ -61,7 +57,7 @@ function ConsentForm() {
   // 필수 요소 동의 여부
   const allRequiredChecked = termsData
     .filter((t) => t.required)
-    .every((t) => t.checked);
+    .every((t) => watchedTerms[t.id]);
 
   return (
     <Container>
@@ -84,10 +80,14 @@ function ConsentForm() {
       <ul>
         {termsData.map((item) => (
           <Term>
-            <Option>
+            <Option
+              onClick={() =>
+                handleTermChecked(item.name, watchedTerms[item.id])
+              }
+            >
               <Check
                 fill={
-                  item.checked
+                  watchedTerms[item.id]
                     ? theme.color.primary[500]
                     : theme.color.neutral[400]
                 }
@@ -99,12 +99,12 @@ function ConsentForm() {
                 id={item.name}
                 key={item.label}
                 type='checkbox'
+                checked={watchedTerms[item.id]}
                 {...(register(item.name),
                 {
                   required: item.required,
-                  checked: item.checked,
                 })}
-                onClick={(e) => agree(e, item.name)}
+                onClick={(e) => e.stopPropagation()}
               />
               <Essential htmlFor={item.name}>{item.label}</Essential>
 
