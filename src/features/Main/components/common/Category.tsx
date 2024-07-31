@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Title from './Title';
 
 interface Props {
   title: string;
@@ -9,13 +8,16 @@ interface Props {
 function Category({ title, description }: Props) {
   return (
     <StyledCategory>
-      <Title $size='28' $color='neutral900'>
-        {title}
-      </Title>
+      <Title>{title}</Title>
       <Description>{description}</Description>
     </StyledCategory>
   );
 }
+
+const Title = styled.div`
+  ${({ theme }) => theme.typo.heading.bold[28]};
+  color: ${({ theme }) => theme.color.neutral[900]};
+`;
 
 const StyledCategory = styled.div`
   display: flex;

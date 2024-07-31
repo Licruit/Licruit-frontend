@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Badge } from '@/styles/components/Badge';
 import HeadInfo from '../common/HeadInfo';
 import { LiquorInfoProps } from '../../types/main';
-import Title from '../common/Title';
 
 function RateLiquorInfo({
   headText,
@@ -20,14 +19,17 @@ function RateLiquorInfo({
         <Badge $type='black' $size='sm'>
           {badgeText}
         </Badge>
-        <Title $size='20' $color='neutral900'>
-          {title}
-        </Title>
+        <Title>{title}</Title>
         <LiquorDescription>{description}</LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
   );
 }
+
+const Title = styled.div`
+  ${({ theme }) => theme.typo.heading.bold[20]};
+  color: ${({ theme }) => theme.color.neutral[900]};
+`;
 
 const LiquorInfoContainer = styled.li`
   display: flex;

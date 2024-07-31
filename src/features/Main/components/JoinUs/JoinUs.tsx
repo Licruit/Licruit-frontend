@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { IMAGES } from '@/constants/images';
-import Title from '../common/Title';
 import { BANNER_TEXT } from '../../constants/banner';
 
 function JoinUs() {
@@ -9,9 +8,7 @@ function JoinUs() {
     <JoinUsContainer>
       <Content>
         <InfoWrapper>
-          <Title $size='36' $color='neutral50'>
-            {BANNER_TEXT.join.title}
-          </Title>
+          <Title>{BANNER_TEXT.join.title}</Title>
           <Description>{BANNER_TEXT.join.description}</Description>
         </InfoWrapper>
         <JoinButton>회원가입 하러가기</JoinButton>
@@ -19,6 +16,11 @@ function JoinUs() {
     </JoinUsContainer>
   );
 }
+
+const Title = styled.div`
+  ${({ theme }) => theme.typo.heading.bold[36]};
+  color: ${({ theme }) => theme.color.neutral[50]};
+`;
 
 const JoinUsContainer = styled.div`
   width: 100%;
