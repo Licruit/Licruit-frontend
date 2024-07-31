@@ -1,4 +1,4 @@
-import Badge from '@/components/Badge/Badge';
+import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
 import Title from '../common/Title';
 

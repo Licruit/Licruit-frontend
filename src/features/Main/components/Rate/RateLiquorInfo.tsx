@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Badge from '@/components/Badge/Badge';
+import { Badge } from '@/styles/components/Badge';
 import HeadInfo from '../common/HeadInfo';
 import { LiquorInfoProps } from '../../types/main';
 import Title from '../common/Title';

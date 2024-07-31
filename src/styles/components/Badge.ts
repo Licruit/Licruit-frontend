@@ -1,21 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 
-interface Props {
+export const Badge = styled.div<{
   $size: 'lg' | 'sm';
   $type: 'black' | 'white';
-  children: React.ReactNode;
-}
-
-function Badge({ $size, $type, children }: Props) {
-  return (
-    <StyledBadge $size={$size} $type={$type}>
-      {children}
-    </StyledBadge>
-  );
-}
-
-const StyledBadge = styled.div<Omit<Props, 'children'>>`
+}>`
   width: fit-content;
 
   display: inline-flex;
@@ -44,5 +32,3 @@ const StyledBadge = styled.div<Omit<Props, 'children'>>`
     }
   }}
 `;
-
-export default Badge;
