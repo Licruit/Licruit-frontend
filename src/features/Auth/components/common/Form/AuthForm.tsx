@@ -14,12 +14,14 @@ function AuthForm() {
     formState: { errors },
   } = useFormContext();
   const { handleSendCode, expTime, handleVerifyCode } = useCode();
+  const isVerified = watch('isVerified');
 
   return (
     <Container>
       <InputWithButton>
         <FormInput
           type='tel'
+          disabled={isVerified}
           placeholder='전화번호를 입력해주세요'
           {...register('phone', { required: true, pattern: REGEXP.phone })}
         />
@@ -39,18 +41,19 @@ function AuthForm() {
           <div className='wrapper'>
             <FormInput
               type='number'
+              disabled={isVerified}
               placeholder='인증번호'
               {...register('code', {
                 required: true,
                 validate: () => {
-                  if (watch('isVerified')) {
+                  if (isVerified) {
                     return true;
                   }
                   return false;
                 },
               })}
             />
-            {expTime && (
+            {expTime && !isVerified && (
               <Timer
                 expTime={expTime}
                 onFail={() =>
@@ -64,12 +67,16 @@ function AuthForm() {
           <Button
             type='button'
             disabled={!watch('code')}
-            onClick={() => handleVerifyCode(watch('phone'), watch('code'))}
-            $style='outlined'
+            onClick={
+              isVerified
+                ? undefined
+                : () => handleVerifyCode(watch('phone'), watch('code'))
+            }
+            $style={isVerified ? 'solid' : 'outlined'}
             $size='100px'
             $theme='primary'
           >
-            확인
+            {isVerified ? '인증완료' : '확인'}
           </Button>
         </InputWithButton>
         <span className='error'>

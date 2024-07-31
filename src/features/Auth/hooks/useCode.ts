@@ -8,6 +8,7 @@ export const useCode = () => {
 
   const handleSendCode = (contact: string) => {
     setExpTime(null);
+    setValue('isVerified', false);
     setError('code', { message: '' });
 
     requestCode(contact).then((res) => {
