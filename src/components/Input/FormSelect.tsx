@@ -16,10 +16,10 @@ function FormSelect({ options, placeholder }: Props) {
   const theme = useTheme();
   const { setValue } = useFormContext();
 
-  const handleSelect = (option: string) => {
-    setSelectedOption(option);
+  const handleSelect = (option: KSIC) => {
+    setSelectedOption(option.name);
     setIsOpen(false);
-    setValue('industry', option);
+    setValue('sectorId', option.id);
   };
 
   const industryRef = useRef<HTMLDivElement>(null);
@@ -48,10 +48,7 @@ function FormSelect({ options, placeholder }: Props) {
       {isOpen && (
         <SelectList ref={selectRef}>
           {options?.map((option) => (
-            <SelectItem
-              key={option.id}
-              onClick={() => handleSelect(option.name)}
-            >
+            <SelectItem key={option.id} onClick={() => handleSelect(option)}>
               {option.name}
             </SelectItem>
           ))}

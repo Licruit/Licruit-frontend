@@ -12,7 +12,9 @@ function IndustryForm() {
   const { register, watch } = useFormContext();
   const { isPostcodeVisible, handleSelect, openPostcode, closePostcode } =
     useMap();
+
   const placeRef = useRef<HTMLDivElement>(null);
+
   const { industryData } = useSignup();
   const address = watch('industry');
 
@@ -24,6 +26,7 @@ function IndustryForm() {
       closePostcode();
     }
   };
+
   useEffect(() => {
     document.addEventListener('mousedown', clickOutside);
 
@@ -36,7 +39,7 @@ function IndustryForm() {
     <Container>
       <InputWrapper ref={placeRef}>
         <InputWithButton>
-          <FormInput
+          <StyledFormInput
             type='string'
             placeholder='주소를 입력해주세요'
             readOnly
@@ -71,7 +74,7 @@ function IndustryForm() {
       <FormSelect
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
-        {...register('industry', {
+        {...register('sectorId', {
           required: true,
         })}
       />
@@ -105,4 +108,9 @@ const InputWithButton = styled.div`
 const InputWrapper = styled.div`
   width: 100%;
   position: relative;
+`;
+
+const StyledFormInput = styled(FormInput)`
+  cursor: not-allowed;
+  background-color: ${({ theme }) => theme.color.neutral[100]};
 `;

@@ -1,9 +1,9 @@
 import { httpClient } from '@/api/http';
 import axios from 'axios';
 import { BUSINESS_URL } from '@/constants/url';
-import { KSIC, Signup } from '../types/signup';
+import { KSIC, SignupFormType } from '../types/signup';
 
-export const signup = async (userData: Signup) => {
+export const signup = async (userData: Omit<SignupFormType, 'isVerified'>) => {
   await httpClient.post('/users/register', userData);
 };
 

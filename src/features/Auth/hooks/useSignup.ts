@@ -1,4 +1,3 @@
-// hooks/useSignup.ts
 import { useQuery } from '@tanstack/react-query';
 import { getKSIC } from '../api/signup.api';
 import { KSIC } from '../types/signup';

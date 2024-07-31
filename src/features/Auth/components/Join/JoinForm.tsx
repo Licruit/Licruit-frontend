@@ -19,7 +19,7 @@ function JoinForm({ Funnel, Step }: ProcessProps) {
       <Step stepNum={4}>
         <IndustryForm />
       </Step>
-      <Step stepNum={5} />
+      <Step stepNum={2} />
     </Funnel>
   );
 }

@@ -55,9 +55,9 @@ function ConsentForm() {
   };
 
   // 필수 요소 동의 여부
-  const allRequiredChecked = termsData
-    .filter((t) => t.required)
-    .every((t) => watchedTerms[t.id]);
+  // const allRequiredChecked = termsData
+  //   .filter((t) => t.required)
+  //   .every((t) => watchedTerms[t.id]);
 
   return (
     <Container>
@@ -76,12 +76,10 @@ function ConsentForm() {
       </AllAgree>
 
       <ul>
-        {termsData.map((item) => (
-          <Term>
+        {termsData.map((item, index) => (
+          <Term key={item.id}>
             <Option
-              onClick={() =>
-                handleTermChecked(item.name, watchedTerms[item.id])
-              }
+              onClick={() => handleTermChecked(item.name, watchedTerms[index])}
             >
               <Check
                 fill={
