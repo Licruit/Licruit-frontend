@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: auto;
     color: #141517
   }
 
