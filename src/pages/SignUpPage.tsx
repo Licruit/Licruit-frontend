@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   GenericForm,
   JoinForm,
@@ -16,7 +15,6 @@ interface SignupFormType extends FindPasswordFormType {
 }
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
-  const [isCheckVaild, setIsCheckVaild] = useState(false);
 
   const handleSubmitForm = () => {
     // TODO: 회원가입 api
@@ -27,7 +25,6 @@ function SignUpPage() {
       onSubmit={handleSubmitForm}
       setStep={setStep}
       isLastStep={currentStep === SIGNUP_MAX_STEP}
-      isCheckVaild={isCheckVaild}
       formOptions={{
         mode: 'onChange',
         defaultValues: { isVerified: false },
@@ -38,7 +35,7 @@ function SignUpPage() {
         currentStep={currentStep}
         maxStep={SIGNUP_MAX_STEP}
       />
-      <JoinForm Funnel={Funnel} Step={Step} setIsCheckVaild={setIsCheckVaild} />
+      <JoinForm Funnel={Funnel} Step={Step} />
     </GenericForm>
   );
 }
