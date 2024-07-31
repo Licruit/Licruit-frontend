@@ -69,10 +69,8 @@ function ConsentForm() {
             }
             width={24}
             height={24}
-            type='checkbox'
-            {...register('allTerms')}
-            onClick={handleAllChecked}
           />
+          <AgreeInput type='checkbox' {...register('allTerms')} />
         </div>
         모두 동의
       </AllAgree>
