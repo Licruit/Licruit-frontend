@@ -46,7 +46,7 @@ function AuthForm() {
               {...register('code', {
                 required: true,
                 validate: () => {
-                  if (isVerified) {
+                  if (watch('isVerified')) {
                     return true;
                   }
                   return false;

@@ -7,7 +7,8 @@ import JoinForm from './components/Join/JoinForm';
 import { useFunnel } from './hooks/useFunnel';
 import { LoginForm as LoginFormType } from './types/login.d';
 import { useLogin } from './hooks/useLogin';
-import { requestResetPassword, resetPassword } from './api/findPassword.api';
+import { useFindPassword } from './hooks/useFindPassword';
+import { FindPasswordFormType } from './types/findPassword.d';
 
 export {
   LoginForm,
@@ -18,8 +19,7 @@ export {
   useFunnel,
   JoinForm,
   useLogin,
-  requestResetPassword,
-  resetPassword,
+  useFindPassword,
 };
 
-export type { LoginFormType };
+export type { LoginFormType, FindPasswordFormType };
