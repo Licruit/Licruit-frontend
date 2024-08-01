@@ -1,5 +1,4 @@
 import {
-  FindPasswordFormType,
   GenericForm,
   JoinForm,
   TitleAndStep,
@@ -7,12 +6,10 @@ import {
 } from '@/features/Auth';
 import PATH from '@/constants/path';
 import { SIGNUP_MAX_STEP } from '@/constants/step';
-
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { signup } from '@/features/Auth/api/signup.api';
 import { SignupFormType } from '@/features/Auth/types/signup';
-
 
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
