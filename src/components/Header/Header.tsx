@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from 'public/assets/images/logo.svg?react';
+import { Logo } from 'public/assets/images';
 import { Link } from 'react-router-dom';
 import PATH from '@/constants/path';
 import Navigation from './Navigation';

@@ -1,7 +1,7 @@
 import FormInput from '@/components/Input/FormInput';
+import { CheckIcon } from 'public/assets/icons';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import Check from 'public/assets/icons/check.svg?react';
 
 function PasswordInput() {
   const { register, trigger, watch } = useFormContext();
@@ -35,13 +35,13 @@ function PasswordInput() {
       />
       <div className='requirements'>
         <Requirement $valid={hasEng()}>
-          <Check /> 영문
+          <CheckIcon /> 영문
         </Requirement>
         <Requirement $valid={hasDigit()}>
-          <Check /> 숫자
+          <CheckIcon /> 숫자
         </Requirement>
         <Requirement $valid={hasValidLength()}>
-          <Check /> 8-15자 이내
+          <CheckIcon /> 8-15자 이내
         </Requirement>
       </div>
     </Wrapper>

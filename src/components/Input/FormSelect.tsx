@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { KSIC } from '@/features/Join/types/signup';
-import Arrow from 'public/assets/icons/down-arrow.svg?react';
 import { useFormContext } from 'react-hook-form';
+import { DownArrowIcon } from 'public/assets/icons';
 
 interface Props {
   options?: KSIC[];
@@ -42,7 +42,7 @@ function FormSelect({ options, placeholder }: Props) {
       <Select onClick={() => setIsOpen((prev) => !prev)}>
         <div className='select_input'>
           {selectedOption ?? placeholder}
-          <Arrow fill={theme.color.neutral[400]} />
+          <DownArrowIcon fill={theme.color.neutral[400]} />
         </div>
       </Select>
       {isOpen && (

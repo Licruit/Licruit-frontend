@@ -1,7 +1,7 @@
 import styled, { useTheme } from 'styled-components';
-import Check from 'public/assets/icons/check.svg?react';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+import { CheckIcon } from 'public/assets/icons';
 import { TOS } from '../constants/tos';
 
 function ConsentForm() {
@@ -33,7 +33,7 @@ function ConsentForm() {
     <Container>
       <AllAgree onClick={handleAllChecked}>
         <div className='checkBox'>
-          <Check
+          <CheckIcon
             fill={
               allChecked ? theme.color.primary[500] : theme.color.neutral[400]
             }
@@ -51,7 +51,7 @@ function ConsentForm() {
             <Option
               onClick={() => handleTermChecked(item.name, watchedTerms[index])}
             >
-              <Check
+              <CheckIcon
                 fill={
                   watchedTerms[item.id]
                     ? theme.color.primary[500]

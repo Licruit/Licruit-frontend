@@ -1,7 +1,6 @@
+import { EyeOffIcon, EyeOnIcon } from 'public/assets/icons';
 import { ForwardedRef, forwardRef, useState } from 'react';
-
 import styled from 'styled-components';
-import { ICONS } from '../../constants/icons';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   hasVisibility?: boolean;
@@ -22,7 +21,7 @@ const FormInput = forwardRef<HTMLInputElement, Props>(
             type='button'
             onClick={() => setIsVisible((prev) => !prev)}
           >
-            <img src={isVisible ? ICONS.eye_on : ICONS.eye_off} alt='eye' />
+            {isVisible ? <EyeOnIcon /> : <EyeOffIcon />}
           </Visibility>
         )}
       </Wrapper>
