@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  FindPasswordFormType,
   GenericForm,
   JoinForm,
   TitleAndStep,
@@ -7,7 +8,6 @@ import {
 } from '@/features/Auth';
 
 import { SIGNUP_MAX_STEP } from '@/constants/step';
-import { FindPasswordFormType } from './FindPasswordPage';
 
 interface SignupFormType extends FindPasswordFormType {
   address: string;

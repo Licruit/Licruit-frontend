@@ -3,11 +3,13 @@ import { useFormContext } from 'react-hook-form';
 import { requestCode, verifyCode } from '../api/auth.api';
 
 export const useCode = () => {
-  const { setValue, setError } = useFormContext();
+  const { setValue, setError, trigger } = useFormContext();
   const [expTime, setExpTime] = useState<string | null>(null);
 
   const handleSendCode = (contact: string) => {
     setExpTime(null);
+    setValue('code', '');
+    setValue('isVerified', false);
     setError('code', { message: '' });
 
     requestCode(contact).then((res) => {
@@ -18,12 +20,14 @@ export const useCode = () => {
   };
 
   const handleVerifyCode = async (contact: string, code: number) => {
-    return verifyCode(contact, code).then((res) => {
+    verifyCode(contact, code).then(async (res) => {
       if (!res) {
         setError('code', { message: '인증코드가 틀렸습니다.' });
+        setValue('isVerified', false);
+      } else {
+        setValue('isVerified', true);
+        trigger('code');
       }
-      setValue('isVerified', res);
-      return res;
     });
   };
 
