@@ -1,9 +1,9 @@
 import { httpClient } from '@/api/http';
 import axios from 'axios';
 import { BUSINESS_URL } from '@/constants/url';
-import { KSIC, Signup } from '../types/signup';
+import { KSIC, SignupFormType } from '../types/signup';
 
-export const signup = async (userData: Signup) => {
+export const signup = async (userData: Omit<SignupFormType, 'isVerified'>) => {
   await httpClient.post('/users/register', userData);
 };
 
@@ -12,13 +12,11 @@ export const getKSIC = async (): Promise<KSIC[]> => {
   return response.data;
 };
 
-export const VerificationBusiness = async (businessNumber: string) => {
-  const data = { b_no: [businessNumber] };
-  try {
-    const response = await axios.post(BUSINESS_URL, data);
-    return response.data;
-  } catch (err) {
-    console.error(err);
-    throw err;
+export const verificationBusiness = async (companyNumber: string) => {
+  const data = { b_no: [companyNumber] };
+  const response = await axios.post(BUSINESS_URL, data);
+
+  if (response.data.data[0].b_stt !== '계속사업자') {
+    throw new Error();
   }
 };

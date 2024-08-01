@@ -1,42 +1,86 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
+import { useFormContext } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
 import { TOS } from '../../constants/tos';
-import TermItem from './TermItem';
 
-interface Props {
-  setIsCheckVaild: React.Dispatch<React.SetStateAction<boolean>>;
-}
+function ConsentForm() {
+  const theme = useTheme();
 
-function ConsentForm({ setIsCheckVaild }: Props) {
-  const [terms, setTerms] = useState(TOS);
+  const { register, watch, setValue } = useFormContext();
 
-  const handleChecked = (id: number) => {
-    setTerms((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
-      )
-    );
-  };
+  const watchedTerms: boolean[] = TOS.map((term) => watch(term.name));
+  const allChecked = TOS.every((term) => watchedTerms[term.id]);
 
   const handleAllChecked = () => {
-    setTerms((prev) => prev.map((item) => ({ ...item, checked: true })));
-    setIsCheckVaild(true);
+    TOS.forEach((term) => setValue(term.name, !allChecked));
+    setValue('allTerms', !allChecked);
   };
+
+  const handleTermChecked = (target: string, checked: boolean) => {
+    setValue(target, !checked);
+    if (!checked) {
+      setValue('allTerms', false);
+    }
+  };
+
+  // 필수 요소 동의 여부
+  // const allRequiredChecked = TOS
+  //   .filter((t) => t.required)
+  //   .every((t) => watchedTerms[t.id]);
 
   return (
     <Container>
       <AllAgree onClick={handleAllChecked}>
         <div className='checkBox'>
-          <FormIcon $checked={terms.every((item) => item.checked)}>
-            <Check />
-          </FormIcon>
+          <Check
+            fill={
+              allChecked ? theme.color.primary[500] : theme.color.neutral[400]
+            }
+            width={24}
+            height={24}
+          />
+          <AgreeInput type='checkbox' {...register('allTerms')} />
         </div>
         모두 동의
       </AllAgree>
+
       <ul>
-        {terms.map((item) => (
-          <TermItem key={item.id} {...item} onClick={handleChecked} />
+        {TOS.map((item, index) => (
+          <Term key={item.id}>
+            <Option
+              onClick={() => handleTermChecked(item.name, watchedTerms[index])}
+            >
+              <Check
+                fill={
+                  watchedTerms[item.id]
+                    ? theme.color.primary[500]
+                    : theme.color.neutral[400]
+                }
+                width={24}
+                height={24}
+              />
+              <span> {item.id === 3 ? '(선택)' : '(필수)'}</span>
+              <AgreeInput
+                id={item.name}
+                key={item.label}
+                type='checkbox'
+                checked={watchedTerms[item.id]}
+                {...(register(item.name),
+                {
+                  required: item.required,
+                })}
+                onClick={(e) => e.stopPropagation()}
+              />
+              <Essential htmlFor={item.name}>{item.label}</Essential>
+
+              {item.id ? (
+                <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
+              ) : (
+                ''
+              )}
+            </Option>
+          </Term>
         ))}
       </ul>
     </Container>
@@ -50,15 +94,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-`;
-
-const FormIcon = styled.span<{ $checked: boolean }>`
-  width: 24px;
-  height: 24px;
-  & svg {
-    fill: ${({ $checked, theme }) =>
-      $checked ? theme.color.primary[500] : theme.color.neutral[400]};
+    cursor: pointer;
   }
 `;
 
@@ -71,10 +107,46 @@ const AllAgree = styled.div`
   color: ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]}
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
-  cursor: pointer;
   .checkBox {
     display: flex;
     align-items: center;
     gap: 8px;
   }
+`;
+
+const AgreeInput = styled.input`
+  display: none;
+`;
+
+const Term = styled.li`
+  padding: 10px;
+  cursor: pointer;
+`;
+
+const Essential = styled.label`
+  margin-left: 3px;
+  color: ${({ theme }) => theme.color.neutral[400]};
+  ${({ theme }) => theme.typo.body.medium[14]}
+  span {
+    margin-right: 3px;
+    color: ${({ theme }) => theme.color.neutral[900]};
+    ${({ theme }) => theme.typo.body.semi_bold[14]}
+  }
+  cursor: pointer;
+  margin-left: 6px;
+`;
+
+const Option = styled.div`
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 10px;
+  }
+`;
+
+const View = styled.span`
+  margin-left: 16px;
+  ${({ theme }) => theme.typo.body.semi_bold[14]};
+  color: ${({ theme }) => theme.color.neutral[600]};
+  border-bottom: 2px solid ${({ theme }) => theme.color.neutral[600]};
 `;

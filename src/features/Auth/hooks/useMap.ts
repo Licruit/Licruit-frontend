@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Address } from 'react-daum-postcode';
+import { useFormContext } from 'react-hook-form';
 
 const useMap = () => {
-  const [address, setAddress] = useState<Address | null>(null);
   const [isPostcodeVisible, setPostcodeVisible] = useState(false);
-
+  const { setValue } = useFormContext();
   const handleSelect = (data: Address) => {
-    setAddress(data);
     setPostcodeVisible(false);
+    setValue('address', data.address);
   };
 
   const openPostcode = () => {
@@ -18,7 +18,6 @@ const useMap = () => {
   };
 
   return {
-    address,
     isPostcodeVisible,
     handleSelect,
     openPostcode,

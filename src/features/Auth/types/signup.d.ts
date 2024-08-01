@@ -1,4 +1,4 @@
-export interface Signup {
+export interface SignupFormType {
   companyNumber: string;
   password: string;
   businessName: string;
@@ -7,7 +7,6 @@ export interface Signup {
   sectorId: number;
   isVerified: boolean;
 }
-
 export interface KSIC {
   id: number;
   name: string;

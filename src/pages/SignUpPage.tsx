@@ -1,40 +1,64 @@
-import { useState } from 'react';
 import {
-  FindPasswordFormType,
   GenericForm,
   JoinForm,
   TitleAndStep,
   useFunnel,
 } from '@/features/Auth';
-
+import PATH from '@/constants/path';
 import { SIGNUP_MAX_STEP } from '@/constants/step';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { signup } from '@/features/Auth/api/signup.api';
+import { SignupFormType } from '@/features/Auth/types/signup';
 
-interface SignupFormType extends FindPasswordFormType {
-  address: string;
-  businessName: string;
-  industry: string;
-}
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
-  const [isCheckVaild, setIsCheckVaild] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmitForm = () => {
-    // TODO: 회원가입 api
+  const mutation = useMutation<void, Error, Omit<SignupFormType, 'isVerified'>>(
+    {
+      mutationFn: async (data) => {
+        await signup(data);
+      },
+      onSuccess: () => {
+        navigate(PATH.login);
+      },
+    }
+  );
+
+  const handleSubmit = (data: SignupFormType) => {
+    const {
+      companyNumber,
+      password,
+      businessName,
+      contact,
+      address,
+      sectorId,
+    } = data;
+
+    const filteredData: Omit<SignupFormType, 'isVerified'> = {
+      companyNumber,
+      password,
+      businessName,
+      contact,
+      address,
+      sectorId,
+    };
+
+    mutation.mutate(filteredData);
   };
-
   return (
     <GenericForm<SignupFormType>
-      onSubmit={handleSubmitForm}
+      onSubmit={handleSubmit}
       setStep={setStep}
       isLastStep={currentStep === SIGNUP_MAX_STEP}
-      isCheckVaild={isCheckVaild}
     >
       <TitleAndStep
         formType='signUp'
         currentStep={currentStep}
         maxStep={SIGNUP_MAX_STEP}
       />
-      <JoinForm Funnel={Funnel} Step={Step} setIsCheckVaild={setIsCheckVaild} />
+      <JoinForm Funnel={Funnel} Step={Step} />
     </GenericForm>
   );
 }

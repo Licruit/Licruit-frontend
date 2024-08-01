@@ -1,17 +1,38 @@
-import { useFormContext } from 'react-hook-form';
-import FormInput from '@/components/Input/FormInput';
+import { FieldError, useFormContext } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 import styled from 'styled-components';
+import FormInput from '@/components/Input/FormInput';
 import Button from '@/components/Button/Button';
 import { REGEXP } from '../../constants/form';
 import PasswordForm from '../common/Form/PasswordForm';
-import { VerificationBusiness } from '../../api/signup.api';
+import { verificationBusiness } from '../../api/signup.api';
 
 function PasswordWithIdForm() {
-  const { register } = useFormContext();
+  const {
+    register,
+    watch,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext();
+
+  const companyNumber = watch('companyNumber') as string;
+
+  const mutation = useMutation<void, Error>({
+    mutationFn: () => verificationBusiness(companyNumber),
+    onSuccess: () => {
+      clearErrors('companyNumber');
+    },
+    onError: () => {
+      setError('companyNumber', {
+        type: 'manual',
+        message: '사업자번호가 존재하지 않습니다.',
+      });
+    },
+  });
 
   const handleSendId = () => {
-    const businessNum = '1231231231';
-    VerificationBusiness(businessNum);
+    mutation.mutate();
   };
 
   return (
@@ -24,6 +45,7 @@ function PasswordWithIdForm() {
             {...register('companyNumber', {
               required: true,
               pattern: REGEXP.companyNumber,
+              validate: () => !errors.companyNumber,
             })}
           />
           <Button
@@ -36,6 +58,14 @@ function PasswordWithIdForm() {
             인증요청
           </Button>
         </InputWithButton>
+        {mutation.isSuccess && (
+          <SuccessMessage>사용가능한 사업자번호입니다.</SuccessMessage>
+        )}
+        {errors.companyNumber && (
+          <ErrorMessage>
+            {(errors.companyNumber as FieldError).message}
+          </ErrorMessage>
+        )}
       </InputWrapper>
       <PasswordForm />
     </Container>
@@ -60,4 +90,15 @@ const InputWithButton = styled.div`
 const InputWrapper = styled.div`
   width: 100%;
   position: relative;
+`;
+
+const ErrorMessage = styled.div`
+  height: 12px;
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.body.medium[12]}
+`;
+const SuccessMessage = styled.div`
+  height: 12px;
+  color: ${({ theme }) => theme.color.primary[500]};
+  ${({ theme }) => theme.typo.body.medium[12]}
 `;
