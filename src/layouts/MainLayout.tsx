@@ -18,5 +18,10 @@ export default MainLayout;
 const Container = styled.div`
   width: 100%;
   max-width: 1440px;
-  height: fit-content;
+
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;

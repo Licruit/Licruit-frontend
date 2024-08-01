@@ -31,8 +31,8 @@ const HeaderBar = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
   left: 0;
 
