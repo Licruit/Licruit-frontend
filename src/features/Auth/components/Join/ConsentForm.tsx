@@ -9,8 +9,7 @@ function ConsentForm() {
 
   const { register, watch, setValue } = useFormContext();
 
-  const watchedTerms = TOS.map((term) => watch(term.name));
-
+  const watchedTerms: boolean[] = TOS.map((term) => watch(term.name));
   const allChecked = TOS.every((term) => watchedTerms[term.id]);
 
   const handleAllChecked = () => {
