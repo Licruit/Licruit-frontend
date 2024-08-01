@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { KSIC } from '@/features/Auth/types/signup';
+import { KSIC } from '@/features/Join/types/signup';
 import Arrow from 'public/assets/icons/down-arrow.svg?react';
 import { useFormContext } from 'react-hook-form';
 

@@ -1,7 +1,7 @@
-import AuthForm from '../common/Form/AuthForm';
+import AuthForm from '@/components/Form/AuthForm';
+import { ProcessProps } from '@/types/funnel';
 import ConsentForm from './ConsentForm';
 import IndustryForm from './IndustryForm';
-import { ProcessProps } from '../../types/funnel';
 import PasswordWithIdForm from './PasswordWithIdForm';
 
 function JoinForm({ Funnel, Step }: ProcessProps) {

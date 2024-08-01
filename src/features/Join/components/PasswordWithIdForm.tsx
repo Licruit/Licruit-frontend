@@ -3,9 +3,9 @@ import { useMutation } from '@tanstack/react-query';
 import styled from 'styled-components';
 import FormInput from '@/components/Input/FormInput';
 import Button from '@/components/Button/Button';
-import { REGEXP } from '../../constants/form';
-import PasswordForm from '../common/Form/PasswordForm';
-import { verificationBusiness } from '../../api/signup.api';
+import { REGEXP } from '@/constants/form/form';
+import PasswordForm from '@/components/Form/PasswordForm';
+import { verificationBusiness } from '../api/signup.api';
 
 function PasswordWithIdForm() {
   const {

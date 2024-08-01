@@ -1,5 +1,5 @@
-import { ProcessProps } from '../../types/funnel';
-import PasswordForm from '../common/Form/PasswordForm';
+import PasswordForm from '@/components/Form/PasswordForm';
+import { ProcessProps } from '@/types/funnel';
 import AuthWithIdForm from './AuthWithIdForm';
 
 function FindPasswordForm({ Funnel, Step }: ProcessProps) {

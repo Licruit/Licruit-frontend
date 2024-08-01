@@ -2,7 +2,7 @@ import styled, { useTheme } from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
-import { TOS } from '../../constants/tos';
+import { TOS } from '../constants/tos';
 
 function ConsentForm() {
   const theme = useTheme();

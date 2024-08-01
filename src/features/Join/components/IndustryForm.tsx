@@ -5,8 +5,8 @@ import { useFormContext } from 'react-hook-form';
 import FormInput from '@/components/Input/FormInput';
 import FormSelect from '@/components/Input/FormSelect';
 import Button from '@/components/Button/Button';
-import useMap from '../../hooks/useMap';
-import { useSignup } from '../../hooks/useSignup';
+import useMap from '../hooks/useMap';
+import { useSignup } from '../hooks/useSignup';
 
 function IndustryForm() {
   const { register, watch } = useFormContext();

@@ -1,6 +1,6 @@
 /* eslint-disable react/function-component-definition */
+import { FunnelProps, StepProps } from '@/types/funnel';
 import { useState } from 'react';
-import { FunnelProps, StepProps } from '../types/funnel';
 
 export const useFunnel = (defaultStep: number) => {
   const [step, setStep] = useState<number>(defaultStep); // 현재 스텝

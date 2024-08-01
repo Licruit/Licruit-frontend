@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { requestCode, verifyCode } from '../api/auth.api';
+import { requestCode, verifyCode } from '../../api/auth.api';
 
 export const useCode = () => {
   const { setValue, setError, trigger } = useFormContext();

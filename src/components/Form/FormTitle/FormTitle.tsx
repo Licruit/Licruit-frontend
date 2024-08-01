@@ -1,4 +1,4 @@
-import { FORM_TITLE } from '@/features/Auth/constants/formTitle';
+import { FORM_TITLE } from '@/constants/form/formTitle';
 import styled from 'styled-components';
 
 interface Props {

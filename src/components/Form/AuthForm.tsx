@@ -1,10 +1,10 @@
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
-import { useCode } from '@/features/Auth/hooks/useCode';
+import { useCode } from '@/hooks/form/useCode';
 import Button from '@/components/Button/Button';
 import { useFormContext } from 'react-hook-form';
-import { REGEXP } from '@/features/Auth/constants/form';
-import Timer from '../Timer';
+import { REGEXP } from '@/constants/form/form';
+import Timer from './Timer';
 
 function AuthForm() {
   const {
