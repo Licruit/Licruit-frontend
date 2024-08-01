@@ -2,48 +2,19 @@ import styled, { useTheme } from 'styled-components';
 import Check from 'public/assets/icons/check.svg?react';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
+import { TOS } from '../../constants/tos';
 
 function ConsentForm() {
   const theme = useTheme();
 
   const { register, watch, setValue } = useFormContext();
 
-  const termsData = [
-    {
-      id: 0,
-      name: 'age',
-      label: '만 19세 이상입니다.',
-      required: true,
-      src: null,
-    },
-    {
-      id: 1,
-      name: 'private',
-      label: '개인정보 수집 및 이용약관',
-      required: true,
-      src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
-    },
-    {
-      id: 2,
-      name: 'purchase',
-      label: '구매 이용약관',
-      required: true,
-      src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
-    },
-    {
-      id: 3,
-      name: 'marketing',
-      label: '마케팅 할용동의',
-      required: false,
-      src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
-    },
-  ];
-  const watchedTerms = termsData.map((term) => watch(term.name));
+  const watchedTerms = TOS.map((term) => watch(term.name));
 
-  const allChecked = termsData.every((term) => watchedTerms[term.id]);
+  const allChecked = TOS.every((term) => watchedTerms[term.id]);
 
   const handleAllChecked = () => {
-    termsData.forEach((term) => setValue(term.name, !allChecked));
+    TOS.forEach((term) => setValue(term.name, !allChecked));
     setValue('allTerms', !allChecked);
   };
 
@@ -55,7 +26,7 @@ function ConsentForm() {
   };
 
   // 필수 요소 동의 여부
-  // const allRequiredChecked = termsData
+  // const allRequiredChecked = TOS
   //   .filter((t) => t.required)
   //   .every((t) => watchedTerms[t.id]);
 
@@ -76,7 +47,7 @@ function ConsentForm() {
       </AllAgree>
 
       <ul>
-        {termsData.map((item, index) => (
+        {TOS.map((item, index) => (
           <Term key={item.id}>
             <Option
               onClick={() => handleTermChecked(item.name, watchedTerms[index])}
