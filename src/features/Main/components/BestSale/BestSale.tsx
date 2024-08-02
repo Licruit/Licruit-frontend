@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-
 import Button from '@/components/Button/Button';
 import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
 import MoreButton from '../common/MoreButton';

@@ -1,6 +1,6 @@
 import Header from '@/components/Header/Header';
+import { Poster } from 'public/assets/images';
 import { Outlet } from 'react-router-dom';
-import Poster from 'public/assets/images/poster.svg?react';
 import styled from 'styled-components';
 
 function AuthLayout() {

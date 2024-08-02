@@ -1,12 +1,12 @@
+import TitleAndStep from '@/components/Form/FormTitle/TitleAndStep';
+import GenericForm from '@/components/Form/GenericForm';
 import { FIND_PASSWORD_MAX_STEP } from '@/constants/step';
 import {
   FindPasswordForm,
   FindPasswordFormType,
-  GenericForm,
-  TitleAndStep,
   useFindPassword,
-  useFunnel,
-} from '@/features/Auth';
+} from '@/features/FindPassword';
+import { useFunnel } from '@/hooks/form/useFunnel';
 
 function FindPasswordPage() {
   const { Step, Funnel, setStep, currentStep } = useFunnel(1);

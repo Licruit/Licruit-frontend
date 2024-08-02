@@ -1,11 +1,7 @@
+import FormTitle from '@/components/Form/FormTitle/FormTitle';
+import GenericForm from '@/components/Form/GenericForm';
 import PATH from '@/constants/path';
-import {
-  FormTitle,
-  GenericForm,
-  LoginForm,
-  LoginFormType,
-  useLogin,
-} from '@/features/Auth';
+import { LoginForm, LoginFormType, useLogin } from '@/features/Login';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 

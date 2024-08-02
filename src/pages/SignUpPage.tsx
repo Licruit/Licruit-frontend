@@ -1,15 +1,12 @@
-import {
-  GenericForm,
-  JoinForm,
-  TitleAndStep,
-  useFunnel,
-} from '@/features/Auth';
 import PATH from '@/constants/path';
 import { SIGNUP_MAX_STEP } from '@/constants/step';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { signup } from '@/features/Auth/api/signup.api';
-import { SignupFormType } from '@/features/Auth/types/signup';
+import { SignupFormType } from '@/features/Join/types/signup';
+import { JoinForm, signup } from '@/features/Join';
+import { useFunnel } from '@/hooks/form/useFunnel';
+import GenericForm from '@/components/Form/GenericForm';
+import TitleAndStep from '@/components/Form/FormTitle/TitleAndStep';
 
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);

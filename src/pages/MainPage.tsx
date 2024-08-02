@@ -1,5 +1,4 @@
 import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
-
 import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
 
