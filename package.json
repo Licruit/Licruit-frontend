@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "dotenv -e .env -- npx chromatic --project-token=$VITE_CHROMATIC_TOKEN"  },
+    "chromatic": "npx chromatic --project-token=chpt_0978858423c451f"
+  },
   "dependencies": {
     "@sentry/react": "^8.19.0",
     "@sentry/tracing": "^7.114.0",
@@ -48,7 +49,6 @@
     "@typescript-eslint/parser": "^7.16.1",
     "@vitejs/plugin-react": "^4.3.1",
     "chromatic": "^11.7.0",
-    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
