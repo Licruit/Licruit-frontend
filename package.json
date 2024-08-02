@@ -11,8 +11,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_0978858423c451f"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@sentry/react": "^8.19.0",
