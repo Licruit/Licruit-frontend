@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-interface Props {
+export interface MultiStepProps {
   current: number;
   maxStep: number;
 }
 
-function MultiStep({ current, maxStep }: Props) {
+function MultiStep({ current, maxStep }: MultiStepProps) {
   return (
     <Container>
       {Array(maxStep)

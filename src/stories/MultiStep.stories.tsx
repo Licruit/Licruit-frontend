@@ -1,35 +1,51 @@
-import styled from 'styled-components';
+import MultiStep, {
+  MultiStepProps,
+} from '@/features/Auth/components/common/MultiStep';
+import theme from '@/styles/theme';
+import { Meta, StoryFn } from '@storybook/react';
+import { ThemeProvider } from 'styled-components';
 
-interface Props {
-  current: number;
-  maxStep: number;
-}
+export default {
+  title: 'Components/MultiStep',
+  component: MultiStep,
+  argTypes: {
+    current: { control: { type: 'number', min: 1, max: 5 } },
+    maxStep: { control: { type: 'number', min: 1, max: 5 } },
+  },
+} as Meta;
 
-function MultiStep({ current, maxStep }: Props) {
-  return (
-    <Container>
-      {Array(maxStep)
-        .fill(0)
-        .map((_, i) => (
-          <Bar key={i} $isActive={current >= i + 1} />
-        ))}
-    </Container>
-  );
-}
+const Template: StoryFn<MultiStepProps> = (args) => (
+  <ThemeProvider theme={theme}>
+    <MultiStep {...args} />
+  </ThemeProvider>
+);
 
-export default MultiStep;
+export const Default = Template.bind({});
+Default.args = {
+  current: 1,
+  maxStep: 5,
+};
 
-const Container = styled.div`
-  width: 100%;
-  height: 8px;
-  display: flex;
-  gap: 6px;
-`;
+export const StepTwo = Template.bind({});
+StepTwo.args = {
+  current: 2,
+  maxStep: 5,
+};
 
-const Bar = styled.div<{ $isActive: boolean }>`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme, $isActive }) =>
-    $isActive ? theme.color.primary[500] : theme.color.neutral[200]};
-  transition: all 0.3s ease-in-out;
-`;
+export const StepThree = Template.bind({});
+StepThree.args = {
+  current: 3,
+  maxStep: 5,
+};
+
+export const StepFour = Template.bind({});
+StepFour.args = {
+  current: 4,
+  maxStep: 5,
+};
+
+export const Complete = Template.bind({});
+Complete.args = {
+  current: 5,
+  maxStep: 5,
+};
