@@ -1,6 +1,4 @@
-import MultiStep, {
-  MultiStepProps,
-} from '@/features/Auth/components/common/MultiStep';
+import MultiStep, { MultiStepProps } from '@/components/Form/MultiStep';
 import theme from '@/styles/theme';
 import { Meta, StoryFn } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
