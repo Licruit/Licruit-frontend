@@ -1,8 +1,8 @@
 import PATH from '@/constants/path';
 import useSessionStore from '@/store/sessionStore';
+import { CartIcon } from 'public/assets/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import CartIcon from 'public/assets/icons/shoppingbag.svg?react';
 
 function Navigation() {
   const isLoggedIn = useSessionStore((state) => state.isLoggedIn);

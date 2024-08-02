@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from 'public/assets/images/logo.svg?react';
+import { Logo } from 'public/assets/images';
 import { Link } from 'react-router-dom';
 import PATH from '@/constants/path';
 import Navigation from './Navigation';
@@ -31,8 +31,8 @@ const HeaderBar = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  position: sticky;
   position: -webkit-sticky;
+  position: sticky;
   top: 0;
   left: 0;
 
