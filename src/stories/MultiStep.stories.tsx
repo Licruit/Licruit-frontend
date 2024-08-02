@@ -22,13 +22,13 @@ const Template: StoryFn<MultiStepProps> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
+export const Stepper = Template.bind({});
+Stepper.args = {
   current: 1,
   maxStep: 5,
 };
 
-Default.parameters = {
+Stepper.parameters = {
   design: {
     type: 'figma',
     url: 'https://www.figma.com/design/k3f805hMQ8UEAQdXUus6tp/LICRUIT?node-id=596-822&t=aTTf7p7S9lG7zEbZ-1',
