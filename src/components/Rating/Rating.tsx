@@ -3,10 +3,11 @@ import Glass from './Glass';
 
 interface Props {
   rating: number;
+  size?: number;
   hasLabel?: boolean;
 }
 
-function Rating({ rating, hasLabel = false }: Props) {
+function Rating({ rating, size = 24, hasLabel = false }: Props) {
   console.log(rating);
 
   const generateRating = () => {
@@ -15,10 +16,10 @@ function Rating({ rating, hasLabel = false }: Props) {
 
     for (let i = 0; i < 5; i += 1) {
       if (current >= 1) {
-        stars.push(<Glass key={i} point={1} />);
+        stars.push(<Glass key={i} size={size} point={1} />);
         current -= 1;
       } else if (current >= 0) {
-        stars.push(<Glass key={i} point={current} />);
+        stars.push(<Glass key={i} size={size} point={current} />);
         current = 0;
       }
     }
