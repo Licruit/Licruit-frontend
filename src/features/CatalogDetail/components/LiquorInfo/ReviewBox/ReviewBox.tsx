@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Pagination from '@/components/Pagination/Pagination';
 import ReviewListItem from './ReviewListItem';
 import SortSelect from './SortSelect';
 
@@ -13,6 +14,7 @@ function ReviewBox() {
         <ReviewListItem />
         <ReviewListItem />
       </div>
+      <Pagination totalReviews={100} currentPage={1} />
     </Container>
   );
 }

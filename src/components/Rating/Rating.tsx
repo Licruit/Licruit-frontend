@@ -8,8 +8,6 @@ interface Props {
 }
 
 function Rating({ rating, size = 24, hasLabel = false }: Props) {
-  console.log(rating);
-
   const generateRating = () => {
     const stars = [];
     let current = rating;
