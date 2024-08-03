@@ -5,15 +5,15 @@ import { DownArrowIcon } from 'public/assets/icons';
 import { PAGE_COUNT, REVIEWS_PER_PAGE } from '@/constants/pagination';
 
 interface PaginationProps {
-  totalReviews: number;
+  totalItems: number;
   currentPage: number;
 }
 
-function Pagination({ totalReviews, currentPage }: PaginationProps) {
+function Pagination({ totalItems, currentPage }: PaginationProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [page, setPage] = useState(currentPage);
-  const totalPages = Math.ceil(totalReviews / REVIEWS_PER_PAGE);
+  const totalPages = Math.ceil(totalItems / REVIEWS_PER_PAGE);
 
   const isStart = page - PAGE_COUNT <= 0; // 첫번째 페이지 그룹
   const isEnd =

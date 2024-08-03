@@ -14,7 +14,7 @@ function ReviewBox() {
         <ReviewListItem />
         <ReviewListItem />
       </div>
-      <Pagination totalReviews={100} currentPage={1} />
+      <Pagination totalItems={100} currentPage={1} />
     </Container>
   );
 }
