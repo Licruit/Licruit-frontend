@@ -20,3 +20,14 @@ export const verificationBusiness = async (companyNumber: string) => {
     throw new Error();
   }
 };
+
+export const duplicateBusiness = async (companyNumber: string) => {
+  try {
+    await httpClient.post('/users/company-number/check', {
+      companyNumber,
+    });
+    return false;
+  } catch {
+    return true;
+  }
+};
