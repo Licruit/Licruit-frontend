@@ -1,8 +1,9 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { KSIC } from '@/features/Join/types/signup';
 import { useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
+import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 
 interface Props {
   options?: KSIC[];
@@ -25,18 +26,7 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
 
     const industryRef = useRef<HTMLDivElement>(null);
 
-    const clickOutside = (event: MouseEvent) => {
-      if (isOpen && !industryRef.current?.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    useEffect(() => {
-      document.addEventListener('mousedown', clickOutside);
-
-      return () => {
-        document.removeEventListener('mousedown', clickOutside);
-      };
-    });
+    useClickOutside(industryRef, () => setIsOpen(false));
 
     return (
       <Wrapper ref={industryRef}>
