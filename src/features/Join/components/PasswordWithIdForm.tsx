@@ -80,7 +80,7 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const ErrorMessage = styled.div`
+export const ErrorMessage = styled.div`
   height: 12px;
   color: ${({ theme }) => theme.color.error};
   ${({ theme }) => theme.typo.body.medium[12]}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styled, { useTheme } from 'styled-components';
 import { useFormContext } from 'react-hook-form';
@@ -9,7 +9,7 @@ import { TOS } from '../data/tos';
 function ConsentForm() {
   const [terms, setTerms] = useState(TOS);
   const theme = useTheme();
-  const { register, setValue } = useFormContext();
+  const { setValue, register, trigger } = useFormContext();
 
   const allChecked = terms.every((term) => term.isChecked);
 
@@ -19,7 +19,10 @@ function ConsentForm() {
       isChecked: !allChecked,
     }));
     setTerms(updatedTerms);
-    setValue('isValid', true);
+    updatedTerms.forEach((item) =>
+      setValue(item.name, !allChecked, { shouldValidate: true })
+    );
+    trigger();
   };
 
   const handleTermChecked = (id: number, required: boolean) => {
@@ -37,13 +40,6 @@ function ConsentForm() {
       setValue('marketing', true);
     }
   };
-
-  useEffect(() => {
-    const allRequiredChecked = terms
-      .filter((item) => item.required)
-      .every((item) => item.isChecked);
-    setValue('isValid', allRequiredChecked);
-  }, [terms, setValue]);
 
   return (
     <Container>
@@ -64,7 +60,7 @@ function ConsentForm() {
       <ul>
         {terms.map((item) => (
           <Term key={item.id}>
-            <Option onClick={() => handleTermChecked(item.id, item.required)}>
+            <Option onChange={() => handleTermChecked(item.id, item.required)}>
               <CheckIcon
                 fill={
                   item.isChecked
@@ -79,8 +75,7 @@ function ConsentForm() {
                 id={item.name}
                 key={item.label}
                 type='checkbox'
-                checked={item.isChecked}
-                {...register(item.name)}
+                {...register(item.name, { required: item.required })}
                 onClick={(e) => e.stopPropagation()}
               />
               <Essential htmlFor={item.name}>{item.label}</Essential>

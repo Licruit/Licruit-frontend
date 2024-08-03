@@ -25,26 +25,8 @@ function SignUpPage() {
     },
   });
 
-  const handleSubmit = (data: SignupFormType) => {
-    const {
-      companyNumber,
-      password,
-      businessName,
-      contact,
-      address,
-      sectorId,
-    } = data;
-
-    const filteredData: Omit<SignupFormType, 'isVerified'> = {
-      companyNumber,
-      password,
-      businessName,
-      contact,
-      address,
-      sectorId,
-    };
-
-    signupMutation.mutate(filteredData);
+  const handleSubmit = (data: Omit<SignupFormType, 'isVerified'>) => {
+    signupMutation.mutate(data);
   };
   return (
     <GenericForm<SignupFormType>
