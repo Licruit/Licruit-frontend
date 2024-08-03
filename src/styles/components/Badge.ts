@@ -10,7 +10,7 @@ export const Badge = styled.div<{
   justify-content: center;
   align-items: center;
 
-  ${({ theme }) => theme.typo.body.semi_bold[16]}
+  ${({ theme }) => theme.typo.body.semi_bold[14]}
 
   ${({ $size }) => {
     if ($size === 'lg') {
