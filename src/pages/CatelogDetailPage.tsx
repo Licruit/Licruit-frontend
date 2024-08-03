@@ -1,4 +1,4 @@
-import LiquorIntro from '@/features/CatalogDetail/components/LiquorIntro';
+import LiquorIntro from '@/features/CatalogDetail/components/LiquorIntro/LiquorIntro';
 import styled from 'styled-components';
 
 function CatelogDetailPage() {

@@ -1,27 +1,17 @@
 import Rating from '@/components/Rating/Rating';
-import { AiIcon, GlassIcon, ReviewIcon } from 'public/assets/icons';
+import { AiIcon } from 'public/assets/icons';
 import styled from 'styled-components';
+import StatBox from './StatBox';
 
 function LiquorIntro() {
   return (
     <Container>
       <Statistic>
-        <StatBox>
-          <div className='title'>
-            <ReviewIcon fill='#ADAEB1' width={18} height={18} />
-            리뷰
-          </div>
+        <StatBox title='리뷰'>
           <span className='review-count'>10</span>
         </StatBox>
-        <StatBox>
-          <div className='title'>
-            <GlassIcon fill='#ADAEB1' width={18} height={18} />
-            평점
-          </div>
-          <RatingWrapper>
-            <span>3.9</span>
-            <Rating />
-          </RatingWrapper>
+        <StatBox title='평점'>
+          <Rating rating={4.5} hasLabel />
         </StatBox>
       </Statistic>
       <Summary>
@@ -54,38 +44,11 @@ const Statistic = styled.div`
   grid-template-columns: 1fr 1fr;
   ${({ theme }) => theme.typo.body.medium[12]}
   color: ${({ theme }) => theme.color.neutral[400]};
-`;
-
-const StatBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-
-  .title {
-    display: flex;
-    gap: 4px;
-  }
 
   .review-count {
+    ${({ theme }) => theme.typo.body.semi_bold[16]}
     color: ${({ theme }) => theme.color.neutral[900]};
   }
-
-  span {
-    ${({ theme }) => theme.typo.body.semi_bold[16]}
-  }
-
-  &:last-child {
-    border-left: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  }
-`;
-
-const RatingWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: ${({ theme }) => theme.color.primary[500]};
 `;
 
 const Summary = styled.div`
