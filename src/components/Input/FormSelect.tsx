@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { KSIC } from '@/features/Join/types/signup';
 import { useFormContext } from 'react-hook-form';
@@ -9,54 +9,56 @@ interface Props {
   placeholder?: string;
 }
 
-function FormSelect({ options, placeholder }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const selectRef = useRef<HTMLUListElement>(null);
-  const theme = useTheme();
-  const { setValue } = useFormContext();
+const FormSelect = forwardRef<HTMLDivElement, Props>(
+  ({ options, placeholder }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+    const selectRef = useRef<HTMLUListElement>(null);
+    const theme = useTheme();
+    const { setValue } = useFormContext();
 
-  const handleSelect = (option: KSIC) => {
-    setSelectedOption(option.name);
-    setIsOpen(false);
-    setValue('sectorId', option.id);
-  };
-
-  const industryRef = useRef<HTMLDivElement>(null);
-
-  const clickOutside = (event: MouseEvent) => {
-    if (isOpen && !industryRef.current?.contains(event.target as Node)) {
+    const handleSelect = (option: KSIC) => {
+      setSelectedOption(option.name);
       setIsOpen(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('mousedown', clickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', clickOutside);
+      setValue('sectorId', option.id, { shouldValidate: true });
     };
-  });
 
-  return (
-    <Wrapper ref={industryRef}>
-      <Select onClick={() => setIsOpen((prev) => !prev)}>
-        <div className='selectInput'>
-          {selectedOption ?? placeholder}
-          <DownArrowIcon fill={theme.color.neutral[400]} />
-        </div>
-      </Select>
-      {isOpen && (
-        <SelectList ref={selectRef}>
-          {options?.map((option) => (
-            <SelectItem key={option.id} onClick={() => handleSelect(option)}>
-              {option.name}
-            </SelectItem>
-          ))}
-        </SelectList>
-      )}
-    </Wrapper>
-  );
-}
+    const industryRef = useRef<HTMLDivElement>(null);
+
+    const clickOutside = (event: MouseEvent) => {
+      if (isOpen && !industryRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    useEffect(() => {
+      document.addEventListener('mousedown', clickOutside);
+
+      return () => {
+        document.removeEventListener('mousedown', clickOutside);
+      };
+    });
+
+    return (
+      <Wrapper ref={industryRef}>
+        <Select onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
+          <div className='selectInput'>
+            {selectedOption ?? placeholder}
+            <DownArrowIcon fill={theme.color.neutral[400]} />
+          </div>
+        </Select>
+        {isOpen && (
+          <SelectList ref={selectRef}>
+            {options?.map((option) => (
+              <SelectItem key={option.id} onClick={() => handleSelect(option)}>
+                {option.name}
+              </SelectItem>
+            ))}
+          </SelectList>
+        )}
+      </Wrapper>
+    );
+  }
+);
 
 export default FormSelect;
 

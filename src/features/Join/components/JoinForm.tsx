@@ -8,13 +8,10 @@ function JoinForm({ Funnel, Step }: ProcessProps) {
   return (
     <Funnel>
       <Step stepNum={1}>
-        <ConsentForm />
+        <IndustryForm />
+        {/* <ConsentForm /> */}
       </Step>
-      <Step stepNum={2}>
-        <ConsentForm />
-
-        {/* <AuthForm /> */}
-      </Step>
+      <Step stepNum={2}>{/* <AuthForm /> */}</Step>
       <Step stepNum={3}>
         <PasswordWithIdForm />
       </Step>
