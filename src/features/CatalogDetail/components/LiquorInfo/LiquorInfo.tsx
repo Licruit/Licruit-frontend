@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import InfoTap from './InfoTap';
+import InfoBox from './InfoBox';
+import ReviewBox from './ReviewBox';
 
 function LiquorInfo() {
   const [currentTap, setCurrentTap] = useState('정보');
@@ -8,8 +10,10 @@ function LiquorInfo() {
   return (
     <Container>
       <InfoTap currentTap={currentTap} setCurrentTap={setCurrentTap} />
-      {currentTap === '정보' && <div>정보</div>}
-      {currentTap === '리뷰' && <div>리뷰</div>}
+      <div className='box-wrapper'>
+        {currentTap === '정보' && <InfoBox />}
+        {currentTap === '리뷰' && <ReviewBox />}
+      </div>
     </Container>
   );
 }
@@ -21,4 +25,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
+  .box-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
 `;
