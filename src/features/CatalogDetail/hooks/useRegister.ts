@@ -39,7 +39,7 @@ export const useRegister = () => {
 
       return { prevData };
     },
-    onError: (err, variable, context) => {
+    onError: (_err, _variable, context) => {
       window.alert('오류가 발생했습니다. 다시 시도해주세요.');
       queryClient.setQueryData(['liquorDetail', id], context?.prevData);
     },
