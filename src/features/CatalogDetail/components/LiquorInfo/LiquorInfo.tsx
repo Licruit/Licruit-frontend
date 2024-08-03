@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import InfoTap from './InfoTap';
 import InfoBox from './InfoBox';
-import ReviewBox from './ReviewBox';
+import ReviewBox from './ReviewBox/ReviewBox';
 
 function LiquorInfo() {
   const [currentTap, setCurrentTap] = useState('정보');
