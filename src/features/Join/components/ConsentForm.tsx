@@ -1,33 +1,49 @@
+import { useEffect, useState } from 'react';
+
 import styled, { useTheme } from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 import { CheckIcon } from 'public/assets/icons';
-import { TOS } from '../constants/tos';
+import { TOS } from '../data/tos';
 
 function ConsentForm() {
+  const [terms, setTerms] = useState(TOS);
   const theme = useTheme();
+  const { register, setValue } = useFormContext();
 
-  const { register, watch, setValue } = useFormContext();
-
-  const watchedTerms: boolean[] = TOS.map((term) => watch(term.name));
-  const allChecked = TOS.every((term) => watchedTerms[term.id]);
+  const allChecked = terms.every((term) => term.isChecked);
 
   const handleAllChecked = () => {
-    TOS.forEach((term) => setValue(term.name, !allChecked));
-    setValue('allTerms', !allChecked);
+    const updatedTerms = terms.map((item) => ({
+      ...item,
+      isChecked: !allChecked,
+    }));
+    setTerms(updatedTerms);
+    setValue('isValid', true);
   };
 
-  const handleTermChecked = (target: string, checked: boolean) => {
-    setValue(target, !checked);
-    if (!checked) {
-      setValue('allTerms', false);
+  const handleTermChecked = (id: number, required: boolean) => {
+    const updatedTerms = terms.map((item) =>
+      id === item.id
+        ? {
+            ...item,
+            isChecked: !item.isChecked,
+          }
+        : item
+    );
+    setTerms(updatedTerms);
+
+    if (!required) {
+      setValue('marketing', true);
     }
   };
 
-  // 필수 요소 동의 여부
-  // const allRequiredChecked = TOS
-  //   .filter((t) => t.required)
-  //   .every((t) => watchedTerms[t.id]);
+  useEffect(() => {
+    const allRequiredChecked = terms
+      .filter((item) => item.required)
+      .every((item) => item.isChecked);
+    setValue('isValid', allRequiredChecked);
+  }, [terms, setValue]);
 
   return (
     <Container>
@@ -40,40 +56,34 @@ function ConsentForm() {
             width={24}
             height={24}
           />
-          <AgreeInput type='checkbox' {...register('allTerms')} />
+          <AgreeInput type='checkbox' />
         </div>
         모두 동의
       </AllAgree>
 
       <ul>
-        {TOS.map((item, index) => (
+        {terms.map((item) => (
           <Term key={item.id}>
-            <Option
-              onClick={() => handleTermChecked(item.name, watchedTerms[index])}
-            >
+            <Option onClick={() => handleTermChecked(item.id, item.required)}>
               <CheckIcon
                 fill={
-                  watchedTerms[item.id]
+                  item.isChecked
                     ? theme.color.primary[500]
                     : theme.color.neutral[400]
                 }
                 width={24}
                 height={24}
               />
-              <span> {item.id === 3 ? '(선택)' : '(필수)'}</span>
+              <span> {item.required ? '(필수)' : '(선택)'}</span>
               <AgreeInput
                 id={item.name}
                 key={item.label}
                 type='checkbox'
-                checked={watchedTerms[item.id]}
-                {...(register(item.name),
-                {
-                  required: item.required,
-                })}
+                checked={item.isChecked}
+                {...register(item.name)}
                 onClick={(e) => e.stopPropagation()}
               />
               <Essential htmlFor={item.name}>{item.label}</Essential>
-
               {item.id ? (
                 <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
               ) : (

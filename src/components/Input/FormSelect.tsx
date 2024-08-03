@@ -40,7 +40,7 @@ function FormSelect({ options, placeholder }: Props) {
   return (
     <Wrapper ref={industryRef}>
       <Select onClick={() => setIsOpen((prev) => !prev)}>
-        <div className='select_input'>
+        <div className='selectInput'>
           {selectedOption ?? placeholder}
           <DownArrowIcon fill={theme.color.neutral[400]} />
         </div>
@@ -63,7 +63,7 @@ export default FormSelect;
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  .select_input {
+  .selectInput {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,7 +96,6 @@ const SelectItem = styled.li`
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.color.neutral[400]};
-
     background-color: ${({ theme }) => theme.color.neutral[100]};
   }
 `;

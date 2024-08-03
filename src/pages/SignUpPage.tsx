@@ -12,16 +12,18 @@ function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const navigate = useNavigate();
 
-  const mutation = useMutation<void, Error, Omit<SignupFormType, 'isVerified'>>(
-    {
-      mutationFn: async (data) => {
-        await signup(data);
-      },
-      onSuccess: () => {
-        navigate(PATH.login);
-      },
-    }
-  );
+  const signupMutation = useMutation<
+    void,
+    Error,
+    Omit<SignupFormType, 'isVerified'>
+  >({
+    mutationFn: async (data) => {
+      await signup(data);
+    },
+    onSuccess: () => {
+      navigate(PATH.login);
+    },
+  });
 
   const handleSubmit = (data: SignupFormType) => {
     const {
@@ -42,7 +44,7 @@ function SignUpPage() {
       sectorId,
     };
 
-    mutation.mutate(filteredData);
+    signupMutation.mutate(filteredData);
   };
   return (
     <GenericForm<SignupFormType>
