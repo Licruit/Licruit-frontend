@@ -1,3 +1,4 @@
+import LiquorInfo from '@/features/CatalogDetail/components/LiquorInfo/LiquorInfo';
 import LiquorIntro from '@/features/CatalogDetail/components/LiquorIntro/LiquorIntro';
 import styled from 'styled-components';
 
@@ -7,7 +8,7 @@ function CatelogDetailPage() {
       <div className='wrapper'>
         <div className='temp-img'>임시 이미지</div>
         <LiquorIntro />
-        <div>정보/리뷰 탭</div>
+        <LiquorInfo />
       </div>
 
       <aside>공동구매 목록</aside>
