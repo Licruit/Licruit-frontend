@@ -2,27 +2,33 @@ import Rating from '@/components/Rating/Rating';
 import { AiIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import StatBox from './StatBox';
+import { useLiquorDetail } from '../../hooks/useLiquorDetail';
 
 function LiquorIntro() {
+  const { liquorDetail } = useLiquorDetail();
+
   return (
     <Container>
-      <Statistic>
-        <StatBox title='리뷰'>
-          <span className='review-count'>10</span>
-        </StatBox>
-        <StatBox title='평점'>
-          <Rating rating={4.5} hasLabel />
-        </StatBox>
-      </Statistic>
-      <Summary>
-        <AiIcon />
-        <p>
-          백경13은 부드럽고 깔끔한 맛으로, 다양한 음식과 완벽하게 어울립니다.
-          <br />
-          전통주의 깊은 맛과 현대적인 감각을 동시에 즐기고 싶다면, 지금 바로
-          백경13을 선택하세요!
-        </p>
-      </Summary>
+      <img src={liquorDetail?.img} alt='liquorImage' className='liquor-img' />
+      <div className='intro-wrapper'>
+        <Statistic>
+          <StatBox title='리뷰'>
+            <span className='review-count'>10</span>
+          </StatBox>
+          <StatBox title='평점'>
+            <Rating rating={4.5} hasLabel />
+          </StatBox>
+        </Statistic>
+        <Summary>
+          <AiIcon />
+          <p>
+            백경13은 부드럽고 깔끔한 맛으로, 다양한 음식과 완벽하게 어울립니다.
+            <br />
+            전통주의 깊은 맛과 현대적인 감각을 동시에 즐기고 싶다면, 지금 바로
+            백경13을 선택하세요!
+          </p>
+        </Summary>
+      </div>
     </Container>
   );
 }
@@ -33,9 +39,20 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
   gap: 20px;
-  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
+  .liquor-img {
+    height: 500px;
+    align-self: center;
+  }
+
+  .intro-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+  }
 `;
 
 const Statistic = styled.div`

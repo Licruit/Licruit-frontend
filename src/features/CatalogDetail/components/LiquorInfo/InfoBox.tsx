@@ -1,38 +1,58 @@
 import styled from 'styled-components';
+import { useLiquorDetail } from '../../hooks/useLiquorDetail';
+import InfoItem from './InfoItem';
 
 function InfoBox() {
+  const { liquorDetail } = useLiquorDetail();
+
+  if (!liquorDetail) return null;
+
+  const {
+    category_name,
+    ingredient,
+    alcohol,
+    volume,
+    award,
+    etc,
+    description,
+    food,
+    brewery,
+    address,
+    homepage,
+    contact,
+  } = liquorDetail;
+
   return (
     <Container>
       <Info>
         <h5>상세 정보</h5>
         <ul>
-          <li>종류 : </li>
-          <li>원재료 : </li>
-          <li>알콜도수 : </li>
-          <li>용량 : </li>
-          <li>수상내역 : </li>
-          <li>기타 : </li>
+          <InfoItem label='종류' value={category_name} />
+          <InfoItem label='원재료' value={ingredient} />
+          <InfoItem label='알콜도수' value={alcohol} />
+          <InfoItem label='용량' value={`${volume} ml`} />
+          <InfoItem label='수상내역' value={award} />
+          <InfoItem label='기타' value={etc} />
         </ul>
       </Info>
       <Info>
         <h5>제품 소개</h5>
-        <p>
-          꽃, 살구, 레몬, 딸기, 쌀의 순수하고 깨끗한 향을 머금고 있다. 기분 좋은
-          산미로 시작하여 달달한 여운이 남는다. 알코올이 튀지않고 안저억인
-          밸런스로 맛의 흐름이 명확하고 깔끔함
-        </p>
+        <p>{description}</p>
       </Info>
       <Info>
         <h5>어울리는 음식</h5>
-        <p>수육, 샐러드, 피자</p>
+        <p>{food}</p>
       </Info>
       <Info>
         <h5>양조장</h5>
         <ul>
-          <li>양조장명 : </li>
-          <li>주소 : </li>
-          <li>홈페이지 : </li>
-          <li>문의 : </li>
+          <InfoItem label='양조장명' value={brewery} />
+          <InfoItem label='주소' value={address} />
+          <InfoItem
+            label='홈페이지'
+            value={<a href={homepage}>{homepage}</a>}
+          />
+          <InfoItem label='문의' value={contact} />
         </ul>
       </Info>
     </Container>
@@ -60,7 +80,6 @@ const Info = styled.div`
     color: ${({ theme }) => theme.color.neutral[900]};
   }
 
-  li,
   p {
     ${({ theme }) => theme.typo.body.medium[14]}
   }
