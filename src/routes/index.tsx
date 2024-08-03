@@ -8,6 +8,7 @@ import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
 import MainLayout from '@/layouts/MainLayout';
+import CatelogDetailPage from '@/pages/CatelogDetailPage';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'catalog/:id',
-        element: <CatalogPage />,
+        element: <CatelogDetailPage />,
       },
       {
         path: 'management',
