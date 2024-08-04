@@ -7,6 +7,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $theme: 'primary' | 'neutral';
   $width?: 'fit' | 'full';
   $size: 'sm' | 'md' | 'lg' | string;
+  $disableHover?: boolean;
 }
 
 function Button({
@@ -15,6 +16,7 @@ function Button({
   $theme,
   $size,
   $width = 'fit',
+  $disableHover = false,
   ...props
 }: Props) {
   return (
@@ -23,6 +25,7 @@ function Button({
       $width={$width}
       $theme={$theme}
       $size={$size}
+      $disableHover={$disableHover}
       {...props}
     >
       {children}
@@ -50,7 +53,10 @@ const StyledButton = styled.button<Omit<Props, 'children'>>`
   }
 
   &:hover:not(:disabled) {
-    ${({ $style, $theme, theme }) => {
+    ${({ $style, $theme, theme, $disableHover }) => {
+      if ($disableHover) {
+        return;
+      }
       const hoverColor =
         $theme === 'primary'
           ? theme.color.primary[700]

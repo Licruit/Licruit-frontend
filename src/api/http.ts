@@ -1,11 +1,17 @@
+import { BASE_URL, DEFAULT_TIMOUT } from '@/constants/api';
 import useSessionStore from '@/store/sessionStore';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-const DEFAULT_TIMOUT = 30000;
-
 const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
   const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL: BASE_URL,
+    timeout: DEFAULT_TIMOUT,
+    withCredentials: true,
+    ...config,
+  });
+
+  const baseInstance = axios.create({
+    baseURL: BASE_URL,
     timeout: DEFAULT_TIMOUT,
     withCredentials: true,
     ...config,
@@ -21,7 +27,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
       if (isLoggedIn && err.response.status === 401) {
         const originRequest = err.config;
         try {
-          await axiosInstance.post('/users/refresh');
+          await baseInstance.post('/users/refresh');
           return axiosInstance(originRequest);
         } catch (error) {
           setIsLoggedIn(false);

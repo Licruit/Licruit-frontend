@@ -23,7 +23,9 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    camelcase: ['warn', { properties: 'never' }],
     'no-alert': 'off',
+    'no-plusplus': 'off',
     'react/no-unused-prop-types': 'warn',
     'react/jsx-no-useless-fragment': 'off',
     'consistent-return': 'off',
