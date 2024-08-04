@@ -11,15 +11,39 @@ function ProductGrid() {
       title: '홉미드',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
+    {
+      imageUrl: LiquorUrl,
+      badgeText: '탁주',
+      title: '홉미드',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    },
+    {
+      imageUrl: LiquorUrl,
+      badgeText: '탁주',
+      title: '홉미드',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    },
+    {
+      imageUrl: LiquorUrl,
+      badgeText: '탁주',
+      title: '홉미드',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    },
   ];
 
   return (
     <Container>
-      <ProductCard liquorInfo={liguorData[0]} />
+      {liguorData.map((item) => {
+        return <ProductCard key={item.title} liquorInfo={item} />;
+      })}
     </Container>
   );
 }
 
 export default ProductGrid;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+`;
