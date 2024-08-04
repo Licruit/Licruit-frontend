@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TAB } from '@/constants/category';
+import { TAB } from '@/constants/tab';
 
 import styled from 'styled-components';
 import Button from '../Button/Button';

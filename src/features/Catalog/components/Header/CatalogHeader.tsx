@@ -1,16 +1,14 @@
 import Search from '@/components/Header/Search';
 
 import styled from 'styled-components';
-import { useCategory } from '../../hooks/useCatalog';
+import Category from './Category';
 
 function CatalogHeader() {
-  const { category } = useCategory();
-  console.log(category);
   return (
     <Container>
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
-        {/* <Tab type='main' /> */}
+        <Category />
         <Search />
       </div>
     </Container>
@@ -26,6 +24,7 @@ const Container = styled.div`
   .classification {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 `;
 

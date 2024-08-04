@@ -1,32 +1,43 @@
+import { useParams } from 'react-router-dom';
+
 import LiquorUrl from 'public/assets/images/catalog/basil.png';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
+import { useCatalog } from '../../hooks/useCatalog';
+
 function ProductGrid() {
+  const { category, page } = useParams();
+  const { catalogData } = useCatalog({ page: +page!, category: +category! });
+
   // 예시데이터
   const liguorData = [
     {
+      id: 1,
       imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
+      category_name: '탁주',
+      name: '홉미드',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
     {
+      id: 2,
       imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
+      category_name: '탁주',
+      name: '홉미드',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
     {
+      id: 3,
       imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
+      category_name: '탁주',
+      name: '홉미드',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
     {
+      id: 4,
       imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
+      category_name: '탁주',
+      name: '홉미드',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
   ];
@@ -35,7 +46,7 @@ function ProductGrid() {
     <Container>
       <List>
         {liguorData.map((item) => {
-          return <ProductCard key={item.title} liquorInfo={item} />;
+          return <ProductCard key={item.id} liquorInfo={item} />;
         })}
       </List>
       {/* TODO:페이지네이션 추가 */}

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 interface LiquorInfo {
   imageUrl: string;
-  badgeText: string;
-  title: string;
+  category_name: string;
+  name: string;
   description: string;
 }
 
@@ -21,9 +21,9 @@ function ProductCard({ headText, liquorInfo }: Props) {
       <img src={liquorInfo.imageUrl} alt='liquor' />
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
-          {liquorInfo.badgeText}
+          {liquorInfo.category_name}
         </Badge>
-        <Title>{liquorInfo.title}</Title>
+        <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
