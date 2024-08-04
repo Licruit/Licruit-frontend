@@ -1,4 +1,5 @@
-import { ProductGrid, Sidebar } from '@/features/Catalog';
+import { ProductGrid } from '@/features/Catalog';
+import Filter from '@/features/Catalog/components/Filter';
 import styled from 'styled-components';
 
 function CatalogPage() {
@@ -6,7 +7,7 @@ function CatalogPage() {
     <Container>
       <Content>
         <div className='aside'>
-          <Sidebar />
+          <Filter />
         </div>
         <div className='article'>
           <ProductGrid />
@@ -21,4 +22,8 @@ export default CatalogPage;
 const Container = styled.div``;
 const Content = styled.div`
   display: flex;
+  .aside {
+    width: 100%;
+    max-width: 354px;
+  }
 `;
