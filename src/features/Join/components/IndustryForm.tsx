@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
+import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 import FormInput from '@/components/Input/FormInput';
 import FormSelect from '@/components/Input/FormSelect';
 import Button from '@/components/Button/Button';
@@ -18,22 +19,7 @@ function IndustryForm() {
   const { industryData } = useSignup();
   const address = watch('industry');
 
-  const clickOutside = (event: MouseEvent) => {
-    if (
-      isPostcodeVisible &&
-      !placeRef.current?.contains(event.target as Node)
-    ) {
-      closePostcode();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', clickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', clickOutside);
-    };
-  });
+  useClickOutside(placeRef, closePostcode);
 
   return (
     <Container>
