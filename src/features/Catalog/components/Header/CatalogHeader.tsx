@@ -1,5 +1,5 @@
 import Category from '@/components/Header/Category';
-import FormInput from '@/components/Input/FormInput';
+import Search from '@/components/Header/Search';
 import styled from 'styled-components';
 
 function CatalogHeader() {
@@ -9,7 +9,7 @@ function CatalogHeader() {
       <div className='classification'>
         <Category type='catalog' />
         <InputBox>
-          <FormInput placeholder='찾고 싶은 전통주를 입력하세요' hasSearch />
+          <Search />
         </InputBox>
       </div>
     </Container>
