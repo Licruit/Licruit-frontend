@@ -8,9 +8,7 @@ function CatalogHeader() {
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
         <Category type='catalog' />
-        <InputBox>
-          <Search />
-        </InputBox>
+        <Search />
       </div>
     </Container>
   );
@@ -32,7 +30,4 @@ const Title = styled.div`
   ${({ theme }) => theme.typo.heading.extra_bold[80]};
   color: ${({ theme }) => theme.color.neutral[900]};
   margin: 20px 0;
-`;
-const InputBox = styled.div`
-  width: 260px;
 `;
