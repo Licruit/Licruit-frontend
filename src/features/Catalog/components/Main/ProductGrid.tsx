@@ -1,4 +1,4 @@
-import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
+import LiquorUrl from 'public/assets/images/catalog/basil.png';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
@@ -33,16 +33,20 @@ function ProductGrid() {
 
   return (
     <Container>
-      {liguorData.map((item) => {
-        return <ProductCard key={item.title} liquorInfo={item} />;
-      })}
+      <List>
+        {liguorData.map((item) => {
+          return <ProductCard key={item.title} liquorInfo={item} />;
+        })}
+      </List>
+      {/* TODO:페이지네이션 추가 */}
     </Container>
   );
 }
 
 export default ProductGrid;
 
-const Container = styled.div`
+const Container = styled.div``;
+const List = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;

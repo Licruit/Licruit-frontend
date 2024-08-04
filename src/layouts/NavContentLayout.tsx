@@ -6,10 +6,8 @@ import styled from 'styled-components';
 function NavContentLayout() {
   return (
     <>
-      <Content>
-        <Header />
-        <CatalogHeader />
-      </Content>
+      <Header />
+      <CatalogHeader />
       <Container>
         <Outlet />
       </Container>
@@ -26,8 +24,4 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-`;
-
-const Content = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;
