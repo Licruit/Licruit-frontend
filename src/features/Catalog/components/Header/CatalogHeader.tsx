@@ -1,13 +1,16 @@
-import Category from '@/components/Header/Category';
 import Search from '@/components/Header/Search';
+
 import styled from 'styled-components';
+import { useCategory } from '../../hooks/useCatalog';
 
 function CatalogHeader() {
+  const { category } = useCategory();
+  console.log(category);
   return (
     <Container>
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
-        <Category type='catalog' />
+        {/* <Tab type='main' /> */}
         <Search />
       </div>
     </Container>
