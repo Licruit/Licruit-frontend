@@ -11,13 +11,12 @@ interface CategoryProps {
 }
 
 function Category({ type }: CategoryProps) {
-  const init = Object.keys(CATEGORY[type])[0];
   const category = Object.values(CATEGORY[type]);
-  const [selectedCategory, setSelectedCategory] = useState(init);
-
+  const [selectedCategory, setSelectedCategory] = useState<string>(category[0]);
   const handleClickButton = (categroy: string) => {
     setSelectedCategory(categroy);
   };
+
   return (
     <ButtonCategory>
       {category.map((categroy) => (
@@ -41,4 +40,5 @@ export default Category;
 const ButtonCategory = styled.div`
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 `;

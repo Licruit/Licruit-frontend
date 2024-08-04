@@ -7,6 +7,7 @@ import GroupBuyingPage from '@/pages/GroupBuyingPage';
 import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
+import NavContentLayout from '@/layouts/NavContentLayout';
 import MainLayout from '@/layouts/MainLayout';
 import PublicRoutes from './PublicRoutes';
 
@@ -23,10 +24,6 @@ const router = createBrowserRouter([
       {
         path: 'group-buying/:id',
         element: <GroupBuyingDetailPage />,
-      },
-      {
-        path: 'catalog',
-        element: <CatalogPage />,
       },
       {
         path: 'catalog/:id',
@@ -53,6 +50,16 @@ const router = createBrowserRouter([
       {
         path: 'find-password',
         element: <FindPasswordPage />,
+      },
+    ],
+  },
+  {
+    path: '/catalog',
+    element: <NavContentLayout />,
+    children: [
+      {
+        path: '',
+        element: <CatalogPage />,
       },
     ],
   },

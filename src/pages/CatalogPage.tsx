@@ -1,10 +1,9 @@
-import { CatalogHeader, ProductGrid, Sidebar } from '@/features/Catalog';
+import { ProductGrid, Sidebar } from '@/features/Catalog';
 import styled from 'styled-components';
 
 function CatalogPage() {
   return (
     <Container>
-      <CatalogHeader />
       <Content>
         <div className='aside'>
           <Sidebar />
