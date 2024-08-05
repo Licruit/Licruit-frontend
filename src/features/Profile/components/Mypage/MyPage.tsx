@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { useEditProfileModal } from '@/store/modal/useModalStore';
+import {
+  useEditProfileModal,
+  useMyPageModal,
+} from '@/store/modal/useModalStore';
 import { CloseIcon } from 'public/assets/icons';
 
 import ContentCategory from '../common/ContentCategory';
@@ -11,13 +14,20 @@ import EditProfile from '../EditProfile/EditProfile';
 function MyPage() {
   const { isOpen: isEditProfileOpen, close: closeEditProfile } =
     useEditProfileModal();
+  const closeMyPage = useMyPageModal((state) => state.close);
 
   return (
     <>
       <MyPageContainer>
         <MyPageHeader
           title='My Page'
-          icon={<CloseIcon fill='#000' style={{ cursor: 'pointer' }} />}
+          icon={
+            <CloseIcon
+              fill='#000'
+              style={{ cursor: 'pointer' }}
+              onClick={closeMyPage}
+            />
+          }
         />
         <Profile />
         <ContentCategory />
