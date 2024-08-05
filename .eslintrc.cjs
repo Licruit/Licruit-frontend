@@ -10,6 +10,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -32,6 +33,17 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
+    camelcase: ['warn', { properties: 'never' }],
+    'no-alert': 'off',
+    'no-plusplus': 'off',
+    'react/no-unused-prop-types': 'warn',
+    'react/jsx-no-useless-fragment': 'off',
+    'consistent-return': 'off',
+    'react/no-array-index-key': 'warn',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
+    'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': ['off'],
@@ -43,6 +55,16 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'no-shadow': [
+      'error',
+      {
+        builtinGlobals: false,
+        hoist: 'functions',
+        allow: [],
+        ignoreOnInitialization: false,
+      },
+    ],
+    'no-nested-ternary': 'off',
     '@typescript-eslint/naming-convention': [
       // 네이밍 컨벤션
       'warn',
@@ -56,7 +78,7 @@ module.exports = {
       },
       {
         selector: 'variable',
-        format: ['camelCase', 'UPPER_CASE'],
+        format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
       },
       {
         selector: 'function', // exported function (컴포넌트 명)
