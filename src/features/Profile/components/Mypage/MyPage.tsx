@@ -1,15 +1,15 @@
-import styled from 'styled-components';
 import {
   useEditProfileModal,
   useMyPageModal,
 } from '@/store/modal/useModalStore';
 import { CloseIcon } from 'public/assets/icons';
-
+import { ProfileContainer } from '@/styles/components/Container';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
-import ContentList from './ContentList';
+// import ContentList from './ContentList';
 import EditProfile from '../EditProfile/EditProfile';
+import CompanyShowButtons from './CompanyShowButtons';
 
 function MyPage() {
   const { isOpen: isEditProfileOpen, close: closeEditProfile } =
@@ -18,7 +18,7 @@ function MyPage() {
 
   return (
     <>
-      <MyPageContainer>
+      <ProfileContainer>
         <MyPageHeader
           title='My Page'
           icon={
@@ -31,28 +31,13 @@ function MyPage() {
         />
         <Profile />
         <ContentCategory />
-        <ContentList />
-      </MyPageContainer>
+        {/* <ContentList /> */}
+        {/* TODO 유저 타입에 따른 버튼 보여주기 */}
+        <CompanyShowButtons />
+      </ProfileContainer>
       {isEditProfileOpen && <EditProfile onClose={closeEditProfile} />}
     </>
   );
 }
-
-const MyPageContainer = styled.div`
-  width: 500px;
-  height: 100%;
-
-  padding: 20px;
-
-  position: absolute;
-  right: 0;
-  z-index: 9999;
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  background: ${({ theme }) => theme.color.common[100]};
-`;
 
 export default MyPage;
