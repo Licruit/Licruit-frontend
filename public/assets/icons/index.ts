@@ -14,3 +14,4 @@ export { default as ReviewIcon } from './review.svg?react';
 export { default as CartIcon } from './shoppingbag.svg?react';
 export { default as WavingIcon } from './waving.svg?react';
 export { default as GlassIcon } from './glass.svg?react';
+export { default as BackIcon } from './backarrow.svg?react';

@@ -7,6 +7,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $theme: 'primary' | 'neutral';
   $width?: 'fit' | 'full';
   $size: 'sm' | 'md' | 'lg' | string;
+  $transparent?: boolean;
   $disableHover?: boolean;
 }
 
@@ -16,6 +17,7 @@ function Button({
   $theme,
   $size,
   $width = 'fit',
+  $transparent = false,
   $disableHover = false,
   ...props
 }: Props) {
@@ -25,6 +27,7 @@ function Button({
       $width={$width}
       $theme={$theme}
       $size={$size}
+      $transparent={$transparent}
       $disableHover={$disableHover}
       {...props}
     >
@@ -73,11 +76,14 @@ const StyledButton = styled.button<Omit<Props, 'children'>>`
     }}
   }
 
-  ${({ $style, $theme, theme }) => {
+  ${({ $style, $theme, $transparent, theme }) => {
     const outlinedColor =
       $theme === 'primary'
         ? theme.color.primary[500]
-        : theme.color.neutral[600];
+        : $transparent
+          ? theme.color.neutral[600]
+          : theme.color.neutral[900];
+
     if ($style === 'solid') {
       return {
         backgroundColor:
