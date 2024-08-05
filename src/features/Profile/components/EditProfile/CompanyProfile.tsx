@@ -1,32 +1,43 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
+import { useEditProfileModal } from '@/store/modal/useModalStore';
 import { LABEL } from '../../constants/label';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
+import useProfileQuery from '../../hooks/useProfileQuery';
 
 function CompanyProfile() {
+  const closeEditProfile = useEditProfileModal((state) => state.close);
+  const { profile, isError } = useProfileQuery('1', 'company');
+
+  if (isError || !profile) {
+    window.alert('잠시후 다시 시도해 주세요.');
+    closeEditProfile();
+    return;
+  }
+
   return (
     <>
       <ProfileInput
         label={LABEL.shop}
-        placeholder='최근학'
+        placeholder={profile.business_name}
         isRequired
         hasValidation
       />
       <IntroduceWrapper>
         <Label label={LABEL.introduce} />
-        <Introduce placeholder='내용을 입력해주세요' maxLength={400} />
+        <Introduce
+          placeholder={profile.introduce || '내용을 입력해주세요'}
+          maxLength={400}
+        />
         <TypeNumber>9/400</TypeNumber>
       </IntroduceWrapper>
       <ProfileInput
         label={LABEL.url}
-        placeholder='업체 사이트 주소를 입력해 주세요'
+        placeholder={profile.homepage || '업체 사이트 주소를 입력해 주세요'}
       />
-      <ProfileInput
-        label={LABEL.address}
-        placeholder='대전광역시 동구 삼성동 000-00'
-      />
+      <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
       <ProfileInput
         label={LABEL.contact}
         placeholder='010-0000-0000'
