@@ -11,7 +11,13 @@ function CategoryButtons() {
       <CategoryButtonWrapper>
         {CATEGORY.map((item) => {
           return (
-            <Button $style='outlined' $theme='neutral' $size='sm' $transparent>
+            <Button
+              key={item}
+              $style='outlined'
+              $theme='neutral'
+              $size='sm'
+              $transparent
+            >
               {item}
             </Button>
           );
