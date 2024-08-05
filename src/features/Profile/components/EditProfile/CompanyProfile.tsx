@@ -40,7 +40,7 @@ function CompanyProfile() {
       <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
       <ProfileInput
         label={LABEL.contact}
-        placeholder='010-0000-0000'
+        placeholder={profile.contact}
         isRequired
       />
       <CategoryButtons />
