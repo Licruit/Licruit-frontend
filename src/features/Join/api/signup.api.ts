@@ -5,8 +5,6 @@ import { KSIC, SignupFormType } from '../types/signup';
 import { BUSINESS_TYPE } from '../constants/business';
 
 export const signup = async (userData: Omit<SignupFormType, 'isVerified'>) => {
-  console.log(userData);
-
   await httpClient.post('/users/register', userData);
 };
 
