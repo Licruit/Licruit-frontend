@@ -35,7 +35,7 @@ const HeaderBar = styled.header`
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99;
 
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
