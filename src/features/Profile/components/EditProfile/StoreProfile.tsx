@@ -4,25 +4,27 @@ import styled from 'styled-components';
 import { LABEL } from '../../constants/label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
+import useProfileQuery from '../../hooks/useProfileQuery';
 
 function StoreProfile() {
+  const { profile, isError } = useProfileQuery('1', 'shop');
+
+  if (isError || !profile) return window.alert('잠시후 다시 시도해 주세요.');
+
   return (
     <>
       <ProfileInput
         label={LABEL.shop}
-        placeholder='최근학'
+        placeholder={profile.business_name}
         isRequired
         hasValidation
       />
       <ProfileInput
         label={LABEL.contact}
-        placeholder='010-0000-0000'
+        placeholder={profile.contact}
         isRequired
       />
-      <ProfileInput
-        label={LABEL.address}
-        placeholder='대전광역시 동구 삼성동 000-00'
-      />
+      <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
       <CategoryButtons />
       <ButtonContainer>
         <Button $style='solid' $theme='primary' $size='md' $width='full'>
