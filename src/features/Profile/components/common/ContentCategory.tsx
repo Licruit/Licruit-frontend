@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 function ContentCategory() {
+  const user = 'shop';
+
   return (
     <ContentCategoryContainer>
       <ContentInfoWrapper>
@@ -9,19 +11,19 @@ function ContentCategory() {
       </ContentInfoWrapper>
       <CategoryWrapper>
         <CategoryItem>
-          <p>신청현황</p>
+          <p>{user === 'shop' ? '신청현황' : '공동구매 오픈'}</p>
           <p>2</p>
         </CategoryItem>
         <CategoryItem>
-          <p>승인대기</p>
+          <p>{user === 'shop' ? '승인대기' : '신청현황'}</p>
           <p>0</p>
         </CategoryItem>
         <CategoryItem>
-          <p>배송중</p>
+          <p>{user === 'shop' ? '배송중' : '미달성'}</p>
           <p>0</p>
         </CategoryItem>
         <CategoryItem>
-          <p>도착완료</p>
+          <p>{user === 'shop' ? '도착완료' : '성사'}</p>
           <p>0</p>
         </CategoryItem>
       </CategoryWrapper>
@@ -74,6 +76,8 @@ const CategoryItem = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 8px;
+
+  cursor: pointer;
 
   p {
     ${({ theme }) => theme.typo.body.medium[14]};
