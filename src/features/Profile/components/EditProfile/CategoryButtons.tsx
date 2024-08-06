@@ -2,14 +2,17 @@ import Button from '@/components/Button/Button';
 import styled from 'styled-components';
 import Label from '../common/Label';
 import { LABEL } from '../../constants/label';
-import CATEGORY from '../../constants/category';
 
-function CategoryButtons() {
+interface Props {
+  categories: string[];
+}
+
+function CategoryButtons({ categories }: Props) {
   return (
     <CategoryWrapper>
       <Label label={LABEL.category} isRequired />
       <CategoryButtonWrapper>
-        {CATEGORY.map((item) => {
+        {categories.map((item) => {
           return (
             <Button
               key={item}
