@@ -1,13 +1,11 @@
 import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
 import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
-import { useMyPageModal } from '@/store/modal/useModalStore';
-import Modal from '@/components/Modal/Modal';
-import { useEffect } from 'react';
-import MyPage from '@/features/Profile/components/Mypage/MyPage';
+import MyPageSideMenu from '@/features/Profile/components/Mypage/MyPageSideMenu';
+import { useEffect, useState } from 'react';
 
 function MainPage() {
-  const { isOpen: isMyPageOpen, close: closeMyPage } = useMyPageModal();
+  const [isMyPageOpen, setOpen] = useState(true);
 
   useEffect(() => {
     if (isMyPageOpen) document.body.style.overflow = 'hidden';
@@ -21,11 +19,7 @@ function MainPage() {
       <Rate />
       <JoinUs />
       <BrandNew />
-      {isMyPageOpen && (
-        <Modal onClose={closeMyPage}>
-          <MyPage />
-        </Modal>
-      )}
+      {isMyPageOpen && <MyPageSideMenu onClose={() => setOpen(false)} />}
     </>
   );
 }
