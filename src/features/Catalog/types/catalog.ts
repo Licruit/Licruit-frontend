@@ -7,7 +7,8 @@ interface Liquors {
   id: number;
   name: string;
   description: string;
-  category_name: string;
+  categoryName: string;
+  img: string;
 }
 
 interface Pagination {

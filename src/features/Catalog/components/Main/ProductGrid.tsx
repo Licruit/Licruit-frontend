@@ -1,12 +1,13 @@
-import LiquorUrl from 'public/assets/images/catalog/basil.png';
 import styled from 'styled-components';
+import Pagination from '@/components/Pagination/Pagination';
+import { useLocation } from 'react-router-dom';
 import ProductCard from './ProductCard';
-
 import { useCatalog } from '../../hooks/useCatalog';
 
-export const searchParams = new URLSearchParams(window.location.search);
-
 function ProductGrid() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const page = searchParams.get('page') || 1;
   const category = searchParams.get('category');
   const search = searchParams.get('search');
@@ -21,55 +22,37 @@ function ProductGrid() {
     max_alcohol: maxAlcohol ? +maxAlcohol : undefined,
   });
 
-  // 예시데이터
-  const liguorData = [
-    {
-      id: 1,
-      imageUrl: LiquorUrl,
-      category_name: '탁주',
-      name: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      id: 2,
-      imageUrl: LiquorUrl,
-      category_name: '탁주',
-      name: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      id: 3,
-      imageUrl: LiquorUrl,
-      category_name: '탁주',
-      name: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      id: 4,
-      imageUrl: LiquorUrl,
-      category_name: '탁주',
-      name: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-  ];
-
   return (
     <Container>
       <List>
-        {liguorData.map((item) => {
-          return <ProductCard key={item.id} liquorInfo={item} />;
-        })}
+        {catalogData && catalogData.liquors ? (
+          <>
+            {catalogData.liquors.map((item) => {
+              return <ProductCard key={item.id} liquorInfo={item} />;
+            })}
+          </>
+        ) : (
+          '불러올 술이 없습니다.'
+        )}
       </List>
-      {/* TODO:페이지네이션 추가 */}
+      {catalogData && catalogData.pagination ? (
+        <Pagination
+          totalItems={catalogData.pagination.totalPage}
+          currentPage={catalogData.pagination.currentPage}
+        />
+      ) : null}
     </Container>
   );
 }
 
 export default ProductGrid;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 20px;
+`;
 const List = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  margin-bottom: 30px;
 `;

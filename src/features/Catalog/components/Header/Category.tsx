@@ -1,10 +1,11 @@
 import Button from '@/components/Button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useCategory } from '../../hooks/useCatalog';
-import { searchParams } from '../Main/ProductGrid';
 
 function Category() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
   const { categories } = useCategory();
   const category = searchParams.get('category');
 

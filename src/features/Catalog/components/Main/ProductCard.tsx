@@ -3,8 +3,8 @@ import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
 
 interface LiquorInfo {
-  imageUrl: string;
-  category_name: string;
+  img: string;
+  categoryName: string;
   name: string;
   description: string;
 }
@@ -18,13 +18,18 @@ function ProductCard({ headText, liquorInfo }: Props) {
   return (
     <LiquorInfoContainer>
       {headText && <HeadInfo>{headText}</HeadInfo>}
-      <img src={liquorInfo.imageUrl} alt='liquor' />
+      <ImgContainer>
+        <img src={liquorInfo.img} alt='liquor' />
+      </ImgContainer>
+
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
-          {liquorInfo.category_name}
+          {liquorInfo.categoryName}
         </Badge>
         <Title>{liquorInfo.name}</Title>
-        <LiquorDescription>{liquorInfo.description}</LiquorDescription>
+        <LiquorDescription>
+          {liquorInfo.description.substring(0, 50)}
+        </LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
   );
@@ -34,14 +39,19 @@ const Title = styled.div`
   ${({ theme }) => theme.typo.heading.bold[20]};
   color: ${({ theme }) => theme.color.neutral[900]};
 `;
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+`;
 
 const LiquorInfoContainer = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   img {
-    width: 100%;
+    height: 370px;
   }
 
   cursor: pointer;

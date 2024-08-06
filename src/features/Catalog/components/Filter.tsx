@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DownArrowIcon } from 'public/assets/icons';
 import { FILTER } from '../constants/filter';
-import { searchParams } from './Main/ProductGrid';
 
 function Filter() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
     alcohol: false,
-
     rating: false,
   });
   const theme = useTheme();
@@ -87,7 +87,8 @@ const List = styled.div`
 
 const SubTitle = styled.li`
   display: flex;
-  padding: 21px 0;
+  justify-content: space-between;
+  padding: 21px 20px 21px 0;
   ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[900]};
   cursor: pointer;

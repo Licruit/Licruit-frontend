@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
-import { searchParams } from '@/features/Catalog/components/Main/ProductGrid';
 
 import FormInput from '../Input/FormInput';
 
 function Search() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
   const { watch, register, handleSubmit } = useForm();
   const search = watch('search');
