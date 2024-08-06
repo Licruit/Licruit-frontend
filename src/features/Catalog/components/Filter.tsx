@@ -9,7 +9,7 @@ import { searchParams } from './Main/ProductGrid';
 function Filter() {
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
     alcohol: false,
-    price: false,
+
     rating: false,
   });
   const theme = useTheme();
