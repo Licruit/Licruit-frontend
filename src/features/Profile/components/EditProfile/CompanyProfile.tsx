@@ -1,19 +1,30 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import { useEditProfileModal } from '@/store/modal/useModalStore';
+
 import { LABEL } from '../../constants/label';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
 import useProfileQuery from '../../hooks/useProfileQuery';
 
+// TODO 서버 데이터로 변경하기
+const category = [
+  '한식',
+  '일식',
+  '양식',
+  '중식',
+  '이자카야',
+  '요리주점',
+  '레스토랑',
+  '도매업체',
+  '기타',
+];
+
 function CompanyProfile() {
-  const closeEditProfile = useEditProfileModal((state) => state.close);
   const { profile, isError } = useProfileQuery('1', 'company');
 
   if (isError || !profile) {
     window.alert('잠시후 다시 시도해 주세요.');
-    closeEditProfile();
     return;
   }
 
@@ -43,7 +54,7 @@ function CompanyProfile() {
         placeholder={profile.contact}
         isRequired
       />
-      <CategoryButtons />
+      <CategoryButtons categories={category} />
 
       <Button $style='solid' $theme='primary' $size='md' $width='full'>
         적용하기
