@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
+import GroupBuy from '../GroupBuy/GroupBuy';
 
 interface Props {
   onClose: () => void;
@@ -21,6 +22,7 @@ function MyPageSideMenu({ onClose }: Props) {
       <Container>
         {content === 'my-page' && <MyPage onClose={onClose} />}
         {content === 'edit-profile' && <EditProfile />}
+        {content === 'group-buying' && <GroupBuy />}
       </Container>
     </Overlay>
   );
