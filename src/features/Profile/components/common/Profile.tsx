@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import MockProfile from 'public/assets/images/mock-profile.svg';
-import { useEditProfileModal } from '@/store/modal/useModalStore';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 
 function Profile() {
-  const openEditProfile = useEditProfileModal((state) => state.open);
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
     <ProfileContainer>
@@ -19,7 +19,7 @@ function Profile() {
         $style='outlined'
         $size='sm'
         $theme='neutral'
-        onClick={openEditProfile}
+        onClick={() => setContent('edit-profile')}
       >
         프로필 관리
       </Button>

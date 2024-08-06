@@ -9,7 +9,7 @@ import useProfileQuery from '../../hooks/useProfileQuery';
 function StoreProfile() {
   const { profile, isError } = useProfileQuery('1', 'shop');
 
-  if (isError || !profile) return window.alert('잠시후 다시 시도해 주세요.');
+  if (isError || !profile) return null;
 
   return (
     <>
