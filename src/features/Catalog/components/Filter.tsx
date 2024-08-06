@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
 import { DownArrowIcon } from 'public/assets/icons';
 import { FILTER } from '../constants/filter';
+import { searchParams } from './Main/ProductGrid';
 
 function Filter() {
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
@@ -10,9 +13,14 @@ function Filter() {
     rating: false,
   });
   const theme = useTheme();
-
+  const navigate = useNavigate();
   const handleToggle = (option: string) => {
     setSelected((prev) => ({ ...prev, [option]: !prev[option] }));
+  };
+
+  const extractNumbers = (str: string) => {
+    const match = str.match(/\d+/g);
+    return match ? match.map(Number) : [];
   };
 
   return (
@@ -21,7 +29,7 @@ function Filter() {
       <ul>
         {Object.values(FILTER).map((item) => {
           return (
-            <List>
+            <List key={item.title}>
               <SubTitle
                 key={item.title}
                 onClick={() => handleToggle(item.title)}
@@ -32,7 +40,25 @@ function Filter() {
               <Content $isOpen={selected[item.title]}>
                 <ul>
                   {item.values.map((value) => {
-                    return <Item key={value}>{value} </Item>;
+                    let min: number;
+                    let max: number;
+                    if (item.title === '도수') {
+                      [min, max] = extractNumbers(value);
+                    }
+                    return (
+                      <Item
+                        key={value}
+                        onClick={() => {
+                          if (item.title === '도수') {
+                            searchParams.set('min_alcohol', min.toString());
+                            searchParams.set('max_alcohol', max.toString());
+                          }
+                          navigate(`/catalog?${searchParams.toString()}`);
+                        }}
+                      >
+                        {value}
+                      </Item>
+                    );
                   })}
                 </ul>
               </Content>

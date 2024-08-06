@@ -16,6 +16,10 @@ export const getCatalog = async ({
 };
 
 export const getCategory = async () => {
-  const response = await httpClient.get('/liquors/cateory');
-  return response.data;
+  try {
+    const response = await httpClient.get('/liquors/category');
+    return response.data;
+  } catch (err) {
+    return [];
+  }
 };

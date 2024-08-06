@@ -1,14 +1,25 @@
-import { useParams } from 'react-router-dom';
-
 import LiquorUrl from 'public/assets/images/catalog/basil.png';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
 import { useCatalog } from '../../hooks/useCatalog';
 
+export const searchParams = new URLSearchParams(window.location.search);
+
 function ProductGrid() {
-  const { category, page } = useParams();
-  const { catalogData } = useCatalog({ page: +page!, category: +category! });
+  const page = searchParams.get('page') || 1;
+  const category = searchParams.get('category');
+  const search = searchParams.get('search');
+  const minAlcohol = searchParams.get('min_alcohol');
+  const maxAlcohol = searchParams.get('max_alcohol');
+
+  const { catalogData } = useCatalog({
+    page: +page,
+    category: category ? +category : undefined,
+    search: search || undefined,
+    min_alcohol: minAlcohol ? +minAlcohol : undefined,
+    max_alcohol: maxAlcohol ? +maxAlcohol : undefined,
+  });
 
   // 예시데이터
   const liguorData = [
