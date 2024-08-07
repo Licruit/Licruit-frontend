@@ -7,11 +7,19 @@ import axios from 'axios';
 const baseInstance = axios.create({
   baseURL: BASE_URL,
   timeout: DEFAULT_TIMOUT,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 const authInstance = axios.create({
   baseURL: BASE_URL,
   timeout: DEFAULT_TIMOUT,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 authInstance.interceptors.request.use(
