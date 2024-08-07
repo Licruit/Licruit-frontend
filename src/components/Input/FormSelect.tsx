@@ -6,7 +6,7 @@ import { DownArrowIcon } from 'public/assets/icons';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 
 interface Props {
-  options?: KSIC[];
+  options?: KSIC[] | string[];
   placeholder?: string;
 }
 
@@ -18,10 +18,15 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
     const theme = useTheme();
     const { setValue } = useFormContext();
 
-    const handleSelect = (option: KSIC) => {
-      setSelectedOption(option.name);
+    const handleSelect = (option: KSIC | string) => {
+      if (typeof option === 'string') {
+        setSelectedOption(option);
+        setValue('reason', option, { shouldValidate: true });
+      } else {
+        setSelectedOption(option.name);
+        setValue('sectorId', option?.id, { shouldValidate: true });
+      }
       setIsOpen(false);
-      setValue('sectorId', option.id, { shouldValidate: true });
     };
 
     const industryRef = useRef<HTMLDivElement>(null);
@@ -30,7 +35,11 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Wrapper ref={industryRef}>
-        <Select onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
+        <Select
+          onClick={() => setIsOpen((prev) => !prev)}
+          ref={ref}
+          $isSelected={selectedOption}
+        >
           <div className='selectInput'>
             {selectedOption ?? placeholder}
             <DownArrowIcon fill={theme.color.neutral[400]} />
@@ -39,8 +48,11 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
         {isOpen && (
           <SelectList ref={selectRef}>
             {options?.map((option) => (
-              <SelectItem key={option.id} onClick={() => handleSelect(option)}>
-                {option.name}
+              <SelectItem
+                key={typeof option === 'object' ? option.id : option}
+                onClick={() => handleSelect(option)}
+              >
+                {typeof option === 'object' ? option.name : option}
               </SelectItem>
             ))}
           </SelectList>
@@ -62,11 +74,14 @@ const Wrapper = styled.div`
   }
 `;
 
-const Select = styled.div`
+const Select = styled.div<{ $isSelected: string | null }>`
   padding: 18px;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]};
-  color: ${({ theme }) => theme.color.neutral[400]};
+  color: ${({ theme, $isSelected }) => {
+    if ($isSelected) return theme.color.neutral[900];
+    return theme.color.neutral[400];
+  }};
   cursor: pointer;
 `;
 
