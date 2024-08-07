@@ -47,6 +47,7 @@ const ImgContainer = styled.div`
 `;
 
 const LiquorInfoContainer = styled.li`
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;

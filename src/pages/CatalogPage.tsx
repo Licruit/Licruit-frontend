@@ -24,8 +24,9 @@ const Content = styled.div`
   display: flex;
   .aside {
     width: 100%;
-    height: 100vh;
     max-width: 354px;
-    border-right: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  }
+  .article {
+    border-left: 1px solid ${({ theme }) => theme.color.neutral[400]};
   }
 `;

@@ -50,9 +50,10 @@ export default ProductGrid;
 const Container = styled.div`
   padding: 20px;
 `;
+
 const List = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 30px;
 `;
