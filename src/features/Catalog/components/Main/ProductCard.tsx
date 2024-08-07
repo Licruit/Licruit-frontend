@@ -27,9 +27,7 @@ function ProductCard({ headText, liquorInfo }: Props) {
           {liquorInfo.categoryName}
         </Badge>
         <Title>{liquorInfo.name}</Title>
-        <LiquorDescription>
-          {liquorInfo.description.substring(0, 50)}
-        </LiquorDescription>
+        <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
   );
@@ -47,7 +45,9 @@ const ImgContainer = styled.div`
 `;
 
 const LiquorInfoContainer = styled.li`
-  padding-bottom: 20px;
+  width: 100%;
+  max-width: 370px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -59,7 +59,6 @@ const LiquorInfoContainer = styled.li`
 `;
 
 const LiquorInfo = styled.div`
-  width: 264px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -69,6 +68,11 @@ const LiquorInfo = styled.div`
 const LiquorDescription = styled.div`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[400]};
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default ProductCard;
