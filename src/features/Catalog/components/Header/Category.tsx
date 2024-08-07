@@ -10,17 +10,28 @@ function Category() {
   const category = searchParams.get('category');
 
   const navigate = useNavigate();
+
+  const allCategories = [{ id: 0, name: '전체' }, ...(categories || [])];
+
   return (
     <Container>
-      {categories?.map((item) => (
+      {allCategories?.map((item) => (
         <Button
           key={item.id}
           type='button'
-          $theme={category && +category === item.id ? 'primary' : 'neutral'}
+          $theme={
+            (category && +category === item.id) || (item.id === 0 && !category)
+              ? 'primary'
+              : 'neutral'
+          }
           $style='outlined'
           $size='sm'
           onClick={() => {
-            searchParams.set('category', item.id.toString());
+            if (item.id === 0) {
+              searchParams.delete('category');
+            } else {
+              searchParams.set('category', item.id.toString());
+            }
             navigate(`/catalog?${searchParams.toString()}`);
           }}
         >
