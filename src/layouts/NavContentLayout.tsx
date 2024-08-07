@@ -19,7 +19,6 @@ export default NavContentLayout;
 
 const Container = styled.div`
   width: 100%;
-
   padding: 0 20px;
   display: flex;
   flex-direction: column;

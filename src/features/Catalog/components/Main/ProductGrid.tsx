@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import Pagination from '@/components/Pagination/Pagination';
 import { useLocation } from 'react-router-dom';
@@ -21,6 +22,7 @@ function ProductGrid() {
     min_alcohol: minAlcohol ? +minAlcohol : undefined,
     max_alcohol: maxAlcohol ? +maxAlcohol : undefined,
   });
+
 
   return (
     <Container>
@@ -47,6 +49,7 @@ function ProductGrid() {
 
 export default ProductGrid;
 
+
 const Container = styled.div`
   padding: 20px;
 `;
@@ -56,4 +59,5 @@ const List = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 30px;
+
 `;

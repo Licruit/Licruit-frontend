@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 import { DownArrowIcon } from 'public/assets/icons';
 import { FILTER } from '../constants/filter';
 
 function Filter() {
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
@@ -22,6 +22,7 @@ function Filter() {
     const match = str.match(/\d+/g);
     return match ? match.map(Number) : [];
   };
+
 
   return (
     <Container>

@@ -1,3 +1,4 @@
+
 import Search from '@/components/Header/Search';
 
 import styled from 'styled-components';

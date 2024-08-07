@@ -35,13 +35,13 @@ function PasswordInput() {
       />
       <div className='requirements'>
         <Requirement $valid={hasEng()}>
-          <CheckIcon /> 영문
+          <CheckIcon width={18} height={18} /> 영문
         </Requirement>
         <Requirement $valid={hasDigit()}>
-          <CheckIcon /> 숫자
+          <CheckIcon width={18} height={18} /> 숫자
         </Requirement>
         <Requirement $valid={hasValidLength()}>
-          <CheckIcon /> 8-15자 이내
+          <CheckIcon width={18} height={18} /> 8-15자 이내
         </Requirement>
       </div>
     </Wrapper>
