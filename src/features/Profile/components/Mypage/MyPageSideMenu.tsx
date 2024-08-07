@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { createPortal } from 'react-dom';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
 import GroupBuy from '../GroupBuy/GroupBuy';
@@ -17,14 +18,15 @@ function MyPageSideMenu({ onClose }: Props) {
     }
   };
 
-  return (
+  return createPortal(
     <Overlay onClick={closeMyPage}>
       <Container>
         {content === 'my-page' && <MyPage onClose={onClose} />}
         {content === 'edit-profile' && <EditProfile />}
         {content === 'group-buying' && <GroupBuy />}
       </Container>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 }
 
