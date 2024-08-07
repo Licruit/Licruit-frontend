@@ -6,7 +6,7 @@ import MyPageHeader from '../common/MyPageHeader';
 import ProfileInput from '../common/ProfileInput';
 import Label from '../common/Label';
 import CategoryButtons from '../EditProfile/CategoryButtons';
-import { LABEL } from '../../constants/label';
+import { INPUT } from '../../constants/input';
 
 // TODO 추후 서버 연결시 서버 데이터로 대체 예정
 const LOCATION = [
@@ -36,54 +36,28 @@ function GroupBuy() {
           />
         }
       />
-      <ProfileInput
-        label={LABEL.product}
-        placeholder='백경 13'
-        isRequired
-        isSearch
-      />
+      <ProfileInput {...INPUT.product} />
       <InputWrapper>
-        <ProfileInput
-          label={LABEL.period}
-          placeholder='2024.07.21~2024.09.11'
-          isRequired
-        />
-        <ProfileInput label={LABEL.startTime} placeholder='09:00' isRequired />
+        <ProfileInput {...INPUT.period} />
+        <ProfileInput {...INPUT.startTime} />
       </InputWrapper>
       <InputWrapper>
-        <ProfileInput
-          label={LABEL.delivery}
-          placeholder='2024.07.21~2024.09.11'
-          isRequired
-        />
-        <ProfileInput label={LABEL.price} placeholder='16,000' isRequired />
+        <ProfileInput {...INPUT.delivery} />
+        <ProfileInput {...INPUT.price} />
       </InputWrapper>
-      <ProfileInput label={LABEL.min} placeholder='100' isRequired />
-      <ProfileInput label={LABEL.max} placeholder='1000' isRequired />
+      <ProfileInput {...INPUT.min} />
+      <ProfileInput {...INPUT.max} />
       <InputWrapper>
-        <ProfileInput
-          label={LABEL.deliveryFee}
-          placeholder='3,000'
-          isRequired
-        />
-        <ProfileInput
-          label={LABEL.freeDelivery}
-          placeholder='100,000'
-          hasInfo
-        />
+        <ProfileInput {...INPUT.deliveryFee} />
+        <ProfileInput {...INPUT.freeDelivery} />
       </InputWrapper>
       <LabelWrapper>
-        <Label label={LABEL.location} />
+        <Label {...INPUT.location} />
         <span className='isRequired'>*</span>
         <p className='desc'>(배송 가능 지역만 선택해 주세요)</p>
       </LabelWrapper>
       <CategoryButtons categories={LOCATION} />
-      <ProfileInput
-        label={LABEL.groupBuy}
-        placeholder='제목을 입력해 주세요'
-        isRequired
-        hasValidation
-      />
+      <ProfileInput {...INPUT.groupBuy} />
       <Button $style='solid' $theme='primary' $width='full' $size='md'>
         적용하기
       </Button>

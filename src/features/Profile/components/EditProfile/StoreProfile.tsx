@@ -1,10 +1,23 @@
 import Button from '@/components/Button/Button';
 
 import styled from 'styled-components';
-import { LABEL } from '../../constants/label';
+import { INPUT } from '../../constants/input';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
 import useProfileQuery from '../../hooks/useProfileQuery';
+
+// TODO 서버 데이터로 변경하기
+const category = [
+  '한식',
+  '일식',
+  '양식',
+  '중식',
+  '이자카야',
+  '요리주점',
+  '레스토랑',
+  '도매업체',
+  '기타',
+];
 
 function StoreProfile() {
   const { profile, isError } = useProfileQuery('1', 'shop');
@@ -13,19 +26,10 @@ function StoreProfile() {
 
   return (
     <>
-      <ProfileInput
-        label={LABEL.shop}
-        placeholder={profile.business_name}
-        isRequired
-        hasValidation
-      />
-      <ProfileInput
-        label={LABEL.contact}
-        placeholder={profile.contact}
-        isRequired
-      />
-      <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
-      <CategoryButtons />
+      <ProfileInput {...INPUT.shop} />
+      <ProfileInput {...INPUT.contact} />
+      <ProfileInput {...INPUT.address} />
+      <CategoryButtons categories={category} />
       <ButtonContainer>
         <Button $style='solid' $theme='primary' $size='md' $width='full'>
           적용하기

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 
-import { LABEL } from '../../constants/label';
+import { INPUT } from '../../constants/input';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
@@ -30,30 +30,18 @@ function CompanyProfile() {
 
   return (
     <>
-      <ProfileInput
-        label={LABEL.shop}
-        placeholder={profile.business_name}
-        isRequired
-        hasValidation
-      />
+      <ProfileInput {...INPUT.shop} />
       <IntroduceWrapper>
-        <Label label={LABEL.introduce} />
+        <Label {...INPUT.introduce} />
         <Introduce
           placeholder={profile.introduce || '내용을 입력해주세요'}
           maxLength={400}
         />
         <TypeNumber>9/400</TypeNumber>
       </IntroduceWrapper>
-      <ProfileInput
-        label={LABEL.url}
-        placeholder={profile.homepage || '업체 사이트 주소를 입력해 주세요'}
-      />
-      <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
-      <ProfileInput
-        label={LABEL.contact}
-        placeholder={profile.contact}
-        isRequired
-      />
+      <ProfileInput {...INPUT.url} />
+      <ProfileInput {...INPUT.address} />
+      <ProfileInput {...INPUT.contact} />
       <CategoryButtons categories={category} />
 
       <Button $style='solid' $theme='primary' $size='md' $width='full'>

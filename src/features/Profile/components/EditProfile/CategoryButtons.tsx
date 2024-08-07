@@ -1,7 +1,7 @@
 import Button from '@/components/Button/Button';
 import styled from 'styled-components';
 import Label from '../common/Label';
-import { LABEL } from '../../constants/label';
+import { INPUT } from '../../constants/input';
 
 interface Props {
   categories: string[];
@@ -10,7 +10,7 @@ interface Props {
 function CategoryButtons({ categories }: Props) {
   return (
     <CategoryWrapper>
-      <Label label={LABEL.category} isRequired />
+      <Label {...INPUT.category} />
       <CategoryButtonWrapper>
         {categories.map((item) => {
           return (
