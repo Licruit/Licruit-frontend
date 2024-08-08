@@ -1,4 +1,3 @@
-
 import Search from '@/components/Header/Search';
 
 import styled from 'styled-components';
@@ -22,6 +21,15 @@ const Container = styled.div`
   width: 100%;
   padding: 0 20px;
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  position: -webkit-sticky;
+  position: sticky;
+  top: 76px;
+  left: 0;
+  z-index: 99;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   .classification {
     display: flex;
     justify-content: space-between;
