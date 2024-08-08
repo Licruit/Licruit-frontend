@@ -45,6 +45,8 @@ const StyledButton = styled.button<Omit<Props, 'children'>>`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  transition: all 0.2s ease-in;
+  box-sizing: border-box;
 
   &:disabled {
     cursor: default;

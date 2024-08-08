@@ -26,4 +26,7 @@ const Content = styled.div`
     width: 100%;
     max-width: 354px;
   }
+  .article {
+    border-left: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  }
 `;

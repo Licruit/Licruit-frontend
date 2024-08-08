@@ -8,7 +8,7 @@ function AuthLayout() {
     <Container>
       <Header />
       <Content>
-        <Poster style={{ height: '100%', width: 'fit-content' }} />
+        <Poster style={{ height: '100%', width: 'auto' }} />
         <div className='wrapper'>
           <FormLayout>
             <Outlet />
