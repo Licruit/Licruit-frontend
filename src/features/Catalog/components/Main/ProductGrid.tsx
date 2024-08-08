@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import Pagination from '@/components/Pagination/Pagination';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
 
 function ProductGrid() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
 
   const page = searchParams.get('page') || 1;
   const category = searchParams.get('category');
@@ -28,7 +29,13 @@ function ProductGrid() {
         {catalogData && catalogData.liquors ? (
           <>
             {catalogData.liquors.map((item) => {
-              return <ProductCard key={item.id} liquorInfo={item} />;
+              return (
+                <ProductCard
+                  key={item.id}
+                  liquorInfo={item}
+                  onClick={() => navigate(`/catalog/:${item.id}`)}
+                />
+              );
             })}
           </>
         ) : (

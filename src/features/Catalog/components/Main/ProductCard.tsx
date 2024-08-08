@@ -1,6 +1,8 @@
+import PATH from '@/constants/path';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 interface LiquorInfo {
@@ -13,9 +15,10 @@ interface LiquorInfo {
 interface Props {
   headText?: string;
   liquorInfo: LiquorInfo;
+  onClick: () => void;
 }
 
-function ProductCard({ headText, liquorInfo }: Props) {
+function ProductCard({ headText, liquorInfo, onClick }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ function ProductCard({ headText, liquorInfo }: Props) {
   }, [liquorInfo.img]);
 
   return (
-    <LiquorInfoContainer>
+    <LiquorInfoContainer onClick={onClick}>
       {headText && <HeadInfo>{headText}</HeadInfo>}
       <ImgContainer>
         {imageLoaded ? (
