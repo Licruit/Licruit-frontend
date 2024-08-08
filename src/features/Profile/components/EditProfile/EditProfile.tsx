@@ -2,21 +2,24 @@ import Button from '@/components/Button/Button';
 import { BackIcon, EditIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import MockProfile from 'public/assets/images/mock-profile.svg';
-import { ProfileContainer } from '@/styles/components/Container';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import MyPageHeader from '../common/MyPageHeader';
-// import StoreProfile from './StoreProfile';
-import CompanyProfile from './CompanyProfile';
+import StoreProfile from './StoreProfile';
+// import CompanyProfile from './CompanyProfile';
 
-interface Props {
-  onClose: () => void;
-}
+function EditProfile() {
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
-function EditProfile({ onClose }: Props) {
   return (
-    <ProfileContainer>
+    <>
       <MyPageHeader
         title='프로필 관리'
-        icon={<BackIcon style={{ cursor: 'pointer' }} onClick={onClose} />}
+        icon={
+          <BackIcon
+            style={{ cursor: 'pointer' }}
+            onClick={() => setContent('my-page')}
+          />
+        }
       />
       <ImageEditWrapper>
         <img src={MockProfile} alt='profile' />
@@ -25,9 +28,9 @@ function EditProfile({ onClose }: Props) {
         </Button>
       </ImageEditWrapper>
       {/* TODO 사용자 정보에 따른 다른 수정 페이지 보여주기 */}
-      {/* <StoreProfile /> */}
-      <CompanyProfile />
-    </ProfileContainer>
+      <StoreProfile />
+      {/* <CompanyProfile /> */}
+    </>
   );
 }
 

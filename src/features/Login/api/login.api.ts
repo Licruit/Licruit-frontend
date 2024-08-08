@@ -1,11 +1,11 @@
-import { baseInstance } from '@/api/instance';
+import { httpClient } from '@/api/http';
 import { AxiosError, AxiosResponse } from 'axios';
 import { LoginForm } from '../types/login';
 import { LoginRes } from '../models/user.model';
 
 export const login = async (loginData: LoginForm) => {
   try {
-    const result: AxiosResponse<LoginRes> = await baseInstance.post(
+    const result: AxiosResponse<LoginRes> = await httpClient.post(
       '/users/login',
       loginData
     );

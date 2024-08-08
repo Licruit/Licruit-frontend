@@ -1,7 +1,10 @@
 import Button from '@/components/Button/Button';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import styled from 'styled-components';
 
 function CompanyShowButtons() {
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
+
   return (
     <ButtonContainer>
       <Button
@@ -10,6 +13,7 @@ function CompanyShowButtons() {
         $theme='primary'
         $width='full'
         style={{ justifyContent: 'left' }}
+        onClick={() => setContent('group-buying')}
       >
         공동구매 올리기
       </Button>
