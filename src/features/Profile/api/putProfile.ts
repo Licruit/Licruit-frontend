@@ -1,7 +1,7 @@
-import { authInstance } from '@/api/instance';
+import { httpClient } from '@/api/http';
 import { Profile } from '../model/profile.model';
 
 export const putProfile = async (data: Profile) => {
-  const result = await authInstance.put('/users/profile', data);
+  const result = await httpClient.put('/users/profile', data);
   return result;
 };

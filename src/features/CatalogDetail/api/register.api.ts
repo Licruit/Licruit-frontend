@@ -1,4 +1,4 @@
-import { authInstance } from '@/api/instance';
+import { httpClient } from '@/api/http';
 
 export const register = async ({
   liquorId,
@@ -9,9 +9,9 @@ export const register = async ({
 }) => {
   let result;
   if (liked) {
-    result = await authInstance.delete(`/liquors/${liquorId}/likes`);
+    result = await httpClient.delete(`/liquors/${liquorId}/likes`);
   } else {
-    result = await authInstance.post(`/liquors/${liquorId}/likes`);
+    result = await httpClient.post(`/liquors/${liquorId}/likes`);
   }
   return result;
 };

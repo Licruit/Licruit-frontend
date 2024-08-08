@@ -1,8 +1,8 @@
-import { baseInstance } from './instance';
+import { httpClient } from '@/api/http';
 
 export const requestCode = async (contact: string) => {
   try {
-    const result = await baseInstance.post('/users/auth/otp', { contact });
+    const result = await httpClient.post('/users/auth/otp', { contact });
     return result;
   } catch (err) {
     window.alert('오류가 발생했습니다. 다시 시도해주세요.');
@@ -11,7 +11,7 @@ export const requestCode = async (contact: string) => {
 
 export const verifyCode = async (contact: string, code: number) => {
   try {
-    await baseInstance.post('/users/auth/otp/validation', {
+    await httpClient.post('/users/auth/otp/validation', {
       contact,
       otp: +code,
     });

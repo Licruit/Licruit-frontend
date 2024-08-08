@@ -1,17 +1,17 @@
-import { baseInstance } from '@/api/instance';
+import { httpClient } from '@/api/http';
 
 export const requestResetPassword = async (
   companyNumber: string,
   contact: string
 ) => {
-  await baseInstance.post('/users/password-reset', {
+  await httpClient.post('/users/password-reset', {
     companyNumber,
     contact,
   });
 };
 
 export const resetPassword = async (password: string) => {
-  await baseInstance.put('/users/password-reset', {
+  await httpClient.put('/users/password-reset', {
     password,
   });
 };
