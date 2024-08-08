@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import MockProfile from 'public/assets/images/mock-profile.svg';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 
-function Profile() {
+interface Props {
+  businessData: {
+    businessName: string;
+    businessNum: string;
+    profileImage: string;
+  };
+}
+
+function Profile({ businessData }: Props) {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
     <ProfileContainer>
       <ProfileInfoWrapper>
-        <img src={MockProfile} alt='profile' />
+        <img src={businessData.profileImage} alt='profile' />
         <ProfileInfo>
-          <Name>최근학</Name>
-          <BusinessNumber>607-86-12034</BusinessNumber>
+          <Name>{businessData.businessName}</Name>
+          <BusinessNumber>{businessData.businessNum}</BusinessNumber>
         </ProfileInfo>
       </ProfileInfoWrapper>
       <Button
@@ -38,6 +45,11 @@ const ProfileContainer = styled.div`
 const ProfileInfoWrapper = styled.div`
   display: flex;
   gap: 12px;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const ProfileInfo = styled.div`
