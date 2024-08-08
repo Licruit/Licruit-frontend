@@ -11,8 +11,8 @@ function ProductGrid() {
   const page = searchParams.get('page') || 1;
   const category = searchParams.get('category');
   const search = searchParams.get('search');
-  const minAlcohol = searchParams.get('min_alcohol');
-  const maxAlcohol = searchParams.get('max_alcohol');
+  const minAlcohol = searchParams.get('minAlcohol');
+  const maxAlcohol = searchParams.get('maxAlcohol');
 
   const { catalogData } = useCatalog({
     page: +page,
