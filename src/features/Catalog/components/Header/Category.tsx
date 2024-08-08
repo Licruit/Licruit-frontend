@@ -20,7 +20,8 @@ function Category() {
           key={item.id}
           type='button'
           $theme={
-            (category && +category === item.id) || (item.id === 0 && !category)
+            (category && Number(category) === item.id) ||
+            (item.id === 0 && !category)
               ? 'primary'
               : 'neutral'
           }
