@@ -11,5 +11,8 @@ export default defineConfig({
   },
   test: {
     include: ['src/test/*.test.ts?(x)'],
+    coverage: {
+      reporter: ['text', 'json-summary', 'json'],
+    },
   },
 });

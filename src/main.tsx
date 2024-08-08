@@ -1,6 +1,9 @@
 import * as Sentry from '@sentry/react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { worker } from './mocks/worker';
+
+worker.start();
 
 Sentry.init({
   dsn: import.meta.env.VITE_SENTRY_DSN_KEY,

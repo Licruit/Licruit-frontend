@@ -37,6 +37,7 @@ const Title = styled.div`
   ${({ theme }) => theme.typo.heading.bold[20]};
   color: ${({ theme }) => theme.color.neutral[900]};
 `;
+
 const ImgContainer = styled.div`
   display: flex;
   justify-content: center;

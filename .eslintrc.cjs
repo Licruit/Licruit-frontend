@@ -1,7 +1,17 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'airbnb', 'airbnb/hooks', 'plugin:@typescript-eslint/recommended', 'plugin:jsx-a11y/recommended', 'plugin:react-hooks/recommended', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
+  ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -45,6 +55,16 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'no-shadow': [
+      'error',
+      {
+        builtinGlobals: false,
+        hoist: 'functions',
+        allow: [],
+        ignoreOnInitialization: false,
+      },
+    ],
+    'no-nested-ternary': 'off',
     '@typescript-eslint/naming-convention': [
       // 네이밍 컨벤션
       'warn',

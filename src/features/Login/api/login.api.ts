@@ -1,11 +1,15 @@
-import { httpClient } from '@/api/http';
-import { AxiosError } from 'axios';
+import { baseInstance } from '@/api/instance';
+import { AxiosError, AxiosResponse } from 'axios';
 import { LoginForm } from '../types/login';
+import { LoginRes } from '../models/user.model';
 
 export const login = async (loginData: LoginForm) => {
   try {
-    await httpClient.post('/users/login', loginData);
-    return true;
+    const result: AxiosResponse<LoginRes> = await baseInstance.post(
+      '/users/login',
+      loginData
+    );
+    return result;
   } catch (err) {
     if (err instanceof AxiosError) {
       const statusCode = err.response?.status;
