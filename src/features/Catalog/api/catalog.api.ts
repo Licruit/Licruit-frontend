@@ -8,9 +8,9 @@ export const getCatalog = async ({
   queryKey: [string, CatalogParams];
 }): Promise<CatalogItem> => {
   const [, params] = queryKey;
-  const { search, category, min_alcohol, max_alcohol, page } = params;
+  const { search, category, minAlcohol, maxAlcohol, page } = params;
   const response = await httpClient.get('/liquors', {
-    params: { search, category, min_alcohol, max_alcohol, page },
+    params: { search, category, minAlcohol, maxAlcohol, page },
   });
   return response.data;
 };
