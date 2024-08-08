@@ -1,49 +1,48 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import { useEditProfileModal } from '@/store/modal/useModalStore';
-import { LABEL } from '../../constants/label';
+
+import { INPUT } from '../../constants/input';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
 import useProfileQuery from '../../hooks/useProfileQuery';
 
+// TODO 서버 데이터로 변경하기
+const category = [
+  '한식',
+  '일식',
+  '양식',
+  '중식',
+  '이자카야',
+  '요리주점',
+  '레스토랑',
+  '도매업체',
+  '기타',
+];
+
 function CompanyProfile() {
-  const closeEditProfile = useEditProfileModal((state) => state.close);
   const { profile, isError } = useProfileQuery('1', 'company');
 
   if (isError || !profile) {
     window.alert('잠시후 다시 시도해 주세요.');
-    closeEditProfile();
     return;
   }
 
   return (
     <>
-      <ProfileInput
-        label={LABEL.shop}
-        placeholder={profile.business_name}
-        isRequired
-        hasValidation
-      />
+      <ProfileInput {...INPUT.shop} />
       <IntroduceWrapper>
-        <Label label={LABEL.introduce} />
+        <Label {...INPUT.introduce} />
         <Introduce
           placeholder={profile.introduce || '내용을 입력해주세요'}
           maxLength={400}
         />
         <TypeNumber>9/400</TypeNumber>
       </IntroduceWrapper>
-      <ProfileInput
-        label={LABEL.url}
-        placeholder={profile.homepage || '업체 사이트 주소를 입력해 주세요'}
-      />
-      <ProfileInput label={LABEL.address} placeholder={profile.address || ''} />
-      <ProfileInput
-        label={LABEL.contact}
-        placeholder={profile.contact}
-        isRequired
-      />
-      <CategoryButtons />
+      <ProfileInput {...INPUT.url} />
+      <ProfileInput {...INPUT.address} />
+      <ProfileInput {...INPUT.contact} />
+      <CategoryButtons categories={category} />
 
       <Button $style='solid' $theme='primary' $size='md' $width='full'>
         적용하기
