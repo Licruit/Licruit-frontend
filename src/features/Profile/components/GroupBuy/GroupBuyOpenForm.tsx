@@ -21,7 +21,7 @@ const LOCATION = [
   '제주도',
 ];
 
-function GroupBuy() {
+function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
@@ -85,4 +85,4 @@ const LabelWrapper = styled.div`
   }
 `;
 
-export default GroupBuy;
+export default GroupBuyOpenForm;
