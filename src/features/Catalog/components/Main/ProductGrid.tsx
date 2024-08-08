@@ -15,7 +15,7 @@ function ProductGrid() {
   const maxAlcohol = searchParams.get('maxAlcohol');
 
   const { catalogData } = useCatalog({
-    page: +page,
+    page: Number(page),
     category: category ? +category : undefined,
     search: search || undefined,
     minAlcohol: minAlcohol ? +minAlcohol : undefined,
@@ -54,6 +54,13 @@ const Container = styled.div`
 const List = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1024px) {
+    justify-content: space-between;
+  }
 `;
