@@ -1,13 +1,15 @@
-import Category from '@/components/Header/Category';
+
 import Search from '@/components/Header/Search';
+
 import styled from 'styled-components';
+import Category from './Category';
 
 function CatalogHeader() {
   return (
     <Container>
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
-        <Category type='catalog' />
+        <Category />
         <Search />
       </div>
     </Container>
@@ -23,6 +25,7 @@ const Container = styled.div`
   .classification {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 `;
 
