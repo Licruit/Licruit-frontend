@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { SignOutDescription } from '@/styles/components/Description';
-import NextButton from '../common/NextButton';
+import Button from '@/components/Button/Button';
 
 function Complete() {
   const navigate = useNavigate();
@@ -17,7 +17,15 @@ function Complete() {
         <br />
         그동안 이용해 주셔서 감사합니다.
       </SignOutDescription>
-      <NextButton isValid onNext={handleClickButton} />
+      <Button
+        $style='outlined'
+        $theme='primary'
+        $width='full'
+        $size='md'
+        onClick={handleClickButton}
+      >
+        확인
+      </Button>
     </>
   );
 }

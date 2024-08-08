@@ -1,7 +1,6 @@
 import Button from '@/components/Button/Button';
 import styled from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
-import NextButton from './NextButton';
 
 interface Props {
   isValid: boolean;
@@ -22,7 +21,16 @@ function CancelAndNext({ isValid, onNext }: Props) {
       >
         취소
       </Button>
-      <NextButton isValid={isValid} onNext={onNext} />
+      <Button
+        disabled={!isValid}
+        onClick={onNext}
+        $style='outlined'
+        $theme='primary'
+        $size='md'
+        $width='full'
+      >
+        다음
+      </Button>
     </ButtonContainer>
   );
 }

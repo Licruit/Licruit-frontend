@@ -1,7 +1,7 @@
 import FormSelect from '@/components/Input/FormSelect';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SignOutDescription } from '@/styles/components/Description';
-import NextButton from '../common/NextButton';
+import Button from '@/components/Button/Button';
 
 const StoreOptions = [
   '다른 플랫폼에 비해 가격 차이가 없어요.',
@@ -52,7 +52,16 @@ function Reason({ onNext }: Props) {
           })}
         />
       </FormProvider>
-      <NextButton isValid={isValid} onNext={onNext} />
+      <Button
+        $style='outlined'
+        $theme='primary'
+        disabled={!isValid}
+        $width='full'
+        $size='md'
+        onClick={onNext}
+      >
+        다음
+      </Button>
     </>
   );
 }
