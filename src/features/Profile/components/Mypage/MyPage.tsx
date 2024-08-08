@@ -1,5 +1,6 @@
 import { CloseIcon } from 'public/assets/icons';
 
+import { STORAGE_KEY } from '@/constants/storage';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
@@ -7,10 +8,17 @@ import Profile from '../common/Profile';
 import CompanyShowButtons from './CompanyShowButtons';
 
 interface Props {
+  businessData: {
+    businessName: string;
+    businessNum: string;
+    profileImage: string;
+  };
   onClose: () => void;
 }
 
-function MyPage({ onClose }: Props) {
+function MyPage({ onClose, businessData }: Props) {
+  const isCompany = sessionStorage.getItem(STORAGE_KEY.userType) === 'true';
+
   return (
     <>
       <MyPageHeader
@@ -23,11 +31,11 @@ function MyPage({ onClose }: Props) {
           />
         }
       />
-      <Profile />
+      <Profile businessData={businessData} />
       <ContentCategory />
       {/* <ContentList /> */}
       {/* TODO 유저 타입에 따른 버튼 보여주기 */}
-      <CompanyShowButtons />
+      {isCompany && <CompanyShowButtons />}
     </>
   );
 }
