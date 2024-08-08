@@ -39,6 +39,7 @@ const HeaderBar = styled.header`
 
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   .wrapper {
     display: flex;

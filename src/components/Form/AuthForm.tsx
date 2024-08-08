@@ -75,6 +75,7 @@ function AuthForm() {
             $style={isVerified ? 'solid' : 'outlined'}
             $size='100px'
             $theme='primary'
+            $disableHover={isVerified}
           >
             {isVerified ? '인증완료' : '확인'}
           </Button>

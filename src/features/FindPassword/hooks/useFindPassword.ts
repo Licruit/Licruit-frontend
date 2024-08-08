@@ -12,7 +12,7 @@ export const useFindPassword = (
 
   const { mutate: requestReset } = useMutation({
     mutationFn: (data: { companyNumber: string; contact: string }) =>
-      requestResetPassword(data.companyNumber, data.contact),
+      requestResetPassword(data),
     onSuccess: () => {
       setStep((prev) => prev + 1);
     },
@@ -22,7 +22,8 @@ export const useFindPassword = (
   });
 
   const { mutate: resetPw } = useMutation({
-    mutationFn: (password: string) => resetPassword(password),
+    mutationFn: (data: { companyNumber: string; password: string }) =>
+      resetPassword(data),
     onSuccess: () => {
       navigate(PATH.login);
     },
@@ -38,7 +39,10 @@ export const useFindPassword = (
         contact: data.phone.toString(),
       });
     } else {
-      resetPw(data.password);
+      resetPw({
+        companyNumber: data.companyNumber.toString(),
+        password: data.password,
+      });
     }
   };
 

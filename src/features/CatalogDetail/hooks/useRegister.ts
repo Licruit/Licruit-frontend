@@ -32,9 +32,14 @@ export const useRegister = () => {
         id,
       ]);
 
+      if (!prevData) {
+        return;
+      }
+
       queryClient.setQueryData(['liquorDetail', id], {
         ...prevData,
-        liked: !prevData!.liked,
+        liked: !prevData.liked,
+        likes: prevData.liked ? prevData.likes - 1 : prevData.likes + 1,
       });
 
       return { prevData };
