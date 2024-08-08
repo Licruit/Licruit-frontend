@@ -3,8 +3,9 @@ import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { createPortal } from 'react-dom';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
-import GroupBuy from '../GroupBuy/GroupBuy';
 import useProfileQuery from '../../hooks/useProfileQuery';
+import GroupBuy from '../GroupBuy/GroupBuyOpenForm';
+import SignOut from '../SignOut/SignOut';
 
 interface Props {
   onClose: () => void;
@@ -40,6 +41,7 @@ function MyPageSideMenu({ onClose }: Props) {
           <EditProfile userProfile={userProfile} />
         )}
         {content === 'group-buying' && <GroupBuy />}
+        {content === 'signout' && <SignOut />}
       </Container>
     </Overlay>,
     document.body

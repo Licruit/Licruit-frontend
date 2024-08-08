@@ -3,9 +3,9 @@ import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
 
 interface LiquorInfo {
-  imageUrl: string;
-  badgeText: string;
-  title: string;
+  img: string;
+  categoryName: string;
+  name: string;
   description: string;
 }
 
@@ -18,12 +18,15 @@ function ProductCard({ headText, liquorInfo }: Props) {
   return (
     <LiquorInfoContainer>
       {headText && <HeadInfo>{headText}</HeadInfo>}
-      <img src={liquorInfo.imageUrl} alt='liquor' />
+      <ImgContainer>
+        <img src={liquorInfo.img} alt='liquor' />
+      </ImgContainer>
+
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
-          {liquorInfo.badgeText}
+          {liquorInfo.categoryName}
         </Badge>
-        <Title>{liquorInfo.title}</Title>
+        <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
     </LiquorInfoContainer>
@@ -35,20 +38,28 @@ const Title = styled.div`
   color: ${({ theme }) => theme.color.neutral[900]};
 `;
 
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+`;
+
 const LiquorInfoContainer = styled.li`
+  width: 100%;
+  max-width: 370px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-
   img {
-    width: 100%;
+    height: 370px;
   }
 
   cursor: pointer;
 `;
 
 const LiquorInfo = styled.div`
-  width: 264px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,6 +69,11 @@ const LiquorInfo = styled.div`
 const LiquorDescription = styled.div`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[400]};
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default ProductCard;
