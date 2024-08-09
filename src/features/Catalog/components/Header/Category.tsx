@@ -8,6 +8,7 @@ function Category() {
   const searchParams = new URLSearchParams(location.search);
   const { categories } = useCategory();
   const category = searchParams.get('category');
+  const page = searchParams.get('page');
 
   const navigate = useNavigate();
 
@@ -28,6 +29,9 @@ function Category() {
           $style='outlined'
           $size='sm'
           onClick={() => {
+            if (page) {
+              searchParams.set('page', String(1));
+            }
             if (item.id === 0) {
               searchParams.delete('category');
             } else {

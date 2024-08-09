@@ -28,6 +28,9 @@ const getPageNum = (page: number, isNext: boolean): number => {
 function Pagination({ totalItems, currentPage }: PaginationProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const [page, setPage] = useState(currentPage);
   const totalPages = Math.ceil(totalItems / REVIEWS_PER_PAGE);
 
@@ -42,7 +45,8 @@ function Pagination({ totalItems, currentPage }: PaginationProps) {
 
   // 페이지 변경 함수
   const handlePageChange = (newPage: number) => {
-    navigate(`${pathname}?page=${newPage}`, { replace: true });
+    searchParams.set('page', String(newPage));
+    navigate(`${pathname}?${searchParams.toString()}`, { replace: true });
     setPage(newPage);
   };
 
