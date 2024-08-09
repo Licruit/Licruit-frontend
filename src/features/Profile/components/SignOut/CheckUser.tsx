@@ -21,19 +21,21 @@ function CheckUser({ onNext }: Props) {
       <SignOutDescription>
         탈퇴하시려면 사업자 등록번호와 비밀번호를 입력해주시길 바랍니다.
       </SignOutDescription>
-      <InputWrapper>
-        <FormInput
-          type='number'
-          placeholder='사업자 등록번호를 입력해주세요'
-          {...register('companyNumber', { required: true })}
-        />
-        <FormInput
-          type='password'
-          placeholder='비밀번호를 입력해주세요'
-          hasVisibility
-          {...register('password', { required: true })}
-        />
-      </InputWrapper>
+      <form>
+        <InputWrapper>
+          <FormInput
+            type='number'
+            placeholder='사업자 등록번호를 입력해주세요'
+            {...register('companyNumber', { required: true })}
+          />
+          <FormInput
+            type='password'
+            placeholder='비밀번호를 입력해주세요'
+            hasVisibility
+            {...register('password', { required: true })}
+          />
+        </InputWrapper>
+      </form>
       <CancelAndNext isValid={isValid} onNext={onNext} />
     </>
   );
