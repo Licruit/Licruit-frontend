@@ -1,9 +1,18 @@
-export interface Profile {
-  business_name: string;
-  contact: string;
+interface Profile {
+  businessName?: string;
+  companyNumber?: string;
+  contact?: string;
+  img?: string;
   address?: string;
-  img: string;
-  sector_name: string;
   homepage?: string;
   introduce?: string;
+}
+
+export interface EditProfile extends Profile {
+  sectorId: number;
+  image: string;
+}
+
+export interface GetProfile extends Profile {
+  sectorName: string;
 }

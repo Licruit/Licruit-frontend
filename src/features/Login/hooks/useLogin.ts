@@ -16,6 +16,10 @@ export const useLogin = () => {
         setIsLoggedIn(true);
         sessionStorage.setItem(STORAGE_KEY.accessToken, res.data.accessToken);
         sessionStorage.setItem(STORAGE_KEY.refreshToken, res.data.refreshToken);
+        sessionStorage.setItem(
+          STORAGE_KEY.userType,
+          String(res.data.isWholesaler)
+        );
         navigate('/');
       } else {
         setIsFailed(true);

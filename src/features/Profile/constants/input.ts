@@ -7,7 +7,7 @@ export const INPUT = {
   },
   contact: {
     label: '대표(개인) 연락처',
-    placeholder: '010-0000-0000',
+    placeholder: '01000000000',
     isRequired: true,
   },
   address: {

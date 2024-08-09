@@ -1,45 +1,67 @@
 import styled, { useTheme } from 'styled-components';
 import { GlassesIcon, InfoIcon } from 'public/assets/icons';
+import { ForwardedRef, forwardRef } from 'react';
 import Label from './Label';
 
 interface Props {
   label: string;
   placeholder: string;
+  name: string;
+  value?: string;
+  maxLength?: number;
   isRequired?: boolean;
   hasValidation?: boolean;
   isSearch?: boolean;
   hasInfo?: boolean;
 }
 
-function ProfileInput({
-  label,
-  isRequired,
-  placeholder,
-  hasValidation,
-  isSearch = false,
-  hasInfo,
-}: Props) {
-  const theme = useTheme();
+const ProfileInput = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      label,
+      isRequired,
+      placeholder,
+      value = '',
+      hasValidation,
+      isSearch = false,
+      hasInfo,
+      maxLength,
+      ...props
+    }: Props,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
+    const theme = useTheme();
 
-  return (
-    <InputWrapper>
-      <LabelWrapper>
-        <Label label={label} isRequired={isRequired} />
-        {hasInfo && (
-          <InfoIcon
-            fill={theme.color.neutral[400]}
-            style={{ cursor: 'pointer' }}
+    return (
+      <InputWrapper>
+        <LabelWrapper>
+          <Label label={label} isRequired={isRequired} />
+          {hasInfo && (
+            <InfoIcon
+              fill={theme.color.neutral[400]}
+              style={{ cursor: 'pointer' }}
+            />
+          )}
+        </LabelWrapper>
+        <IconWrapper>
+          {isSearch && <GlassesIcon fill={theme.color.neutral[400]} />}
+          <Input
+            type='text'
+            placeholder={placeholder}
+            $isSearch={isSearch}
+            ref={ref}
+            {...props}
           />
+        </IconWrapper>
+        {hasValidation && (
+          <TypeNumber>
+            {value.length}/{maxLength}
+          </TypeNumber>
         )}
-      </LabelWrapper>
-      <IconWrapper>
-        {isSearch && <GlassesIcon fill={theme.color.neutral[400]} />}
-        <Input type='text' placeholder={placeholder} $isSearch={isSearch} />
-      </IconWrapper>
-      {hasValidation && <TypeNumber>3/25</TypeNumber>}
-    </InputWrapper>
-  );
-}
+      </InputWrapper>
+    );
+  }
+);
 
 const InputWrapper = styled.div`
   width: 100%;

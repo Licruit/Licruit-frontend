@@ -1,6 +1,10 @@
 import { httpClient } from '@/api/http';
+import { AxiosResponse } from 'axios';
+import { GetProfile } from '../model/profile.model';
 
-export const getProfile = async (id: string, type: string) => {
-  const result = await httpClient.get(`/profile/${id}?type=${type}`);
+export const getProfile = async () => {
+  const result: AxiosResponse<GetProfile> =
+    await httpClient.get('/users/profile');
+
   return result.data;
 };
