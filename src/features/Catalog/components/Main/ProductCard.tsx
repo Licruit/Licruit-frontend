@@ -1,8 +1,7 @@
-import PATH from '@/constants/path';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
+
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 interface LiquorInfo {
@@ -32,7 +31,9 @@ function ProductCard({ headText, liquorInfo, onClick }: Props) {
       {headText && <HeadInfo>{headText}</HeadInfo>}
       <ImgContainer>
         {imageLoaded ? (
-          <img src={liquorInfo.img} alt='liquor' />
+          <div className='img'>
+            <img src={liquorInfo.img} alt='liquor' />
+          </div>
         ) : (
           <SpinnerBox>
             <Spinner />
@@ -70,6 +71,9 @@ const LiquorInfoContainer = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  .img {
+    overflow: hidden;
+  }
   img {
     height: 370px;
   }

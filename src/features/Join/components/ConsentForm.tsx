@@ -37,7 +37,7 @@ function ConsentForm() {
     setTerms(updatedTerms);
 
     if (!required) {
-      setValue('marketing', true);
+      setValue('isMarketing', true);
     }
   };
 

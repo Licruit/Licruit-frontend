@@ -6,7 +6,7 @@ export interface SignupFormType {
   address: string;
   sectorId: number;
   isVerified: boolean;
-  marketing: boolean;
+  isMarketing: boolean;
 }
 export interface KSIC {
   id: number;
