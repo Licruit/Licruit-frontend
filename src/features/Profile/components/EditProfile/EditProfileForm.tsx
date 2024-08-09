@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import styled from 'styled-components';
 import { STORAGE_KEY } from '@/constants/storage';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { INPUT } from '../../constants/input';
 import useProfileMutation from '../../hooks/useProfileMutation';
 import { GetProfile } from '../../model/profile.model';
@@ -36,6 +37,7 @@ function EditProfileForm({ userProfile, image }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<number>(
     currentCategoryId + 1
   );
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { mutate: editProfile } = useProfileMutation();
 
   const methods = useForm({
@@ -118,9 +120,27 @@ function EditProfileForm({ userProfile, image }: Props) {
           </Button>
         </Form>
       </FormProvider>
+      <SignOut onClick={() => setContent('signout')}>회원탈퇴</SignOut>
     </>
   );
 }
+
+const SignOut = styled.p`
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  ${({ theme }) => theme.typo.body.medium[12]};
+  color: ${({ theme }) => theme.color.neutral[400]};
+  text-decoration: underline;
+
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.color.neutral[900]};
+  }
+`;
 
 const IntroduceWrapper = styled.div`
   position: relative;
