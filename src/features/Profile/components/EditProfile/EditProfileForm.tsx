@@ -6,10 +6,10 @@ import { STORAGE_KEY } from '@/constants/storage';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { INPUT } from '../../constants/input';
 import useProfileMutation from '../../hooks/useProfileMutation';
-import { GetProfile } from '../../model/profile.model';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
+import { GetProfile } from '../../model/profile.model';
 
 // TODO 서버 데이터로 변경하기
 const category = [
@@ -32,7 +32,7 @@ interface Props {
 function EditProfileForm({ userProfile, image }: Props) {
   // TODO 카테고리 서버 데이터 변경시 같이 수정
   const currentCategoryId = category.findIndex(
-    (item) => item === userProfile.sectorName
+    (item) => item === userProfile?.sectorName
   );
   const [selectedCategory, setSelectedCategory] = useState<number>(
     currentCategoryId + 1
@@ -43,11 +43,11 @@ function EditProfileForm({ userProfile, image }: Props) {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
-      businessName: userProfile.businessName,
-      contact: userProfile.contact,
-      address: userProfile.address,
-      url: userProfile.homepage,
-      introduce: userProfile.introduce,
+      businessName: userProfile?.businessName,
+      contact: userProfile?.contact,
+      address: userProfile?.address,
+      url: userProfile?.homepage,
+      introduce: userProfile?.introduce,
     },
   });
   const {
@@ -104,7 +104,7 @@ function EditProfileForm({ userProfile, image }: Props) {
           />
           <CategoryButtons
             categories={category}
-            value={userProfile.sectorName}
+            value={userProfile?.sectorName || ''}
             onSetCategory={getCategory}
           />
 

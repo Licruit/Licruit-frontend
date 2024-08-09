@@ -4,20 +4,20 @@ import styled from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { useRef, useState } from 'react';
 import MyPageHeader from '../common/MyPageHeader';
-import { GetProfile } from '../../model/profile.model';
 import EditProfileForm from './EditProfileForm';
 import useProfileImageMutation from '../../hooks/useProfileImageMutaion';
+import useProfileQuery from '../../hooks/useProfileQuery';
 
-interface Props {
-  userProfile: GetProfile;
-}
-
-function EditProfile({ userProfile }: Props) {
-  const [imageUrl, setImageUrl] = useState<string>(userProfile.img || '');
+function EditProfile() {
+  const { mutate: uploadProfileImage } = useProfileImageMutation();
+  const { data: userProfile, isError } = useProfileQuery();
+  const [imageUrl, setImageUrl] = useState<string>(userProfile?.img || '');
   const [image, setImage] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  const { mutate: uploadProfileImage } = useProfileImageMutation();
+
+  if (!userProfile) return null;
+  if (isError) window.alert('잠시후 다시 시도해 주세요.');
 
   const handleUploadImageButtonClick = () => {
     if (!inputRef.current) return;

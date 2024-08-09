@@ -1,25 +1,22 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { GetProfile } from '../../model/profile.model';
 
 interface Props {
-  businessData: {
-    businessName: string;
-    businessNum: string;
-    profileImage: string;
-  };
+  userProfile: GetProfile;
 }
 
-function Profile({ businessData }: Props) {
+function Profile({ userProfile }: Props) {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
     <ProfileContainer>
       <ProfileInfoWrapper>
-        <img src={businessData.profileImage} alt='profile' />
+        <img src={userProfile?.img} alt='profile' />
         <ProfileInfo>
-          <Name>{businessData.businessName}</Name>
-          <BusinessNumber>{businessData.businessNum}</BusinessNumber>
+          <Name>{userProfile?.businessName}</Name>
+          <BusinessNumber>{userProfile?.companyNumber}</BusinessNumber>
         </ProfileInfo>
       </ProfileInfoWrapper>
       <Button

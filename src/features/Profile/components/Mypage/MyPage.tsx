@@ -1,23 +1,22 @@
 import { CloseIcon } from 'public/assets/icons';
-
 import { STORAGE_KEY } from '@/constants/storage';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
-// import ContentList from './ContentList';
 import CompanyShowButtons from './CompanyShowButtons';
+import useProfileQuery from '../../hooks/useProfileQuery';
 
 interface Props {
-  businessData: {
-    businessName: string;
-    businessNum: string;
-    profileImage: string;
-  };
   onClose: () => void;
 }
 
-function MyPage({ onClose, businessData }: Props) {
+function MyPage({ onClose }: Props) {
+  const { data: userProfile, isError } = useProfileQuery();
   const isCompany = sessionStorage.getItem(STORAGE_KEY.userType) === 'true';
+
+  if (!userProfile) return null;
+
+  if (isError) window.alert('잠시후 다시 시도해 주세요.');
 
   return (
     <>
@@ -31,10 +30,8 @@ function MyPage({ onClose, businessData }: Props) {
           />
         }
       />
-      <Profile businessData={businessData} />
+      <Profile userProfile={userProfile} />
       <ContentCategory />
-      {/* <ContentList /> */}
-      {/* TODO 유저 타입에 따른 버튼 보여주기 */}
       {isCompany && <CompanyShowButtons />}
     </>
   );

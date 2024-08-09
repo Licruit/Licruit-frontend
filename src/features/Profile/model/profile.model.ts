@@ -1,7 +1,7 @@
 interface Profile {
-  businessName: string;
+  businessName?: string;
   companyNumber?: string;
-  contact: string;
+  contact?: string;
   img?: string;
   address?: string;
   homepage?: string;
