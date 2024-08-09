@@ -24,6 +24,8 @@ function Confirm({ onNext }: Props) {
         onClick={() => setIsChecked((prev) => !prev)}
       >
         <CheckIcon
+          width={20}
+          height={20}
           fill={isChecked ? theme.color.primary[500] : theme.color.neutral[400]}
         />
         안내사항을 모두 확인하였으며, 이에 동의합니다.

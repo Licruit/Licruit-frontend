@@ -25,7 +25,7 @@ function MyPageSideMenu({ onClose }: Props) {
         {content === 'my-page' && <MyPage onClose={onClose} />}
         {content === 'edit-profile' && <EditProfile />}
         {content === 'group-buying' && <GroupBuy />}
-        {content === 'signout' && <SignOut />}
+        {content === 'signout' && <SignOut onClose={onClose} />}
       </Container>
     </Overlay>,
     document.body

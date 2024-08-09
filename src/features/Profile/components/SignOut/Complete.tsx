@@ -1,13 +1,17 @@
-import { useNavigate } from 'react-router-dom';
 import { SignOutDescription } from '@/styles/components/Description';
 import Button from '@/components/Button/Button';
+import useLogOut from '@/hooks/logout/useLogOut';
 
-function Complete() {
-  const navigate = useNavigate();
+interface Props {
+  onClose: () => void;
+}
 
-  // TODO 회원탈퇴 api 요청
+function Complete({ onClose }: Props) {
+  const handleLogOut = useLogOut();
+
   const handleClickButton = () => {
-    navigate('/auth/login', { replace: true });
+    onClose();
+    handleLogOut();
   };
 
   return (
