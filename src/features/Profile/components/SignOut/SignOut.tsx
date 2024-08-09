@@ -2,14 +2,23 @@ import { useFunnel } from '@/hooks/form/useFunnel';
 import { BackIcon } from 'public/assets/icons';
 import { useTheme } from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useState } from 'react';
 import MyPageHeader from '../common/MyPageHeader';
 import Reason from './Reason';
 import Confirm from './Confirm';
 import CheckUser from './CheckUser';
 import Complete from './Complete';
+import useSignOutMutaion from '../../hooks/useSignOutMutation';
 
-function SignOut() {
+interface Props {
+  onClose: () => void;
+}
+
+function SignOut({ onClose }: Props) {
+  const [signOutReason, setSignOutReason] = useState('');
+  const [isError, setIsError] = useState(false);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
+  const { mutate: signOut } = useSignOutMutaion();
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const theme = useTheme();
 
@@ -31,16 +40,32 @@ function SignOut() {
       />
       <Funnel>
         <Step stepNum={1}>
-          <Reason onNext={() => setStep(2)} />
+          <Reason
+            onNext={(reason) => {
+              setSignOutReason(reason);
+              setStep(2);
+            }}
+          />
         </Step>
         <Step stepNum={2}>
           <Confirm onNext={() => setStep(3)} />
         </Step>
         <Step stepNum={3}>
-          <CheckUser onNext={() => setStep(4)} />
+          <CheckUser
+            isError={isError}
+            onNext={(checkData) => {
+              signOut(
+                { reason: signOutReason, ...checkData },
+                {
+                  onSuccess: () => setStep(4),
+                  onError: () => setIsError(true),
+                }
+              );
+            }}
+          />
         </Step>
         <Step stepNum={4}>
-          <Complete />
+          <Complete onClose={onClose} />
         </Step>
       </Funnel>
     </>
