@@ -95,9 +95,9 @@ function EditProfileForm({ userProfile, image }: Props) {
                 <TypeNumber>{introduceValue.length}/400</TypeNumber>
               </IntroduceWrapper>
               <ProfileInput {...INPUT.url} {...register('url')} />
-              <ProfileInput {...INPUT.address} {...register('address')} />
             </>
           )}
+          <ProfileInput {...INPUT.address} {...register('address')} />
           <ProfileInput
             {...INPUT.contact}
             {...register('contact', { required: true })}
