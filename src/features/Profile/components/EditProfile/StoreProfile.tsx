@@ -1,6 +1,7 @@
 import Button from '@/components/Button/Button';
 
 import styled from 'styled-components';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { INPUT } from '../../constants/input';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
@@ -20,6 +21,7 @@ const category = [
 ];
 
 function StoreProfile() {
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { profile, isError } = useProfileQuery('1', 'shop');
 
   if (isError || !profile) return null;
@@ -35,7 +37,7 @@ function StoreProfile() {
           적용하기
         </Button>
       </ButtonContainer>
-      <SignOut>회원탈퇴</SignOut>
+      <SignOut onClick={() => setContent('signout')}>회원탈퇴</SignOut>
     </>
   );
 }
