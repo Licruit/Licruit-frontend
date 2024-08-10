@@ -5,7 +5,6 @@ import { DownArrowIcon } from 'public/assets/icons';
 import { FILTER } from '../constants/filter';
 
 function Filter() {
-
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
@@ -22,7 +21,6 @@ function Filter() {
     const match = str.match(/\d+/g);
     return match ? match.map(Number) : [];
   };
-
 
   return (
     <Container>
@@ -51,8 +49,8 @@ function Filter() {
                         key={value}
                         onClick={() => {
                           if (item.title === '도수') {
-                            searchParams.set('min_alcohol', min.toString());
-                            searchParams.set('max_alcohol', max.toString());
+                            searchParams.set('minAlcohol', min.toString());
+                            searchParams.set('maxAlcohol', max.toString());
                           }
                           navigate(`/catalog?${searchParams.toString()}`);
                         }}

@@ -1,21 +1,22 @@
 import styled from 'styled-components';
 import Pagination from '@/components/Pagination/Pagination';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
 
 function ProductGrid() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
 
   const page = searchParams.get('page') || 1;
   const category = searchParams.get('category');
   const search = searchParams.get('search');
-  const minAlcohol = searchParams.get('min_alcohol');
-  const maxAlcohol = searchParams.get('max_alcohol');
+  const minAlcohol = searchParams.get('minAlcohol');
+  const maxAlcohol = searchParams.get('maxAlcohol');
 
   const { catalogData } = useCatalog({
-    page: +page,
+    page: Number(page),
     category: category ? +category : undefined,
     search: search || undefined,
     minAlcohol: minAlcohol ? +minAlcohol : undefined,
@@ -28,7 +29,13 @@ function ProductGrid() {
         {catalogData && catalogData.liquors ? (
           <>
             {catalogData.liquors.map((item) => {
-              return <ProductCard key={item.id} liquorInfo={item} />;
+              return (
+                <ProductCard
+                  key={item.id}
+                  liquorInfo={item}
+                  onClick={() => navigate(`/catalog/:${item.id}`)}
+                />
+              );
             })}
           </>
         ) : (
@@ -54,6 +61,13 @@ const Container = styled.div`
 const List = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-bottom: 30px;
+
+  @media (min-width: 768px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1024px) {
+    justify-content: space-between;
+  }
 `;

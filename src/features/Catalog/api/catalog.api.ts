@@ -12,6 +12,7 @@ export const getCatalog = async ({
   const response = await httpClient.get('/liquors', {
     params: { search, category, minAlcohol, maxAlcohol, page },
   });
+
   return response.data;
 };
 

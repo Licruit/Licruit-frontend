@@ -25,8 +25,12 @@ const Content = styled.div`
   .aside {
     width: 100%;
     max-width: 354px;
+    @media (min-width: 1080px) {
+      width: 20%;
+    }
   }
   .article {
+    width: 100%;
     border-left: 1px solid ${({ theme }) => theme.color.neutral[400]};
   }
 `;
