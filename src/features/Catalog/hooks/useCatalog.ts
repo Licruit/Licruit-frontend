@@ -1,12 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getCatalog, getCategory } from '../api/catalog.api';
+import { getCatalog } from '../api/catalog.api';
 import { CatalogParams } from '../types/CatalogParams';
 import { CatalogItem } from '../types/catalog';
-
-interface Category {
-  id: number;
-  name: string;
-}
 
 export const useCatalog = (params: CatalogParams) => {
   const {
@@ -19,17 +14,4 @@ export const useCatalog = (params: CatalogParams) => {
   });
 
   return { catalogData, error, isLoading };
-};
-export const useCategory = () => {
-  const { data: categories } = useQuery<
-    Category[],
-    Error,
-    Category[],
-    string[]
-  >({
-    queryKey: ['category'],
-    queryFn: getCategory,
-  });
-
-  return { categories };
 };

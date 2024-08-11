@@ -38,6 +38,8 @@ function ConsentForm() {
 
     if (!required) {
       setValue('isMarketing', true);
+    } else {
+      setValue('isMarketing', false);
     }
   };
 

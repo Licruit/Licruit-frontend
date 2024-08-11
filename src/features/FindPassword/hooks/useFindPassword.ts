@@ -36,7 +36,7 @@ export const useFindPassword = (
     if (currentStep === 1) {
       requestReset({
         companyNumber: data.companyNumber.toString(),
-        contact: data.phone.toString(),
+        contact: data.contact.toString(),
       });
     } else {
       resetPw({

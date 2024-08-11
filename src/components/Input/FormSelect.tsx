@@ -14,7 +14,6 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
   ({ options, placeholder }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
-    const selectRef = useRef<HTMLUListElement>(null);
     const theme = useTheme();
     const { setValue } = useFormContext();
 
@@ -37,7 +36,7 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
           </div>
         </Select>
         {isOpen && (
-          <SelectList ref={selectRef}>
+          <SelectList>
             {options?.map((option) => (
               <SelectItem key={option.id} onClick={() => handleSelect(option)}>
                 {option.name}
