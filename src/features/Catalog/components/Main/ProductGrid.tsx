@@ -56,6 +56,8 @@ export default ProductGrid;
 
 const Container = styled.div`
   padding: 20px;
+  height: calc(100vh - 262px);
+  overflow: scroll;
 `;
 
 const List = styled.div`
