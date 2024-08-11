@@ -9,7 +9,7 @@ import { TOS } from '../data/tos';
 function ConsentForm() {
   const [terms, setTerms] = useState(TOS);
   const theme = useTheme();
-  const { setValue, register, trigger } = useFormContext();
+  const { setValue, register, trigger, watch } = useFormContext();
 
   const allChecked = terms.every((term) => term.isChecked);
 
@@ -22,6 +22,7 @@ function ConsentForm() {
     updatedTerms.forEach((item) =>
       setValue(item.name, !allChecked, { shouldValidate: true })
     );
+    setValue('isMarketing', !watch('isMarketing'));
     trigger();
   };
 
@@ -37,9 +38,7 @@ function ConsentForm() {
     setTerms(updatedTerms);
 
     if (!required) {
-      setValue('isMarketing', true);
-    } else {
-      setValue('isMarketing', false);
+      setValue('isMarketing', !terms.find((item) => !item.required)?.isChecked);
     }
   };
 
