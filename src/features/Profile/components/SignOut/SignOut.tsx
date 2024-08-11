@@ -1,26 +1,30 @@
 import { useFunnel } from '@/hooks/form/useFunnel';
 import { BackIcon } from 'public/assets/icons';
-import { useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import MyPageHeader from '../common/MyPageHeader';
 import Reason from './Reason';
 import Confirm from './Confirm';
 import CheckUser from './CheckUser';
 import Complete from './Complete';
 import useSignOutMutaion from '../../hooks/useSignOutMutation';
+import { SignOutReq } from '../../model/signout.model';
 
 interface Props {
   onClose: () => void;
 }
 
 function SignOut({ onClose }: Props) {
-  const [signOutReason, setSignOutReason] = useState('');
   const [isError, setIsError] = useState(false);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  const { mutate: signOut } = useSignOutMutaion();
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const theme = useTheme();
+  const methods = useForm<SignOutReq>({ mode: 'onChange' });
+  const { mutate: signOut } = useSignOutMutaion();
+
+  const { handleSubmit } = methods;
 
   return (
     <>
@@ -38,38 +42,39 @@ function SignOut({ onClose }: Props) {
           />
         }
       />
-      <Funnel>
-        <Step stepNum={1}>
-          <Reason
-            onNext={(reason) => {
-              setSignOutReason(reason);
-              setStep(2);
-            }}
-          />
-        </Step>
-        <Step stepNum={2}>
-          <Confirm onNext={() => setStep(3)} />
-        </Step>
-        <Step stepNum={3}>
-          <CheckUser
-            isError={isError}
-            onNext={(checkData) => {
-              signOut(
-                { reason: signOutReason, ...checkData },
-                {
-                  onSuccess: () => setStep(4),
-                  onError: () => setIsError(true),
-                }
-              );
-            }}
-          />
-        </Step>
-        <Step stepNum={4}>
-          <Complete onClose={onClose} />
-        </Step>
-      </Funnel>
+      <FormProvider {...methods}>
+        <Form
+          onSubmit={handleSubmit((data) => {
+            signOut(data, {
+              onSuccess: () => setStep(4),
+              onError: () => setIsError(true),
+            });
+          })}
+        >
+          <Funnel>
+            <Step stepNum={1}>
+              <Reason onNext={() => setStep(2)} />
+            </Step>
+            <Step stepNum={2}>
+              <Confirm onNext={() => setStep(3)} />
+            </Step>
+            <Step stepNum={3}>
+              <CheckUser isError={isError} />
+            </Step>
+            <Step stepNum={4}>
+              <Complete onClose={onClose} />
+            </Step>
+          </Funnel>
+        </Form>
+      </FormProvider>
     </>
   );
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export default SignOut;
