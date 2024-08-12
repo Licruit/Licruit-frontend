@@ -15,6 +15,11 @@ interface Props {
 function CategoryButtons({ categories, value, onSetCategory }: Props) {
   const [selected, setSelected] = useState(value);
 
+  const handleClickButton = (item: string, index: number) => {
+    setSelected(item);
+    onSetCategory(index + 1);
+  };
+
   return (
     <CategoryWrapper>
       <Label {...INPUT.category} />
@@ -28,10 +33,7 @@ function CategoryButtons({ categories, value, onSetCategory }: Props) {
               $size='sm'
               $transparent
               type='button'
-              onClick={() => {
-                setSelected(item);
-                onSetCategory(index + 1);
-              }}
+              onClick={() => handleClickButton(item, index)}
             >
               {item}
             </Button>
