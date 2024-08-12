@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
@@ -10,6 +9,10 @@ function ConsentForm() {
   const [terms, setTerms] = useState(TOS);
   const theme = useTheme();
   const { setValue, register, trigger, watch } = useFormContext();
+
+  useEffect(() => {
+    setValue('isMarketing', false);
+  }, [setValue]);
 
   const allChecked = terms.every((term) => term.isChecked);
 

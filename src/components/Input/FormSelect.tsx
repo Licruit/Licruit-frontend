@@ -11,16 +11,17 @@ interface Props {
 }
 
 const FormSelect = forwardRef<HTMLDivElement, Props>(
-  ({ options, placeholder }, ref) => {
+  ({ options, placeholder }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
-    const { setValue } = useFormContext();
+    const { setValue, trigger } = useFormContext();
 
     const handleSelect = (option: KSIC) => {
       setSelectedOption(option.name);
-      setIsOpen(false);
+      trigger('sectorId');
       setValue('sectorId', option.id, { shouldValidate: true });
+      setIsOpen(false);
     };
 
     const industryRef = useRef<HTMLDivElement>(null);
@@ -28,30 +29,33 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
     useClickOutside(industryRef, () => setIsOpen(false));
 
     return (
-      <Wrapper ref={industryRef}>
-        <Select onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
+      <DropdownContainer ref={industryRef}>
+        <DropdownHeader onClick={() => setIsOpen((prev) => !prev)}>
           <div className='selectInput'>
             {selectedOption ?? placeholder}
             <DownArrowIcon fill={theme.color.neutral[400]} />
           </div>
-        </Select>
+        </DropdownHeader>
         {isOpen && (
-          <SelectList>
+          <DropdownList>
             {options?.map((option) => (
-              <SelectItem key={option.id} onClick={() => handleSelect(option)}>
+              <DropdownItem
+                key={option.id}
+                onClick={() => handleSelect(option)}
+              >
                 {option.name}
-              </SelectItem>
+              </DropdownItem>
             ))}
-          </SelectList>
+          </DropdownList>
         )}
-      </Wrapper>
+      </DropdownContainer>
     );
   }
 );
 
 export default FormSelect;
 
-const Wrapper = styled.div`
+const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
   .selectInput {
@@ -61,7 +65,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Select = styled.div`
+const DropdownHeader = styled.div`
   padding: 18px;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]};
@@ -69,7 +73,7 @@ const Select = styled.div`
   cursor: pointer;
 `;
 
-const SelectList = styled.ul`
+const DropdownList = styled.ul`
   position: absolute;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
@@ -81,7 +85,7 @@ const SelectList = styled.ul`
   z-index: 1000;
 `;
 
-const SelectItem = styled.li`
+const DropdownItem = styled.li`
   padding: 18px;
   ${({ theme }) => theme.typo.body.medium[12]}
   cursor: pointer;

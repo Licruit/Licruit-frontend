@@ -60,9 +60,6 @@ function IndustryForm() {
       <FormSelect
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
-        {...register('sectorId', {
-          required: true,
-        })}
       />
     </Container>
   );
