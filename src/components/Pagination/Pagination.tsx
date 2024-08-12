@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DownArrowIcon } from 'public/assets/icons';
-import { PAGE_COUNT, REVIEWS_PER_PAGE } from '@/constants/pagination';
+import { PAGE_COUNT } from '@/constants/pagination';
 
 interface PaginationProps {
   totalItems: number;

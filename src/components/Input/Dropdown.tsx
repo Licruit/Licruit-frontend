@@ -4,7 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 
-interface DropdownItem {
+export interface DropdownItem {
   id: number;
   name: string;
 }
