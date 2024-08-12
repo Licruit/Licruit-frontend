@@ -1,25 +1,34 @@
 import { forwardRef, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { KSIC } from '@/features/Join/types/signup';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 
+interface DropdownItem {
+  id: number;
+  name: string;
+}
+
 interface Props {
-  options?: KSIC[];
+  options?: DropdownItem[] | string[];
   placeholder?: string;
 }
 
-const FormSelect = forwardRef<HTMLDivElement, Props>(
+const Dropdown = forwardRef<HTMLDivElement, Props>(
   ({ options, placeholder }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
     const { setValue } = useFormContext();
 
-    const handleSelect = (option: KSIC) => {
-      setSelectedOption(option.name);
-      setValue('sectorId', option.id, { shouldValidate: true });
+    const handleSelect = (option: DropdownItem | string) => {
+      if (typeof option === 'string') {
+        setSelectedOption(option);
+        setValue('sectorId', option, { shouldValidate: true });
+      } else {
+        setSelectedOption(option.name);
+        setValue('sectorId', option.id, { shouldValidate: true });
+      }
       setIsOpen(false);
     };
 
@@ -42,14 +51,23 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
               </DropdownHeader>
               {isOpen && (
                 <DropdownList>
-                  {options?.map((option) => (
-                    <DropdownItem
-                      key={option.id}
-                      onClick={() => handleSelect(option)}
-                    >
-                      {option.name}
-                    </DropdownItem>
-                  ))}
+                  {options?.map((option) =>
+                    typeof option === 'string' ? (
+                      <DropdownItem
+                        key={option}
+                        onClick={() => handleSelect(option)}
+                      >
+                        {option}
+                      </DropdownItem>
+                    ) : (
+                      <DropdownItem
+                        key={option.id}
+                        onClick={() => handleSelect(option)}
+                      >
+                        {option.name}
+                      </DropdownItem>
+                    )
+                  )}
                 </DropdownList>
               )}
             </>
@@ -60,7 +78,7 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
   }
 );
 
-export default FormSelect;
+export default Dropdown;
 
 const DropdownContainer = styled.div`
   position: relative;
