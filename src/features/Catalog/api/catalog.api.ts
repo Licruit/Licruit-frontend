@@ -12,7 +12,6 @@ export const getCatalog = async ({
   const response = await httpClient.get('/liquors', {
     params: { search, category, minAlcohol, maxAlcohol, page },
   });
-  console.log(response.data);
   return response.data;
 };
 
