@@ -2,7 +2,6 @@ import Button from '@/components/Button/Button';
 import { useCategory } from '@/hooks/category/useCategory';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getCatalogCategory } from '../../api/catalog.api';
 
 function Category() {
   const navigate = useNavigate();
@@ -11,7 +10,7 @@ function Category() {
 
   const category = searchParams.get('category');
   const page = searchParams.get('page');
-  const { categories } = useCategory(getCatalogCategory);
+  const { categories } = useCategory();
   const allCategories = [{ id: 0, name: '전체' }, ...(categories || [])];
 
   return (

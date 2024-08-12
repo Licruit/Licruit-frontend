@@ -1,3 +1,4 @@
+import { getCatalogCategory } from '@/features/Catalog/api/catalog.api';
 import { useQuery } from '@tanstack/react-query';
 
 interface Category {
@@ -5,10 +6,10 @@ interface Category {
   name: string;
 }
 
-export const useCategory = (getCategory: () => Promise<Category[]>) => {
+export const useCategory = () => {
   const { data: categories } = useQuery<Category[], Error>({
     queryKey: ['category'],
-    queryFn: getCategory,
+    queryFn: getCatalogCategory,
   });
 
   return { categories };
