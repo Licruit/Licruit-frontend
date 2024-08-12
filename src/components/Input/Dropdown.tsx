@@ -18,16 +18,15 @@ interface Props {
 const Dropdown = forwardRef<HTMLDivElement, Props>(
   ({ options, placeholder, name }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
-    const { setValue } = useFormContext();
+    const { setValue, watch } = useFormContext();
+
+    const selectedValue = watch(name);
 
     const handleSelect = (option: DropdownItem | string) => {
       if (typeof option === 'string') {
-        setSelectedOption(option);
         setValue(name, option, { shouldValidate: true });
       } else {
-        setSelectedOption(option.name);
         setValue(name, option.id, { shouldValidate: true });
       }
       setIsOpen(false);
@@ -44,31 +43,25 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
           rules={{ required: placeholder }}
           render={() => (
             <>
-              <DropdownHeader onClick={() => setIsOpen((prev) => !prev)}>
+              <DropdownHeader
+                $isSelected={selectedValue !== undefined}
+                onClick={() => setIsOpen((prev) => !prev)}
+              >
                 <div className='selectInput'>
-                  {selectedOption ?? placeholder}
+                  {selectedValue ?? placeholder}
                   <DownArrowIcon fill={theme.color.neutral[400]} />
                 </div>
               </DropdownHeader>
               {isOpen && (
                 <DropdownList>
-                  {options?.map((option) =>
-                    typeof option === 'string' ? (
-                      <DropdownItem
-                        key={option}
-                        onClick={() => handleSelect(option)}
-                      >
-                        {option}
-                      </DropdownItem>
-                    ) : (
-                      <DropdownItem
-                        key={option.id}
-                        onClick={() => handleSelect(option)}
-                      >
-                        {option.name}
-                      </DropdownItem>
-                    )
-                  )}
+                  {options?.map((option) => (
+                    <DropdownItem
+                      key={typeof option === 'object' ? option.id : option}
+                      onClick={() => handleSelect(option)}
+                    >
+                      {typeof option === 'object' ? option.name : option}
+                    </DropdownItem>
+                  ))}
                 </DropdownList>
               )}
             </>
@@ -91,11 +84,12 @@ const DropdownContainer = styled.div`
   }
 `;
 
-const DropdownHeader = styled.div`
+const DropdownHeader = styled.div<{ $isSelected: boolean }>`
   padding: 18px;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]};
-  color: ${({ theme }) => theme.color.neutral[400]};
+  color: ${({ theme, $isSelected }) =>
+    $isSelected ? theme.color.neutral[800] : theme.color.neutral[400]};
   cursor: pointer;
 `;
 
