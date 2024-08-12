@@ -13,10 +13,10 @@ function Profile({ userProfile }: Props) {
   return (
     <ProfileContainer>
       <ProfileInfoWrapper>
-        <img src={userProfile?.img} alt='profile' />
+        <img src={userProfile.img} alt='profile' />
         <ProfileInfo>
-          <Name>{userProfile?.businessName}</Name>
-          <BusinessNumber>{userProfile?.companyNumber}</BusinessNumber>
+          <Name>{userProfile.businessName}</Name>
+          <BusinessNumber>{userProfile.companyNumber}</BusinessNumber>
         </ProfileInfo>
       </ProfileInfoWrapper>
       <Button
