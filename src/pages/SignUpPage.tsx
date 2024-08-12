@@ -33,7 +33,7 @@ function SignUpPage() {
       contact,
       address,
       sectorId,
-      marketing,
+      isMarketing,
     } = data;
 
     const filteredData: Omit<SignupFormType, 'isVerified'> = {
@@ -43,9 +43,8 @@ function SignUpPage() {
       contact,
       address,
       sectorId,
-      marketing,
+      isMarketing,
     };
-
     signupMutation.mutate(filteredData);
   };
   return (

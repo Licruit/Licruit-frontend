@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DownArrowIcon } from 'public/assets/icons';
-import { PAGE_COUNT, REVIEWS_PER_PAGE } from '@/constants/pagination';
+import { PAGE_COUNT } from '@/constants/pagination';
 
 interface PaginationProps {
   totalItems: number;
@@ -10,10 +10,10 @@ interface PaginationProps {
 }
 
 // 페이지 그룹 생성 함수
-const pageArray = (page: number, totalPages: number): number[] => {
-  const totalPageArr = Array.from({ length: totalPages }, (_, i) => i + 1);
+const pageArray = (page: number, totalItems: number): number[] => {
+  const totalPageArr = Array.from({ length: totalItems }, (_, i) => i + 1);
   const pageGroupArr = [];
-  for (let i = 0; i < Math.ceil(totalPages / PAGE_COUNT); i++) {
+  for (let i = 0; i < Math.ceil(totalItems / PAGE_COUNT); i++) {
     pageGroupArr.push(totalPageArr.splice(0, PAGE_COUNT));
   }
   return pageGroupArr[Math.floor((page - 1) / PAGE_COUNT)] || [];
@@ -28,13 +28,15 @@ const getPageNum = (page: number, isNext: boolean): number => {
 function Pagination({ totalItems, currentPage }: PaginationProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const [page, setPage] = useState(currentPage);
-  const totalPages = Math.ceil(totalItems / REVIEWS_PER_PAGE);
 
   const isStart = page - PAGE_COUNT <= 0; // 첫번째 페이지 그룹
   const isEnd =
     Math.floor((page - 1) / PAGE_COUNT) ===
-    Math.floor((totalPages - 1) / PAGE_COUNT); // 마지막 페이지 그룹
+    Math.floor((totalItems - 1) / PAGE_COUNT); // 마지막 페이지 그룹
 
   useEffect(() => {
     setPage(currentPage);
@@ -42,7 +44,8 @@ function Pagination({ totalItems, currentPage }: PaginationProps) {
 
   // 페이지 변경 함수
   const handlePageChange = (newPage: number) => {
-    navigate(`${pathname}?page=${newPage}`, { replace: true });
+    searchParams.set('page', String(newPage));
+    navigate(`${pathname}?${searchParams.toString()}`, { replace: true });
     setPage(newPage);
   };
 
@@ -55,7 +58,7 @@ function Pagination({ totalItems, currentPage }: PaginationProps) {
         <DownArrowIcon fill='#ADAEB1' style={{ rotate: '90deg' }} />
       </MoveButton>
       <div className='button-wrapper'>
-        {pageArray(page, totalPages).map((num) => (
+        {pageArray(page, totalItems).map((num) => (
           <PageButton
             key={num}
             $isCurrent={page === num}

@@ -1,7 +1,12 @@
 import { httpClient } from '@/api/http';
-import { Profile } from '../model/profile.model';
+import { EditProfile } from '../model/profile.model';
 
-export const putProfile = async (data: Profile) => {
+export const putProfile = async (data: EditProfile) => {
   const result = await httpClient.put('/users/profile', data);
+  return result;
+};
+
+export const putProfileImage = async (image: FormData) => {
+  const result = await httpClient.put('/users/profile/img', image);
   return result;
 };

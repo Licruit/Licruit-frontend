@@ -1,14 +1,16 @@
 import { httpClient } from '@/api/http';
 import axios from 'axios';
+import { DropdownItem } from '@/components/Input/Dropdown';
+
 import { BUSINESS_URL } from '@/constants/url';
-import { KSIC, SignupFormType } from '../types/signup';
+import { SignupFormType } from '../types/signup';
 import { BUSINESS_TYPE } from '../constants/business';
 
 export const signup = async (userData: Omit<SignupFormType, 'isVerified'>) => {
   await httpClient.post('/users/register', userData);
 };
 
-export const getKSIC = async (): Promise<KSIC[]> => {
+export const getKSIC = async (): Promise<DropdownItem[]> => {
   const response = await httpClient.get('/sectors');
   return response.data;
 };

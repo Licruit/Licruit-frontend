@@ -15,7 +15,7 @@ export const getCatalog = async ({
   return response.data;
 };
 
-export const getCategory = async () => {
+export const getCatalogCategory = async () => {
   try {
     const response = await httpClient.get('/liquors/category');
     return response.data;
