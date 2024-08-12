@@ -27,10 +27,7 @@ jobs:
         run: npm ci
 
       - name: Run Stylelint
-        uses: reviewdog/action-stylelint@v1
-        with:
-          reporter: github-pr-check
-          stylelint_input: '**/*.{js,jsx,ts,tsx}'
+        run: npm run lint:css
 
       - name: Run eslint
         uses: reviewdog/action-eslint@v1
