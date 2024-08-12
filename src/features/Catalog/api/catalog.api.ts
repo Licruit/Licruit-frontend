@@ -12,11 +12,10 @@ export const getCatalog = async ({
   const response = await httpClient.get('/liquors', {
     params: { search, category, minAlcohol, maxAlcohol, page },
   });
-
   return response.data;
 };
 
-export const getCategory = async () => {
+export const getCatalogCategory = async () => {
   try {
     const response = await httpClient.get('/liquors/category');
     return response.data;

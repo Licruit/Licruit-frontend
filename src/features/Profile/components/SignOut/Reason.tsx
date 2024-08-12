@@ -1,7 +1,7 @@
-import FormSelect from '@/components/Input/FormSelect';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SignOutDescription } from '@/styles/components/Description';
 import Button from '@/components/Button/Button';
+import Dropdown from '@/components/Input/Dropdown';
 
 const StoreOptions = [
   '다른 플랫폼에 비해 가격 차이가 없어요.',
@@ -44,7 +44,7 @@ function Reason({ onNext }: Props) {
         있도록 노력하겠습니다.
       </SignOutDescription>
       <FormProvider {...methods}>
-        <FormSelect
+        <Dropdown
           options={StoreOptions}
           placeholder='사유를 선택해주세요.'
           {...register('reason', {

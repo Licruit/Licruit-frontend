@@ -1,13 +1,12 @@
 import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
-
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { DropdownItem } from '@/components/Input/Dropdown';
 import {
   duplicateBusiness,
   getKSIC,
   verificationBusiness,
 } from '../api/signup.api';
-import { KSIC } from '../types/signup';
 
 export const useSignup = () => {
   const { watch, setError, clearErrors } = useFormContext();
@@ -15,7 +14,7 @@ export const useSignup = () => {
 
   const companyNumber = watch('companyNumber') as string;
 
-  const { data: industryData } = useQuery<KSIC[], Error>({
+  const { data: industryData } = useQuery<DropdownItem[], Error>({
     queryKey: ['ksic'],
     queryFn: getKSIC,
     refetchOnWindowFocus: false,

@@ -1,6 +1,6 @@
 export interface FindPasswordFormType {
   companyNumber: number;
-  phone: number;
+  contact: number;
   code: number;
   isVerified: boolean;
   password: string;
