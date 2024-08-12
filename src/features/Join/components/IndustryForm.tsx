@@ -58,6 +58,7 @@ function IndustryForm() {
         })}
       />
       <Dropdown
+        name='sectorId'
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
       />

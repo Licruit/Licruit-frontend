@@ -12,10 +12,11 @@ interface DropdownItem {
 interface Props {
   options?: DropdownItem[] | string[];
   placeholder?: string;
+  name: string;
 }
 
 const Dropdown = forwardRef<HTMLDivElement, Props>(
-  ({ options, placeholder }) => {
+  ({ options, placeholder, name }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
@@ -24,10 +25,10 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
     const handleSelect = (option: DropdownItem | string) => {
       if (typeof option === 'string') {
         setSelectedOption(option);
-        setValue('sectorId', option, { shouldValidate: true });
+        setValue(name, option, { shouldValidate: true });
       } else {
         setSelectedOption(option.name);
-        setValue('sectorId', option.id, { shouldValidate: true });
+        setValue(name, option.id, { shouldValidate: true });
       }
       setIsOpen(false);
     };
@@ -39,7 +40,7 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
     return (
       <DropdownContainer ref={industryRef}>
         <Controller
-          name='sectorId'
+          name={name}
           rules={{ required: placeholder }}
           render={() => (
             <>
