@@ -21,7 +21,7 @@ const LOCATION = [
   '제주도',
 ];
 
-function GroupBuy() {
+function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
@@ -36,28 +36,32 @@ function GroupBuy() {
           />
         }
       />
-      <ProfileInput {...INPUT.product} />
+      <ProfileInput {...INPUT.product} name='product' />
       <InputWrapper>
-        <ProfileInput {...INPUT.period} />
-        <ProfileInput {...INPUT.startTime} />
+        <ProfileInput {...INPUT.period} name='period' />
+        <ProfileInput {...INPUT.startTime} name='time' />
       </InputWrapper>
       <InputWrapper>
-        <ProfileInput {...INPUT.delivery} />
-        <ProfileInput {...INPUT.price} />
+        <ProfileInput {...INPUT.delivery} name='delivery' />
+        <ProfileInput {...INPUT.price} name='price' />
       </InputWrapper>
-      <ProfileInput {...INPUT.min} />
-      <ProfileInput {...INPUT.max} />
+      <ProfileInput {...INPUT.min} name='min' />
+      <ProfileInput {...INPUT.max} name='max' />
       <InputWrapper>
-        <ProfileInput {...INPUT.deliveryFee} />
-        <ProfileInput {...INPUT.freeDelivery} />
+        <ProfileInput {...INPUT.deliveryFee} name='deliveryFee' />
+        <ProfileInput {...INPUT.freeDelivery} name='freeDelivery' />
       </InputWrapper>
       <LabelWrapper>
         <Label {...INPUT.location} />
         <span className='isRequired'>*</span>
         <p className='desc'>(배송 가능 지역만 선택해 주세요)</p>
       </LabelWrapper>
-      <CategoryButtons categories={LOCATION} />
-      <ProfileInput {...INPUT.groupBuy} />
+      <CategoryButtons
+        categories={LOCATION}
+        value=''
+        onSetCategory={() => {}}
+      />
+      <ProfileInput {...INPUT.groupBuy} name='groupBuy' />
       <Button $style='solid' $theme='primary' $width='full' $size='md'>
         적용하기
       </Button>
@@ -85,4 +89,4 @@ const LabelWrapper = styled.div`
   }
 `;
 
-export default GroupBuy;
+export default GroupBuyOpenForm;

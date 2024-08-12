@@ -1,16 +1,24 @@
 import { CloseIcon } from 'public/assets/icons';
-
+import useUserType from '@/hooks/usertype/useUserType';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
-// import ContentList from './ContentList';
 import CompanyShowButtons from './CompanyShowButtons';
+import useProfileQuery from '../../hooks/useProfileQuery';
 
 interface Props {
   onClose: () => void;
 }
 
 function MyPage({ onClose }: Props) {
+  const { data: userProfile, isError } = useProfileQuery();
+  const checkIsCompany = useUserType();
+  const isCompany = checkIsCompany();
+
+  if (!userProfile) return null;
+
+  if (isError) window.alert('잠시후 다시 시도해 주세요.');
+
   return (
     <>
       <MyPageHeader
@@ -23,11 +31,9 @@ function MyPage({ onClose }: Props) {
           />
         }
       />
-      <Profile />
+      <Profile userProfile={userProfile} />
       <ContentCategory />
-      {/* <ContentList /> */}
-      {/* TODO 유저 타입에 따른 버튼 보여주기 */}
-      <CompanyShowButtons />
+      {isCompany && <CompanyShowButtons />}
     </>
   );
 }
