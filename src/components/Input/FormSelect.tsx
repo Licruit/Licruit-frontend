@@ -1,7 +1,7 @@
 import { forwardRef, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { KSIC } from '@/features/Join/types/signup';
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 
@@ -15,11 +15,10 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
-    const { setValue, trigger } = useFormContext();
+    const { setValue } = useFormContext();
 
     const handleSelect = (option: KSIC) => {
       setSelectedOption(option.name);
-      trigger('sectorId');
       setValue('sectorId', option.id, { shouldValidate: true });
       setIsOpen(false);
     };
@@ -30,24 +29,32 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
 
     return (
       <DropdownContainer ref={industryRef}>
-        <DropdownHeader onClick={() => setIsOpen((prev) => !prev)}>
-          <div className='selectInput'>
-            {selectedOption ?? placeholder}
-            <DownArrowIcon fill={theme.color.neutral[400]} />
-          </div>
-        </DropdownHeader>
-        {isOpen && (
-          <DropdownList>
-            {options?.map((option) => (
-              <DropdownItem
-                key={option.id}
-                onClick={() => handleSelect(option)}
-              >
-                {option.name}
-              </DropdownItem>
-            ))}
-          </DropdownList>
-        )}
+        <Controller
+          name='sectorId'
+          rules={{ required: placeholder }}
+          render={() => (
+            <>
+              <DropdownHeader onClick={() => setIsOpen((prev) => !prev)}>
+                <div className='selectInput'>
+                  {selectedOption ?? placeholder}
+                  <DownArrowIcon fill={theme.color.neutral[400]} />
+                </div>
+              </DropdownHeader>
+              {isOpen && (
+                <DropdownList>
+                  {options?.map((option) => (
+                    <DropdownItem
+                      key={option.id}
+                      onClick={() => handleSelect(option)}
+                    >
+                      {option.name}
+                    </DropdownItem>
+                  ))}
+                </DropdownList>
+              )}
+            </>
+          )}
+        />
       </DropdownContainer>
     );
   }
