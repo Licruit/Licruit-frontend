@@ -10,15 +10,13 @@ interface Props {
 }
 
 function Reason({ onNext }: Props) {
-  const { register, control } = useFormContext();
+  const { register } = useFormContext();
 
   const selectedOption = useWatch({
-    control,
     name: 'reason',
   });
 
   const etcValue = useWatch({
-    control,
     name: 'etc',
   });
 

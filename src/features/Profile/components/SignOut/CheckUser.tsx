@@ -9,15 +9,13 @@ interface Props {
 }
 
 function CheckUser({ isError }: Props) {
-  const { register, control } = useFormContext();
+  const { register } = useFormContext();
 
   const companyNumber = useWatch({
-    control,
     name: 'companyNumber',
   });
 
   const password = useWatch({
-    control,
     name: 'password',
   });
 
