@@ -1,5 +1,5 @@
-import Button from '@/components/Button/Button';
 import GaugeInfo from '@/features/GroupBuyingDetail/components/Gauge/GaugeInfo';
+import GroupBuyingForm from '@/features/GroupBuyingDetail/components/GroupBuyingForm/GroupBuyingForm';
 import GroupBuyingInfo from '@/features/GroupBuyingDetail/components/GroupBuyingInfo';
 import GroupBuyingTitle from '@/features/GroupBuyingDetail/components/GroupBuyingTitle';
 import WholesalerInfo from '@/features/GroupBuyingDetail/components/WholesalerInfo';
@@ -13,9 +13,7 @@ function GroupBuyingDetailPage() {
         <GroupBuyingTitle />
         <GaugeInfo />
         <GroupBuyingInfo />
-        <Button $style='solid' $size='lg' $width='full' $theme='primary'>
-          구매 신청하기
-        </Button>
+        <GroupBuyingForm />
       </div>
     </Container>
   );
