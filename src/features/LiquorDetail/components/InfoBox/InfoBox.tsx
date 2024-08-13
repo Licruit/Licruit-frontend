@@ -8,7 +8,7 @@ function InfoBox() {
   if (!liquorDetail) return null;
 
   const {
-    category_name,
+    categoryName,
     ingredient,
     alcohol,
     volume,
@@ -27,7 +27,7 @@ function InfoBox() {
       <Info>
         <h5>상세 정보</h5>
         <ul>
-          <InfoItem label='종류' value={category_name} />
+          <InfoItem label='종류' value={categoryName} />
           <InfoItem label='원재료' value={ingredient} />
           <InfoItem label='알콜도수' value={alcohol} />
           <InfoItem label='용량' value={`${volume} ml`} />

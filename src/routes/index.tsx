@@ -9,7 +9,7 @@ import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
 import NavContentLayout from '@/layouts/NavContentLayout';
 import MainLayout from '@/layouts/MainLayout';
-import CatelogDetailPage from '@/pages/CatelogDetailPage';
+import CatalogDetailPage from '@/pages/CatalogDetailPage';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'catalog/:id',
-        element: <CatelogDetailPage />,
+        element: <CatalogDetailPage />,
       },
       {
         path: 'management',

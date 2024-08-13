@@ -5,7 +5,7 @@ interface Props {
   setCurrentTap: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function InfoTap({ currentTap, setCurrentTap }: Props) {
+function TapBar({ currentTap, setCurrentTap }: Props) {
   return (
     <Container>
       <div className='tap-wrapper'>
@@ -29,7 +29,7 @@ function InfoTap({ currentTap, setCurrentTap }: Props) {
   );
 }
 
-export default InfoTap;
+export default TapBar;
 
 const Container = styled.div`
   display: flex;

@@ -2,14 +2,10 @@ import Rating from '@/components/Rating/Rating';
 import { AiIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import StatBox from '@/components/StatBox/StatBox';
-import { useLiquorDetail } from '../../hooks/useLiquorDetail';
 
 function LiquorIntro() {
-  const { liquorDetail } = useLiquorDetail();
-
   return (
     <Container>
-      <img src={liquorDetail?.img} alt='liquorImage' className='liquor-img' />
       <div className='intro-wrapper'>
         <Statistic>
           <StatBox title='리뷰' iconType='review'>
@@ -40,11 +36,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  .liquor-img {
-    height: 500px;
-    align-self: center;
-  }
 
   .intro-wrapper {
     display: flex;

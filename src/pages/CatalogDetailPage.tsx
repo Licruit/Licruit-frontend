@@ -1,19 +1,20 @@
-import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
+import { SideBar } from '@/features/CatalogDetail';
+import LiquorIntro from '@/features/CatalogDetail/components/LiquorIntro/LiquorIntro';
 import { LiquorDetail } from '@/features/LiquorDetail';
 import styled from 'styled-components';
 
-function GroupBuyingDetailPage() {
+function CatalogDetailPage() {
   return (
     <Container>
       <LiquorDetail>
-        <WholesalerInfo />
+        <LiquorIntro />
       </LiquorDetail>
       <SideBar />
     </Container>
   );
 }
 
-export default GroupBuyingDetailPage;
+export default CatalogDetailPage;
 
 const Container = styled.div`
   width: 100%;

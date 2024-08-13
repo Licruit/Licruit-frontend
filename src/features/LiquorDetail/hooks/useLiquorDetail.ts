@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getLiquorDetail } from '../api/liquor.api';
-import { LiquorDetail } from '../model/liquor.model';
+import { LiquorDetail } from '../models/liquor.model';
 
 export const useLiquorDetail = () => {
   const { id } = useParams();
