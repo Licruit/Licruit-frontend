@@ -1,3 +1,5 @@
+import Button from '@/components/Button/Button';
+import GroupBuyingTitle from '@/features/GroupBuyingDetail/components/GroupBuyingTitle';
 import WholesalerInfo from '@/features/GroupBuyingDetail/components/WholesalerInfo';
 import styled from 'styled-components';
 
@@ -5,7 +7,12 @@ function GroupBuyingDetailPage() {
   return (
     <Container>
       <WholesalerInfo />
-      <div>info</div>
+      <div className='temp'>
+        <GroupBuyingTitle />
+        <Button $style='solid' $size='lg' $width='full' $theme='primary'>
+          구매 신청하기
+        </Button>
+      </div>
     </Container>
   );
 }
@@ -18,4 +25,10 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-bottom: 80px;
+
+  .temp {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
