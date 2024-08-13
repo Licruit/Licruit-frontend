@@ -1,5 +1,4 @@
-import { SideBar } from '@/features/CatalogDetail';
-import LiquorIntro from '@/features/CatalogDetail/components/LiquorIntro/LiquorIntro';
+import { LiquorIntro, SideBar } from '@/features/CatalogDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
 import styled from 'styled-components';
 
