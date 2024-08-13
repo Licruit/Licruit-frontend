@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Divider } from '@/styles/components/Divider';
 import Button from '@/components/Button/Button';
 import CounterBox from './CounterBox';
 
@@ -11,7 +12,7 @@ function GroupBuyingForm() {
             백경 13. 탁주 <strong>(+16,000원)</strong>
           </span>
         </OptionName>
-        <hr className='divider' />
+        <Divider />
         <CounterBox />
       </FormBox>
       <Button
@@ -42,14 +43,6 @@ const FormBox = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.color.neutral[100]};
-
-  .divider {
-    border: 0;
-    width: 100%;
-    height: 1px;
-    margin: 0;
-    background: ${({ theme }) => theme.color.neutral[400]};
-  }
 `;
 
 const OptionName = styled.div`

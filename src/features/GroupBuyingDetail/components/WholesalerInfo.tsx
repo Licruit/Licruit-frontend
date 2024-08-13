@@ -1,3 +1,4 @@
+import { Divider } from '@/styles/components/Divider';
 import styled from 'styled-components';
 
 function WholesalerInfo() {
@@ -22,7 +23,7 @@ function WholesalerInfo() {
           </div>
         </Profile>
       </ProfileWrapper>
-      <hr className='divider' />
+      <Divider />
       <ExtraInfo>
         <span>
           홈페이지 : <a href='https://www.naver.com'>https://www.naver.com</a>
@@ -42,14 +43,6 @@ const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   background-color: ${({ theme }) => theme.color.common[100]};
   color: ${({ theme }) => theme.color.common[0]};
-
-  .divider {
-    border: 0;
-    width: 100%;
-    height: 1px;
-    margin: 0;
-    background: ${({ theme }) => theme.color.neutral[400]};
-  }
 `;
 
 const ProfileWrapper = styled.div`
