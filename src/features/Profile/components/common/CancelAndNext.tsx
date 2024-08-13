@@ -4,10 +4,11 @@ import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 
 interface Props {
   isValid: boolean;
-  onNext: () => void;
+  type?: 'submit' | 'button';
+  onNext?: () => void;
 }
 
-function CancelAndNext({ isValid, onNext }: Props) {
+function CancelAndNext({ isValid, type = 'button', onNext }: Props) {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
@@ -28,6 +29,7 @@ function CancelAndNext({ isValid, onNext }: Props) {
         $theme='primary'
         $size='md'
         $width='full'
+        type={type}
       >
         다음
       </Button>
