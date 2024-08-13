@@ -1,4 +1,5 @@
 import Button from '@/components/Button/Button';
+import GaugeInfo from '@/features/GroupBuyingDetail/components/Gauge/GaugeInfo';
 import GroupBuyingTitle from '@/features/GroupBuyingDetail/components/GroupBuyingTitle';
 import WholesalerInfo from '@/features/GroupBuyingDetail/components/WholesalerInfo';
 import styled from 'styled-components';
@@ -9,6 +10,7 @@ function GroupBuyingDetailPage() {
       <WholesalerInfo />
       <div className='temp'>
         <GroupBuyingTitle />
+        <GaugeInfo />
         <Button $style='solid' $size='lg' $width='full' $theme='primary'>
           구매 신청하기
         </Button>
