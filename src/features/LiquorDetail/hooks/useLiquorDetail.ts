@@ -8,7 +8,7 @@ export const useLiquorDetail = () => {
 
   const { data } = useQuery<LiquorDetail>({
     queryKey: ['liquorDetail', id],
-    queryFn: () => getLiquorDetail(+id!),
+    queryFn: () => getLiquorDetail(Number(id!)),
   });
 
   return { liquorDetail: data };
