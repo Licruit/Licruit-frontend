@@ -16,15 +16,36 @@ interface Props {
   onClose: () => void;
 }
 
+interface Form extends SignOutReq {
+  etc: string;
+}
+
 function SignOut({ onClose }: Props) {
   const [isError, setIsError] = useState(false);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const theme = useTheme();
-  const methods = useForm<SignOutReq>({ mode: 'onChange' });
+  const methods = useForm<Form>({ mode: 'onChange' });
   const { mutate: signOut } = useSignOutMutaion();
 
   const { handleSubmit } = methods;
+
+  const handleOnSubmit = (data: Form) => {
+    const signoutReason = data.reason === '기타' ? data.etc : data.reason;
+    signOut(
+      {
+        companyNumber: data.companyNumber,
+        password: data.password,
+        reason: signoutReason,
+      },
+      {
+        onSuccess: () => {
+          setStep(4);
+        },
+        onError: () => setIsError(true),
+      }
+    );
+  };
 
   return (
     <>
@@ -43,14 +64,7 @@ function SignOut({ onClose }: Props) {
         }
       />
       <FormProvider {...methods}>
-        <Form
-          onSubmit={handleSubmit((data) => {
-            signOut(data, {
-              onSuccess: () => setStep(4),
-              onError: () => setIsError(true),
-            });
-          })}
-        >
+        <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
           <Funnel>
             <Step stepNum={1}>
               <Reason onNext={() => setStep(2)} />
