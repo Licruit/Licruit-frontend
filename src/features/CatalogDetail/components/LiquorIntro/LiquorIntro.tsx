@@ -1,7 +1,7 @@
 import Rating from '@/components/Rating/Rating';
 import { AiIcon } from 'public/assets/icons';
 import styled from 'styled-components';
-import StatBox from './StatBox';
+import StatBox from '@/components/StatBox/StatBox';
 import { useLiquorDetail } from '../../hooks/useLiquorDetail';
 
 function LiquorIntro() {
@@ -12,10 +12,10 @@ function LiquorIntro() {
       <img src={liquorDetail?.img} alt='liquorImage' className='liquor-img' />
       <div className='intro-wrapper'>
         <Statistic>
-          <StatBox title='리뷰'>
+          <StatBox title='리뷰' iconType='review'>
             <span className='review-count'>10</span>
           </StatBox>
-          <StatBox title='평점'>
+          <StatBox title='평점' iconType='review'>
             <Rating rating={4.5} hasLabel />
           </StatBox>
         </Statistic>

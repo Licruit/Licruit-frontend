@@ -38,6 +38,7 @@ export default WholesalerInfo;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: fit-content;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   background-color: ${({ theme }) => theme.color.common[100]};
   color: ${({ theme }) => theme.color.common[0]};
