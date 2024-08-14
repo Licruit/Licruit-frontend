@@ -23,7 +23,7 @@ function Filter() {
   };
 
   return (
-    <Container>
+    <>
       <Title>필터</Title>
       <ul>
         {Object.values(FILTER).map((item) => {
@@ -65,13 +65,11 @@ function Filter() {
           );
         })}
       </ul>
-    </Container>
+    </>
   );
 }
 
 export default Filter;
-
-const Container = styled.div``;
 
 const Title = styled.div`
   padding: 20px 0;
