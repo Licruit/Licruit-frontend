@@ -47,7 +47,7 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
                 $isSelected={selectedValue !== undefined}
                 onClick={() => setIsOpen((prev) => !prev)}
               >
-                <div className='selectInput'>
+                <div className='select-input'>
                   {selectedValue ?? placeholder}
                   <DownArrowIcon fill={theme.color.neutral[400]} />
                 </div>
@@ -77,7 +77,8 @@ export default Dropdown;
 const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
-  .selectInput {
+
+  .select-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -85,30 +86,35 @@ const DropdownContainer = styled.div`
 `;
 
 const DropdownHeader = styled.div<{ $isSelected: boolean }>`
+  cursor: pointer;
   padding: 18px;
-  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.color.neutral[800] : theme.color.neutral[400]};
-  cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  ${({ theme }) => theme.typo.body.medium[14]};
 `;
 
 const DropdownList = styled.ul`
   position: absolute;
+  z-index: 1000;
+
+  overflow-y: auto;
+
   width: 100%;
+  max-height: 200px;
+
+  color: ${({ theme }) => theme.color.neutral[300]};
+
+  background-color: ${({ theme }) => theme.color.common[100]};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   border-top: none;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: ${({ theme }) => theme.color.common[100]};
-  color: ${({ theme }) => theme.color.neutral[300]};
-  z-index: 1000;
 `;
 
 const DropdownItem = styled.li`
+  cursor: pointer;
   padding: 18px;
   ${({ theme }) => theme.typo.body.medium[12]}
-  cursor: pointer;
+
   &:hover {
     color: ${({ theme }) => theme.color.neutral[400]};
     background-color: ${({ theme }) => theme.color.neutral[100]};
