@@ -40,13 +40,13 @@ function SideBar() {
 export default SideBar;
 
 const Container = styled.aside`
-  height: fit-content;
+  position: sticky;
+  top: 75px;
+
   display: flex;
   flex-direction: column;
 
-  position: sticky;
-  position: -webkit-sticky;
-  top: 75px;
+  height: fit-content;
 
   .liquor-name {
     ${({ theme }) => theme.typo.heading.bold[36]}

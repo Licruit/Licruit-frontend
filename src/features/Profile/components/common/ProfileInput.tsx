@@ -64,25 +64,25 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
 );
 
 const InputWrapper = styled.div`
-  width: 100%;
   position: relative;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  width: 100%;
 `;
 
 const LabelWrapper = styled.div`
   display: flex;
-  align-items: center;
   gap: 6px;
+  align-items: center;
 `;
 
 const Input = styled.input<{ $isSearch: boolean }>`
   flex: 1;
   padding: ${({ $isSearch }) =>
     $isSearch ? '17px 18px 17px 42px ;' : '17px 18px;'};
-
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]};
@@ -92,12 +92,10 @@ const Input = styled.input<{ $isSearch: boolean }>`
 `;
 
 const IconWrapper = styled.div`
-  width: 100%;
-
   position: relative;
-
   display: flex;
   align-items: center;
+  width: 100%;
 
   svg {
     position: absolute;
@@ -109,7 +107,6 @@ const TypeNumber = styled.div`
   position: absolute;
   right: 18px;
   bottom: 17px;
-
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};
 `;

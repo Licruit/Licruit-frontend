@@ -8,18 +8,19 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100vw;
     height: 100vh;
-    background-color: #FFFFFF;
-    font-family: 'Pretendard';
+    font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    background-color: #FFF;
   }
 
   #root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     width: 100%;
     height: fit-content;
     min-height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: #141517
   }
 
@@ -36,24 +37,24 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    padding: 0;
     background: none;
     border: none;
-    padding: 0;
   }
 
   a {
-    text-decoration: none;
-    color: #141517
+    color: #141517;
+    text-decoration: none
   }
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+    appearance: none;
   }
   
   input[type='number'] {
-    -moz-appearance: textfield;
+    appearance: textfield;
   }
 `;
 

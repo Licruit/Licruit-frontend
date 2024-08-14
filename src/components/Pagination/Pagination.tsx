@@ -81,10 +81,10 @@ function Pagination({ totalItems, currentPage }: PaginationProps) {
 export default Pagination;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: center;
   gap: 12px;
+  justify-content: center;
+  width: 100%;
 
   .button-wrapper {
     display: flex;
@@ -93,10 +93,13 @@ const Container = styled.div`
 `;
 
 const MoveButton = styled.button<{ disabled: boolean }>`
+  cursor: pointer;
+
   display: ${({ disabled }) => (disabled ? 'none' : 'flex')};
   align-items: center;
+
   font-weight: 600;
-  cursor: pointer;
+
   background: none;
   border: none;
 
@@ -108,10 +111,9 @@ const MoveButton = styled.button<{ disabled: boolean }>`
 `;
 
 const PageButton = styled.button<{ $isCurrent: boolean }>`
-  padding: 8px 14px;
   cursor: pointer;
+  padding: 8px 14px;
   ${({ theme }) => theme.typo.body.semi_bold[14]}
-
   color: ${({ theme, $isCurrent }) =>
     $isCurrent ? theme.color.neutral[900] : theme.color.neutral[400]};
   border: 1px solid

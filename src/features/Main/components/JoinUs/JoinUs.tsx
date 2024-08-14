@@ -23,30 +23,29 @@ const Title = styled.div`
 `;
 
 const JoinUsContainer = styled.div`
-  width: 100%;
-  height: 272px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: url(${IMAGES.join}) lightgray 0px -257.75px / 100% 289.522% no-repeat;
+  width: 100%;
+  height: 272px;
+
+  background: url(${IMAGES.join}) lightgray 0 -257.75px / 100% 289.522% no-repeat;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-
   gap: 20px;
+  align-items: center;
 `;
 
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Description = styled.div`
@@ -56,15 +55,15 @@ const Description = styled.div`
 `;
 
 const JoinButton = styled.button`
-  width: 197px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 197px;
   padding: 14.5px 24px;
 
   color: ${({ theme }) => theme.color.neutral[50]};
+
   background: ${({ theme }) => theme.color.primary[500]};
 
   &:hover {

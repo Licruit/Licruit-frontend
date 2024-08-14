@@ -76,8 +76,8 @@ function EditProfile() {
 
 const ImageEditWrapper = styled.div`
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 
   img {
     width: 60px;

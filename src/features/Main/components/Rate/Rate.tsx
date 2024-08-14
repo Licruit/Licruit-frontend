@@ -58,23 +58,21 @@ function Rate() {
 }
 
 const RateContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 `;
 
 const CategoryHeader = styled.div`
-  width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   .wrapper {
     display: flex;
     flex-direction: column;
-
     gap: 20px;
   }
 `;

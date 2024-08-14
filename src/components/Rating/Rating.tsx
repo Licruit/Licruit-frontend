@@ -36,8 +36,8 @@ export default Rating;
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
   color: ${({ theme }) => theme.color.primary[500]};
   ${({ theme }) => theme.typo.body.semi_bold[16]}
 

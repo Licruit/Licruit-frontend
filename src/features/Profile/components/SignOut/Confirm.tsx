@@ -36,18 +36,18 @@ function Confirm({ onNext }: Props) {
 }
 
 const CheckWrapper = styled.div<{ $isChecked: boolean }>`
-  width: 100%;
-  padding-left: 10px;
+  cursor: pointer;
 
   display: flex;
-  align-items: center;
   gap: 15px;
+  align-items: center;
+
+  width: 100%;
+  padding-left: 10px;
 
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme, $isChecked }) =>
     $isChecked ? theme.color.primary[500] : theme.color.neutral[400]};
-
-  cursor: pointer;
 `;
 
 export default Confirm;

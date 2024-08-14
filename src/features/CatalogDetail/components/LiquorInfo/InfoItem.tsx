@@ -18,8 +18,9 @@ export default InfoItem;
 const ListItem = styled.li`
   ${({ theme }) => theme.typo.body.medium[14]};
   word-break: break-all;
+
   a {
-    text-decoration: underline;
     color: ${({ theme }) => theme.color.primary[500]};
+    text-decoration: underline;
   }
 `;
