@@ -18,18 +18,18 @@ function CatalogHeader() {
 export default CatalogHeader;
 
 const Container = styled.div`
-  width: 100%;
-  padding: 0 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  position: -webkit-sticky;
   position: sticky;
+  z-index: 99;
   top: 76px;
   left: 0;
-  z-index: 99;
 
-  background: rgba(255, 255, 255, 0.6);
+  width: 100%;
+  padding: 0 20px;
+
+  background: rgb(255 255 255 / 60%);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
+
   .classification {
     display: flex;
     justify-content: space-between;
@@ -39,6 +39,6 @@ const Container = styled.div`
 
 const Title = styled.div`
   ${({ theme }) => theme.typo.heading.extra_bold[80]};
-  color: ${({ theme }) => theme.color.neutral[900]};
   margin: 20px 0;
+  color: ${({ theme }) => theme.color.neutral[900]};
 `;

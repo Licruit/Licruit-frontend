@@ -44,7 +44,7 @@ function IndustryForm() {
             검색
           </Button>
           {isPostcodeVisible && (
-            <div className='postModal' ref={placeRef}>
+            <div className='post-modal' ref={placeRef}>
               <DaumPostcode onComplete={handleSelect} />
             </div>
           )}
@@ -71,29 +71,31 @@ function IndustryForm() {
 export default IndustryForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWithButton = styled.div`
   position: relative;
-  width: 100%;
   display: flex;
   gap: 10px;
-  .postModal {
+  width: 100%;
+
+  .post-modal {
     position: absolute;
-    left: 0;
-    right: 0;
     z-index: 10;
+    right: 0;
+    left: 0;
+
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   }
 `;
 
 const InputWrapper = styled.div`
-  width: 100%;
   position: relative;
+  width: 100%;
 `;
 
 const StyledFormInput = styled(FormInput)`

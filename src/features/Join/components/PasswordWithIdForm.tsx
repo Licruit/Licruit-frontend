@@ -63,21 +63,21 @@ function PasswordWithIdForm() {
 export default PasswordWithIdForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWithButton = styled.div`
-  width: 100%;
   display: flex;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWrapper = styled.div`
-  width: 100%;
   position: relative;
+  width: 100%;
 `;
 
 export const ErrorMessage = styled.div`

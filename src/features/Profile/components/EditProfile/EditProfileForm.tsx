@@ -126,6 +126,8 @@ function EditProfileForm({ userProfile, image }: Props) {
 }
 
 const SignOut = styled.p`
+  cursor: pointer;
+
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -135,8 +137,6 @@ const SignOut = styled.p`
   color: ${({ theme }) => theme.color.neutral[400]};
   text-decoration: underline;
 
-  cursor: pointer;
-
   &:hover {
     color: ${({ theme }) => theme.color.neutral[900]};
   }
@@ -144,7 +144,6 @@ const SignOut = styled.p`
 
 const IntroduceWrapper = styled.div`
   position: relative;
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -157,21 +156,19 @@ const Form = styled.form`
 `;
 
 const Introduce = styled.textarea`
+  resize: none;
+
   width: 100%;
   height: 200px;
-
   padding: 17px 0 0 18px;
 
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
-
-  resize: none;
 `;
 
 const TypeNumber = styled.div`
   position: absolute;
-  bottom: 17px;
   right: 18px;
-
+  bottom: 17px;
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};
 `;

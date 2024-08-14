@@ -26,7 +26,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+
   padding: 20px 0;
+
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[900]};
 
   .item-name {

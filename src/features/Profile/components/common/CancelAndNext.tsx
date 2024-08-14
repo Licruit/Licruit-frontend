@@ -36,9 +36,9 @@ function CancelAndNext({ isValid, onNext }: Props) {
 }
 
 const ButtonContainer = styled.div`
-  width: 100%;
   display: flex;
   gap: 20px;
+  width: 100%;
 `;
 
 export default CancelAndNext;

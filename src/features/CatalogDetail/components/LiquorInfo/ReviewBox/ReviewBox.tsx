@@ -25,10 +25,11 @@ const Container = styled.div`
   width: 100%;
 
   .review-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    width: 100%;
     margin: 20px 0;
   }
 `;

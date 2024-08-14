@@ -26,13 +26,12 @@ function ContentListItem() {
 }
 
 const ListItem = styled.li`
-  width: 100%;
-
-  padding: 20px;
-
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  width: 100%;
+  padding: 20px;
 `;
 
 const Date = styled.p`
@@ -46,11 +45,10 @@ const Devider = styled.div`
 `;
 
 const ItemInfoWrapper = styled.div`
-  width: 100%;
-
   display: flex;
-  align-items: end;
   gap: 20px;
+  align-items: end;
+  width: 100%;
 
   img {
     width: 200px;
@@ -66,16 +64,14 @@ const ItemInfo = styled.div`
 
 const StateBadge = styled.div`
   display: flex;
-  align-items: center;
   gap: 5px;
-
+  align-items: center;
   color: ${({ theme }) => theme.color.primary[500]};
   ${({ theme }) => theme.typo.heading.bold[14]}
 
   .icon {
     width: 8px;
     height: 8px;
-
     background: ${({ theme }) => theme.color.primary[500]};
   }
 `;

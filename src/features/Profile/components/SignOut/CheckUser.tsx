@@ -40,10 +40,10 @@ function CheckUser({ onNext }: Props) {
 }
 
 const InputWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 export default CheckUser;

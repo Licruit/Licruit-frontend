@@ -40,7 +40,7 @@ const FormSelect = forwardRef<HTMLDivElement, Props>(
           ref={ref}
           $isSelected={selectedOption}
         >
-          <div className='selectInput'>
+          <div className='select-input'>
             {selectedOption ?? placeholder}
             <DownArrowIcon fill={theme.color.neutral[400]} />
           </div>
@@ -67,7 +67,8 @@ export default FormSelect;
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  .selectInput {
+
+  .select-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -75,32 +76,37 @@ const Wrapper = styled.div`
 `;
 
 const Select = styled.div<{ $isSelected: string | null }>`
+  cursor: pointer;
   padding: 18px;
-  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme, $isSelected }) => {
     if ($isSelected) return theme.color.neutral[900];
     return theme.color.neutral[400];
   }};
-  cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  ${({ theme }) => theme.typo.body.medium[14]};
 `;
 
 const SelectList = styled.ul`
   position: absolute;
+  z-index: 1000;
+
+  overflow-y: auto;
+
   width: 100%;
+  max-height: 200px;
+
+  color: ${({ theme }) => theme.color.neutral[300]};
+
+  background-color: ${({ theme }) => theme.color.common[100]};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   border-top: none;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: ${({ theme }) => theme.color.common[100]};
-  color: ${({ theme }) => theme.color.neutral[300]};
-  z-index: 1000;
 `;
 
 const SelectItem = styled.li`
+  cursor: pointer;
   padding: 18px;
   ${({ theme }) => theme.typo.body.medium[12]}
-  cursor: pointer;
+
   &:hover {
     color: ${({ theme }) => theme.color.neutral[400]};
     background-color: ${({ theme }) => theme.color.neutral[100]};

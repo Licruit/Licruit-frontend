@@ -63,11 +63,11 @@ const List = styled.div`
   flex-wrap: wrap;
   margin-bottom: 30px;
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     justify-content: space-around;
   }
 
-  @media (min-width: 1024px) {
+  @media (width >= 1024px) {
     justify-content: space-between;
   }
 `;
