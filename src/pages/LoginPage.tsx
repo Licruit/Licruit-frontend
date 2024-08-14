@@ -1,5 +1,6 @@
 import FormTitle from '@/components/Form/FormTitle/FormTitle';
 import GenericForm from '@/components/Form/GenericForm';
+import MetaTag from '@/components/MetaTag';
 import PATH from '@/constants/path';
 import { LoginForm, LoginFormType, useLogin } from '@/features/Login';
 import { Link } from 'react-router-dom';
@@ -10,6 +11,12 @@ function LoginPage() {
 
   return (
     <>
+      <MetaTag
+        title='리쿠르트 로그인'
+        description='리쿠르트에 로그인하여 다양한 서비스를 이용해 보세요.'
+        keywords='리쿠르트, 로그인, 계정'
+        url='https://www.licruit.site/auth/login'
+      />
       <GenericForm<LoginFormType>
         onSubmit={handleLogin}
         formOptions={{ mode: 'onChange' }}
