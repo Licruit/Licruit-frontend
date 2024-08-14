@@ -7,7 +7,9 @@ import GroupBuyingPage from '@/pages/GroupBuyingPage';
 import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
+import BuyerDetailPage from '@/pages/BuyerDetailPage';
 import NavContentLayout from '@/layouts/NavContentLayout';
+import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
 import MainLayout from '@/layouts/MainLayout';
 import CatalogDetailPage from '@/pages/CatalogDetailPage';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
@@ -26,10 +28,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       {
-        path: 'group-buying',
-        element: <GroupBuyingPage />,
-      },
-      {
         path: 'group-buying/:id',
         element: <GroupBuyingDetailPage />,
       },
@@ -40,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: 'management',
         element: <ManagementPage />,
+      },
+      {
+        path: 'buyerManagement',
+        element: <BuyerDetailPage />,
       },
     ],
   },
@@ -76,6 +78,16 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <CatalogPage />,
+      },
+    ],
+  },
+  {
+    path: '/',
+    element: <GroupBuyingLayout />,
+    children: [
+      {
+        path: 'group-buying',
+        element: <GroupBuyingPage />,
       },
     ],
   },

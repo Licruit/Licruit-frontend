@@ -1,5 +1,5 @@
 import { Badge } from '@/styles/components/Badge';
-import { getDday } from '@/utils/d-day';
+import { getRemainedDay } from '@/utils/day';
 import styled from 'styled-components';
 
 interface Props {
@@ -12,7 +12,7 @@ function GroupBuyingTitle({ deadline, title, content }: Props) {
   return (
     <Container>
       <Badge $size='lg' $type='black'>
-        {getDday(deadline)}
+        {getRemainedDay(deadline)}
       </Badge>
       <h1>{title}</h1>
       <p>{content}</p>
@@ -29,8 +29,10 @@ const Container = styled.div`
 
   height: fit-content;
   padding-bottom: 20px;
-  border-bottom: 2px solid ${({ theme }) => theme.color.neutral[900]};
+
   white-space: pre-wrap;
+
+  border-bottom: 2px solid ${({ theme }) => theme.color.neutral[900]};
 
   h1 {
     ${({ theme }) => theme.typo.heading.bold[36]}

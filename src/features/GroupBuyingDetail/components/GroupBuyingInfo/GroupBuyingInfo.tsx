@@ -9,7 +9,12 @@ interface Props {
 
 function GroupBuyingInfo({ detailData }: Props) {
   const theme = useTheme();
-  const { openDate, deadline, deliveryStart, deliveryEnd } = detailData;
+  const {
+    openDate,
+    deadline,
+    deliveryStart: deliveryStartDate,
+    deliveryEnd: deliveryEndDate,
+  } = detailData;
 
   return (
     <Container>
@@ -21,7 +26,7 @@ function GroupBuyingInfo({ detailData }: Props) {
         </StatBox>
         <StatBox title='배송 예정일' iconType='calendar'>
           <span>
-            {deliveryStart}~{deliveryEnd}
+            {deliveryStartDate}~{deliveryEndDate}
           </span>
         </StatBox>
       </Statistic>
@@ -73,8 +78,8 @@ const Warning = styled.div`
   background-color: ${({ theme }) => theme.color.neutral[200]};
 
   p {
-    white-space: pre-line;
     ${({ theme }) => theme.typo.body.semi_bold[14]}
     color: ${({ theme }) => theme.color.neutral[600]};
+    white-space: pre-line;
   }
 `;

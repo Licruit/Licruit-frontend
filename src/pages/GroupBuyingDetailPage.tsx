@@ -1,10 +1,12 @@
 import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
 import { useGroupBuyingDetail } from '@/features/GroupBuyingDetail/hooks/useGroupBuyingDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function GroupBuyingDetailPage() {
-  const { liquorId } = useGroupBuyingDetail();
+  const { id: buyingId } = useParams();
+  const { liquorId } = useGroupBuyingDetail(Number(buyingId));
 
   return (
     <Container>
