@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
@@ -9,7 +8,11 @@ import { TOS } from '../data/tos';
 function ConsentForm() {
   const [terms, setTerms] = useState(TOS);
   const theme = useTheme();
-  const { setValue, register, trigger } = useFormContext();
+  const { setValue, register, trigger, watch } = useFormContext();
+
+  useEffect(() => {
+    setValue('isMarketing', false);
+  }, [setValue]);
 
   const allChecked = terms.every((term) => term.isChecked);
 
@@ -22,6 +25,7 @@ function ConsentForm() {
     updatedTerms.forEach((item) =>
       setValue(item.name, !allChecked, { shouldValidate: true })
     );
+    setValue('isMarketing', !watch('isMarketing'));
     trigger();
   };
 
@@ -37,7 +41,7 @@ function ConsentForm() {
     setTerms(updatedTerms);
 
     if (!required) {
-      setValue('isMarketing', true);
+      setValue('isMarketing', !terms.find((item) => !item.required)?.isChecked);
     }
   };
 

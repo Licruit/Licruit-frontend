@@ -1,20 +1,18 @@
 import FormInput from '@/components/Input/FormInput';
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { SignOutDescription } from '@/styles/components/Description';
 import CancelAndNext from '../common/CancelAndNext';
 
 interface Props {
-  onNext: () => void;
+  isError: boolean;
 }
 
-function CheckUser({ onNext }: Props) {
-  const methods = useForm({ mode: 'onChange' });
-
+function CheckUser({ isError }: Props) {
   const {
     register,
     formState: { isValid },
-  } = methods;
+  } = useFormContext();
 
   return (
     <>
@@ -34,10 +32,20 @@ function CheckUser({ onNext }: Props) {
           {...register('password', { required: true })}
         />
       </InputWrapper>
-      <CancelAndNext isValid={isValid} onNext={onNext} />
+      <Error className='error'>
+        {isError
+          ? '사업자 등록번호 또는 비밀번호가 잘못되었습니다. 다시 한 번 입력해주세요'
+          : ''}
+      </Error>
+      <CancelAndNext isValid={isValid} type='submit' />
     </>
   );
 }
+
+const Error = styled.p`
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.body.medium[12]}
+`;
 
 const InputWrapper = styled.div`
   display: flex;

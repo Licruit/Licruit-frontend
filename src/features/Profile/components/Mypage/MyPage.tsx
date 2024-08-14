@@ -1,5 +1,5 @@
 import { CloseIcon } from 'public/assets/icons';
-import { STORAGE_KEY } from '@/constants/storage';
+import useUserType from '@/hooks/usertype/useUserType';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
@@ -12,7 +12,8 @@ interface Props {
 
 function MyPage({ onClose }: Props) {
   const { data: userProfile, isError } = useProfileQuery();
-  const isCompany = sessionStorage.getItem(STORAGE_KEY.userType) === 'true';
+  const checkIsCompany = useUserType();
+  const isCompany = checkIsCompany();
 
   if (!userProfile) return null;
 

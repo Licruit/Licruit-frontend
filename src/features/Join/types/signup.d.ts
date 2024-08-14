@@ -8,7 +8,3 @@ export interface SignupFormType {
   isVerified: boolean;
   isMarketing: boolean;
 }
-export interface KSIC {
-  id: number;
-  name: string;
-}

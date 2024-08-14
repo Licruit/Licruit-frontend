@@ -9,15 +9,12 @@ import { useSignup } from '../hooks/useSignup';
 function PasswordWithIdForm() {
   const {
     register,
-    setValue,
     formState: { errors },
   } = useFormContext();
 
   const { handleSendId, isVerified, setIsVerified } = useSignup();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setValue('companyNumber', value);
+  const handleInputChange = () => {
     if (isVerified) {
       setIsVerified(false);
     }

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 import FormInput from '@/components/Input/FormInput';
-import FormSelect from '@/components/Input/FormSelect';
 import Button from '@/components/Button/Button';
+import Dropdown from '@/components/Input/Dropdown';
 import useMap from '../hooks/useMap';
 import { useSignup } from '../hooks/useSignup';
 
@@ -57,12 +57,10 @@ function IndustryForm() {
           required: true,
         })}
       />
-      <FormSelect
+      <Dropdown
+        name='sectorId'
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
-        {...register('sectorId', {
-          required: true,
-        })}
       />
     </Container>
   );

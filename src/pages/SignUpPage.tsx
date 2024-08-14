@@ -45,7 +45,6 @@ function SignUpPage() {
       sectorId,
       isMarketing,
     };
-
     signupMutation.mutate(filteredData);
   };
   return (
