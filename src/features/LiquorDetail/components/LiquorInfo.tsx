@@ -21,9 +21,9 @@ function LiquorInfo() {
 export default LiquorInfo;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 
   .box-wrapper {

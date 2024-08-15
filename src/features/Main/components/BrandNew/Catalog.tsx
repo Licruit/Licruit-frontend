@@ -26,12 +26,11 @@ const CatalogContainer = styled.div`
 `;
 
 const CatalogHeader = styled.div`
-  width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  width: 100%;
   padding: 20px 0;
 
   border-top: 2px solid ${({ theme }) => theme.color.neutral[900]};

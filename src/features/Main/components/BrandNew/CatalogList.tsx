@@ -56,6 +56,8 @@ const CatalogListContainer = styled.ul`
 `;
 
 const CatalogListItem = styled.li`
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -63,8 +65,6 @@ const CatalogListItem = styled.li`
   padding-bottom: 40px;
 
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
-
-  cursor: pointer;
 `;
 
 const Description = styled.p`

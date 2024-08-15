@@ -32,11 +32,10 @@ function Profile({ userProfile }: Props) {
 }
 
 const ProfileContainer = styled.div`
-  width: 100%;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const ProfileInfoWrapper = styled.div`
@@ -52,8 +51,8 @@ const ProfileInfoWrapper = styled.div`
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 2px;
+  justify-content: center;
 `;
 
 const Name = styled.div`

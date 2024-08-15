@@ -92,16 +92,16 @@ function AuthForm() {
 export default AuthForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWithButton = styled.div`
-  width: 100%;
   display: flex;
   gap: 10px;
+  width: 100%;
 
   .wrapper {
     position: relative;
@@ -109,10 +109,10 @@ const InputWithButton = styled.div`
 `;
 
 const InputWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
 
   .error {
     height: 12px;

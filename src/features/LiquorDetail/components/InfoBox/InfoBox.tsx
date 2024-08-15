@@ -62,17 +62,19 @@ function InfoBox() {
 export default InfoBox;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 36px;
+  width: 100%;
 `;
 
 const Info = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6px;
+
+  width: 100%;
+
   color: ${({ theme }) => theme.color.neutral[600]};
 
   h5 {

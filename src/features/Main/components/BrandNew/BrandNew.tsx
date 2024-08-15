@@ -14,17 +14,17 @@ function BrandNew() {
 }
 
 const BrandNewContainer = styled.div`
-  height: fit-content;
-  width: 100%;
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 
+  width: 100%;
+  height: fit-content;
+
   .img-wrapper {
+    overflow: hidden;
     display: flex;
     justify-content: center;
-    overflow: hidden;
 
     img {
       height: 100%;

@@ -32,24 +32,26 @@ function LiquorIntro() {
 export default LiquorIntro;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 
   .intro-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 20px;
     gap: 20px;
+
+    padding: 20px;
+
     border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
   }
 `;
 
 const Statistic = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
   ${({ theme }) => theme.typo.body.medium[12]}
   color: ${({ theme }) => theme.color.neutral[400]};
 
@@ -61,10 +63,13 @@ const Statistic = styled.div`
 
 const Summary = styled.div`
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
+
   padding: 20px;
+
   color: ${({ theme }) => theme.color.primary[500]};
+
   background-color: ${({ theme }) => theme.color.primary[100]};
 
   p {
