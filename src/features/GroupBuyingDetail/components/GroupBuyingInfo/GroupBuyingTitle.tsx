@@ -23,11 +23,13 @@ function GroupBuyingTitle() {
 export default GroupBuyingTitle;
 
 const Container = styled.div`
-  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  height: fit-content;
   padding-bottom: 20px;
+
   border-bottom: 2px solid ${({ theme }) => theme.color.neutral[900]};
 
   h1 {

@@ -28,13 +28,12 @@ const Container = styled.div`
 
 const InfoLine = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   color: ${({ theme }) => theme.color.neutral[900]};
 
   h2 {
     ${({ theme }) => theme.typo.heading.bold[30]}
-
     strong {
       color: ${({ theme }) => theme.color.primary[500]};
     }
@@ -44,8 +43,8 @@ const InfoLine = styled.div`
 const Goal = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 2px;
+  align-items: flex-end;
 
   small {
     ${({ theme }) => theme.typo.body.medium[14]}

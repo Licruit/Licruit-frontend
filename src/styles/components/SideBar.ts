@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.aside`
-  height: fit-content;
+  position: sticky;
+  top: 75px;
+
   display: flex;
   flex-direction: column;
 
-  position: sticky;
-  position: -webkit-sticky;
-  top: 75px;
+  height: fit-content;
 `;

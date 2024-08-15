@@ -18,18 +18,21 @@ function GaugeBar({ goalCount, currentCount }: Props) {
 export default GaugeBar;
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 8px;
   background-color: ${({ theme }) => theme.color.neutral[200]};
-  position: relative;
 `;
 
 const Bar = styled.div<{ $gauge: number }>`
-  width: ${({ $gauge }) => $gauge}%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 0.2s ease-in;
+
+  width: ${({ $gauge }) => $gauge}%;
+  height: 100%;
+
   background-color: ${({ theme }) => theme.color.primary[500]};
+
+  transition: all 0.2s ease-in;
 `;

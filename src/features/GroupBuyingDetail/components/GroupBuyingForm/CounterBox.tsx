@@ -21,8 +21,8 @@ export default CounterBox;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px;
   gap: 20px;
+  padding: 20px;
 
   .description {
     display: flex;

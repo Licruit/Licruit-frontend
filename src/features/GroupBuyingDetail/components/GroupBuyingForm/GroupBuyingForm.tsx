@@ -31,17 +31,19 @@ function GroupBuyingForm() {
 export default GroupBuyingForm;
 
 const Form = styled.form`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 `;
 
 const FormBox = styled.div`
-  width: 100%;
-  height: fit-content;
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  height: fit-content;
+
   background-color: ${({ theme }) => theme.color.neutral[100]};
 `;
 

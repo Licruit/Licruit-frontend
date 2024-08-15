@@ -36,7 +36,9 @@ export default Counter;
 const Container = styled.div`
   display: flex;
   align-items: center;
+
   padding: 10px 16px;
+
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   background-color: ${({ theme }) => theme.color.common[100]};
   ${({ theme }) => theme.typo.body.medium[14]}
@@ -44,15 +46,14 @@ const Container = styled.div`
 
 const CountInput = styled.input`
   width: 50px;
-  border: none;
   text-align: center;
-  outline: none;
+  border: none;
 `;
 
 const ActionButton = styled.button`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   &:hover {
     svg {

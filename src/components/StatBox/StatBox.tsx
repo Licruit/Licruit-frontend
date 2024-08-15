@@ -34,9 +34,9 @@ export default StatBox;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 4px;
+  align-items: center;
+  justify-content: center;
 
   .title {
     ${({ theme }) => theme.typo.body.medium[12]}

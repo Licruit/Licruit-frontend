@@ -33,16 +33,18 @@ export default GroupBuyingInfo;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
+  align-items: center;
+
   padding: 20px;
+
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;
 
 const Statistic = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100%;
 
   span {
     ${({ theme }) => theme.typo.body.semi_bold[16]}
@@ -51,11 +53,13 @@ const Statistic = styled.div`
 `;
 
 const Warning = styled.div`
-  width: 100%;
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
+
+  width: 100%;
   padding: 20px;
+
   background-color: ${({ theme }) => theme.color.neutral[200]};
 
   p {

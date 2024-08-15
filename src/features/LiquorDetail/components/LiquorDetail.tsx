@@ -26,7 +26,7 @@ const Container = styled.div`
   gap: 20px;
 
   .liquor-img {
-    height: 500px;
     align-self: center;
+    height: 500px;
   }
 `;

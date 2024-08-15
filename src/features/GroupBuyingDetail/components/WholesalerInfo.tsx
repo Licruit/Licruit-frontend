@@ -39,17 +39,21 @@ export default WholesalerInfo;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
   height: fit-content;
-  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  background-color: ${({ theme }) => theme.color.common[100]};
+
   color: ${({ theme }) => theme.color.common[0]};
+
+  background-color: ${({ theme }) => theme.color.common[100]};
+  border: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;
 
 const ProfileWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  width: 100%;
   padding: 20px;
 
   h5 {
@@ -63,8 +67,8 @@ const Profile = styled.div`
   align-items: flex-end;
 
   .intro-wrapper {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 2px;
 
@@ -87,7 +91,7 @@ const ExtraInfo = styled.div`
   color: ${({ theme }) => theme.color.neutral[400]};
 
   a {
-    text-decoration: underline;
     color: ${({ theme }) => theme.color.primary[500]};
+    text-decoration: underline;
   }
 `;
