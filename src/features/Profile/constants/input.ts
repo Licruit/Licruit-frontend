@@ -43,11 +43,15 @@ export const INPUT = {
     placeholder: '100,000',
     hasInfo: true,
   },
-  location: { label: '지역 제한 선택' },
+  location: { label: '지역 제한 선택', isRequired: true },
   groupBuy: {
     label: '공동구매 제목',
     placeholder: '제목을 입력해 주세요',
     isRequired: true,
     hasValidation: true,
+  },
+  content: {
+    label: '내용',
+    isRequired: true,
   },
 };
