@@ -2,70 +2,113 @@ import { CloseIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { FormProvider, useForm } from 'react-hook-form';
 import MyPageHeader from '../common/MyPageHeader';
 import ProfileInput from '../common/ProfileInput';
-import Label from '../common/Label';
-import CategoryButtons from '../EditProfile/CategoryButtons';
 import { INPUT } from '../../constants/input';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePickerComponent from './DatePickerComponent';
+import TimePickerComponent from './TimePickerComponent';
+import Label from '../common/Label';
+import RegionsButtons from './RegionsButtons';
 
-// TODO 추후 서버 연결시 서버 데이터로 대체 예정
-const LOCATION = [
-  '경기도',
-  '강원도',
-  '충청북도',
-  '충청남도',
-  '전라북도',
-  '전라남도',
-  '경상남도',
-  '경상북도',
-  '제주도',
-];
+interface Form {
+  liquorId: number;
+  dates: Date[];
+  openTime: string;
+  deliveryDates: Date[];
+  totalMin: number;
+  totalMax: number;
+  individualMin: number;
+  price: number;
+  deliveryFee: number;
+  freeDeliveryFee?: number;
+  title: string;
+  content: string;
+  regions: string[];
+}
 
 function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
+  const methods = useForm<Form>({ mode: 'onChange' });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = methods;
+
   return (
-    <>
-      <MyPageHeader
-        title='공동구매 올리기'
-        icon={
-          <CloseIcon
-            fill='#000'
-            style={{ cursor: 'pointer' }}
-            onClick={() => setContent('my-page')}
+    <FormProvider {...methods}>
+      <Form onSubmit={handleSubmit((data) => console.log(data))}>
+        <MyPageHeader
+          title='공동구매 올리기'
+          icon={
+            <CloseIcon
+              fill='#000'
+              style={{ cursor: 'pointer' }}
+              onClick={() => setContent('my-page')}
+            />
+          }
+        />
+        <ProfileInput
+          {...INPUT.product}
+          {...register('liquorId', { required: true })}
+        />
+        <InputWrapper>
+          <DatePickerComponent {...INPUT.period} name='dates' />
+          <TimePickerComponent {...INPUT.startTime} name='time' />
+        </InputWrapper>
+        <InputWrapper>
+          <DatePickerComponent {...INPUT.delivery} name='deliveryDates' />
+          <ProfileInput
+            {...INPUT.price}
+            {...register('price', { required: true })}
           />
-        }
-      />
-      <ProfileInput {...INPUT.product} name='product' />
-      <InputWrapper>
-        <ProfileInput {...INPUT.period} name='period' />
-        <ProfileInput {...INPUT.startTime} name='time' />
-      </InputWrapper>
-      <InputWrapper>
-        <ProfileInput {...INPUT.delivery} name='delivery' />
-        <ProfileInput {...INPUT.price} name='price' />
-      </InputWrapper>
-      <ProfileInput {...INPUT.min} name='min' />
-      <ProfileInput {...INPUT.max} name='max' />
-      <InputWrapper>
-        <ProfileInput {...INPUT.deliveryFee} name='deliveryFee' />
-        <ProfileInput {...INPUT.freeDelivery} name='freeDelivery' />
-      </InputWrapper>
-      <LabelWrapper>
-        <Label {...INPUT.location} />
-        <span className='is-required'>*</span>
-        <p className='desc'>(배송 가능 지역만 선택해 주세요)</p>
-      </LabelWrapper>
-      <CategoryButtons
-        categories={LOCATION}
-        value=''
-        onSetCategory={() => {}}
-      />
-      <ProfileInput {...INPUT.groupBuy} name='groupBuy' />
-      <Button $style='solid' $theme='primary' $width='full' $size='md'>
-        적용하기
-      </Button>
-    </>
+        </InputWrapper>
+        <ProfileInput
+          {...INPUT.min}
+          {...register('totalMin', { required: true })}
+        />
+        <ProfileInput
+          {...INPUT.max}
+          {...register('totalMax', { required: true })}
+        />
+        <InputWrapper>
+          <ProfileInput
+            {...INPUT.deliveryFee}
+            {...register('deliveryFee', { required: true })}
+          />
+          <ProfileInput
+            {...INPUT.freeDelivery}
+            {...register('freeDeliveryFee')}
+          />
+        </InputWrapper>
+        <RegionsButtons {...register('regions', { required: true })} />
+        <ProfileInput
+          {...INPUT.groupBuy}
+          {...register('title', { required: true })}
+        />
+        <IntroduceWrapper>
+          <Label {...INPUT.content} extraDesc />
+          <Introduce
+            placeholder='내용을 입력해주세요'
+            maxLength={400}
+            {...register('content', { required: true })}
+          />
+        </IntroduceWrapper>
+        <Button
+          $style='solid'
+          $theme='primary'
+          $width='full'
+          $size='md'
+          disabled={!isValid}
+        >
+          적용하기
+        </Button>
+      </Form>
+    </FormProvider>
   );
 }
 
@@ -74,18 +117,26 @@ const InputWrapper = styled.div`
   gap: 10px;
 `;
 
-const LabelWrapper = styled.div`
+const Form = styled.form`
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: 20px;
+`;
 
-  .is-required {
-    color: ${({ theme }) => theme.color.primary[500]};
-  }
+const IntroduceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
-  .desc {
-    color: ${({ theme }) => theme.color.neutral[600]};
-    ${({ theme }) => theme.typo.body.medium[12]}
-  }
+const Introduce = styled.textarea`
+  resize: none;
+
+  width: 100%;
+  height: 200px;
+  padding: 17px 0 0 18px;
+
+  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 `;
 
 export default GroupBuyOpenForm;
