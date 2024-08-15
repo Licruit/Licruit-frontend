@@ -3,6 +3,7 @@ import Pagination from '@/components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
+import Empty from '../Empty';
 
 function ProductGrid() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function ProductGrid() {
             })}
           </>
         ) : (
-          '불러올 술이 없습니다.'
+          <Empty />
         )}
       </List>
       {catalogData && catalogData.pagination ? (
@@ -41,7 +42,6 @@ export default ProductGrid;
 
 const Container = styled.div`
   padding: 20px;
-  height: calc(100vh - 262px);
   overflow: scroll;
 `;
 
@@ -49,7 +49,6 @@ const List = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
-
   @media (min-width: 768px) {
     justify-content: space-around;
   }
