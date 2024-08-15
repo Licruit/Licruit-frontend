@@ -21,9 +21,12 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
   padding: 20px;
   width: 100%;
+
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
   color: ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[12]}
 
