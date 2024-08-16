@@ -38,9 +38,9 @@ const Container = styled.div`
   border-bottom: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 
   .tap-wrapper {
+    position: relative;
     display: flex;
     padding-bottom: 20px;
-    position: relative;
   }
 `;
 
@@ -54,12 +54,14 @@ const Tap = styled.button<{ $isActive: boolean }>`
 `;
 
 const Bar = styled.div<{ $isChanged: boolean }>`
-  width: 50%;
-  height: 4px;
-
-  transition: all 0.2s ease-in-out;
   position: absolute;
   bottom: -1px;
   left: ${({ $isChanged }) => ($isChanged ? '50%' : '0')};
+
+  width: 50%;
+  height: 4px;
+
   background-color: ${({ theme }) => theme.color.primary[500]};
+
+  transition: all 0.2s ease-in-out;
 `;

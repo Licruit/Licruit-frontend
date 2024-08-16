@@ -25,8 +25,8 @@ function AuthWithIdForm() {
 export default AuthWithIdForm;
 
 const InputWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;

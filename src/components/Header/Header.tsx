@@ -24,27 +24,25 @@ function Header() {
 export default Header;
 
 const HeaderBar = styled.header`
-  width: 100%;
-  padding: 20px;
+  position: sticky;
+  z-index: 99;
+  top: 0;
+  left: 0;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 99;
+  width: 100%;
+  padding: 20px;
 
-  background: rgba(255, 255, 255, 0.6);
+  background: rgb(255 255 255 / 60%);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 
   .wrapper {
     display: flex;
-    align-items: center;
     gap: 36px;
+    align-items: center;
   }
 `;
 

@@ -20,9 +20,10 @@ function CatelogDetailPage() {
 export default CatelogDetailPage;
 
 const Container = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
+  width: 100%;
   padding-bottom: 80px;
 `;

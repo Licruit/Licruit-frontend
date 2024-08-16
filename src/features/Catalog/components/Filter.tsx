@@ -83,12 +83,15 @@ const List = styled.div`
 `;
 
 const SubTitle = styled.li`
+  cursor: pointer;
+
   display: flex;
   justify-content: space-between;
+
   padding: 21px 20px 21px 0;
+
   ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[900]};
-  cursor: pointer;
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`
@@ -96,8 +99,8 @@ const Content = styled.div<{ $isOpen: boolean }>`
 `;
 
 const Item = styled.li`
+  cursor: pointer;
   padding: 21px 0;
   ${({ theme }) => theme.typo.body.semi_bold[12]};
   border-top: 1px solid ${({ theme }) => theme.color.neutral[400]};
-  cursor: pointer;
 `;

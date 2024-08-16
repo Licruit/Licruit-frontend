@@ -59,42 +59,46 @@ const Title = styled.div`
 
 const ImgContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 370px;
 `;
 
 const LiquorInfoContainer = styled.li`
-  width: 100%;
-  max-width: 370px;
-  padding: 20px;
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  width: 100%;
+  max-width: 370px;
+  padding: 20px;
+
   .img {
     overflow: hidden;
   }
+
   img {
     height: 370px;
   }
-
-  cursor: pointer;
 `;
 
 const LiquorInfo = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 6px;
+  align-items: flex-start;
 `;
 
 const LiquorDescription = styled.div`
   ${({ theme }) => theme.typo.body.medium[14]};
-  color: ${({ theme }) => theme.color.neutral[400]};
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  color: ${({ theme }) => theme.color.neutral[400]};
   text-overflow: ellipsis;
 `;
 
@@ -113,11 +117,14 @@ const Spinner = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  width: 40px;
+  height: 40px;
+
   border: 4px solid ${({ theme }) => theme.color.neutral[200]};
   border-top: 4px solid ${({ theme }) => theme.color.primary[500]};
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+
   animation: ${spin} 1s linear infinite;
 `;
 
