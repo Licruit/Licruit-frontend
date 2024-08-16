@@ -45,10 +45,6 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.color.neutral[400]};
   }
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 const Visibility = styled.button`

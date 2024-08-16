@@ -2,63 +2,76 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { DownArrowIcon } from 'public/assets/icons';
-import { PAGE_COUNT } from '@/constants/pagination';
 
 interface PaginationProps {
   totalItems: number;
   currentPage: number;
+  pageGroupCount?: number;
 }
 
 // 페이지 그룹 생성 함수
-const pageArray = (page: number, totalItems: number): number[] => {
+const pageArray = (
+  page: number,
+  totalItems: number,
+  pageGroupCount: number
+): number[] => {
   const totalPageArr = Array.from({ length: totalItems }, (_, i) => i + 1);
   const pageGroupArr = [];
-  for (let i = 0; i < Math.ceil(totalItems / PAGE_COUNT); i++) {
-    pageGroupArr.push(totalPageArr.splice(0, PAGE_COUNT));
+  for (let i = 0; i < Math.ceil(totalItems / pageGroupCount); i++) {
+    pageGroupArr.push(totalPageArr.splice(0, pageGroupCount));
   }
-  return pageGroupArr[Math.floor((page - 1) / PAGE_COUNT)] || [];
+  return pageGroupArr[Math.floor((page - 1) / pageGroupCount)] || [];
 };
 
 // 이동할 페이지 번호 계산 함수
-const getPageNum = (page: number, isNext: boolean): number => {
-  const current = Math.ceil(page / PAGE_COUNT);
-  return isNext ? current * PAGE_COUNT + 1 : (current - 1) * PAGE_COUNT;
+const getPageNum = (
+  page: number,
+  isNext: boolean,
+  pageGroupCount: number
+): number => {
+  const current = Math.ceil(page / pageGroupCount);
+  return isNext ? current * pageGroupCount + 1 : (current - 1) * pageGroupCount;
 };
 
-function Pagination({ totalItems, currentPage }: PaginationProps) {
+function Pagination({
+  totalItems,
+  currentPage,
+  pageGroupCount = 5,
+}: PaginationProps) {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-
   const [page, setPage] = useState(currentPage);
 
-  const isStart = page - PAGE_COUNT <= 0; // 첫번째 페이지 그룹
+  const isStart = page - pageGroupCount <= 0;
   const isEnd =
-    Math.floor((page - 1) / PAGE_COUNT) ===
-    Math.floor((totalItems - 1) / PAGE_COUNT); // 마지막 페이지 그룹
+    Math.floor((page - 1) / pageGroupCount) ===
+    Math.floor((totalItems - 1) / pageGroupCount);
 
   useEffect(() => {
     setPage(currentPage);
   }, [currentPage]);
 
-  // 페이지 변경 함수
   const handlePageChange = (newPage: number) => {
     searchParams.set('page', String(newPage));
-    navigate(`${pathname}?${searchParams.toString()}`, { replace: true });
+    navigate(`${location.pathname}?${searchParams.toString()}`, {
+      replace: true,
+    });
     setPage(newPage);
   };
 
   return (
     <Container>
       <MoveButton
-        onClick={() => handlePageChange(getPageNum(page, false))}
+        onClick={() =>
+          handlePageChange(getPageNum(page, false, pageGroupCount))
+        }
         disabled={isStart}
       >
         <DownArrowIcon fill='#ADAEB1' style={{ rotate: '90deg' }} />
       </MoveButton>
       <div className='button-wrapper'>
-        {pageArray(page, totalItems).map((num) => (
+        {pageArray(page, totalItems, pageGroupCount).map((num) => (
           <PageButton
             key={num}
             $isCurrent={page === num}
@@ -70,7 +83,7 @@ function Pagination({ totalItems, currentPage }: PaginationProps) {
       </div>
       <MoveButton
         disabled={isEnd}
-        onClick={() => handlePageChange(getPageNum(page, true))}
+        onClick={() => handlePageChange(getPageNum(page, true, pageGroupCount))}
       >
         <DownArrowIcon fill='#ADAEB1' style={{ rotate: '-90deg' }} />
       </MoveButton>

@@ -12,7 +12,7 @@ export interface LiquorDetail {
   address: string;
   homepage: string;
   contact: string;
-  category_name: string;
+  categoryName: string;
   likes: number;
   liked: 0 | 1;
 }
