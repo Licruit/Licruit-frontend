@@ -1,8 +1,9 @@
 import styled, { useTheme } from 'styled-components';
+import { SidebarContainer } from '@/styles/components/SideBar';
 import { CheckIcon, WavingIcon } from 'public/assets/icons';
 import Button from '@/components/Button/Button';
+import { useLiquorDetail } from '@/features/LiquorDetail';
 import GroupBuyingList from './GroupBuyingList/GroupBuyingList';
-import { useLiquorDetail } from '../hooks/useLiquorDetail';
 import { useRegister } from '../hooks/useRegister';
 
 function SideBar() {
@@ -39,15 +40,7 @@ function SideBar() {
 
 export default SideBar;
 
-const Container = styled.aside`
-  position: sticky;
-  top: 75px;
-
-  display: flex;
-  flex-direction: column;
-
-  height: fit-content;
-
+const Container = styled(SidebarContainer)`
   .liquor-name {
     ${({ theme }) => theme.typo.heading.bold[36]}
   }
