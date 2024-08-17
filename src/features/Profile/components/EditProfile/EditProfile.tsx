@@ -1,6 +1,7 @@
 import Button from '@/components/Button/Button';
 import { BackIcon, EditIcon } from 'public/assets/icons';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { useRef, useState } from 'react';
 import MyPageHeader from '../common/MyPageHeader';
@@ -17,7 +18,7 @@ function EditProfile() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   if (!userProfile) return null;
-  if (isError) window.alert('잠시후 다시 시도해 주세요.');
+  if (isError) toast.error('잠시후 다시 시도해 주세요.'); // TODO: error boundary 활용
 
   const handleUploadImageButtonClick = () => {
     if (!inputRef.current) return;
