@@ -49,6 +49,6 @@ const List = styled.div`
   flex-wrap: wrap;
   margin-bottom: 30px;
   @media (min-width: 768px) {
-    justify-content: space-around;
+    justify-content: space-between;
   }
 `;

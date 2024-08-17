@@ -9,8 +9,8 @@ function MainLayout() {
       <Header />
       <Container>
         <Outlet />
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }
