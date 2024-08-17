@@ -1,11 +1,31 @@
+import { useEffect, useState } from 'react';
 import Search from '@/components/Header/Search';
-
 import styled from 'styled-components';
 import Category from './Category';
 
 function CatalogHeader() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
-    <Container>
+    <Container isVisible={isVisible}>
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
         <Category />
@@ -17,10 +37,21 @@ function CatalogHeader() {
 
 export default CatalogHeader;
 
-const Container = styled.div`
+const Container = styled.div<{ isVisible: boolean }>`
   width: 100%;
   padding: 0 20px;
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
+  position: -webkit-sticky;
+  position: sticky;
+  top: 75px;
+  left: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ isVisible }) =>
+    isVisible ? 'translateY(0)' : 'translateY(-150%)'};
 
   .classification {
     display: flex;

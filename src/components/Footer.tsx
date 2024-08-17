@@ -6,7 +6,7 @@ function Footer() {
     <Container>
       <img src={IMAGES.footer} alt='footer' />
       <ul>
-        <li>© LICRUIT</li>
+        <li>&copy; LICRUIT</li>
         <li>이용약관</li>
         <li>개인정보처리방침</li>
       </ul>
@@ -18,6 +18,9 @@ export default Footer;
 
 const Container = styled.div`
   padding: 20px 0;
+  img {
+    width: 100%;
+  }
   ul {
     ${({ theme }) => theme.typo.body.medium[14]}
     color: ${({ theme }) => theme.color.primary[500]};
