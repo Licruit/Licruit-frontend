@@ -13,7 +13,7 @@ export const verifyCode = async (contact: string, code: number) => {
   try {
     await httpClient.post('/users/auth/otp/validation', {
       contact,
-      otp: +code,
+      otp: Number(code),
     });
     return true;
   } catch (err) {
