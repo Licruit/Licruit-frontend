@@ -1,30 +1,41 @@
 import { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { DownArrowIcon } from 'public/assets/icons';
-import { FILTER } from '../constants/filter';
+import { CheckIcon, DownArrowIcon } from 'public/assets/icons';
+import { FILTER } from '../../constants/filter';
+import { useFilter } from '../../hooks/useFilter';
+import FilterTags from './FilterTags';
 
 function Filter() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const {
+    selectAlcohol,
+    selectedAlcohol,
+    selectRating,
+    selectedRating,
+    clearFilter,
+  } = useFilter();
+
   const [selected, setSelected] = useState<{ [key: string]: boolean }>({
     alcohol: false,
     rating: false,
   });
   const theme = useTheme();
-  const navigate = useNavigate();
   const handleToggle = (option: string) => {
     setSelected((prev) => ({ ...prev, [option]: !prev[option] }));
   };
 
-  const extractNumbers = (str: string) => {
-    const match = str.match(/\d+/g);
-    return match ? match.map(Number) : [];
-  };
-
   return (
     <>
-      <Title>필터</Title>
+      <FilterBox>
+        <Title>필터</Title>
+        <FilterTags
+          selectAlcohol={selectAlcohol}
+          selectedAlcohol={selectedAlcohol}
+          selectRating={selectRating}
+          selectedRating={selectedRating}
+          clearFilter={clearFilter}
+        />
+      </FilterBox>
+
       <ul>
         {Object.values(FILTER).map((item) => {
           return (
@@ -34,28 +45,42 @@ function Filter() {
                 onClick={() => handleToggle(item.title)}
               >
                 {item.title}
-                <DownArrowIcon fill={theme.color.neutral[400]} />
+                {selected[item.title] ? (
+                  <DownArrowIcon
+                    fill={theme.color.neutral[400]}
+                    style={{ transform: 'rotate(180deg)' }}
+                  />
+                ) : (
+                  <DownArrowIcon fill={theme.color.neutral[400]} />
+                )}
               </SubTitle>
               <Content $isOpen={selected[item.title]}>
                 <ul>
                   {item.values.map((value) => {
-                    let min: number;
-                    let max: number;
-                    if (item.title === '도수') {
-                      [min, max] = extractNumbers(value);
-                    }
                     return (
                       <Item
                         key={value}
+                        $isSelected={
+                          value === selectedAlcohol || value === selectedRating
+                        }
                         onClick={() => {
                           if (item.title === '도수') {
-                            searchParams.set('minAlcohol', min.toString());
-                            searchParams.set('maxAlcohol', max.toString());
+                            selectAlcohol(value);
                           }
-                          navigate(`/catalog?${searchParams.toString()}`);
+                          if (item.title === '평점') {
+                            selectRating(value);
+                          }
                         }}
                       >
                         {value}
+                        {(value === selectedAlcohol ||
+                          value === selectedRating) && (
+                          <CheckIcon
+                            fill={theme.color.primary[500]}
+                            width={18}
+                            style={{ marginRight: '20px' }}
+                          />
+                        )}
                       </Item>
                     );
                   })}
@@ -71,11 +96,14 @@ function Filter() {
 
 export default Filter;
 
-const Title = styled.div`
+const FilterBox = styled.div`
   padding: 20px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
+`;
+
+const Title = styled.div`
   ${({ theme }) => theme.typo.heading.bold[20]};
   color: ${({ theme }) => theme.color.neutral[900]};
-  border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;
 
 const List = styled.div`
@@ -95,9 +123,13 @@ const Content = styled.div<{ $isOpen: boolean }>`
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
 `;
 
-const Item = styled.li`
+const Item = styled.li<{ $isSelected: boolean }>`
+  display: flex;
+  justify-content: space-between;
   padding: 21px 0;
   ${({ theme }) => theme.typo.body.semi_bold[12]};
   border-top: 1px solid ${({ theme }) => theme.color.neutral[400]};
   cursor: pointer;
+  color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.color.primary[500] : theme.color.neutral[900]};
 `;

@@ -1,6 +1,6 @@
 import MetaTag from '@/components/MetaTag';
 import { ProductGrid } from '@/features/Catalog';
-import Filter from '@/features/Catalog/components/Filter';
+import Filter from '@/features/Catalog/components/Filter/Filter';
 import styled from 'styled-components';
 
 function CatalogPage() {
