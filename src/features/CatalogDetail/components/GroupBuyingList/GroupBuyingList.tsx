@@ -20,9 +20,10 @@ function GroupBuyingList() {
 export default GroupBuyingList;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
+
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 48px;
 
@@ -35,13 +36,17 @@ const Container = styled.div`
 
 const StatusBar = styled.div`
   display: flex;
-  align-items: center;
   gap: 6px;
+  align-items: center;
+
   padding: 10px 0;
-  border: 1px solid ${({ theme }) => theme.color.neutral[900]};
-  border-left: 0;
-  border-right: 0;
+
   color: ${({ theme }) => theme.color.primary[500]};
+
+  border: 1px solid ${({ theme }) => theme.color.neutral[900]};
+  border-right: 0;
+  border-left: 0;
+
   ${({ theme }) => theme.typo.heading.bold[16]}
 
   .dot {

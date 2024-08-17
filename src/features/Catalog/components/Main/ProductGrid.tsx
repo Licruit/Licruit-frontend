@@ -32,6 +32,7 @@ function ProductGrid() {
         <Pagination
           totalItems={catalogData.pagination.totalPage}
           currentPage={catalogData.pagination.currentPage}
+          pageGroupCount={10}
         />
       ) : null}
     </Container>

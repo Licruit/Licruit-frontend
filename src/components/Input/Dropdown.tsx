@@ -18,16 +18,15 @@ interface Props {
 const Dropdown = forwardRef<HTMLDivElement, Props>(
   ({ options, placeholder, name }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const theme = useTheme();
-    const { setValue } = useFormContext();
+    const { setValue, watch } = useFormContext();
+
+    const selectedValue = watch(name);
 
     const handleSelect = (option: DropdownItem | string) => {
       if (typeof option === 'string') {
-        setSelectedOption(option);
         setValue(name, option, { shouldValidate: true });
       } else {
-        setSelectedOption(option.name);
         setValue(name, option.id, { shouldValidate: true });
       }
       setIsOpen(false);
@@ -44,31 +43,25 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
           rules={{ required: placeholder }}
           render={() => (
             <>
-              <DropdownHeader onClick={() => setIsOpen((prev) => !prev)}>
-                <div className='selectInput'>
-                  {selectedOption ?? placeholder}
+              <DropdownHeader
+                $isSelected={selectedValue !== undefined}
+                onClick={() => setIsOpen((prev) => !prev)}
+              >
+                <div className='select-input'>
+                  {selectedValue ?? placeholder}
                   <DownArrowIcon fill={theme.color.neutral[400]} />
                 </div>
               </DropdownHeader>
               {isOpen && (
                 <DropdownList>
-                  {options?.map((option) =>
-                    typeof option === 'string' ? (
-                      <DropdownItem
-                        key={option}
-                        onClick={() => handleSelect(option)}
-                      >
-                        {option}
-                      </DropdownItem>
-                    ) : (
-                      <DropdownItem
-                        key={option.id}
-                        onClick={() => handleSelect(option)}
-                      >
-                        {option.name}
-                      </DropdownItem>
-                    )
-                  )}
+                  {options?.map((option) => (
+                    <DropdownItem
+                      key={typeof option === 'object' ? option.id : option}
+                      onClick={() => handleSelect(option)}
+                    >
+                      {typeof option === 'object' ? option.name : option}
+                    </DropdownItem>
+                  ))}
                 </DropdownList>
               )}
             </>
@@ -84,37 +77,44 @@ export default Dropdown;
 const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
-  .selectInput {
+
+  .select-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 `;
 
-const DropdownHeader = styled.div`
+const DropdownHeader = styled.div<{ $isSelected: boolean }>`
+  cursor: pointer;
   padding: 18px;
+  color: ${({ theme, $isSelected }) =>
+    $isSelected ? theme.color.neutral[800] : theme.color.neutral[400]};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]};
-  color: ${({ theme }) => theme.color.neutral[400]};
-  cursor: pointer;
 `;
 
 const DropdownList = styled.ul`
   position: absolute;
+  z-index: 1000;
+
+  overflow-y: auto;
+
   width: 100%;
+  max-height: 200px;
+
+  color: ${({ theme }) => theme.color.neutral[300]};
+
+  background-color: ${({ theme }) => theme.color.common[100]};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   border-top: none;
-  max-height: 200px;
-  overflow-y: auto;
-  background-color: ${({ theme }) => theme.color.common[100]};
-  color: ${({ theme }) => theme.color.neutral[300]};
-  z-index: 1000;
 `;
 
 const DropdownItem = styled.li`
+  cursor: pointer;
   padding: 18px;
   ${({ theme }) => theme.typo.body.medium[12]}
-  cursor: pointer;
+
   &:hover {
     color: ${({ theme }) => theme.color.neutral[400]};
     background-color: ${({ theme }) => theme.color.neutral[100]};

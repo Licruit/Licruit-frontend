@@ -20,10 +20,10 @@ function MultiStep({ current, maxStep }: MultiStepProps) {
 export default MultiStep;
 
 const Container = styled.div`
-  width: 100%;
-  height: 8px;
   display: flex;
   gap: 6px;
+  width: 100%;
+  height: 8px;
 `;
 
 const Bar = styled.div<{ $isActive: boolean }>`

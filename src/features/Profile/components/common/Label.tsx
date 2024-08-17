@@ -16,7 +16,6 @@ function Label({ label, isRequired }: Props) {
 const StyledLabel = styled.div`
   display: flex;
   gap: 5px;
-
   ${({ theme }) => theme.typo.body.semi_bold[14]};
   color: ${({ theme }) => theme.color.neutral[900]};
 

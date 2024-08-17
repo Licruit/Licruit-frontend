@@ -65,17 +65,18 @@ function GenericForm<FormType extends FieldValues>({
 export default GenericForm;
 
 const Form = styled.form`
-  width: 100%;
-  height: 520px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
   gap: 48px;
+  justify-content: start;
+
+  width: 100%;
+  height: 520px;
 
   .button-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    width: 100%;
   }
 `;

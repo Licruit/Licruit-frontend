@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useSessionStore from '@/store/sessionStore';
+import { LiquorDetailType } from '@/features/LiquorDetail';
 import { useParams } from 'react-router-dom';
 import { register } from '../api/register.api';
-import { LiquorDetail } from '../model/liquor.model';
 
 interface Props {
   liquorId: number;
@@ -27,7 +27,7 @@ export const useRegister = () => {
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['liquorDetail', id] });
 
-      const prevData = queryClient.getQueryData<LiquorDetail>([
+      const prevData = queryClient.getQueryData<LiquorDetailType>([
         'liquorDetail',
         id,
       ]);

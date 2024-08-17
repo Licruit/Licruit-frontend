@@ -15,11 +15,10 @@ function MyPageHeader({ title, icon }: Props) {
 }
 
 const Header = styled.div`
-  width: 100%;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const Title = styled.div`

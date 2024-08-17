@@ -111,12 +111,15 @@ const List = styled.div`
 `;
 
 const SubTitle = styled.li`
+  cursor: pointer;
+
   display: flex;
   justify-content: space-between;
+
   padding: 21px 20px 21px 0;
+
   ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[900]};
-  cursor: pointer;
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`

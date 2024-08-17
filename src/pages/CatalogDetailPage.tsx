@@ -1,8 +1,9 @@
 import MetaTag from '@/components/MetaTag';
-import { LiquorDetail, SideBar } from '@/features/CatalogDetail';
+import { LiquorIntro, SideBar } from '@/features/CatalogDetail';
+import { LiquorDetail } from '@/features/LiquorDetail';
 import styled from 'styled-components';
 
-function CatelogDetailPage() {
+function CatalogDetailPage() {
   return (
     <Container>
       <MetaTag
@@ -11,18 +12,21 @@ function CatelogDetailPage() {
         keywords='리쿠르트, 전통주, 상세 정보, 술'
         url='https://www.licruit.site/catalog/:id'
       />
-      <LiquorDetail />
+      <LiquorDetail>
+        <LiquorIntro />
+      </LiquorDetail>
       <SideBar />
     </Container>
   );
 }
 
-export default CatelogDetailPage;
+export default CatalogDetailPage;
 
 const Container = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
+  width: 100%;
   padding-bottom: 80px;
 `;

@@ -40,13 +40,15 @@ export default Button;
 
 const StyledButton = styled.button<Omit<Props, 'children'>>`
   ${({ theme }) => theme.typo.heading.bold[14]};
-  width: ${({ $width }) => ($width === 'fit' ? 'fit-content' : '100%')};
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
-  transition: all 0.2s ease-in;
+  align-items: center;
+  justify-content: center;
+
   box-sizing: border-box;
+  width: ${({ $width }) => ($width === 'fit' ? 'fit-content' : '100%')};
+
+  transition: all 0.2s ease-in;
 
   &:disabled {
     cursor: default;

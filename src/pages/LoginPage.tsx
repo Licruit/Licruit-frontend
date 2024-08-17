@@ -38,8 +38,8 @@ export default LoginPage;
 
 const JoinGuide = styled.div`
   display: flex;
-  justify-content: center;
   gap: 8px;
+  justify-content: center;
   color: ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[12]}
 
