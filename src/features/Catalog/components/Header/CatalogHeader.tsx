@@ -22,7 +22,7 @@ function CatalogHeader() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <Container isVisible={isVisible}>
@@ -49,9 +49,14 @@ const Container = styled.div<{ isVisible: boolean }>`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  transition: transform 0.3s ease-in-out;
+  height: ${({ isVisible }) => (isVisible ? 'auto' : '0')};
+  opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   transform: ${({ isVisible }) =>
-    isVisible ? 'translateY(0)' : 'translateY(-150%)'};
+    isVisible ? 'translateY(0)' : 'translateY(-100%)'};
+  overflow: hidden;
 
   .classification {
     display: flex;
