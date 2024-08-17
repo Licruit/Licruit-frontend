@@ -32,6 +32,7 @@ const Title = styled.div`
 `;
 
 const LiquorInfoContainer = styled.li`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -39,17 +40,15 @@ const LiquorInfoContainer = styled.li`
   img {
     width: 100%;
   }
-
-  cursor: pointer;
 `;
 
 const LiquorInfo = styled.div`
-  width: 264px;
-
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 6px;
+  align-items: flex-start;
+
+  width: 264px;
 `;
 
 const LiquorDescription = styled.div`

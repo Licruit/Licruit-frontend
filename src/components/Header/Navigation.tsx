@@ -36,8 +36,8 @@ export default Navigation;
 
 const Nav = styled.nav<{ $gap: number }>`
   display: flex;
-  align-items: center;
   gap: ${({ $gap }) => $gap}px;
+  align-items: center;
 `;
 
 const NavLink = styled(Link)`
@@ -50,8 +50,8 @@ const LinkWithIcon = styled.ul`
 
   .cart-wrapper {
     display: flex;
-    align-items: center;
     gap: 4px;
+    align-items: center;
   }
 
   span {
@@ -61,10 +61,13 @@ const LinkWithIcon = styled.ul`
 
   li:first-child::after {
     content: '|';
-    line-height: 20px;
+
     float: right;
-    color: rgba(0, 0, 0, 0.6);
-    padding: 0 12px;
     display: block;
+
+    padding: 0 12px;
+
+    line-height: 20px;
+    color: rgb(0 0 0 / 60%);
   }
 `;

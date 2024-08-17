@@ -32,21 +32,16 @@ const FormInput = forwardRef<HTMLInputElement, Props>(
 export default FormInput;
 
 const Wrapper = styled.div`
-  flex: 1;
   position: relative;
+  flex: 1;
 `;
 
 export const StyledInput = styled.input`
   width: 100%;
   padding: 18px;
-
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
+
   ${({ theme }) => theme.typo.body.medium[14]}
-
-  &:focus {
-    outline: none;
-  }
-
   &::placeholder {
     color: ${({ theme }) => theme.color.neutral[400]};
   }

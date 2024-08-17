@@ -41,23 +41,23 @@ function LoginForm({ isFailed }: Props) {
 export default LoginForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 
   .input-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
 `;
 
 const ErrorAndLink = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
   ${({ theme }) => theme.typo.body.medium[12]}
 
   .error {
@@ -65,7 +65,7 @@ const ErrorAndLink = styled.div`
   }
 
   & > a {
-    color: ${({ theme }) => theme.color.neutral[400]};
     align-self: flex-end;
+    color: ${({ theme }) => theme.color.neutral[400]};
   }
 `;

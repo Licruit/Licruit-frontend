@@ -50,6 +50,7 @@ const Container = styled.div`
 
 const SearchBar = styled.div`
   position: relative;
+
   input {
     padding: 8px 8px 8px 36px;
   }

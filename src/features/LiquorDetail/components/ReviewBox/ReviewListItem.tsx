@@ -32,10 +32,10 @@ function ReviewListItem() {
 export default ReviewListItem;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 
   .profile-wrapper {
     display: flex;
@@ -50,12 +50,12 @@ const Container = styled.div`
 
 const Profile = styled.div`
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 
   .temp-profile {
-    height: 48px;
     width: 48px;
+    height: 48px;
     background-color: ${({ theme }) => theme.color.primary[500]};
   }
 
@@ -79,13 +79,13 @@ const Profile = styled.div`
 const ReviewInfo = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 2px;
   align-items: flex-end;
   justify-content: center;
-  gap: 2px;
 
   .date {
+    margin-right: 5px;
     color: ${({ theme }) => theme.color.neutral[400]};
     ${({ theme }) => theme.typo.body.medium[12]}
-    margin-right: 5px;
   }
 `;

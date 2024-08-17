@@ -4,11 +4,10 @@ export const Badge = styled.div<{
   $size: 'lg' | 'sm';
   $type: 'black' | 'white';
 }>`
-  width: fit-content;
-
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: fit-content;
 
   ${({ theme }) => theme.typo.body.semi_bold[14]}
 

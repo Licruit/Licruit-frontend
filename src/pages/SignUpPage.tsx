@@ -7,6 +7,7 @@ import { JoinForm, signup } from '@/features/Join';
 import { useFunnel } from '@/hooks/form/useFunnel';
 import GenericForm from '@/components/Form/GenericForm';
 import TitleAndStep from '@/components/Form/FormTitle/TitleAndStep';
+import MetaTag from '@/components/MetaTag';
 
 function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
@@ -48,18 +49,26 @@ function SignUpPage() {
     signupMutation.mutate(filteredData);
   };
   return (
-    <GenericForm<SignupFormType>
-      onSubmit={handleSubmit}
-      setStep={setStep}
-      isLastStep={currentStep === SIGNUP_MAX_STEP}
-    >
-      <TitleAndStep
-        formType='signUp'
-        currentStep={currentStep}
-        maxStep={SIGNUP_MAX_STEP}
+    <>
+      <MetaTag
+        title='리쿠르트 회원가입'
+        description='리쿠르트에 가입하여 다양한 서비스를 이용해 보세요.'
+        keywords='리쿠르트, 회원가입, 비즈니스'
+        url='https://www.licruit.site/auth/signUp'
       />
-      <JoinForm Funnel={Funnel} Step={Step} />
-    </GenericForm>
+      <GenericForm<SignupFormType>
+        onSubmit={handleSubmit}
+        setStep={setStep}
+        isLastStep={currentStep === SIGNUP_MAX_STEP}
+      >
+        <TitleAndStep
+          formType='signUp'
+          currentStep={currentStep}
+          maxStep={SIGNUP_MAX_STEP}
+        />
+        <JoinForm Funnel={Funnel} Step={Step} />
+      </GenericForm>
+    </>
   );
 }
 

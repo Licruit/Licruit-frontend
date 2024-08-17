@@ -53,7 +53,7 @@ function GroupBuyOpenForm() {
       </InputWrapper>
       <LabelWrapper>
         <Label {...INPUT.location} />
-        <span className='isRequired'>*</span>
+        <span className='is-required'>*</span>
         <p className='desc'>(배송 가능 지역만 선택해 주세요)</p>
       </LabelWrapper>
       <CategoryButtons
@@ -71,7 +71,6 @@ function GroupBuyOpenForm() {
 
 const InputWrapper = styled.div`
   display: flex;
-
   gap: 10px;
 `;
 
@@ -79,7 +78,7 @@ const LabelWrapper = styled.div`
   display: flex;
   gap: 5px;
 
-  .isRequired {
+  .is-required {
     color: ${({ theme }) => theme.color.primary[500]};
   }
 

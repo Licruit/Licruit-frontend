@@ -31,6 +31,7 @@ function ProductGrid() {
         <Pagination
           totalItems={catalogData.pagination.totalPage}
           currentPage={catalogData.pagination.currentPage}
+          pageGroupCount={10}
         />
       ) : null}
     </Container>
@@ -40,9 +41,9 @@ function ProductGrid() {
 export default ProductGrid;
 
 const Container = styled.div`
-  padding: 20px;
-  height: calc(100vh - 262px);
   overflow: scroll;
+  height: calc(100vh - 262px);
+  padding: 20px;
 `;
 
 const List = styled.div`
@@ -50,7 +51,7 @@ const List = styled.div`
   flex-wrap: wrap;
   margin-bottom: 30px;
 
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     justify-content: space-around;
   }
 `;

@@ -48,7 +48,7 @@ function ConsentForm() {
   return (
     <Container>
       <AllAgree onClick={handleAllChecked}>
-        <div className='checkBox'>
+        <div className='check-box'>
           <CheckIcon
             fill={
               allChecked ? theme.color.primary[500] : theme.color.neutral[400]
@@ -100,26 +100,30 @@ export default ConsentForm;
 
 const Container = styled.div`
   ul {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    cursor: pointer;
   }
 `;
 
 const AllAgree = styled.div`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
   margin-bottom: 20px;
   padding: 18.5px 24px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+
   color: ${({ theme }) => theme.color.neutral[400]};
+
   ${({ theme }) => theme.typo.body.medium[14]}
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
-  .checkBox {
+
+  .check-box {
     display: flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
   }
 `;
 
@@ -128,26 +132,27 @@ const AgreeInput = styled.input`
 `;
 
 const Term = styled.li`
-  padding: 10px;
   cursor: pointer;
+  padding: 10px;
 `;
 
 const Essential = styled.label`
-  margin-left: 3px;
+  cursor: pointer;
+  margin-left: 6px;
   color: ${({ theme }) => theme.color.neutral[400]};
+
   ${({ theme }) => theme.typo.body.medium[14]}
   span {
     margin-right: 3px;
     color: ${({ theme }) => theme.color.neutral[900]};
     ${({ theme }) => theme.typo.body.semi_bold[14]}
   }
-  cursor: pointer;
-  margin-left: 6px;
 `;
 
 const Option = styled.div`
   display: flex;
   align-items: center;
+
   span {
     margin-left: 10px;
   }

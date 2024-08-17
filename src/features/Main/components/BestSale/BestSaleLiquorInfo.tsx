@@ -39,30 +39,28 @@ const LiquorInfoContainer = styled.li`
 `;
 
 const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
+  cursor: pointer;
+
   width: 453px;
   height: 453px;
+  padding-top: 175px;
 
   background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
     no-repeat;
-
-  padding-top: 175px;
-
-  cursor: pointer;
 `;
 
 const LiquorInfo = styled.div`
-  width: 100%;
-  height: 278px;
-
   display: flex;
   flex-direction: column;
+  gap: 4px;
   align-items: flex-start;
   justify-content: end;
-  gap: 4px;
 
+  width: 100%;
+  height: 278px;
   padding: 20px;
 
-  background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(0deg, #000 0%, rgb(0 0 0 / 0%) 100%);
 `;
 
 const LiquorDescription = styled.p`
