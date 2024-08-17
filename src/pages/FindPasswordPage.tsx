@@ -16,9 +16,9 @@ function FindPasswordPage() {
   return (
     <>
       <MetaTag
-        title='리쿠르트 비밀번호 찾기'
+        title='리크루트 비밀번호 찾기'
         description='비밀번호를 찾기 위해 필요한 정보를 입력하세요.'
-        keywords='리쿠르트, 비밀번호 찾기, 계정 복구'
+        keywords='리크루트, 비밀번호 찾기, 계정 복구'
         url='https://www.licruit.site/find-password'
       />
       <GenericForm<FindPasswordFormType>
