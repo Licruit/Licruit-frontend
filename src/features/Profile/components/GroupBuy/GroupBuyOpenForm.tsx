@@ -11,11 +11,13 @@ import DatePickerComponent from './DatePickerComponent';
 import TimePickerComponent from './TimePickerComponent';
 import Label from '../common/Label';
 import RegionsButtons from './RegionsButtons';
+import SearchProduct from './SearchProduct';
+import useGroupBuyMutation from '../../hooks/useGroupBuyMutation';
 
 interface Form {
-  liquorId: number;
+  liquor: { name: string; id: number };
   dates: Date[];
-  openTime: string;
+  time: string;
   deliveryDates: Date[];
   totalMin: number;
   totalMax: number;
@@ -30,8 +32,11 @@ interface Form {
 
 function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
+  const { mutate: postGroupBuy } = useGroupBuyMutation();
 
-  const methods = useForm<Form>({ mode: 'onChange' });
+  const methods = useForm<Form>({
+    mode: 'onChange',
+  });
 
   const {
     register,
@@ -39,9 +44,31 @@ function GroupBuyOpenForm() {
     formState: { isValid },
   } = methods;
 
+  const handleOnSubmit = (data: Form) => {
+    const time = String(data.time).split(' ')[4];
+    const req = {
+      openDate: data.dates[0],
+      deadline: data.dates[1],
+      openTime: time,
+      deliveryStart: data.deliveryDates[0],
+      deliveryEnd: data.deliveryDates[1],
+      totalMin: Number(data.totalMin),
+      totalMax: Number(data.totalMax),
+      price: Number(data.price),
+      deliveryFee: Number(data.deliveryFee),
+      freeDeliveryFee: Number(data.freeDeliveryFee),
+      title: data.title,
+      content: data.content,
+      liquorId: data.liquor.id,
+      regions: data.regions,
+    };
+
+    postGroupBuy(req);
+  };
+
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={handleSubmit((data) => console.log(data))}>
+      <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
         <MyPageHeader
           title='공동구매 올리기'
           icon={
@@ -52,10 +79,7 @@ function GroupBuyOpenForm() {
             />
           }
         />
-        <ProfileInput
-          {...INPUT.product}
-          {...register('liquorId', { required: true })}
-        />
+        <SearchProduct {...register('liquor', { required: true })} />
         <InputWrapper>
           <DatePickerComponent {...INPUT.period} name='dates' />
           <TimePickerComponent {...INPUT.startTime} name='time' />
