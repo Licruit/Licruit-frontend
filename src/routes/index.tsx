@@ -11,6 +11,7 @@ import NavContentLayout from '@/layouts/NavContentLayout';
 import MainLayout from '@/layouts/MainLayout';
 import CatalogDetailPage from '@/pages/CatalogDetailPage';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
+import NotFoundPage from '@/pages/NotFoundPage';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
         <MainLayout />
       </GlobalErrorBoundary>
     ),
+    errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <MainPage /> },
       {
