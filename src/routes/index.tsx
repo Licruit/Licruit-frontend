@@ -10,12 +10,17 @@ import ManagementPage from '@/pages/ManagementPage';
 import NavContentLayout from '@/layouts/NavContentLayout';
 import MainLayout from '@/layouts/MainLayout';
 import CatalogDetailPage from '@/pages/CatalogDetailPage';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <GlobalErrorBoundary>
+        <MainLayout />
+      </GlobalErrorBoundary>
+    ),
     children: [
       { index: true, element: <MainPage /> },
       {
@@ -38,7 +43,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth',
-    element: <PublicRoutes />,
+    element: (
+      <GlobalErrorBoundary>
+        <PublicRoutes />
+      </GlobalErrorBoundary>
+    ),
     children: [
       {
         path: 'login',
@@ -56,7 +65,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/catalog',
-    element: <NavContentLayout />,
+    element: (
+      <GlobalErrorBoundary>
+        <NavContentLayout />
+      </GlobalErrorBoundary>
+    ),
     children: [
       {
         path: '',
