@@ -1,5 +1,5 @@
 import styled, { useTheme } from 'styled-components';
-import { GlassesIcon, InfoIcon } from 'public/assets/icons';
+import { InfoIcon } from 'public/assets/icons';
 import { ForwardedRef, forwardRef } from 'react';
 import Label from './Label';
 
@@ -11,7 +11,6 @@ interface Props {
   maxLength?: number;
   isRequired?: boolean;
   hasValidation?: boolean;
-  isSearch?: boolean;
   hasInfo?: boolean;
 }
 
@@ -23,7 +22,6 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
       placeholder,
       value = '',
       hasValidation,
-      isSearch = false,
       hasInfo,
       maxLength,
       ...props
@@ -44,14 +42,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
           )}
         </LabelWrapper>
         <IconWrapper>
-          {isSearch && <GlassesIcon fill={theme.color.neutral[400]} />}
-          <Input
-            type='text'
-            placeholder={placeholder}
-            $isSearch={isSearch}
-            ref={ref}
-            {...props}
-          />
+          <Input type='text' placeholder={placeholder} ref={ref} {...props} />
         </IconWrapper>
         {hasValidation && (
           <TypeNumber>
@@ -79,10 +70,9 @@ const LabelWrapper = styled.div`
   align-items: center;
 `;
 
-const Input = styled.input<{ $isSearch: boolean }>`
+const Input = styled.input`
   flex: 1;
-  padding: ${({ $isSearch }) =>
-    $isSearch ? '17px 18px 17px 42px ;' : '17px 18px;'};
+  padding: 17px 18px;
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]};
