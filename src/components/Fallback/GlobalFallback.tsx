@@ -26,15 +26,16 @@ function GlobalFallback({ resetErrorBoundary }: FallbackProps) {
 export default GlobalFallback;
 
 const Container = styled.div`
-  width: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.color.common[100]};
-
   display: flex;
+  flex: 1;
   flex-direction: column;
+  gap: 24px;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+
+  width: 100%;
+
+  background-color: ${({ theme }) => theme.color.common[100]};
 
   h2 {
     text-align: center;

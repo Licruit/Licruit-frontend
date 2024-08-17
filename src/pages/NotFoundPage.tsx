@@ -34,20 +34,19 @@ function NotFoundPage() {
 export default NotFoundPage;
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 `;
 
 const Content = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 32px;
+  align-items: center;
+  justify-content: center;
 
   span {
     font-size: 18px;
@@ -58,8 +57,9 @@ const Content = styled.div`
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
+  align-items: center;
+
   color: ${({ theme }) => theme.color.primary[500]};
 
   h1 {
