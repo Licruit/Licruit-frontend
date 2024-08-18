@@ -8,6 +8,7 @@ interface Props {
   placeholder: string;
   name: string;
   value?: string;
+  ['aria-label']: string;
   maxLength?: number;
   isRequired?: boolean;
   hasValidation?: boolean;
@@ -51,6 +52,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
             $isSearch={isSearch}
             ref={ref}
             {...props}
+            aria-label={props['aria-label']}
           />
         </IconWrapper>
         {hasValidation && (
