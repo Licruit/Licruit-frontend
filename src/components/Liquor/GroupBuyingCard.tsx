@@ -1,25 +1,27 @@
+import { GroupBuying } from '@/features/GroupBuying/types/liquor';
+import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
+
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  headText: string;
-  imageUrl: string;
-  badgeText: string;
-  title: string;
-  description: string;
-}
-function GroupBuyingCard(liquor: Props) {
-  const { headText, imageUrl, badgeText, title, description } = liquor;
+function GroupBuyingCard(liquor: GroupBuying) {
+  const navigation = useNavigate();
+  const { orderCount, imageUrl, categoryName, title, content, id } = liquor;
+
   return (
     <LiquorInfoContainer>
-      <HeaderInfo>{headText}</HeaderInfo>
-      <LiquorInfoWrapper $imageUrl={imageUrl}>
+      <HeaderInfo>현재 {orderCount}병 신청됐습니다!</HeaderInfo>
+      <LiquorInfoWrapper
+        $imageUrl={LiquorUrl}
+        onClick={() => navigation(`/group-buying/${id}`)}
+      >
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
-            {badgeText}
+            {categoryName}
           </Badge>
           <Title>{title}</Title>
-          <LiquorDescription>{description}</LiquorDescription>
+          <LiquorDescription>{content}</LiquorDescription>
         </LiquorInfo>
       </LiquorInfoWrapper>
     </LiquorInfoContainer>
