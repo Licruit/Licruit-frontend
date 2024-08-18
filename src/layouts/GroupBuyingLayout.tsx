@@ -1,5 +1,4 @@
 import Header from '@/components/Header/Header';
-import Preview from '@/features/GroupBuying/components/Preview';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,14 +6,9 @@ function GroupBuyingLayout() {
   return (
     <Container>
       <Header />
-      <Content>
-        <Preview />
-        <div className='wrapper'>
-          <Grid>
-            <Outlet />
-          </Grid>
-        </div>
-      </Content>
+      <Grid>
+        <Outlet />
+      </Grid>
     </Container>
   );
 }
@@ -26,10 +20,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-const Content = styled.div`
-  display: flex;
 `;
 
 const Grid = styled.div`

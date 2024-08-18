@@ -17,7 +17,7 @@ export default GroupBuyingHeader;
 
 const Container = styled.div`
   width: 100%;
-  padding: 40px 0 20px;
+  padding: 20px 0;
 `;
 
 const Title = styled.div`
