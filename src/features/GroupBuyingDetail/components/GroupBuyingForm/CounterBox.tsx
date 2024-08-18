@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useWatch } from 'react-hook-form';
 import { formatNumber } from '@/utils/format';
 import Counter from './Counter';
 import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
@@ -8,7 +9,9 @@ interface Props {
 }
 
 function CounterBox({ detailData }: Props) {
+  const quantity = useWatch({ name: 'quantity' });
   const { price, deliveryFee, freeDeliveryFee } = detailData;
+
   return (
     <Container>
       <div className='description'>
@@ -17,7 +20,7 @@ function CounterBox({ detailData }: Props) {
       </div>
       <SelectorWrapper>
         <Counter />
-        <span className='price'>{formatNumber(price)}원</span>
+        <span className='price'>{formatNumber(price * quantity)}원</span>
       </SelectorWrapper>
     </Container>
   );

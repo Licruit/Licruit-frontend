@@ -1,33 +1,39 @@
 import styled from 'styled-components';
+import { FormProvider } from 'react-hook-form';
 import { Divider } from '@/styles/components/Divider';
 import Button from '@/components/Button/Button';
 import CounterBox from './CounterBox';
 import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
+import { useRegister } from '../../hooks/useRegister';
 
 interface Props {
   detailData: GroupBuyingDetail;
 }
 
 function GroupBuyingForm({ detailData }: Props) {
+  const { methods, handleRegister } = useRegister();
+
   return (
-    <Form>
-      <FormBox>
-        <OptionName>
-          <span>{detailData.liquorName}</span>
-        </OptionName>
-        <Divider />
-        <CounterBox detailData={detailData} />
-      </FormBox>
-      <Button
-        type='submit'
-        $style='solid'
-        $size='lg'
-        $width='full'
-        $theme='primary'
-      >
-        구매 신청하기
-      </Button>
-    </Form>
+    <FormProvider {...methods}>
+      <Form onSubmit={methods.handleSubmit((data) => handleRegister(data))}>
+        <FormBox>
+          <OptionName>
+            <span>{detailData.liquorName}</span>
+          </OptionName>
+          <Divider />
+          <CounterBox detailData={detailData} />
+        </FormBox>
+        <Button
+          type='submit'
+          $style='solid'
+          $size='lg'
+          $width='full'
+          $theme='primary'
+        >
+          구매 신청하기
+        </Button>
+      </Form>
+    </FormProvider>
   );
 }
 

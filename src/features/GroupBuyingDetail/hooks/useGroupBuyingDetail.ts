@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { getGroupBuyingDetail } from '../api/groupBuyingDetail.api';
+import { getGroupBuyingDetail } from '../api/groupBuying.api';
 import { GroupBuyingDetail } from '../models/groupBuyingDetail.model';
 
 export const useGroupBuyingDetail = () => {
