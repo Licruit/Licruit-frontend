@@ -65,7 +65,7 @@ const Container = styled.div<{ isVisible: boolean }>`
   }
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   ${({ theme }) => theme.typo.heading.extra_bold[80]};
   margin: 20px 0;
   color: ${({ theme }) => theme.color.neutral[900]};

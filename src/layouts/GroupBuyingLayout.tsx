@@ -10,9 +10,9 @@ function GroupBuyingLayout() {
       <Content>
         <Preview />
         <div className='wrapper'>
-          <FormLayout>
+          <Grid>
             <Outlet />
-          </FormLayout>
+          </Grid>
         </div>
       </Content>
     </Container>
@@ -30,24 +30,9 @@ const Container = styled.div`
 
 const Content = styled.div`
   display: flex;
-  flex: 1;
-  width: 100%;
-  height: calc(100vh - 70px);
-
-  .wrapper {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
-const FormLayout = styled.div`
+const Grid = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 36px;
-
-  width: 100%;
-  max-width: 480px;
-  margin: 50px;
 `;
