@@ -1,4 +1,4 @@
-import { hanldeMutationError } from '@/utils/error';
+import { handleMutationError } from '@/utils/error';
 import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient({
@@ -8,7 +8,7 @@ export const queryClient = new QueryClient({
       retry: 0,
     },
     mutations: {
-      onError: hanldeMutationError,
+      onError: handleMutationError,
     },
   },
 });

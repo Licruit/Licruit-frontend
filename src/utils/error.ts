@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const hanldeMutationError = (error: unknown) => {
+export const handleMutationError = (error: unknown) => {
   if (axios.isAxiosError(error) && error.response) {
     const httpMessage = error.response?.data.message;
     toast.error(httpMessage);
