@@ -16,9 +16,6 @@ export const useFindPassword = (
     onSuccess: () => {
       setStep((prev) => prev + 1);
     },
-    onError: () => {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
-    },
   });
 
   const { mutate: resetPw } = useMutation({
@@ -26,9 +23,6 @@ export const useFindPassword = (
       resetPassword(data),
     onSuccess: () => {
       navigate(PATH.login);
-    },
-    onError: () => {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
     },
   });
 

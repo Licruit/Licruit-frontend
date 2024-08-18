@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import 'public/assets/font/font.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -59,6 +60,12 @@ const GlobalStyle = createGlobalStyle`
   
   input[type='number'] {
     appearance: textfield;
+  }
+
+  .Toastify__toast-body {
+    font-size: 14px;
+    line-height: 140%;
+    white-space: pre-line;
   }
 `;
 
