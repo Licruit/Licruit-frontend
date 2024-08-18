@@ -19,7 +19,7 @@ function ProductGrid() {
                 <ProductCard
                   key={item.id}
                   liquorInfo={item}
-                  onClick={() => navigate(`/catalog/:${item.id}`)}
+                  onClick={() => navigate(`/catalog/${item.id}`)}
                 />
               );
             })}
