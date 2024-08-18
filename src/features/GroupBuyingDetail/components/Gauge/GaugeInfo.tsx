@@ -1,19 +1,28 @@
 import styled from 'styled-components';
+import { formatNumber } from '@/utils/format';
 import GaugeBar from './GaugeBar';
 
-function GaugeInfo() {
+interface Props {
+  orderCount: number;
+  totalMin: number;
+}
+
+function GaugeInfo({ orderCount, totalMin }: Props) {
   return (
     <Container>
       <InfoLine>
         <h2>
-          앞으로 <strong>100병</strong> 남았습니다
+          앞으로 <strong>{formatNumber(totalMin - orderCount)}병</strong>{' '}
+          남았습니다
         </h2>
         <Goal>
           <small>목표병수</small>
-          <span>1,500/2,000병</span>
+          <span>
+            {formatNumber(orderCount)}/{formatNumber(totalMin)}병
+          </span>
         </Goal>
       </InfoLine>
-      <GaugeBar currentCount={1500} goalCount={2000} />
+      <GaugeBar currentCount={orderCount} goalCount={totalMin} />
     </Container>
   );
 }

@@ -2,18 +2,21 @@ import styled from 'styled-components';
 import { Divider } from '@/styles/components/Divider';
 import Button from '@/components/Button/Button';
 import CounterBox from './CounterBox';
+import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
 
-function GroupBuyingForm() {
+interface Props {
+  detailData: GroupBuyingDetail;
+}
+
+function GroupBuyingForm({ detailData }: Props) {
   return (
     <Form>
       <FormBox>
         <OptionName>
-          <span>
-            백경 13. 탁주 <strong>(+16,000원)</strong>
-          </span>
+          <span>{detailData.liquorName}</span>
         </OptionName>
         <Divider />
-        <CounterBox />
+        <CounterBox detailData={detailData} />
       </FormBox>
       <Button
         type='submit'
@@ -52,8 +55,4 @@ const OptionName = styled.div`
   padding: 20px;
   ${({ theme }) => theme.typo.body.medium[14]}
   color: ${({ theme }) => theme.color.neutral[600]};
-
-  strong {
-    color: ${({ theme }) => theme.color.primary[500]};
-  }
 `;
