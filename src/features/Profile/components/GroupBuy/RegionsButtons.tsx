@@ -21,7 +21,7 @@ const RegionsButtons = forwardRef(() => {
   };
   return (
     <CategoryWrapper>
-      <Label {...INPUT.location} />
+      <Label {...INPUT.location} extraDesc />
       <CategoryButtonWrapper>
         {LOCATION.map((location) => (
           <Button
