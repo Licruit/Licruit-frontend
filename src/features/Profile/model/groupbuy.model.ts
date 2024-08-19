@@ -1,9 +1,9 @@
 export interface GroupBuyReq {
-  openDate: Date;
-  deadline: Date;
+  openDate: string;
+  deadline: string;
   openTime: string;
-  deliveryStart: Date;
-  deliveryEnd: Date;
+  deliveryStart: string;
+  deliveryEnd: string;
   totalMin: number;
   totalMax: number;
   price: number;
