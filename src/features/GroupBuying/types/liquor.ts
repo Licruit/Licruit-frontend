@@ -14,7 +14,7 @@ export interface GroupBuying {
   alcohol: string;
   volume: number;
   categoryName: string;
-  imageUrl: string;
+  img: string;
 }
 
 interface Pagination {

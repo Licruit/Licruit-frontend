@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
 import { Badge } from '@/styles/components/Badge';
 import { useLiquorStore } from '../store/useLiquorStore';
 
@@ -14,7 +13,7 @@ function Preview() {
   ];
 
   return (
-    <PreviewWrapper $imageUrl={LiquorUrl}>
+    <PreviewWrapper $imageUrl={hoveredLiquor?.img}>
       <Content>
         <Title>{hoveredLiquor?.title}</Title>
         <LiquorDescription>{hoveredLiquor?.content}</LiquorDescription>
@@ -34,7 +33,7 @@ function Preview() {
 
 export default Preview;
 
-const PreviewWrapper = styled.div<{ $imageUrl: string }>`
+const PreviewWrapper = styled.div<{ $imageUrl: string | undefined }>`
   max-width: 592px;
   width: auto;
   background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover

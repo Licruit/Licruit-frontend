@@ -1,6 +1,4 @@
 import { GroupBuying } from '@/features/GroupBuying/types/liquor';
-import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
-
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +7,7 @@ import { useLiquorStore } from '@/features/GroupBuying/store/useLiquorStore';
 function GroupBuyingCard(liquor: GroupBuying) {
   const navigation = useNavigate();
   const { setHoveredLiquor } = useLiquorStore();
-  const { orderCount, imageUrl, categoryName, title, content, id } = liquor;
+  const { orderCount, img, categoryName, title, content, id } = liquor;
 
   const handleMouseEnter = () => {
     setHoveredLiquor(liquor);
@@ -19,7 +17,7 @@ function GroupBuyingCard(liquor: GroupBuying) {
     <LiquorInfoContainer>
       <HeaderInfo>현재 {orderCount}병 신청됐습니다!</HeaderInfo>
       <LiquorInfoWrapper
-        $imageUrl={LiquorUrl}
+        $imageUrl={img}
         onClick={() => navigation(`/group-buying/${id}`)}
         onMouseEnter={handleMouseEnter}
       >
