@@ -21,7 +21,7 @@ function Preview() {
         <BadgeBox>
           {badges.map((badge) =>
             badge.value ? (
-              <Badge $size='lg' $type='white'>
+              <Badge $size='lg' $type='white' key={badge.key}>
                 {badge.value}
               </Badge>
             ) : null

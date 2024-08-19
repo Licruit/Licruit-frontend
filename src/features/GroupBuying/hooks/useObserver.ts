@@ -1,5 +1,5 @@
 import { InfiniteQueryObserverBaseResult } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface IntersectionObserverProps {
   threshold?: number;
@@ -14,13 +14,16 @@ export const useIntersectionObs = ({
 }: IntersectionObserverProps) => {
   const [target, setTarget] = useState<HTMLDivElement | null | undefined>(null);
 
-  const handleObserver: IntersectionObserverCallback = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && hasNextPage) {
-        fetchNextPage();
-      }
-    });
-  };
+  const handleObserver = useCallback<IntersectionObserverCallback>(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      });
+    },
+    [hasNextPage, fetchNextPage] // handleObserver가 의존하는 값들
+  );
 
   useEffect(() => {
     if (!target) return;
@@ -28,6 +31,6 @@ export const useIntersectionObs = ({
 
     observer.observe(target);
     return () => observer.unobserve(target);
-  }, [threshold, target]);
+  }, [handleObserver, threshold, target]);
   return { setTarget };
 };
