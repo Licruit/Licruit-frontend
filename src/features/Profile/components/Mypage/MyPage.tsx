@@ -1,5 +1,6 @@
 import { CloseIcon } from 'public/assets/icons';
 import useUserType from '@/hooks/usertype/useUserType';
+import { toast } from 'react-toastify';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
@@ -16,8 +17,7 @@ function MyPage({ onClose }: Props) {
   const isCompany = checkIsCompany();
 
   if (!userProfile) return null;
-
-  if (isError) window.alert('잠시후 다시 시도해 주세요.');
+  if (isError) toast.error('잠시후 다시 시도해 주세요.'); // TODO: error boundary 활용
 
   return (
     <>
