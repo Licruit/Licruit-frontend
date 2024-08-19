@@ -22,7 +22,7 @@ export const useIntersectionObs = ({
         }
       });
     },
-    [hasNextPage, fetchNextPage] // handleObserver가 의존하는 값들
+    [hasNextPage, fetchNextPage]
   );
 
   useEffect(() => {

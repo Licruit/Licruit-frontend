@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
 import { Badge } from '@/styles/components/Badge';
 import { useLiquorStore } from '../store/useLiquorStore';
 
@@ -6,14 +7,23 @@ function Preview() {
   const hoveredLiquor = useLiquorStore((state) => state.hoveredLiquor);
 
   const badges = [
-    { key: 'categoryName', value: hoveredLiquor?.categoryName },
-    { key: 'alcohol', value: `도수 ${hoveredLiquor?.alcohol}%` },
-    { key: 'volume', value: `${hoveredLiquor?.volume}ML` },
-    { key: 'price', value: `${hoveredLiquor?.price}원` },
+    { key: 'categoryName', value: hoveredLiquor?.categoryName ?? '탁주' },
+    {
+      key: 'alcohol',
+      value: hoveredLiquor?.alcohol ? `도수 ${hoveredLiquor.alcohol}%` : '도수',
+    },
+    {
+      key: 'volume',
+      value: hoveredLiquor?.volume ? `${hoveredLiquor.volume}ML` : '양',
+    },
+    {
+      key: 'price',
+      value: hoveredLiquor?.price ? `${hoveredLiquor.price}원` : '가격',
+    },
   ];
 
   return (
-    <PreviewWrapper $imageUrl={hoveredLiquor?.img}>
+    <PreviewWrapper $imageUrl={hoveredLiquor?.img || LiquorUrl}>
       <Content>
         <Title>{hoveredLiquor?.title}</Title>
         <LiquorDescription>{hoveredLiquor?.content}</LiquorDescription>

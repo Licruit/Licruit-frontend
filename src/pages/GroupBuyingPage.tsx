@@ -45,6 +45,6 @@ const TabBox = styled.div`
   top: -20px;
   left: 0;
   padding: 20px 0;
-  background: rgb(255 255 255 / 60%);
+  background: rgb(255 255 255 / 100%);
   backdrop-filter: blur(10px);
 `;
