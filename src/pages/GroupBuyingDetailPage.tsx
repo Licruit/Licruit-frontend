@@ -5,9 +5,7 @@ import styled from 'styled-components';
 function GroupBuyingDetailPage() {
   return (
     <Container>
-      <LiquorDetail>
-        <WholesalerInfo />
-      </LiquorDetail>
+      <LiquorDetail>{/* <WholesalerInfo /> */}</LiquorDetail>
       <SideBar />
     </Container>
   );

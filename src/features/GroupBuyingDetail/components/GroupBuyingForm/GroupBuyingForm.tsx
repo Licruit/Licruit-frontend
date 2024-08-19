@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { FormProvider } from 'react-hook-form';
+import { CheckIcon, WavingIcon } from 'public/assets/icons';
 import { Divider } from '@/styles/components/Divider';
 import Button from '@/components/Button/Button';
 import CounterBox from './CounterBox';
@@ -11,27 +12,49 @@ interface Props {
 }
 
 function GroupBuyingForm({ detailData }: Props) {
+  const theme = useTheme();
   const { methods, handleRegister } = useRegister();
+
+  const { liquorName, isParticipated } = detailData;
 
   return (
     <FormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit((data) => handleRegister(data))}>
         <FormBox>
           <OptionName>
-            <span>{detailData.liquorName}</span>
+            <span>{liquorName}</span>
           </OptionName>
           <Divider />
           <CounterBox detailData={detailData} />
         </FormBox>
-        <Button
-          type='submit'
-          $style='solid'
-          $size='lg'
-          $width='full'
-          $theme='primary'
-        >
-          구매 신청하기
-        </Button>
+        {isParticipated ? (
+          <Button
+            type='button'
+            $style='solid'
+            $size='lg'
+            $width='full'
+            $theme='primary'
+            $disableHover
+          >
+            <CheckIcon fill={theme.color.common[100]} width={18} height={18} />
+            구매 신청 완료
+          </Button>
+        ) : (
+          <Button
+            type='submit'
+            $style='outlined'
+            $size='lg'
+            $width='full'
+            $theme='primary'
+          >
+            <WavingIcon
+              fill={theme.color.primary[500]}
+              width={18}
+              height={18}
+            />
+            구매 신청하기
+          </Button>
+        )}
       </Form>
     </FormProvider>
   );

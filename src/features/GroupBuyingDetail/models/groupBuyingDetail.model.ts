@@ -4,25 +4,15 @@ export interface GroupBuyingDetail {
   deliveryStart: string;
   deliveryEnd: string;
   totalMin: number;
-  individualMin: number;
+  totalMax: number;
   price: number;
   deliveryFee: number;
   freeDeliveryFee: number;
   title: string;
   content: string;
   orderCount: number;
+  liquorId: number;
   liquorName: string;
-  categoryName: string;
-  ingredient: string;
-  alcohol: string;
-  volume: number;
-  award: string;
-  etc: string;
-  description: string;
-  food: string;
-  brewery: string;
-  address: string;
-  homepage: string;
-  contact: string;
+  isParticipated: number;
   deliveryRegions: string[];
 }
