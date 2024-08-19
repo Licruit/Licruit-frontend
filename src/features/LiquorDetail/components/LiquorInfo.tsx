@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import InfoTap from './InfoTap';
-import InfoBox from './InfoBox';
+import TapBar from './TapBar';
 import ReviewBox from './ReviewBox/ReviewBox';
+import InfoBox from './InfoBox/InfoBox';
 
 function LiquorInfo() {
   const [currentTap, setCurrentTap] = useState('정보');
 
   return (
     <Container>
-      <InfoTap currentTap={currentTap} setCurrentTap={setCurrentTap} />
+      <TapBar currentTap={currentTap} setCurrentTap={setCurrentTap} />
       <div className='box-wrapper'>
         {currentTap === '정보' && <InfoBox />}
         {currentTap === '리뷰' && <ReviewBox />}

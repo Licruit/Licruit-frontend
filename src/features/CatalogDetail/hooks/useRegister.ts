@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useSessionStore from '@/store/sessionStore';
+import { LiquorDetailType } from '@/features/LiquorDetail';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { register } from '../api/register.api';
-import { LiquorDetail } from '../model/liquor.model';
 
 interface Props {
   liquorId: number;
@@ -18,7 +19,7 @@ export const useRegister = () => {
     if (isLoggedIn) {
       mutate({ liquorId: +id!, liked });
     } else {
-      window.alert('로그인 후 이용 가능한 서비스입니다.');
+      toast.info('로그인 후 이용 가능한 서비스입니다.');
     }
   };
 
@@ -27,7 +28,7 @@ export const useRegister = () => {
     onMutate: async () => {
       await queryClient.cancelQueries({ queryKey: ['liquorDetail', id] });
 
-      const prevData = queryClient.getQueryData<LiquorDetail>([
+      const prevData = queryClient.getQueryData<LiquorDetailType>([
         'liquorDetail',
         id,
       ]);
@@ -45,7 +46,7 @@ export const useRegister = () => {
       return { prevData };
     },
     onError: (_err, _variable, context) => {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
+      toast.error('오류가 발생했습니다.\n다시 시도해주세요.');
       queryClient.setQueryData(['liquorDetail', id], context?.prevData);
     },
     onSettled: () => {
