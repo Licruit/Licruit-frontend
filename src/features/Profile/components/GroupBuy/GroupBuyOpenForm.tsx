@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { FormProvider, useForm } from 'react-hook-form';
+import { format } from 'date-fns';
 import MyPageHeader from '../common/MyPageHeader';
 import ProfileInput from '../common/ProfileInput';
 import { INPUT } from '../../constants/input';
@@ -41,17 +42,17 @@ function GroupBuyOpenForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { isValid },
   } = methods;
 
   const handleOnSubmit = (data: Form) => {
-    const time = String(data.time).split(' ')[4];
     const req = {
-      openDate: data.dates[0],
-      deadline: data.dates[1],
-      openTime: time,
-      deliveryStart: data.deliveryDates[0],
-      deliveryEnd: data.deliveryDates[1],
+      openDate: format(data.dates[0], 'yyyy-MM-dd'),
+      deadline: format(data.dates[1], 'yyyy-MM-dd'),
+      openTime: format(data.time, 'HH:mm'),
+      deliveryStart: format(data.deliveryDates[0], 'yyyy-MM-dd'),
+      deliveryEnd: format(data.deliveryDates[1], 'yyyy-MM-dd'),
       totalMin: Number(data.totalMin),
       totalMax: Number(data.totalMax),
       price: Number(data.price),
@@ -112,10 +113,12 @@ function GroupBuyOpenForm() {
         <RegionsButtons {...register('regions', { required: true })} />
         <ProfileInput
           {...INPUT.groupBuy}
-          {...register('title', { required: true })}
+          maxLength={40}
+          value={watch('title')}
+          {...register('title', { required: true, max: 25 })}
         />
         <IntroduceWrapper>
-          <Label {...INPUT.content} extraDesc />
+          <Label {...INPUT.content} />
           <Introduce
             placeholder='내용을 입력해주세요'
             maxLength={400}
