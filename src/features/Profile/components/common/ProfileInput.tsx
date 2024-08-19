@@ -42,7 +42,13 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
           )}
         </LabelWrapper>
         <IconWrapper>
-          <Input type='text' placeholder={placeholder} ref={ref} {...props} />
+          <Input
+            type='text'
+            placeholder={placeholder}
+            ref={ref}
+            maxLength={maxLength}
+            {...props}
+          />
         </IconWrapper>
         {hasValidation && (
           <TypeNumber>
