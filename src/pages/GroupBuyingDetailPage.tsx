@@ -1,4 +1,4 @@
-import { SideBar } from '@/features/GroupBuyingDetail';
+import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
 import { useGroupBuyingDetail } from '@/features/GroupBuyingDetail/hooks/useGroupBuyingDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ function GroupBuyingDetailPage() {
   return (
     <Container>
       <LiquorDetail liquorId={liquorId}>
-        <div>dd</div>
+        <WholesalerInfo />
       </LiquorDetail>
       <SideBar />
     </Container>
