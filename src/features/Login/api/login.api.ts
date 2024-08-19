@@ -1,4 +1,5 @@
 import { httpClient } from '@/api/http';
+import { toast } from 'react-toastify';
 import { AxiosError, AxiosResponse } from 'axios';
 import { LoginForm } from '../types/login';
 import { LoginRes } from '../models/user.model';
@@ -18,6 +19,6 @@ export const login = async (loginData: LoginForm) => {
         return false;
       }
     }
-    window.alert('오류가 발생했습니다. 다시 시도해주세요.');
+    toast.error('오류가 발생했습니다. 다시 시도해주세요.');
   }
 };
