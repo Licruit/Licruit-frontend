@@ -8,7 +8,7 @@ interface Props {
   placeholder: string;
   name: string;
   value?: string;
-  ['aria-label']: string;
+  'aria-label'?: string;
   maxLength?: number;
   isRequired?: boolean;
   hasValidation?: boolean;
