@@ -100,6 +100,7 @@ export const mockLiquorData = {
 
 function GroupBuyingGrid() {
   const { liquorData } = useLiquor();
+  console.log(liquorData);
   return (
     <Container>
       {mockLiquorData?.buyings.map((item) => {

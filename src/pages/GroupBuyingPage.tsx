@@ -1,3 +1,4 @@
+import Tab from '@/components/Header/Tabs';
 import { GroupBuyingGrid, GroupBuyingHeader } from '@/features/GroupBuying';
 import Preview from '@/features/GroupBuying/components/Preview';
 import styled from 'styled-components';
@@ -10,6 +11,9 @@ function GroupBuyingPage() {
       </PreviewWrapper>
       <ContentWrapper>
         <GroupBuyingHeader />
+        <TabBox>
+          <Tab type='group_buying' queryKey='sort' />
+        </TabBox>
         <GroupBuyingGrid />
       </ContentWrapper>
     </Container>
@@ -33,4 +37,14 @@ const ContentWrapper = styled.div`
   flex: 2;
   height: 100vh;
   overflow: scroll;
+`;
+
+const TabBox = styled.div`
+  position: sticky;
+  z-index: 999;
+  top: -20px;
+  left: 0;
+  padding: 20px 0;
+  background: rgb(255 255 255 / 60%);
+  backdrop-filter: blur(10px);
 `;

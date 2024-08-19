@@ -57,11 +57,12 @@ const Title = styled.div`
 `;
 
 const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
-  cursor: pointer;
-  padding-top: 175px;
   background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
     no-repeat;
   width: 374px;
+  height: 374px;
+  cursor: pointer;
+  position: relative;
 `;
 
 const LiquorInfo = styled.div`
@@ -71,7 +72,10 @@ const LiquorInfo = styled.div`
   align-items: flex-start;
   justify-content: end;
   padding: 20px;
-  background: linear-gradient(0deg, #000 0%, rgb(0 0 0 / 0%) 100%);
+  background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 const LiquorDescription = styled.p`
