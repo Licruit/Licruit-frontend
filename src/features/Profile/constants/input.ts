@@ -35,8 +35,8 @@ export const INPUT = {
     isRequired: true,
   },
   price: { label: '가격', placeholder: '16.000', isRequired: true },
-  min: { label: '최소수량', placeholder: '100', isRequired: true },
-  max: { label: '최대수량', placeholder: '1000', isRequired: true },
+  min: { label: '목표수량', placeholder: '100', isRequired: true },
+  max: { label: '최대수량', placeholder: '1000' },
   deliveryFee: { label: '배송비 설정', placeholder: '3,000', isRequired: true },
   freeDelivery: {
     label: '무료 배송비 설정',
