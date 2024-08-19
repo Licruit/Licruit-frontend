@@ -55,8 +55,7 @@ const Title = styled.div`
 `;
 
 const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
-  background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
-    no-repeat;
+  background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
   width: 374px;
   height: 374px;
   cursor: pointer;
