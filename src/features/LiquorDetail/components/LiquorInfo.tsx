@@ -4,14 +4,18 @@ import TapBar from './TapBar';
 import ReviewBox from './ReviewBox/ReviewBox';
 import InfoBox from './InfoBox/InfoBox';
 
-function LiquorInfo() {
+interface Props {
+  liquorId: number | undefined;
+}
+
+function LiquorInfo({ liquorId }: Props) {
   const [currentTap, setCurrentTap] = useState('정보');
 
   return (
     <Container>
       <TapBar currentTap={currentTap} setCurrentTap={setCurrentTap} />
       <div className='box-wrapper'>
-        {currentTap === '정보' && <InfoBox />}
+        {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
         {currentTap === '리뷰' && <ReviewBox />}
       </div>
     </Container>

@@ -12,5 +12,5 @@ export const useGroupBuyingDetail = () => {
     enabled: id !== undefined,
   });
 
-  return { groupBuyingDetail: data };
+  return { groupBuyingDetail: data, liquorId: data?.liquorId };
 };
