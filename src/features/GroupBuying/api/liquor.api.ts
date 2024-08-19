@@ -1,12 +1,12 @@
 import { httpClient } from '@/api/http';
-import { LiquorItem } from '../types/liquor';
+import { GroupBuying } from '../types/liquor';
 import { SortParams } from '../types/buyingParams';
 
 export const getLiquor = async ({
   queryKey,
 }: {
   queryKey: [string, SortParams];
-}): Promise<LiquorItem> => {
+}): Promise<{ data: GroupBuying[]; nextPage?: number }> => {
   const [, params] = queryKey;
   const { sort, page } = params;
 
@@ -16,5 +16,8 @@ export const getLiquor = async ({
       sort,
     },
   });
-  return response.data;
+
+  const { pagination, buyings } = response.data;
+  const hasNextPage = pagination.currentPage < pagination.totalPage;
+  return { data: buyings, nextPage: hasNextPage ? page + 1 : undefined };
 };

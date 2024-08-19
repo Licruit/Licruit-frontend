@@ -1,20 +1,35 @@
-import { useQuery } from '@tanstack/react-query';
-import { useLocation } from 'react-router-dom';
-import { Sort, SortParams } from '../types/buyingParams';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { SortParams } from '../types/buyingParams';
 import { getLiquor } from '../api/liquor.api';
 
-export const useLiquor = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+export const useLiquor = (sort: string) => {
+  const fetchLiquor = async ({
+    queryKey,
+    pageParam = 1,
+  }: {
+    queryKey: [string, SortParams];
+    pageParam?: number;
+  }) => {
+    const [, params] = queryKey;
+    return getLiquor({ queryKey: ['liquor', { ...params, page: pageParam }] });
+  };
 
-  const sort = (searchParams.get('sort') as Sort) || 'ranking';
-  const page = searchParams.get('page') || 1;
-
-  const params: SortParams = { sort, page: Number(page) };
-
-  const { data: liquorData } = useQuery({
-    queryKey: ['liquor', params],
-    queryFn: getLiquor,
+  const {
+    data: liquorData,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ['liquor', { sort }],
+    queryFn: fetchLiquor,
+    getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
   });
-  return { liquorData };
+
+  return { liquorData, fetchNextPage, hasNextPage };
 };
+
+// useInfiniteQuery(
+//   'mainPosts',
+//   async ({ pageParam = 0 }) => {
+//     const res = await getMainPosts({ ...searchQuery, page: pageParam });
+//     return res;
+//   }

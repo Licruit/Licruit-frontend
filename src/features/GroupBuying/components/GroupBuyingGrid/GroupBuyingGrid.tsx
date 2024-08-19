@@ -1,6 +1,9 @@
 import GroupBuyingCard from '@/components/Liquor/GroupBuyingCard';
+import { useLocation } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { useLiquor } from '../../hooks/useLiquor';
+import { useIntersectionObs } from '../../hooks/useObserver';
 
 export const mockLiquorData = {
   buyings: [
@@ -95,17 +98,63 @@ export const mockLiquorData = {
       categoryName: '와인',
       imageUrl: 'path/to/image5.jpg',
     },
+    {
+      id: 5,
+      title: '블루베리 와인',
+      content: '달콤한 블루베리의 풍미가 가득한 와인입니다.',
+      price: 25000,
+      orderCount: 75,
+      leftDate: 7,
+      liquorName: '블루베리 와인',
+      alcohol: '12.5',
+      volume: 750,
+      categoryName: '와인',
+      imageUrl: 'path/to/image5.jpg',
+    },
+    {
+      id: 5,
+      title: '블루베리 와인',
+      content: '달콤한 블루베리의 풍미가 가득한 와인입니다.',
+      price: 25000,
+      orderCount: 75,
+      leftDate: 7,
+      liquorName: '블루베리 와인',
+      alcohol: '12.5',
+      volume: 750,
+      categoryName: '와인',
+      imageUrl: 'path/to/image5.jpg',
+    },
+    {
+      id: 5,
+      title: '블루베리 와인',
+      content: '달콤한 블루베리의 풍미가 가득한 와인입니다.',
+      price: 25000,
+      orderCount: 75,
+      leftDate: 7,
+      liquorName: '블루베리 와인',
+      alcohol: '12.5',
+      volume: 750,
+      categoryName: '와인',
+      imageUrl: 'path/to/image5.jpg',
+    },
   ],
 };
 
 function GroupBuyingGrid() {
-  const { liquorData } = useLiquor();
-  console.log(liquorData);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const params = searchParams.get('sort');
+
+  const { liquorData, fetchNextPage, hasNextPage } = useLiquor(
+    params || 'ranking'
+  );
+  const { setTarget } = useIntersectionObs({ hasNextPage, fetchNextPage });
   return (
     <Container>
-      {mockLiquorData?.buyings.map((item) => {
+      {liquorData?.pages[0].data.map((item) => {
         return <GroupBuyingCard {...item} />;
       })}
+      <div ref={setTarget} style={{ height: '10px' }} />
     </Container>
   );
 }

@@ -35,7 +35,7 @@ function Preview() {
 export default Preview;
 
 const PreviewWrapper = styled.div<{ $imageUrl: string }>`
-  min-width: 500px;
+  max-width: 592px;
   width: auto;
   background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
     no-repeat;
