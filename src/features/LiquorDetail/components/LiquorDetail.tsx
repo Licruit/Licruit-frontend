@@ -3,17 +3,18 @@ import LiquorInfo from './LiquorInfo';
 import { useLiquorDetail } from '../hooks/useLiquorDetail';
 
 interface Props {
+  liquorId: number | undefined;
   children: React.ReactNode;
 }
 
-function LiquorDetail({ children }: Props) {
-  const { liquorDetail } = useLiquorDetail();
+function LiquorDetail({ liquorId, children }: Props) {
+  const { liquorImg } = useLiquorDetail(liquorId);
 
   return (
     <Container>
-      <img src={liquorDetail?.img} alt='liquorImage' className='liquor-img' />
+      <img src={liquorImg} alt='liquorImage' className='liquor-img' />
       {children}
-      <LiquorInfo />
+      <LiquorInfo liquorId={liquorId} />
     </Container>
   );
 }

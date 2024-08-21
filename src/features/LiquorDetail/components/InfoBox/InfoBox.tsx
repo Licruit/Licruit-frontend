@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { useLiquorDetail } from '../../hooks/useLiquorDetail';
 import InfoItem from './InfoItem';
 
-function InfoBox() {
-  const { liquorDetail } = useLiquorDetail();
+interface Props {
+  liquorId: number | undefined;
+}
+
+function InfoBox({ liquorId }: Props) {
+  const { liquorDetail } = useLiquorDetail(liquorId);
 
   if (!liquorDetail) return null;
 
@@ -72,9 +76,7 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-
   width: 100%;
-
   color: ${({ theme }) => theme.color.neutral[600]};
 
   h5 {

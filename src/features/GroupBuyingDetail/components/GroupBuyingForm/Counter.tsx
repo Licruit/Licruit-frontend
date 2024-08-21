@@ -1,21 +1,23 @@
 import { AddIcon, RemoveIcon } from 'public/assets/icons';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 import styled, { useTheme } from 'styled-components';
 
 function Counter() {
   const theme = useTheme();
-  const [count, setCount] = useState(1);
+  const { setValue } = useFormContext();
+  const quantity = useWatch({ name: 'quantity' });
 
   const handleClick = (num: number) => {
-    if (count + num < 1) {
+    if (quantity + num < 1) {
       return;
     }
-    setCount((prev) => prev + num);
+    setValue('quantity', quantity + num);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    setCount(value < 1 ? 1 : value);
+    setValue('quantity', value < 1 ? 1 : value);
   };
 
   return (
@@ -23,7 +25,7 @@ function Counter() {
       <ActionButton type='button' onClick={() => handleClick(-1)}>
         <RemoveIcon fill={theme.color.neutral[600]} />
       </ActionButton>
-      <CountInput type='number' value={count} onChange={handleChange} />
+      <CountInput type='number' value={quantity} onChange={handleChange} />
       <ActionButton type='button' onClick={() => handleClick(1)}>
         <AddIcon fill={theme.color.neutral[600]} />
       </ActionButton>
