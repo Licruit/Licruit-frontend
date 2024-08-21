@@ -69,6 +69,7 @@ function EditProfileForm({ userProfile, image }: Props) {
     <>
       <FormProvider {...methods}>
         <Form
+          aria-label='edit-profile-form'
           onSubmit={handleSubmit((data) => {
             editProfile({
               profile: { ...data, sectorId: selectedCategory, image },
