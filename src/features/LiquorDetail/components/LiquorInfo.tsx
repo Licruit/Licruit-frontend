@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useState } from 'react';
 import TapBar from './TapBar';
 import ReviewBox from './ReviewBox/ReviewBox';
 import InfoBox from './InfoBox/InfoBox';
+import Fallback from './Fallback';
 
 interface Props {
   liquorId: number | undefined;
@@ -16,7 +18,11 @@ function LiquorInfo({ liquorId }: Props) {
       <TapBar currentTap={currentTap} setCurrentTap={setCurrentTap} />
       <div className='box-wrapper'>
         {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
-        {currentTap === '리뷰' && <ReviewBox />}
+        {currentTap === '리뷰' && (
+          <ErrorBoundary FallbackComponent={Fallback}>
+            <ReviewBox />{' '}
+          </ErrorBoundary>
+        )}
       </div>
     </Container>
   );
