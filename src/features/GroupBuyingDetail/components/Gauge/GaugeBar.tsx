@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 interface Props {
-  goalCount: number;
-  currentCount: number;
+  goalQuantity: number;
+  currentQuantity: number;
 }
 
-function GaugeBar({ goalCount, currentCount }: Props) {
-  const barGauge = (currentCount / goalCount) * 100;
+function GaugeBar({ goalQuantity, currentQuantity }: Props) {
+  const barGauge = (currentQuantity / goalQuantity) * 100;
 
   return (
     <Container>

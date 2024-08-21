@@ -18,7 +18,7 @@ function SideBar() {
   return (
     <Container>
       <GroupBuyingTitle deadline={deadline} title={title} content={content} />
-      <GaugeInfo orderCount={orderCount} totalMin={totalMin} />
+      <GaugeInfo orderQuantity={orderCount} goalQuantity={totalMin} />
       <GroupBuyingInfo detailData={groupBuyingDetail} />
       <GroupBuyingForm detailData={groupBuyingDetail} />
     </Container>

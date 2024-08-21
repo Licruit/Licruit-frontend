@@ -3,26 +3,26 @@ import { formatNumber } from '@/utils/format';
 import GaugeBar from './GaugeBar';
 
 interface Props {
-  orderCount: number;
-  totalMin: number;
+  orderQuantity: number;
+  goalQuantity: number;
 }
 
-function GaugeInfo({ orderCount, totalMin }: Props) {
+function GaugeInfo({ orderQuantity, goalQuantity }: Props) {
   return (
     <Container>
       <InfoLine>
         <h2>
-          앞으로 <strong>{formatNumber(totalMin - orderCount)}병</strong>{' '}
+          앞으로 <strong>{formatNumber(goalQuantity - orderQuantity)}병</strong>{' '}
           남았습니다
         </h2>
         <Goal>
           <small>목표병수</small>
           <span>
-            {formatNumber(orderCount)}/{formatNumber(totalMin)}병
+            {formatNumber(orderQuantity)}/{formatNumber(goalQuantity)}병
           </span>
         </Goal>
       </InfoLine>
-      <GaugeBar currentCount={orderCount} goalCount={totalMin} />
+      <GaugeBar currentQuantity={orderQuantity} goalQuantity={goalQuantity} />
     </Container>
   );
 }
