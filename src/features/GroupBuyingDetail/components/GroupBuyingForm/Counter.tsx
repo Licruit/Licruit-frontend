@@ -38,7 +38,9 @@ export default Counter;
 const Container = styled.div`
   display: flex;
   align-items: center;
+
   padding: 10px 16px;
+
   background-color: ${({ theme }) => theme.color.common[100]};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[14]}

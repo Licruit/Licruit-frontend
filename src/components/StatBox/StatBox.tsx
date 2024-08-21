@@ -40,9 +40,9 @@ const Container = styled.div`
 
   .title {
     display: flex;
-    ${({ theme }) => theme.typo.body.medium[12]}
-    color: ${({ theme }) => theme.color.neutral[400]};
     gap: 4px;
+    color: ${({ theme }) => theme.color.neutral[400]};
+    ${({ theme }) => theme.typo.body.medium[12]}
   }
 
   &:last-child {

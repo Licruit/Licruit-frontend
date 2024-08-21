@@ -82,12 +82,12 @@ const Content = styled.div<{ $isOpen: boolean }>`
 `;
 
 const Item = styled.li<{ $isSelected: boolean }>`
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   padding: 21px 0;
   ${({ theme }) => theme.typo.body.semi_bold[12]};
-  cursor: pointer;
-  border-top: 1px solid ${({ theme }) => theme.color.neutral[400]};
   color: ${({ $isSelected, theme }) =>
     $isSelected ? theme.color.primary[500] : theme.color.neutral[900]};
+  border-top: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;

@@ -25,8 +25,8 @@ const Container = styled.div`
 
   ul {
     display: flex;
-    margin-top: 20px;
     gap: 36px;
+    margin-top: 20px;
     ${({ theme }) => theme.typo.body.medium[14]};
     color: ${({ theme }) => theme.color.primary[500]};
   }

@@ -76,7 +76,7 @@ const BadgeBox = styled.div`
 `;
 
 const LiquorDescription = styled.p`
+  margin-bottom: 20px;
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[500]};
-  margin-bottom: 20px;
 `;

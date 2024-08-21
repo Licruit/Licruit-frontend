@@ -32,7 +32,6 @@ export default CatalogHeader;
 
 const Container = styled.div<{ isVisible: boolean }>`
   position: sticky;
-  position: sticky;
   z-index: 90;
   top: 75px;
   left: 0;
@@ -47,7 +46,6 @@ const Container = styled.div<{ isVisible: boolean }>`
 
   opacity: ${({ isVisible }) => (isVisible ? '1' : '0')};
   background: rgb(255 255 255 / 60%);
-  backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
 
