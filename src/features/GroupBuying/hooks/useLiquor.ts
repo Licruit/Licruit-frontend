@@ -19,6 +19,5 @@ export const useLiquor = (sort: string) => {
       pageParams: data.pageParams,
     }),
   });
-  console.log(liquorData);
   return { liquorData, fetchNextPage, hasNextPage };
 };
