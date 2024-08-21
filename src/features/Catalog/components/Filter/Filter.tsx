@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useFilter } from '../../hooks/useFilter';
 import FilterTags from './FilterTags';
 import FilterOption from './FilterOption';
+import { FILTER } from '../../constants/filter';
 
 function Filter() {
   const {
@@ -13,29 +14,31 @@ function Filter() {
     clearFilter,
   } = useFilter();
 
+  const filterProps = {
+    selectAlcohol,
+    selectedAlcohol,
+    selectRating,
+    selectedRating,
+    clearFilter,
+  };
+
   return (
     <>
       <FilterBox>
         <Title>필터</Title>
-        <FilterTags
-          selectAlcohol={selectAlcohol}
-          selectedAlcohol={selectedAlcohol}
-          selectRating={selectRating}
-          selectedRating={selectedRating}
-          clearFilter={clearFilter}
-        />
+        <FilterTags {...filterProps} />
       </FilterBox>
 
       <ul>
         <FilterOption
-          title='도수'
-          options={['1~9%', '10~19%', '20~29%', '30~39%', '40~60%']}
+          title={FILTER.alcohol.title}
+          options={FILTER.alcohol.values}
           selectedOption={selectedAlcohol}
           onSelectOption={selectAlcohol}
         />
         <FilterOption
-          title='평점'
-          options={['높은순', '낮은순']}
+          title={FILTER.rating.title}
+          options={FILTER.rating.values}
           selectedOption={selectedRating}
           onSelectOption={selectRating}
         />
