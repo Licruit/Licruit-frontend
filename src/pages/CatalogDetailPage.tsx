@@ -1,9 +1,12 @@
 import MetaTag from '@/components/MetaTag';
 import { LiquorIntro, SideBar } from '@/features/CatalogDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function CatalogDetailPage() {
+  const { id } = useParams();
+
   return (
     <Container>
       <MetaTag
@@ -12,7 +15,7 @@ function CatalogDetailPage() {
         keywords='리크루트, 전통주, 상세 정보, 술'
         url='https://www.licruit.site/catalog/:id'
       />
-      <LiquorDetail>
+      <LiquorDetail liquorId={Number(id)}>
         <LiquorIntro />
       </LiquorDetail>
       <SideBar />

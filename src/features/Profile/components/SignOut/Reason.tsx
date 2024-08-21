@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { SignOutDescription } from '@/styles/components/Description';
 import Button from '@/components/Button/Button';
 import Dropdown from '@/components/Input/Dropdown';
@@ -10,13 +10,18 @@ interface Props {
 }
 
 function Reason({ onNext }: Props) {
-  const {
-    formState: { isValid },
-    watch,
-    register,
-  } = useFormContext();
+  const { register } = useFormContext();
 
-  const selectedValue = watch('reason');
+  const selectedOption = useWatch({
+    name: 'reason',
+  });
+
+  const etcValue = useWatch({
+    name: 'etc',
+  });
+
+  const isButtonDisabled =
+    selectedOption === '기타' ? !etcValue : !selectedOption;
 
   return (
     <>
@@ -30,21 +35,21 @@ function Reason({ onNext }: Props) {
         placeholder='사유를 선택해주세요.'
         name='reason'
       />
-      {selectedValue === '기타' && (
+
+      {selectedOption === '기타' && (
         <FormInput
           placeholder='기타 사유를 입력해 주세요'
-          {...register('etc', {
-            required: true,
-          })}
+          {...register('etc')}
         />
       )}
+
       <Button
         $style='outlined'
         $theme='primary'
-        disabled={!isValid}
         $width='full'
         $size='md'
         onClick={onNext}
+        disabled={isButtonDisabled}
       >
         다음
       </Button>

@@ -1,34 +1,33 @@
 import { Divider } from '@/styles/components/Divider';
 import styled from 'styled-components';
+import { formatNumber } from '@/utils/format';
+import { useWholesalerInfo } from '../hooks/useWholesalerInfo';
 
 function WholesalerInfo() {
+  const { wholesalerInfo } = useWholesalerInfo();
+
+  if (!wholesalerInfo) return null;
+
+  const { img, businessName, introduce, homepage, totalSales } = wholesalerInfo;
+
   return (
     <Container>
       <ProfileWrapper>
         <h5>도매업체 소개</h5>
         <Profile>
-          <img
-            src=''
-            alt='임시'
-            width={88}
-            height={88}
-            style={{ backgroundColor: 'lightgray' }}
-          />
+          <img src={img} alt='도매업자 프로필 이미지' width={88} height={88} />
           <div className='intro-wrapper'>
-            <h4>도매업체명</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
+            <h4>{businessName}</h4>
+            <p>{introduce}</p>
           </div>
         </Profile>
       </ProfileWrapper>
       <Divider />
       <ExtraInfo>
         <span>
-          홈페이지 : <a href='https://www.naver.com'>https://www.naver.com</a>
+          홈페이지 : <a href='homepage'>{homepage}</a>
         </span>
-        <span>누적 판매수 : 12,000병</span>
+        <span>누적 판매수 : {formatNumber(totalSales)}병</span>
       </ExtraInfo>
     </Container>
   );
@@ -77,6 +76,7 @@ const Profile = styled.div`
     }
 
     p {
+      white-space: pre-wrap;
       ${({ theme }) => theme.typo.body.medium[14]}
       color: ${({ theme }) => theme.color.neutral[400]};
     }

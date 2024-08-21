@@ -2,13 +2,15 @@ import styled, { useTheme } from 'styled-components';
 import { SidebarContainer } from '@/styles/components/SideBar';
 import { CheckIcon, WavingIcon } from 'public/assets/icons';
 import Button from '@/components/Button/Button';
+import { useParams } from 'react-router-dom';
 import { useLiquorDetail } from '@/features/LiquorDetail';
 import GroupBuyingList from './GroupBuyingList/GroupBuyingList';
 import { useRegister } from '../hooks/useRegister';
 
 function SideBar() {
   const theme = useTheme();
-  const { liquorDetail } = useLiquorDetail();
+  const { id } = useParams();
+  const { liquorDetail } = useLiquorDetail(Number(id));
   const { handleRegister } = useRegister();
 
   if (!liquorDetail) return null;
