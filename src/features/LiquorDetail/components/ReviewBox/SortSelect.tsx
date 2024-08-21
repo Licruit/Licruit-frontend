@@ -17,14 +17,14 @@ function SortSelect() {
 
   return (
     <SelectBox type='button' onClick={() => setIsOpen((prev) => !prev)}>
-      {currentSort === '1' ? '높은 순' : '낮은 순'}{' '}
+      {currentSort === '1' ? '낮은 순' : '높은 순'}{' '}
       <DownArrowIcon fill={theme.color.neutral[400]} />
       {isOpen && (
         <OptionBox>
           <button
             className='option'
             type='button'
-            onClick={() => handleSelectOption(1)}
+            onClick={() => handleSelectOption(0)}
           >
             높은 순
           </button>

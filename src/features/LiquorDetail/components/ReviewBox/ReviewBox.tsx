@@ -22,7 +22,7 @@ function ReviewBox() {
       </div>
       <Pagination
         totalItems={pagination.totalPage}
-        currentPage={pagination.currentPage}
+        currentPage={Number(pagination.currentPage)}
       />
     </Container>
   );

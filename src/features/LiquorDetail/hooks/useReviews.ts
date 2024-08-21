@@ -12,7 +12,7 @@ export const useReviews = () => {
   const sort = searchParams.get('sort') === '1' ? 1 : 0;
 
   const { data } = useQuery<GetReviewReq>({
-    queryKey: ['reviews', liquorId],
+    queryKey: ['reviews', { liquorId, page, sort }],
     queryFn: () => getReviews({ liquorId: Number(liquorId), page, sort }),
   });
 
