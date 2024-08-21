@@ -14,3 +14,12 @@ export const getRemainedDay = (date: string): string => {
   }
   return `${dayDiff}일 남음`;
 };
+
+export const isClosed = (deadline: string) => {
+  const targetDate = dayjs(deadline);
+  const today = dayjs();
+
+  const dayDiff = targetDate.diff(today, 'day');
+
+  return dayDiff === 0;
+};
