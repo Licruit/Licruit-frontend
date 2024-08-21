@@ -3,8 +3,8 @@ import styled from 'styled-components';
 function Empty() {
   return (
     <Container>
-      <div className='main'>원하시는 술을 찾지 못했습니다!</div>
-      <div className='sub'>다른 키워드로 검색해 보세요</div>
+      <p className='main'>원하시는 술을 찾지 못했습니다!</p>
+      <p className='sub'>다른 키워드로 검색해 보세요</p>
     </Container>
   );
 }
