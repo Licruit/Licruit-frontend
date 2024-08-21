@@ -44,8 +44,8 @@ function Preview() {
 export default Preview;
 
 const PreviewWrapper = styled.div<{ $imageUrl: string | undefined }>`
-  max-width: 592px;
   width: auto;
+  max-width: 592px;
   background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
 `;
 
@@ -55,16 +55,18 @@ const Content = styled.div`
   gap: 4px;
   align-items: flex-start;
   justify-content: end;
+
   width: 100%;
   height: calc(100vh - 76px);
   padding: 20px;
+
   background: linear-gradient(0deg, #000 0%, rgb(0 0 0 / 0%) 100%);
 `;
 
 const Title = styled.div`
+  margin-bottom: 14px;
   ${({ theme }) => theme.typo.heading.bold[42]};
   color: ${({ theme }) => theme.color.common[100]};
-  margin-bottom: 14px;
 `;
 
 const BadgeBox = styled.div`

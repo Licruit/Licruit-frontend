@@ -28,15 +28,15 @@ const Container = styled.div`
 `;
 
 const PreviewWrapper = styled.div`
-  margin-right: 20px;
   flex: 1;
+  margin-right: 20px;
 `;
 
 const ContentWrapper = styled.div`
-  padding: 20px;
+  overflow: scroll;
   flex: 2;
   height: 100vh;
-  overflow: scroll;
+  padding: 20px;
 `;
 
 const TabBox = styled.div`
@@ -44,7 +44,9 @@ const TabBox = styled.div`
   z-index: 999;
   top: -20px;
   left: 0;
+
   padding: 20px 0;
+
   background: rgb(255 255 255 / 100%);
   backdrop-filter: blur(10px);
 `;

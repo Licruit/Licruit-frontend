@@ -12,15 +12,18 @@ function Empty() {
 export default Empty;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
   height: calc(100vh - 262px);
+
   .main {
     ${({ theme }) => theme.typo.heading.bold[30]};
   }
+
   .sub {
     ${({ theme }) => theme.typo.body.semi_bold[16]};
     color: ${({ theme }) => theme.color.neutral[400]};

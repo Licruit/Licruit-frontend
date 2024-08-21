@@ -49,7 +49,8 @@ const List = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
-  @media (min-width: 768px) {
+
+  @media (width >= 768px) {
     justify-content: space-between;
   }
 `;

@@ -39,9 +39,9 @@ const Container = styled.div`
   justify-content: center;
 
   .title {
+    display: flex;
     ${({ theme }) => theme.typo.body.medium[12]}
     color: ${({ theme }) => theme.color.neutral[400]};
-    display: flex;
     gap: 4px;
   }
 

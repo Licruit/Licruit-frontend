@@ -73,8 +73,8 @@ const Warning = styled.div`
   background-color: ${({ theme }) => theme.color.neutral[200]};
 
   p {
-    white-space: pre-line;
     ${({ theme }) => theme.typo.body.semi_bold[14]}
     color: ${({ theme }) => theme.color.neutral[600]};
+    white-space: pre-line;
   }
 `;

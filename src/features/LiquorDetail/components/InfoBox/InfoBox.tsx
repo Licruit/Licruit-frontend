@@ -76,7 +76,9 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+
   width: 100%;
+
   color: ${({ theme }) => theme.color.neutral[600]};
 
   h5 {

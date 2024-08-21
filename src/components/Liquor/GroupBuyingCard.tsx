@@ -44,8 +44,10 @@ const LiquorInfoContainer = styled.li`
 const HeaderInfo = styled.div`
   width: 374px;
   padding: 20px;
+
   font-size: ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[50]};
+
   background: ${({ theme }) => theme.color.primary[500]};
 `;
 
@@ -55,24 +57,30 @@ const Title = styled.div`
 `;
 
 const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
-  background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
+  cursor: pointer;
+
+  position: relative;
+
   width: 374px;
   height: 374px;
-  cursor: pointer;
-  position: relative;
+
+  background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
 `;
 
 const LiquorInfo = styled.div`
+  position: absolute;
+  bottom: 0;
+
   display: flex;
   flex-direction: column;
   gap: 4px;
   align-items: flex-start;
   justify-content: end;
-  padding: 20px;
-  background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0) 100%);
-  position: absolute;
-  bottom: 0;
+
   width: 100%;
+  padding: 20px;
+
+  background: linear-gradient(0deg, #000 0%, rgb(0 0 0 / 0%) 100%);
 `;
 
 const LiquorDescription = styled.p`

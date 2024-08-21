@@ -18,14 +18,16 @@ export default Footer;
 
 const Container = styled.div`
   padding: 20px 0;
+
   img {
     width: 100%;
   }
+
   ul {
-    ${({ theme }) => theme.typo.body.medium[14]}
-    color: ${({ theme }) => theme.color.primary[500]};
-    margin-top: 20px;
     display: flex;
+    margin-top: 20px;
     gap: 36px;
+    ${({ theme }) => theme.typo.body.medium[14]};
+    color: ${({ theme }) => theme.color.primary[500]};
   }
 `;
