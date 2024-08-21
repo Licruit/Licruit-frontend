@@ -1,16 +1,26 @@
 import styled from 'styled-components';
+import { useWatch } from 'react-hook-form';
+import { formatNumber } from '@/utils/format';
 import Counter from './Counter';
+import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
 
-function CounterBox() {
+interface Props {
+  detailData: GroupBuyingDetail;
+}
+
+function CounterBox({ detailData }: Props) {
+  const quantity = useWatch({ name: 'quantity' });
+  const { price, deliveryFee, freeDeliveryFee } = detailData;
+
   return (
     <Container>
       <div className='description'>
-        <span>택배배송 (+3,000원)</span>
-        <span>100,000원 이상 결제시 무료 배송</span>
+        <span>택배배송 (+{formatNumber(deliveryFee)}원)</span>
+        <span>{formatNumber(freeDeliveryFee)}원 이상 결제시 무료 배송</span>
       </div>
       <SelectorWrapper>
         <Counter />
-        <span className='price'>19,000원</span>
+        <span className='price'>{formatNumber(price * quantity)}원</span>
       </SelectorWrapper>
     </Container>
   );

@@ -1,21 +1,21 @@
 import { Badge } from '@/styles/components/Badge';
+import { getDday } from '@/utils/d-day';
 import styled from 'styled-components';
 
-function GroupBuyingTitle() {
+interface Props {
+  deadline: string;
+  title: string;
+  content: string;
+}
+
+function GroupBuyingTitle({ deadline, title, content }: Props) {
   return (
     <Container>
       <Badge $size='lg' $type='black'>
-        오늘 마감
+        {getDday(deadline)}
       </Badge>
-      <h1>
-        우아하고 순수한 첫번째 고래
-        <br />
-        백경 13. 탁주
-      </h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum
-        dolor sit amet, consectetur adipiscin
-      </p>
+      <h1>{title}</h1>
+      <p>{content}</p>
     </Container>
   );
 }
@@ -29,8 +29,8 @@ const Container = styled.div`
 
   height: fit-content;
   padding-bottom: 20px;
-
   border-bottom: 2px solid ${({ theme }) => theme.color.neutral[900]};
+  white-space: pre-wrap;
 
   h1 {
     ${({ theme }) => theme.typo.heading.bold[36]}

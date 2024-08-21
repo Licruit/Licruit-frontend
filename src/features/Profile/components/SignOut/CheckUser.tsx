@@ -1,5 +1,5 @@
 import FormInput from '@/components/Input/FormInput';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 import { SignOutDescription } from '@/styles/components/Description';
 import CancelAndNext from '../common/CancelAndNext';
@@ -9,10 +9,17 @@ interface Props {
 }
 
 function CheckUser({ isError }: Props) {
-  const {
-    register,
-    formState: { isValid },
-  } = useFormContext();
+  const { register } = useFormContext();
+
+  const companyNumber = useWatch({
+    name: 'companyNumber',
+  });
+
+  const password = useWatch({
+    name: 'password',
+  });
+
+  const isButtonDisabled = companyNumber && password;
 
   return (
     <>
@@ -37,7 +44,7 @@ function CheckUser({ isError }: Props) {
           ? '사업자 등록번호 또는 비밀번호가 잘못되었습니다. 다시 한 번 입력해주세요'
           : ''}
       </Error>
-      <CancelAndNext isValid={isValid} type='submit' />
+      <CancelAndNext isValid={isButtonDisabled} type='submit' />
     </>
   );
 }

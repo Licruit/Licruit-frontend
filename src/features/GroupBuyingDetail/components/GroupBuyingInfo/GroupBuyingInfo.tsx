@@ -1,18 +1,28 @@
 import styled, { useTheme } from 'styled-components';
 import StatBox from '@/components/StatBox/StatBox';
 import { InfoIcon } from 'public/assets/icons';
+import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
 
-function GroupBuyingInfo() {
+interface Props {
+  detailData: GroupBuyingDetail;
+}
+
+function GroupBuyingInfo({ detailData }: Props) {
   const theme = useTheme();
+  const { openDate, deadline, deliveryStart, deliveryEnd } = detailData;
 
   return (
     <Container>
       <Statistic>
         <StatBox title='공동구매 주문기간' iconType='calendar'>
-          <span>2024.07.19~2024.08.20</span>
+          <span>
+            {openDate}~{deadline}
+          </span>
         </StatBox>
         <StatBox title='배송 예정일' iconType='calendar'>
-          <span>2024.07.19~2024.08.20</span>
+          <span>
+            {deliveryStart}~{deliveryEnd}
+          </span>
         </StatBox>
       </Statistic>
       <Warning>

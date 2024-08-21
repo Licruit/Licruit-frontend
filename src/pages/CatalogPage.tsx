@@ -12,7 +12,6 @@ function CatalogPage() {
         keywords='리크루트, 전통주, 카탈로그, 술, 상품'
         url='https://www.licruit.site/catalog'
       />
-
       <Content>
         <div className='aside'>
           <Filter />
