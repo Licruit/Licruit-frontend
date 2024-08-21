@@ -1,28 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Search from '@/components/Header/Search';
 import styled from 'styled-components';
 import Category from './Category';
+import { useScrollThrottled } from '../../hooks/useScroll';
 
 function CatalogHeader() {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const handleScroll = () => {
-    if (window.scrollY > lastScrollY) {
+  const handleScroll = (direction: 'down' | 'up'): void => {
+    if (direction === 'down') {
       setIsVisible(false);
     } else {
       setIsVisible(true);
     }
-    setLastScrollY(window.scrollY);
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  useScrollThrottled(handleScroll, 200);
 
   return (
     <Container isVisible={isVisible}>
