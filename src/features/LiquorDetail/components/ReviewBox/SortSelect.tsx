@@ -1,18 +1,19 @@
 import { DownArrowIcon } from 'public/assets/icons';
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 
 function SortSelect() {
   const theme = useTheme();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const currentSort = searchParams.get('sort');
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOption = (option: 0 | 1) => {
     const updatedParams = new URLSearchParams(searchParams.toString());
     updatedParams.set('sort', option.toString());
-    setSearchParams(updatedParams);
+    navigate(`?${updatedParams.toString()}`, { replace: true });
   };
 
   return (
