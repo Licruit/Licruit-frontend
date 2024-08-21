@@ -1,9 +1,10 @@
-export const getRemainedDay = (date: string): string => {
-  const targetDate = new Date(date);
-  const today = new Date();
+import dayjs from 'dayjs';
 
-  const timeDiff = targetDate.getTime() - today.getTime();
-  const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+export const getRemainedDay = (date: string): string => {
+  const targetDate = dayjs(date);
+  const today = dayjs();
+
+  const dayDiff = targetDate.diff(today, 'day');
 
   if (dayDiff < 0) {
     return '마감';
