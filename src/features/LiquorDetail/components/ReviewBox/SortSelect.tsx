@@ -1,27 +1,37 @@
 import { DownArrowIcon } from 'public/assets/icons';
 import { useState } from 'react';
-import styled from 'styled-components';
+import { useSearchParams } from 'react-router-dom';
+import styled, { useTheme } from 'styled-components';
 
 function SortSelect() {
-  const [selected, setSelected] = useState('높은 순');
+  const theme = useTheme();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentSort = searchParams.get('sort');
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelectOption = (option: 0 | 1) => {
+    const updatedParams = new URLSearchParams(searchParams.toString());
+    updatedParams.set('sort', option.toString());
+    setSearchParams(updatedParams);
+  };
 
   return (
     <SelectBox type='button' onClick={() => setIsOpen((prev) => !prev)}>
-      {selected} <DownArrowIcon fill='#ADAEB1' />
+      {currentSort === '1' ? '높은 순' : '낮은 순'}{' '}
+      <DownArrowIcon fill={theme.color.neutral[400]} />
       {isOpen && (
         <OptionBox>
           <button
             className='option'
             type='button'
-            onClick={() => setSelected('높은 순')}
+            onClick={() => handleSelectOption(1)}
           >
             높은 순
           </button>
           <button
             className='option'
             type='button'
-            onClick={() => setSelected('낮은 순')}
+            onClick={() => handleSelectOption(1)}
           >
             낮은 순
           </button>

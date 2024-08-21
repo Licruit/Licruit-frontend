@@ -1,22 +1,29 @@
 import styled from 'styled-components';
 import Pagination from '@/components/Pagination/Pagination';
-import { REVIEWS_PER_PAGE } from '@/constants/pagination';
 import ReviewListItem from './ReviewListItem';
 import SortSelect from './SortSelect';
+import { useReviews } from '../../hooks/useReviews';
 
 function ReviewBox() {
-  const totalPages = Math.ceil(100 / REVIEWS_PER_PAGE);
+  const { reviews, pagination } = useReviews();
+
+  if (!reviews || !pagination) return <></>;
+
   return (
     <Container>
       <SortSelect />
       <div className='review-wrapper'>
-        <ReviewListItem />
-        <ReviewListItem />
-        <ReviewListItem />
-        <ReviewListItem />
-        <ReviewListItem />
+        {reviews.map((review, i) => (
+          <ReviewListItem
+            key={`${review.createdAt}-${i}`}
+            reviewData={review}
+          />
+        ))}
       </div>
-      <Pagination totalItems={totalPages} currentPage={1} />
+      <Pagination
+        totalItems={pagination.totalPage}
+        currentPage={pagination.currentPage}
+      />
     </Container>
   );
 }
