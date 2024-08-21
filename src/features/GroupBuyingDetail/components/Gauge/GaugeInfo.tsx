@@ -8,12 +8,20 @@ interface Props {
 }
 
 function GaugeInfo({ orderQuantity, goalQuantity }: Props) {
+  const remainedQuantity = goalQuantity - orderQuantity;
+
   return (
     <Container>
       <InfoLine>
         <h2>
-          앞으로 <strong>{formatNumber(goalQuantity - orderQuantity)}병</strong>{' '}
-          남았습니다
+          {remainedQuantity > 0 ? (
+            <>
+              앞으로 <strong>{formatNumber(remainedQuantity)}병</strong>{' '}
+              남았습니다
+            </>
+          ) : (
+            <strong>목표병수에 달성하셨습니다!</strong>
+          )}
         </h2>
         <Goal>
           <small>목표병수</small>

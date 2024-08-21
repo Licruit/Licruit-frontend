@@ -6,7 +6,10 @@ interface Props {
 }
 
 function GaugeBar({ goalQuantity, currentQuantity }: Props) {
-  const barGauge = (currentQuantity / goalQuantity) * 100;
+  const barGauge =
+    currentQuantity > goalQuantity
+      ? 100
+      : (currentQuantity / goalQuantity) * 100;
 
   return (
     <Container>
