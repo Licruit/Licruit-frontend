@@ -37,22 +37,25 @@ function FilterOption({
       </SubTitle>
       <Content $isOpen={isOpen}>
         <ul>
-          {options.map((option) => (
-            <Item
-              key={option}
-              $isSelected={option === selectedOption}
-              onClick={() => onSelectOption(option)}
-            >
-              {option}
-              {option === selectedOption && (
-                <CheckIcon
-                  fill={theme.color.primary[500]}
-                  width={18}
-                  style={{ marginRight: '20px' }}
-                />
-              )}
-            </Item>
-          ))}
+          {options.map((option) => {
+            const isSelected = option === selectedOption;
+            return (
+              <Item
+                key={option}
+                $isSelected={isSelected}
+                onClick={() => onSelectOption(option)}
+              >
+                {option}
+                {isSelected && (
+                  <CheckIcon
+                    fill={theme.color.primary[500]}
+                    width={18}
+                    style={{ marginRight: '20px' }}
+                  />
+                )}
+              </Item>
+            );
+          })}
         </ul>
       </Content>
     </List>
