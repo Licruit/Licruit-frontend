@@ -1,5 +1,5 @@
 import { Badge } from '@/styles/components/Badge';
-import { getDday } from '@/utils/d-day';
+import { getRemainedDay } from '@/utils/day';
 import styled from 'styled-components';
 
 interface Props {
@@ -12,7 +12,7 @@ function GroupBuyingTitle({ deadline, title, content }: Props) {
   return (
     <Container>
       <Badge $size='lg' $type='black'>
-        {getDday(deadline)}
+        {getRemainedDay(deadline)}
       </Badge>
       <h1>{title}</h1>
       <p>{content}</p>

@@ -1,4 +1,4 @@
-export const getDday = (date: string): string => {
+export const getRemainedDay = (date: string): string => {
   const targetDate = new Date(date);
   const today = new Date();
 
