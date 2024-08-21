@@ -1,4 +1,5 @@
 import styled, { useTheme } from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { FormProvider } from 'react-hook-form';
 import { CheckIcon, WavingIcon } from 'public/assets/icons';
 import { Divider } from '@/styles/components/Divider';
@@ -13,7 +14,8 @@ interface Props {
 
 function GroupBuyingForm({ detailData }: Props) {
   const theme = useTheme();
-  const { methods, handleRegister } = useRegister();
+  const { id: buyingId } = useParams();
+  const { methods, handleRegister } = useRegister(Number(buyingId));
 
   const { liquorName, isParticipated } = detailData;
 

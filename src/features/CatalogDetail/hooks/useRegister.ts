@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useSessionStore from '@/store/sessionStore';
 import { LiquorDetailType } from '@/features/LiquorDetail';
-import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { register } from '../api/register.api';
 
@@ -10,8 +9,7 @@ interface Props {
   liked: boolean;
 }
 
-export const useRegister = () => {
-  const { id } = useParams();
+export const useRegister = (id: number) => {
   const { isLoggedIn } = useSessionStore();
   const queryClient = useQueryClient();
 

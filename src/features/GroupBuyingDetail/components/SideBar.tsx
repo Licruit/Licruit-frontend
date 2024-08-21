@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { SidebarContainer } from '@/styles/components/SideBar';
 import GroupBuyingTitle from './GroupBuyingInfo/GroupBuyingTitle';
 import GaugeInfo from './Gauge/GaugeInfo';
@@ -7,7 +8,8 @@ import GroupBuyingForm from './GroupBuyingForm/GroupBuyingForm';
 import { useGroupBuyingDetail } from '../hooks/useGroupBuyingDetail';
 
 function SideBar() {
-  const { groupBuyingDetail } = useGroupBuyingDetail();
+  const { id: buyingId } = useParams();
+  const { groupBuyingDetail } = useGroupBuyingDetail(Number(buyingId));
 
   if (!groupBuyingDetail) return null;
 
