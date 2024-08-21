@@ -1,18 +1,28 @@
 import styled, { useTheme } from 'styled-components';
 import StatBox from '@/components/StatBox/StatBox';
 import { InfoIcon } from 'public/assets/icons';
+import { GroupBuyingDetail } from '../../models/groupBuyingDetail.model';
 
-function GroupBuyingInfo() {
+interface Props {
+  detailData: GroupBuyingDetail;
+}
+
+function GroupBuyingInfo({ detailData }: Props) {
   const theme = useTheme();
+  const { openDate, deadline, deliveryStart, deliveryEnd } = detailData;
 
   return (
     <Container>
       <Statistic>
         <StatBox title='공동구매 주문기간' iconType='calendar'>
-          <span>2024.07.19~2024.08.20</span>
+          <span>
+            {openDate}~{deadline}
+          </span>
         </StatBox>
         <StatBox title='배송 예정일' iconType='calendar'>
-          <span>2024.07.19~2024.08.20</span>
+          <span>
+            {deliveryStart}~{deliveryEnd}
+          </span>
         </StatBox>
       </Statistic>
       <Warning>
@@ -20,7 +30,7 @@ function GroupBuyingInfo() {
         <p>
           공동구매 주문 기간 종료 후에는 주문 취소 시 이용 제한 패널티를 받을 수
           있습니다
-          <br />총 2번의 경고가 접수되면 리쿠르트 공동구매 서비스 이용이
+          <br />총 2번의 경고가 접수되면 리크루트 공동구매 서비스 이용이
           제한되니, 유의해 주시기 바랍니다
         </p>
       </Warning>

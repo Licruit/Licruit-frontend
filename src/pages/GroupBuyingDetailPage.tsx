@@ -1,11 +1,14 @@
 import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
+import { useGroupBuyingDetail } from '@/features/GroupBuyingDetail/hooks/useGroupBuyingDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
 import styled from 'styled-components';
 
 function GroupBuyingDetailPage() {
+  const { liquorId } = useGroupBuyingDetail();
+
   return (
     <Container>
-      <LiquorDetail>
+      <LiquorDetail liquorId={liquorId}>
         <WholesalerInfo />
       </LiquorDetail>
       <SideBar />

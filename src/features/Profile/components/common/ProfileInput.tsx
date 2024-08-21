@@ -8,6 +8,7 @@ interface Props {
   placeholder: string;
   name: string;
   value?: string;
+  'aria-label'?: string;
   maxLength?: number;
   isRequired?: boolean;
   hasValidation?: boolean;
@@ -48,6 +49,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
             ref={ref}
             maxLength={maxLength}
             {...props}
+            aria-label={props['aria-label']}
           />
         </IconWrapper>
         {hasValidation && (

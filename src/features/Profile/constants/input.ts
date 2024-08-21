@@ -4,19 +4,26 @@ export const INPUT = {
     placeholder: '최근학',
     isRequired: true,
     hasValidation: true,
+    'aria-label': 'businessName',
   },
   contact: {
     label: '대표(개인) 연락처',
     placeholder: '01000000000',
     isRequired: true,
+    'aria-label': 'contact',
   },
   address: {
     label: '사업장 주소',
     placeholder: '서울특별시 서울구 서울동 000-00',
+    'aria-label': 'address',
   },
   category: { label: '업종 카테고리', isRequired: true },
   introduce: { label: '소갯말' },
-  url: { label: 'URL', placeholder: '업체 사이트 주소를 입력해 주세요' },
+  url: {
+    label: 'URL',
+    placeholder: '업체 사이트 주소를 입력해 주세요',
+    'aria-label': 'homepage',
+  },
   product: {
     label: '상품을 입력해 주세요',
     placeholder: '백경 13',

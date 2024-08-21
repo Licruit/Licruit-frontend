@@ -24,6 +24,9 @@ export default ({ mode }) => {
     },
     test: {
       include: ['src/test/*.test.ts?(x)'],
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/test/setup.ts',
       coverage: {
         reporter: ['text', 'json-summary', 'json'],
       },
