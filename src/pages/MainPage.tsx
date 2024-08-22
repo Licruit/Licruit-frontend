@@ -2,16 +2,17 @@ import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
 import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
 import MyPageSideMenu from '@/features/Profile/components/Mypage/MyPageSideMenu';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import MetaTag from '@/components/MetaTag';
+import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 
 function MainPage() {
-  const [isMyPageOpen, setOpen] = useState(true);
+  const { isOpen, close } = useMyPageIsOpenStore();
 
   useEffect(() => {
-    if (isMyPageOpen) document.body.style.overflow = 'hidden';
+    if (isOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'auto';
-  }, [isMyPageOpen]);
+  }, [isOpen]);
 
   return (
     <>
@@ -27,7 +28,7 @@ function MainPage() {
       <Rate />
       <JoinUs />
       <BrandNew />
-      {isMyPageOpen && <MyPageSideMenu onClose={() => setOpen(false)} />}
+      {isOpen && <MyPageSideMenu onClose={close} />}
     </>
   );
 }
