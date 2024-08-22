@@ -1,5 +1,6 @@
-import { formatDate, formatNumber, formatPhoneNumber } from '@/utils/format';
+import { formatNumber, formatPhoneNumber } from '@/utils/format';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 
 function BuyerTable() {
   const mockData = {
@@ -19,7 +20,8 @@ function BuyerTable() {
         <thead>
           <tr>
             <th scope='col' colSpan={2}>
-              신청 상세내역 <span>{formatDate(mockData.createdAt)}신청</span>
+              신청 상세내역{' '}
+              <span>{dayjs(mockData.createdAt).format('YYYY.MM.DD')} 신청</span>
             </th>
           </tr>
         </thead>
@@ -67,35 +69,29 @@ export default BuyerTable;
 const Container = styled.div`
   width: 100%;
   margin: 20px 0;
-
   table {
     width: 100%;
   }
-
   thead {
     th {
       ${({ theme }) => theme.typo.heading.bold[20]}
     }
-
     span {
       padding-left: 8px;
       color: ${({ theme }) => theme.color.neutral[600]};
       ${({ theme }) => theme.typo.body.medium[12]}
     }
   }
-
   tfoot {
     th {
       ${({ theme }) => theme.typo.heading.bold[24]}
     }
-
     span {
       padding-right: 10px;
       color: ${({ theme }) => theme.color.neutral[600]};
       ${({ theme }) => theme.typo.body.semi_bold[12]}
     }
   }
-
   th,
   td {
     padding: 20px;
@@ -103,7 +99,6 @@ const Container = styled.div`
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
     ${({ theme }) => theme.typo.heading.bold[16]}
     text-align: left;
-
     p {
       margin-top: 4px;
       ${({ theme }) => theme.typo.body.medium[14]};
