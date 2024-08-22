@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { orderDetail } from '../api/orderDetail';
 
 export interface OrderDetail {
@@ -12,10 +12,9 @@ export interface OrderDetail {
 }
 
 export const useOrderDetail = (orderId: number) => {
-  const { data } = useQuery<OrderDetail>({
+  const { data } = useSuspenseQuery<OrderDetail>({
     queryKey: ['orderDetail', orderId],
     queryFn: () => orderDetail(orderId),
-    enabled: orderId !== undefined,
   });
   return { orderDetail: data };
 };
