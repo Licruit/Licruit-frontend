@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import Pagination from '@/components/Pagination/Pagination';
 import ReviewListItem from './ReviewListItem';
 import SortSelect from './SortSelect';
@@ -13,11 +14,8 @@ function ReviewBox() {
     <Container>
       <SortSelect />
       <div className='review-wrapper'>
-        {reviews.map((review, i) => (
-          <ReviewListItem
-            key={`${review.createdAt}-${i}`}
-            reviewData={review}
-          />
+        {reviews.map((review) => (
+          <ReviewListItem key={uuidv4()} reviewData={review} />
         ))}
       </div>
       <Pagination
