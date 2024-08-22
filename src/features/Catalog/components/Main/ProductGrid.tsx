@@ -3,6 +3,7 @@ import Pagination from '@/components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
+import Empty from '../Empty';
 
 function ProductGrid() {
   const navigate = useNavigate();
@@ -18,13 +19,13 @@ function ProductGrid() {
                 <ProductCard
                   key={item.id}
                   liquorInfo={item}
-                  onClick={() => navigate(`/catalog/:${item.id}`)}
+                  onClick={() => navigate(`/catalog/${item.id}`)}
                 />
               );
             })}
           </>
         ) : (
-          '불러올 술이 없습니다.'
+          <Empty />
         )}
       </List>
       {catalogData && catalogData.pagination ? (
@@ -41,8 +42,6 @@ function ProductGrid() {
 export default ProductGrid;
 
 const Container = styled.div`
-  overflow: scroll;
-  height: calc(100vh - 262px);
   padding: 20px;
 `;
 
@@ -52,6 +51,6 @@ const List = styled.div`
   margin-bottom: 30px;
 
   @media (width >= 768px) {
-    justify-content: space-around;
+    justify-content: space-between;
   }
 `;

@@ -1,28 +1,28 @@
-import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-function MainLayout() {
+function GroupBuyingLayout() {
   return (
-    <>
+    <Container>
       <Header />
-      <Container>
+      <Grid>
         <Outlet />
-        <Footer />
-      </Container>
-    </>
+      </Grid>
+    </Container>
   );
 }
 
-export default MainLayout;
+export default GroupBuyingLayout;
 
 const Container = styled.div`
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-
   width: 100%;
-  max-width: 1440px;
-  padding: 0 20px;
+`;
+
+const Grid = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

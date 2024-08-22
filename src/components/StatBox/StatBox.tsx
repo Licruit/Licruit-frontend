@@ -39,10 +39,10 @@ const Container = styled.div`
   justify-content: center;
 
   .title {
-    ${({ theme }) => theme.typo.body.medium[12]}
-    color: ${({ theme }) => theme.color.neutral[400]};
     display: flex;
     gap: 4px;
+    color: ${({ theme }) => theme.color.neutral[400]};
+    ${({ theme }) => theme.typo.body.medium[12]}
   }
 
   &:last-child {

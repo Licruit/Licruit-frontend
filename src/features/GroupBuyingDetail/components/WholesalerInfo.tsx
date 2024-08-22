@@ -76,9 +76,9 @@ const Profile = styled.div`
     }
 
     p {
-      white-space: pre-wrap;
       ${({ theme }) => theme.typo.body.medium[14]}
       color: ${({ theme }) => theme.color.neutral[400]};
+      white-space: pre-wrap;
     }
   }
 `;

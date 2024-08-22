@@ -22,12 +22,12 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 
-  padding: 20px;
   width: 100%;
-
-  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+  padding: 20px;
 
   color: ${({ theme }) => theme.color.neutral[400]};
+
+  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[12]}
 
   .review-count {

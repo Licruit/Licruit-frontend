@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { TAB } from '@/constants/tab';
-
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 
@@ -8,27 +7,30 @@ type TabTypeKey = keyof typeof TAB;
 
 interface TabProps {
   type: TabTypeKey;
+  queryKey: string;
 }
 
-function Tab({ type }: TabProps) {
-  const tabs = Object.values(TAB[type]);
-  const [selectedTab, setSelectedTab] = useState<string>(tabs[0]);
+function Tab({ type, queryKey }: TabProps) {
+  const tabs = Object.entries(TAB[type]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedTab = searchParams.get(queryKey) || tabs[0][0];
+
   const handleClickButton = (tab: string) => {
-    setSelectedTab(tab);
+    setSearchParams({ [queryKey]: tab });
   };
 
   return (
     <TabContainer>
-      {tabs.map((tab) => (
+      {tabs.map(([key, value]) => (
         <Button
-          key={tab}
+          key={key}
           type='button'
-          $theme={selectedTab === tab ? 'primary' : 'neutral'}
+          $theme={selectedTab === key ? 'primary' : 'neutral'}
           $style='outlined'
           $size='sm'
-          onClick={() => handleClickButton(tab)}
+          onClick={() => handleClickButton(key)}
         >
-          {tab}
+          {value}
         </Button>
       ))}
     </TabContainer>
@@ -40,5 +42,4 @@ export default Tab;
 const TabContainer = styled.div`
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 `;

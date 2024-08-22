@@ -27,7 +27,7 @@ function Reason({ onNext }: Props) {
     <>
       <SignOutDescription>
         {
-          'OOO님,\r\n회원 탈퇴 사유를 알려주시면, 저희 리쿠르트가 더 나은 서비스를 제공할 수 있도록 노력하겠습니다.'
+          'OOO님,\r\n회원 탈퇴 사유를 알려주시면, 저희 리크루트가 더 나은 서비스를 제공할 수 있도록 노력하겠습니다.'
         }
       </SignOutDescription>
       <Dropdown
