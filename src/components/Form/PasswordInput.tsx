@@ -35,13 +35,13 @@ function PasswordInput() {
       />
       <div className='requirements'>
         <Requirement $valid={hasEng()}>
-          <CheckIcon /> 영문
+          <CheckIcon width={18} height={18} /> 영문
         </Requirement>
         <Requirement $valid={hasDigit()}>
-          <CheckIcon /> 숫자
+          <CheckIcon width={18} height={18} /> 숫자
         </Requirement>
         <Requirement $valid={hasValidLength()}>
-          <CheckIcon /> 8-15자 이내
+          <CheckIcon width={18} height={18} /> 8-15자 이내
         </Requirement>
       </div>
     </Wrapper>
@@ -51,26 +51,25 @@ function PasswordInput() {
 export default PasswordInput;
 
 const Wrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 
   .requirements {
-    width: 100%;
     display: flex;
     gap: 10px;
+    width: 100%;
   }
 `;
 
 const Requirement = styled.span<{ $valid: boolean }>`
   ${({ theme }) => theme.typo.body.medium[12]}
+  display: flex;
+  gap: 6px;
+  align-items: center;
   color: ${({ $valid, theme }) =>
     $valid ? theme.color.primary[500] : theme.color.neutral[400]};
-
-  display: flex;
-  align-items: center;
-  gap: 6px;
 
   & svg {
     fill: ${({ $valid, theme }) =>

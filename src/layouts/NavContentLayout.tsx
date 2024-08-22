@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
 import { CatalogHeader } from '@/features/Catalog';
 import { Outlet } from 'react-router-dom';
@@ -10,6 +11,7 @@ function NavContentLayout() {
       <CatalogHeader />
       <Container>
         <Outlet />
+        <Footer />
       </Container>
     </>
   );
@@ -18,10 +20,10 @@ function NavContentLayout() {
 export default NavContentLayout;
 
 const Container = styled.div`
-  width: 100%;
-  max-width: 1440px;
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  width: 100%;
+  padding: 0 20px;
 `;

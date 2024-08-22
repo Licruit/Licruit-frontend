@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { useFormContext } from 'react-hook-form';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
 import FormInput from '@/components/Input/FormInput';
-import FormSelect from '@/components/Input/FormSelect';
 import Button from '@/components/Button/Button';
+import Dropdown from '@/components/Input/Dropdown';
 import useMap from '../hooks/useMap';
 import { useSignup } from '../hooks/useSignup';
 
@@ -44,7 +44,7 @@ function IndustryForm() {
             검색
           </Button>
           {isPostcodeVisible && (
-            <div className='postModal' ref={placeRef}>
+            <div className='post-modal' ref={placeRef}>
               <DaumPostcode onComplete={handleSelect} />
             </div>
           )}
@@ -57,12 +57,10 @@ function IndustryForm() {
           required: true,
         })}
       />
-      <FormSelect
+      <Dropdown
+        name='sectorId'
         options={industryData}
         placeholder='업종 카테고리를 선택해주세요'
-        {...register('sectorId', {
-          required: true,
-        })}
       />
     </Container>
   );
@@ -71,29 +69,31 @@ function IndustryForm() {
 export default IndustryForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWithButton = styled.div`
   position: relative;
-  width: 100%;
   display: flex;
   gap: 10px;
-  .postModal {
+  width: 100%;
+
+  .post-modal {
     position: absolute;
-    left: 0;
-    right: 0;
     z-index: 10;
+    right: 0;
+    left: 0;
+
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   }
 `;
 
 const InputWrapper = styled.div`
-  width: 100%;
   position: relative;
+  width: 100%;
 `;
 
 const StyledFormInput = styled(FormInput)`

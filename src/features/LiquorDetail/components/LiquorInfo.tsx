@@ -1,0 +1,37 @@
+import styled from 'styled-components';
+import { useState } from 'react';
+import TapBar from './TapBar';
+import ReviewBox from './ReviewBox/ReviewBox';
+import InfoBox from './InfoBox/InfoBox';
+
+interface Props {
+  liquorId: number | undefined;
+}
+
+function LiquorInfo({ liquorId }: Props) {
+  const [currentTap, setCurrentTap] = useState('정보');
+
+  return (
+    <Container>
+      <TapBar currentTap={currentTap} setCurrentTap={setCurrentTap} />
+      <div className='box-wrapper'>
+        {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
+        {currentTap === '리뷰' && <ReviewBox />}
+      </div>
+    </Container>
+  );
+}
+
+export default LiquorInfo;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
+  .box-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+`;

@@ -30,9 +30,18 @@ function GenericForm<FormType extends FieldValues>({
     handleSubmit,
     formState: { isValid },
   } = methods;
+
+  const handleFormSubmit = () => {
+    if (isLastStep) {
+      handleSubmit(onSubmit)();
+    } else {
+      setStep!((prev) => prev + 1);
+    }
+  };
+
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={(e) => e.preventDefault()}>
         {children}
         <div className='button-wrapper'>
           <Button
@@ -42,9 +51,7 @@ function GenericForm<FormType extends FieldValues>({
             $theme='primary'
             $width='full'
             $size='lg'
-            onClick={
-              isLastStep ? undefined : () => setStep!((prev) => prev + 1)
-            }
+            onClick={handleFormSubmit}
           >
             {setStep ? '다음' : '로그인'}
           </Button>
@@ -58,17 +65,18 @@ function GenericForm<FormType extends FieldValues>({
 export default GenericForm;
 
 const Form = styled.form`
-  width: 100%;
-  height: 520px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
   gap: 48px;
+  justify-content: start;
+
+  width: 100%;
+  height: 520px;
 
   .button-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 14px;
+    width: 100%;
   }
 `;

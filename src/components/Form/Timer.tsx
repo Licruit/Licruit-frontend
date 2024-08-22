@@ -44,13 +44,14 @@ function Timer({ expTime, onFail }: Props) {
 export default Timer;
 
 const TimerStyle = styled.span`
-  width: fit-content;
-  text-align: end;
-  color: ${({ theme }) => theme.color.neutral[600]};
-  ${({ theme }) => theme.typo.body.medium[14]}
-
   position: absolute;
-  right: 18px;
   top: 50%;
+  right: 18px;
   transform: translateY(-50%);
+
+  width: fit-content;
+
+  color: ${({ theme }) => theme.color.neutral[600]};
+  text-align: end;
+  ${({ theme }) => theme.typo.body.medium[14]}
 `;

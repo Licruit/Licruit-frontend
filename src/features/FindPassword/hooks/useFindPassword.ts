@@ -12,22 +12,17 @@ export const useFindPassword = (
 
   const { mutate: requestReset } = useMutation({
     mutationFn: (data: { companyNumber: string; contact: string }) =>
-      requestResetPassword(data.companyNumber, data.contact),
+      requestResetPassword(data),
     onSuccess: () => {
       setStep((prev) => prev + 1);
-    },
-    onError: () => {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
     },
   });
 
   const { mutate: resetPw } = useMutation({
-    mutationFn: (password: string) => resetPassword(password),
+    mutationFn: (data: { companyNumber: string; password: string }) =>
+      resetPassword(data),
     onSuccess: () => {
       navigate(PATH.login);
-    },
-    onError: () => {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
     },
   });
 
@@ -35,10 +30,13 @@ export const useFindPassword = (
     if (currentStep === 1) {
       requestReset({
         companyNumber: data.companyNumber.toString(),
-        contact: data.phone.toString(),
+        contact: data.contact.toString(),
       });
     } else {
-      resetPw(data.password);
+      resetPw({
+        companyNumber: data.companyNumber.toString(),
+        password: data.password,
+      });
     }
   };
 

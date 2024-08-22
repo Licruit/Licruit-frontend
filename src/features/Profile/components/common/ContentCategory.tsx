@@ -32,22 +32,19 @@ function ContentCategory() {
 }
 
 const ContentCategoryContainer = styled.div`
-  width: 100%;
-
   display: flex;
   flex-direction: column;
-
+  width: 100%;
   border: 1px solid ${({ theme }) => theme.color.neutral[900]};
 `;
 
 const ContentInfoWrapper = styled.div`
-  width: 100%;
-
-  padding: 20px 0 20px 20px;
-
   display: flex;
-  align-items: center;
   gap: 5px;
+  align-items: center;
+
+  width: 100%;
+  padding: 20px 0 20px 20px;
 
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[900]};
 `;
@@ -63,21 +60,19 @@ const ContentDesc = styled.p`
 `;
 
 const CategoryWrapper = styled.div`
-  width: 100%;
-
-  padding: 20px 40px;
-
   display: flex;
   gap: 61px;
+  width: 100%;
+  padding: 20px 40px;
 `;
 
 const CategoryItem = styled.div`
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
-
-  cursor: pointer;
+  align-items: center;
 
   p {
     ${({ theme }) => theme.typo.body.medium[14]};

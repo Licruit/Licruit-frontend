@@ -1,13 +1,21 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
 import { putProfile } from '../api/putProfile';
-import { Profile } from '../model/profile.model';
+import { EditProfile } from '../model/profile.model';
+
+interface States {
+  profile: EditProfile;
+}
 
 const useProfileMutation = () => {
+  const queryClient = useQueryClient();
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
+
   return useMutation({
-    mutationFn: (data: Profile) => putProfile(data),
-    onError: (error) => {
-      console.log(error);
-      window.alert('잠시후 다시 시도해 주세요.');
+    mutationFn: ({ profile }: States) => putProfile(profile),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile'] });
+      setContent('my-page');
     },
   });
 };

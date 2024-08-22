@@ -1,25 +1,29 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import MockProfile from 'public/assets/images/mock-profile.svg';
-import { useEditProfileModal } from '@/store/modal/useModalStore';
+import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { GetProfile } from '../../model/profile.model';
 
-function Profile() {
-  const openEditProfile = useEditProfileModal((state) => state.open);
+interface Props {
+  userProfile: GetProfile;
+}
+
+function Profile({ userProfile }: Props) {
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   return (
     <ProfileContainer>
       <ProfileInfoWrapper>
-        <img src={MockProfile} alt='profile' />
+        <img src={userProfile.img} alt='profile' />
         <ProfileInfo>
-          <Name>최근학</Name>
-          <BusinessNumber>607-86-12034</BusinessNumber>
+          <Name>{userProfile.businessName}</Name>
+          <BusinessNumber>{userProfile.companyNumber}</BusinessNumber>
         </ProfileInfo>
       </ProfileInfoWrapper>
       <Button
         $style='outlined'
         $size='sm'
         $theme='neutral'
-        onClick={openEditProfile}
+        onClick={() => setContent('edit-profile')}
       >
         프로필 관리
       </Button>
@@ -28,23 +32,27 @@ function Profile() {
 }
 
 const ProfileContainer = styled.div`
-  width: 100%;
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const ProfileInfoWrapper = styled.div`
   display: flex;
   gap: 12px;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const ProfileInfo = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 2px;
+  justify-content: center;
 `;
 
 const Name = styled.div`

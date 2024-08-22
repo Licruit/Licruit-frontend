@@ -1,53 +1,56 @@
-import LiquorUrl from 'public/assets/images/catalog/basil.png';
 import styled from 'styled-components';
+import Pagination from '@/components/Pagination/Pagination';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
+import { useCatalog } from '../../hooks/useCatalog';
+import Empty from '../Empty';
 
 function ProductGrid() {
-  // 예시데이터
-  const liguorData = [
-    {
-      imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-    {
-      imageUrl: LiquorUrl,
-      badgeText: '탁주',
-      title: '홉미드',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    },
-  ];
+  const navigate = useNavigate();
+  const { catalogData } = useCatalog();
 
   return (
     <Container>
       <List>
-        {liguorData.map((item) => {
-          return <ProductCard key={item.title} liquorInfo={item} />;
-        })}
+        {catalogData && catalogData.liquors ? (
+          <>
+            {catalogData.liquors.map((item) => {
+              return (
+                <ProductCard
+                  key={item.id}
+                  liquorInfo={item}
+                  onClick={() => navigate(`/catalog/${item.id}`)}
+                />
+              );
+            })}
+          </>
+        ) : (
+          <Empty />
+        )}
       </List>
-      {/* TODO:페이지네이션 추가 */}
+      {catalogData && catalogData.pagination ? (
+        <Pagination
+          totalItems={catalogData.pagination.totalPage}
+          currentPage={catalogData.pagination.currentPage}
+          pageGroupCount={10}
+        />
+      ) : null}
     </Container>
   );
 }
 
 export default ProductGrid;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 20px;
+`;
+
 const List = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+
+  @media (width >= 768px) {
+    justify-content: space-between;
+  }
 `;

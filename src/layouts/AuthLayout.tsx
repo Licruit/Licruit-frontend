@@ -8,7 +8,7 @@ function AuthLayout() {
     <Container>
       <Header />
       <Content>
-        <Poster style={{ height: '100%', width: 'fit-content' }} />
+        <Poster style={{ height: '100%', width: 'auto' }} />
         <div className='wrapper'>
           <FormLayout>
             <Outlet />
@@ -22,32 +22,34 @@ function AuthLayout() {
 export default AuthLayout;
 
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+
+  width: 100%;
+  height: 100vh;
 `;
 
 const Content = styled.div`
+  display: flex;
+  flex: 1;
   width: 100%;
   height: calc(100vh - 70px);
-  flex: 1;
-  display: flex;
 
   .wrapper {
-    flex: 1;
     display: flex;
-    justify-content: center;
+    flex: 1;
     align-items: center;
+    justify-content: center;
   }
 `;
 
 const FormLayout = styled.div`
-  width: 100%;
-  max-width: 480px;
-  margin: 50px;
   display: flex;
   flex-direction: column;
   gap: 36px;
+
+  width: 100%;
+  max-width: 480px;
+  margin: 50px;
 `;

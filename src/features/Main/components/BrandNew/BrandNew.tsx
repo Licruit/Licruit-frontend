@@ -6,20 +6,29 @@ function BrandNew() {
   return (
     <BrandNewContainer>
       <Catalog />
-      <img src={LiquorUrl} alt='liquor' />
+      <div className='img-wrapper'>
+        <img src={LiquorUrl} alt='liquor' />
+      </div>
     </BrandNewContainer>
   );
 }
 
 const BrandNewContainer = styled.div`
-  width: 100%;
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 
-  img {
-    height: 100%;
+  width: 100%;
+  height: fit-content;
+
+  .img-wrapper {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: 100%;
+    }
   }
 `;
 

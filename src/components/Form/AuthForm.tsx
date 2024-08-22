@@ -11,6 +11,7 @@ function AuthForm() {
     register,
     watch,
     setError,
+
     formState: { errors },
   } = useFormContext();
   const { handleSendCode, expTime, handleVerifyCode } = useCode();
@@ -23,12 +24,12 @@ function AuthForm() {
           type='tel'
           disabled={isVerified}
           placeholder='전화번호를 입력해주세요'
-          {...register('phone', { required: true, pattern: REGEXP.phone })}
+          {...register('contact', { required: true, pattern: REGEXP.contact })}
         />
         <Button
           type='button'
-          disabled={!watch('phone')}
-          onClick={() => handleSendCode(watch('phone'))}
+          disabled={!watch('contact')}
+          onClick={() => handleSendCode(watch('contact'))}
           $style='outlined'
           $size='100px'
           $theme='primary'
@@ -70,11 +71,12 @@ function AuthForm() {
             onClick={
               isVerified
                 ? undefined
-                : () => handleVerifyCode(watch('phone'), watch('code'))
+                : () => handleVerifyCode(watch('contact'), watch('code'))
             }
             $style={isVerified ? 'solid' : 'outlined'}
             $size='100px'
             $theme='primary'
+            $disableHover={isVerified}
           >
             {isVerified ? '인증완료' : '확인'}
           </Button>
@@ -90,16 +92,16 @@ function AuthForm() {
 export default AuthForm;
 
 const Container = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 `;
 
 const InputWithButton = styled.div`
-  width: 100%;
   display: flex;
   gap: 10px;
+  width: 100%;
 
   .wrapper {
     position: relative;
@@ -107,10 +109,10 @@ const InputWithButton = styled.div`
 `;
 
 const InputWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
 
   .error {
     height: 12px;
