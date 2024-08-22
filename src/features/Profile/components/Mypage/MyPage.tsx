@@ -1,23 +1,42 @@
 import { CloseIcon } from 'public/assets/icons';
 import useUserType from '@/hooks/usertype/useUserType';
-import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import ContentCategory from '../common/ContentCategory';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
 import CompanyShowButtons from './CompanyShowButtons';
 import useProfileQuery from '../../hooks/useProfileQuery';
+import ContentList from './ContentList';
+import useGroupBuyListQuery from '../../hooks/useGroupBuyListQuery';
+import { GroupBuyListRes } from '../../model/groupbuylist.model';
 
 interface Props {
   onClose: () => void;
 }
 
 function MyPage({ onClose }: Props) {
-  const { data: userProfile, isError } = useProfileQuery();
-  const checkIsCompany = useUserType();
+  const [content, setContent] = useState(0);
+  const [contentList, setContentList] = useState<GroupBuyListRes[]>([]);
+
+  const { data: userProfile } = useProfileQuery();
+  const { data: groupBuyLists } = useGroupBuyListQuery();
+
+  const { checkIsCompany } = useUserType();
   const isCompany = checkIsCompany();
 
-  if (!userProfile) return null;
-  if (isError) toast.error('잠시후 다시 시도해 주세요.'); // TODO: error boundary 활용
+  useEffect(() => {
+    const status = ['신청', '승인대기', '배송중', '배송완료'];
+
+    if (groupBuyLists) {
+      setContentList(
+        groupBuyLists?.filter(
+          (listItem) => listItem.status === status[content - 1]
+        )
+      );
+    }
+  }, [content, groupBuyLists]);
+
+  if (!userProfile || !groupBuyLists) return null;
 
   return (
     <>
@@ -32,7 +51,8 @@ function MyPage({ onClose }: Props) {
         }
       />
       <Profile userProfile={userProfile} />
-      <ContentCategory />
+      <ContentCategory setContent={setContent} />
+      {content !== 0 && <ContentList contentList={contentList} />}
       {isCompany && <CompanyShowButtons />}
     </>
   );
