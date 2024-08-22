@@ -3,7 +3,7 @@ export interface CatalogItem {
   pagination: Pagination;
 }
 
-interface Liquors {
+export interface Liquors {
   id: number;
   name: string;
   description: string;
