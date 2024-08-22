@@ -1,7 +1,18 @@
 import styled from 'styled-components';
+import useUserType from '@/hooks/usertype/useUserType';
 
-function ContentCategory() {
-  const user = 'shop';
+interface Props {
+  setContent: (content: number) => void;
+}
+
+function ContentCategory({ setContent }: Props) {
+  const { checkIsCompany } = useUserType();
+
+  const isCompany = checkIsCompany();
+  const categories = isCompany
+    ? ['공동구매 오픈', '신청현황', '미달성', '성사']
+    : ['신청현황', '승인대기', '배송중', '배송완료'];
+  const categoryCounts = [2, 3, 0, 0];
 
   return (
     <ContentCategoryContainer>
@@ -10,22 +21,12 @@ function ContentCategory() {
         <ContentDesc>(* 최근 1년 기준)</ContentDesc>
       </ContentInfoWrapper>
       <CategoryWrapper>
-        <CategoryItem>
-          <p>{user === 'shop' ? '신청현황' : '공동구매 오픈'}</p>
-          <p>2</p>
-        </CategoryItem>
-        <CategoryItem>
-          <p>{user === 'shop' ? '승인대기' : '신청현황'}</p>
-          <p>0</p>
-        </CategoryItem>
-        <CategoryItem>
-          <p>{user === 'shop' ? '배송중' : '미달성'}</p>
-          <p>0</p>
-        </CategoryItem>
-        <CategoryItem>
-          <p>{user === 'shop' ? '도착완료' : '성사'}</p>
-          <p>0</p>
-        </CategoryItem>
+        {categories.map((category, index) => (
+          <CategoryItem key={category} onClick={() => setContent(index + 1)}>
+            <p>{category}</p>
+            <p>{categoryCounts[index]}</p>
+          </CategoryItem>
+        ))}
       </CategoryWrapper>
     </ContentCategoryContainer>
   );
