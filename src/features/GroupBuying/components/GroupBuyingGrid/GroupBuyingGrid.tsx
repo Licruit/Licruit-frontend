@@ -17,8 +17,8 @@ function GroupBuyingGrid() {
 
   return (
     <Container>
-      {liquorData?.pages.map((item: GroupBuying, index) => {
-        return <GroupBuyingCard {...item} key={`${item.id}-${index}`} />;
+      {liquorData?.pages.map((item: GroupBuying) => {
+        return <GroupBuyingCard {...item} key={item.id} />;
       })}
       <div ref={setTarget} style={{ height: '10px' }} />
     </Container>
