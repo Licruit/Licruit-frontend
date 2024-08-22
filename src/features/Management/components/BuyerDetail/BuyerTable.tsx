@@ -67,36 +67,43 @@ export default BuyerTable;
 const Container = styled.div`
   width: 100%;
   margin: 20px 0;
+
   table {
     width: 100%;
   }
+
   thead {
     th {
       ${({ theme }) => theme.typo.heading.bold[20]}
     }
+
     span {
       padding-left: 8px;
       color: ${({ theme }) => theme.color.neutral[600]};
       ${({ theme }) => theme.typo.body.medium[12]}
     }
   }
+
   tfoot {
     th {
       ${({ theme }) => theme.typo.heading.bold[24]}
     }
+
     span {
       padding-right: 10px;
       color: ${({ theme }) => theme.color.neutral[600]};
       ${({ theme }) => theme.typo.body.semi_bold[12]}
     }
   }
+
   th,
   td {
     padding: 20px;
+    color: ${({ theme }) => theme.color.neutral[900]};
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
     ${({ theme }) => theme.typo.heading.bold[16]}
-    color: ${({ theme }) => theme.color.neutral[900]};
     text-align: left;
+
     p {
       margin-top: 4px;
       ${({ theme }) => theme.typo.body.medium[14]};
