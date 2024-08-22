@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function CatalogDetailPage() {
-  const { id } = useParams();
+  const { id: liquorId } = useParams();
 
   return (
     <Container>
@@ -15,7 +15,7 @@ function CatalogDetailPage() {
         keywords='리크루트, 전통주, 상세 정보, 술'
         url='https://www.licruit.site/catalog/:id'
       />
-      <LiquorDetail liquorId={Number(id)}>
+      <LiquorDetail liquorId={Number(liquorId)}>
         <LiquorIntro />
       </LiquorDetail>
       <SideBar />

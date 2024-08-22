@@ -1,4 +1,6 @@
 import styled, { useTheme } from 'styled-components';
+import { isClosed } from '@/utils/day';
+import { useParams } from 'react-router-dom';
 import { FormProvider } from 'react-hook-form';
 import { CheckIcon, WavingIcon } from 'public/assets/icons';
 import { Divider } from '@/styles/components/Divider';
@@ -13,9 +15,12 @@ interface Props {
 
 function GroupBuyingForm({ detailData }: Props) {
   const theme = useTheme();
-  const { methods, handleRegister } = useRegister();
+  const { id: buyingId } = useParams();
+  const { methods, handleRegister } = useRegister(Number(buyingId));
 
-  const { liquorName, isParticipated } = detailData;
+  const { liquorName, isParticipated, orderCount, totalMin, deadline } =
+    detailData;
+  const isOver = orderCount >= totalMin || isClosed(deadline);
 
   return (
     <FormProvider {...methods}>
@@ -27,32 +32,46 @@ function GroupBuyingForm({ detailData }: Props) {
           <Divider />
           <CounterBox detailData={detailData} />
         </FormBox>
-        {isParticipated ? (
+        {isOver && (
           <Button
             type='button'
             $style='solid'
             $size='lg'
             $width='full'
             $theme='primary'
-            $disableHover
+            disabled
           >
-            <CheckIcon fill={theme.color.common[100]} width={18} height={18} />
-            구매 신청 완료
+            신청 마감
           </Button>
-        ) : (
+        )}
+        {!isOver && (
           <Button
-            type='submit'
-            $style='outlined'
+            type={isParticipated ? 'button' : 'submit'}
+            $style={isParticipated ? 'solid' : 'outlined'}
             $size='lg'
             $width='full'
             $theme='primary'
+            $disableHover={!!isParticipated}
           >
-            <WavingIcon
-              fill={theme.color.primary[500]}
-              width={18}
-              height={18}
-            />
-            구매 신청하기
+            {isParticipated ? (
+              <>
+                <CheckIcon
+                  fill={theme.color.common[100]}
+                  width={18}
+                  height={18}
+                />
+                구매 신청 완료
+              </>
+            ) : (
+              <>
+                <WavingIcon
+                  fill={theme.color.primary[500]}
+                  width={18}
+                  height={18}
+                />
+                구매 신청하기
+              </>
+            )}
           </Button>
         )}
       </Form>

@@ -9,7 +9,12 @@ interface Props {
 
 function GroupBuyingInfo({ detailData }: Props) {
   const theme = useTheme();
-  const { openDate, deadline, deliveryStart, deliveryEnd } = detailData;
+  const {
+    openDate,
+    deadline,
+    deliveryStart: deliveryStartDate,
+    deliveryEnd: deliveryEndDate,
+  } = detailData;
 
   return (
     <Container>
@@ -21,7 +26,7 @@ function GroupBuyingInfo({ detailData }: Props) {
         </StatBox>
         <StatBox title='배송 예정일' iconType='calendar'>
           <span>
-            {deliveryStart}~{deliveryEnd}
+            {deliveryStartDate}~{deliveryEndDate}
           </span>
         </StatBox>
       </Statistic>
