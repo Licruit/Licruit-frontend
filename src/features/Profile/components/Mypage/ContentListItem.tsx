@@ -4,21 +4,22 @@ import styled from 'styled-components';
 import { GroupBuyListRes } from '../../model/groupbuylist.model';
 
 function ContentListItem({ ...props }: GroupBuyListRes) {
+  const ListItemData = { ...props };
   return (
     <ListItem>
-      <Date>{props.createdAt}</Date>
+      <Date>{ListItemData.createdAt}</Date>
       <Devider />
       <ItemInfoWrapper>
         <img src={MockImage} alt='liquor' />
         <ItemInfo>
           <StateBadge>
             <div className='icon' />
-            {props.status}
+            {ListItemData.status}
           </StateBadge>
-          <ItemTitle>{props.title}</ItemTitle>
-          <ItemDesc>{props.content}</ItemDesc>
+          <ItemTitle>{ListItemData.title}</ItemTitle>
+          <ItemDesc>{ListItemData.content}</ItemDesc>
           <PaymentInfo>
-            {props.totalPrice}원 · {props.quantity}개
+            {ListItemData.totalPrice}원 · {ListItemData.quantity}개
           </PaymentInfo>
         </ItemInfo>
       </ItemInfoWrapper>
