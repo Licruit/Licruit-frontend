@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import EditProfileForm from '@/features/Profile/components/EditProfile/EditProfileForm';
+import EditProfileForm from '@/features/SideMenu/components/EditProfile/EditProfileForm';
 import { render } from './CustomRender';
 
 describe('EditProfile', () => {
