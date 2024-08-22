@@ -1,21 +1,25 @@
 import MockImage from 'public/assets/images/main/mock-image1 38.svg';
 import Button from '@/components/Button/Button';
 import styled from 'styled-components';
+import { GroupBuyListRes } from '../../model/groupbuylist.model';
 
-function ContentListItem() {
+function ContentListItem({ ...props }: GroupBuyListRes) {
   return (
     <ListItem>
-      <Date>2024.07.21</Date>
+      <Date>{props.createdAt}</Date>
       <Devider />
       <ItemInfoWrapper>
         <img src={MockImage} alt='liquor' />
         <ItemInfo>
           <StateBadge>
             <div className='icon' />
-            신청
+            {props.status}
           </StateBadge>
-          <ItemTitle>우아하고 순수한 첫번째 고래백경 13. 탁주</ItemTitle>
-          <ItemDesc>Lorem ipsum dolor sit amet, consectetur wdqdqw...</ItemDesc>
+          <ItemTitle>{props.title}</ItemTitle>
+          <ItemDesc>{props.content}</ItemDesc>
+          <PaymentInfo>
+            {props.totalPrice}원 · {props.quantity}개
+          </PaymentInfo>
         </ItemInfo>
       </ItemInfoWrapper>
       <Button $style='outlined' $theme='neutral' $size='sm' $width='full'>
@@ -84,6 +88,11 @@ const ItemTitle = styled.div`
 const ItemDesc = styled.p`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};
+`;
+
+const PaymentInfo = styled.p`
+  ${({ theme }) => theme.typo.body.semi_bold[14]};
+  color: ${({ theme }) => theme.color.primary[500]};
 `;
 
 export default ContentListItem;
