@@ -1,4 +1,4 @@
-import { formatDate } from '@/utils/formatDate';
+import { formatDate, formatNumber, formatPhoneNumber } from '@/utils/format';
 import styled from 'styled-components';
 
 function BuyerTable() {
@@ -34,12 +34,13 @@ function BuyerTable() {
           </tr>
           <tr>
             <td>
-              대표(개인) 연락처 <p>{mockData.contact}</p>
+              대표(개인) 연락처 <p>{formatPhoneNumber(mockData.contact)}</p>
             </td>
             <td>
               선택상품
               <p>
-                {mockData.liquorName} (+{mockData.pricePerBottle})
+                {mockData.liquorName} (+{formatNumber(mockData.pricePerBottle)}
+                {})
               </p>
             </td>
           </tr>
@@ -52,7 +53,7 @@ function BuyerTable() {
               style={{ textAlign: 'right', fontWeight: 'bold' }}
             >
               <span>총 결제금액</span>
-              {mockData.totalPrice}
+              {formatNumber(mockData.totalPrice)}
             </th>
           </tr>
         </tfoot>
