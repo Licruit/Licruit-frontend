@@ -1,13 +1,16 @@
+import { formatDate } from '@/utils/formatDate';
 import styled from 'styled-components';
 
 function BuyerTable() {
   const mockData = {
-    applicationDate: '2024.07.25',
-    buyer: 'OOOO 상점',
-    businessAddress: '대전광역시 동구 삼성도 00-000',
-    contact: '010-0000-0000',
-    selectedProduct: '백경 13. 탁주 (+16,000원)',
-    totalAmount: '19,000원',
+    createdAt: '2024-08-14T08:55:14.000Z',
+    businessName: '주식회사와이앤제이에프에스',
+    contact: '01011111111',
+    address:
+      '경기도 파주시 파주읍 통일로 1430-73경기 파주시 파주읍 봉서리 124-3',
+    liquorName: '연천 율무 동동주',
+    pricePerBottle: 13000,
+    totalPrice: 70000,
   };
 
   return (
@@ -16,17 +19,17 @@ function BuyerTable() {
         <thead>
           <tr>
             <th scope='col' colSpan={2}>
-              신청 상세내역 <span>{mockData.applicationDate}</span>
+              신청 상세내역 <span>{formatDate(mockData.createdAt)}신청</span>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              구매자 <p>{mockData.buyer}</p>
+              구매자 <p>{mockData.businessName}</p>
             </td>
             <td>
-              사업장 주소 <p>{mockData.businessAddress}</p>
+              사업장 주소 <p>{mockData.address}</p>
             </td>
           </tr>
           <tr>
@@ -34,7 +37,10 @@ function BuyerTable() {
               대표(개인) 연락처 <p>{mockData.contact}</p>
             </td>
             <td>
-              선택상품 <p>{mockData.selectedProduct}</p>
+              선택상품
+              <p>
+                {mockData.liquorName} (+{mockData.pricePerBottle})
+              </p>
             </td>
           </tr>
         </tbody>
@@ -46,7 +52,7 @@ function BuyerTable() {
               style={{ textAlign: 'right', fontWeight: 'bold' }}
             >
               <span>총 결제금액</span>
-              {mockData.totalAmount}
+              {mockData.totalPrice}
             </th>
           </tr>
         </tfoot>
