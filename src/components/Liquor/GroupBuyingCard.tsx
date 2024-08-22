@@ -36,17 +36,19 @@ function GroupBuyingCard(liquor: GroupBuying) {
 export default GroupBuyingCard;
 
 const LiquorInfoContainer = styled.li`
-  width: 374px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 374px;
 `;
 
 const HeaderInfo = styled.div`
   width: 100%;
   padding: 20px;
+
   font-size: ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[50]};
+
   background: ${({ theme }) => theme.color.primary[500]};
 `;
 

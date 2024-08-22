@@ -20,7 +20,7 @@ function LiquorInfo({ liquorId }: Props) {
         {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
         {currentTap === '리뷰' && (
           <ErrorBoundary FallbackComponent={Fallback}>
-            <ReviewBox />{' '}
+            <ReviewBox />
           </ErrorBoundary>
         )}
       </div>

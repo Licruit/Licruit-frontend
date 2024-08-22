@@ -15,9 +15,11 @@ export default Fallback;
 const EmptyReview = styled.div`
   width: 100%;
   height: 500px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   color: ${({ theme }) => theme.color.neutral[600]};
   ${({ theme }) => theme.typo.body.semi_bold[16]}
 `;
