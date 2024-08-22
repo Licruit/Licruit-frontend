@@ -1,20 +1,24 @@
 import Button from '@/components/Button/Button';
-import styled from 'styled-components';
+import PATH from '@/constants/path';
+import { useNavigate } from 'react-router-dom';
 import BuyerTable from './BuyerTable';
 
 function BuyDetail() {
+  const navigate = useNavigate();
   return (
-    <Contianer>
+    <>
       <BuyerTable />
-      <Button $style='outlined' $theme='primary' $size='lg' $width='fit'>
+      <Button
+        onClick={() => navigate(PATH.management)}
+        $style='outlined'
+        $theme='primary'
+        $size='lg'
+        $width='full'
+      >
         목록으로 돌아가기
       </Button>
-    </Contianer>
+    </>
   );
 }
 
 export default BuyDetail;
-
-const Contianer = styled.div`
-  width: 100%;
-`;
