@@ -9,9 +9,9 @@ import { useRegister } from '../hooks/useRegister';
 
 function SideBar() {
   const theme = useTheme();
-  const { id } = useParams();
-  const { liquorDetail } = useLiquorDetail(Number(id));
-  const { handleRegister } = useRegister();
+  const { id: liquorId } = useParams();
+  const { liquorDetail } = useLiquorDetail(Number(liquorId));
+  const { handleRegister } = useRegister(Number(liquorId));
 
   if (!liquorDetail) return null;
 

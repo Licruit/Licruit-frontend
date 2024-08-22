@@ -16,10 +16,10 @@ export const useCatalog = () => {
 
   const params: CatalogParams = {
     page: Number(page),
-    category: category ? +category : undefined,
+    category: category ? Number(category) : undefined,
     search: search || undefined,
-    minAlcohol: minAlcohol ? +minAlcohol : undefined,
-    maxAlcohol: maxAlcohol ? +maxAlcohol : undefined,
+    minAlcohol: minAlcohol ? Number(minAlcohol) : undefined,
+    maxAlcohol: maxAlcohol ? Number(maxAlcohol) : undefined,
   };
   const {
     data: catalogData,

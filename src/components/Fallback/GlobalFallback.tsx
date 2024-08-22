@@ -38,8 +38,8 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.color.common[100]};
 
   h2 {
+    font-weight: 600;
     text-align: center;
     ${({ theme }) => theme.typo.heading.bold[24]}
-    font-weight: 600;
   }
 `;

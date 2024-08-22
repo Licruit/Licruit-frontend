@@ -42,19 +42,23 @@ export const INPUT = {
     isRequired: true,
   },
   price: { label: '가격', placeholder: '16.000', isRequired: true },
-  min: { label: '최소수량', placeholder: '100', isRequired: true },
-  max: { label: '최대수량', placeholder: '1000', isRequired: true },
+  min: { label: '목표수량', placeholder: '100', isRequired: true },
+  max: { label: '최대수량', placeholder: '1000' },
   deliveryFee: { label: '배송비 설정', placeholder: '3,000', isRequired: true },
   freeDelivery: {
     label: '무료 배송비 설정',
     placeholder: '100,000',
     hasInfo: true,
   },
-  location: { label: '지역 제한 선택' },
+  location: { label: '지역 제한 선택', isRequired: true },
   groupBuy: {
     label: '공동구매 제목',
     placeholder: '제목을 입력해 주세요',
     isRequired: true,
     hasValidation: true,
+  },
+  content: {
+    label: '내용',
+    isRequired: true,
   },
 };
