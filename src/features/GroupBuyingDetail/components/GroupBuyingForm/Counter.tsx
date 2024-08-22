@@ -1,14 +1,22 @@
+import { clamp } from '@/utils/clamp';
 import { AddIcon, RemoveIcon } from 'public/assets/icons';
 import { ChangeEvent } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import styled, { useTheme } from 'styled-components';
 
-function Counter() {
+interface Props {
+  remainedQuantity: number;
+}
+
+function Counter({ remainedQuantity }: Props) {
   const theme = useTheme();
+  const isOver = remainedQuantity <= 0;
   const { setValue } = useFormContext();
   const quantity = useWatch({ name: 'quantity' });
 
   const handleClick = (num: number) => {
+    if (isOver) return;
+
     if (quantity + num < 1) {
       return;
     }
@@ -17,7 +25,7 @@ function Counter() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    setValue('quantity', value < 1 ? 1 : value);
+    setValue('quantity', clamp(value, 1, remainedQuantity));
   };
 
   return (
@@ -25,7 +33,12 @@ function Counter() {
       <ActionButton type='button' onClick={() => handleClick(-1)}>
         <RemoveIcon fill={theme.color.neutral[600]} />
       </ActionButton>
-      <CountInput type='number' value={quantity} onChange={handleChange} />
+      <CountInput
+        type='number'
+        value={quantity}
+        disabled={isOver}
+        onChange={handleChange}
+      />
       <ActionButton type='button' onClick={() => handleClick(1)}>
         <AddIcon fill={theme.color.neutral[600]} />
       </ActionButton>

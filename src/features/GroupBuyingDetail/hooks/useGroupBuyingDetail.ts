@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import { getGroupBuyingDetail } from '../api/groupBuying.api';
 import { GroupBuyingDetail } from '../models/groupBuyingDetail.model';
 
-export const useGroupBuyingDetail = () => {
-  const { id } = useParams();
-
+export const useGroupBuyingDetail = (buyingId: number) => {
   const { data } = useQuery<GroupBuyingDetail>({
-    queryKey: ['groupBuyingDetail', id],
-    queryFn: () => getGroupBuyingDetail(Number(id!)),
-    enabled: id !== undefined,
+    queryKey: ['groupBuyingDetail', buyingId],
+    queryFn: () => getGroupBuyingDetail(buyingId),
+    enabled: buyingId !== undefined,
   });
 
   return { groupBuyingDetail: data, liquorId: data?.liquorId };
