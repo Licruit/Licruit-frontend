@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
 
@@ -11,13 +12,21 @@ interface LiquorInfo {
   description: string;
 }
 
+export interface ButtonProps {
+  label: string;
+  $style: 'solid' | 'outlined';
+  $theme: 'primary' | 'neutral';
+}
+
 interface Props {
   headText?: string;
   liquorInfo: LiquorInfo;
-  onClick: () => void;
+  onClick?: () => void;
+  button?: ButtonProps;
+  size: string;
 }
 
-function ProductCard({ headText, liquorInfo, onClick }: Props) {
+function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,7 +36,7 @@ function ProductCard({ headText, liquorInfo, onClick }: Props) {
   }, [liquorInfo.img]);
 
   return (
-    <LiquorInfoContainer onClick={onClick}>
+    <LiquorInfoContainer $size={size} onClick={onClick}>
       {headText && <HeadInfo>{headText}</HeadInfo>}
       <ImgContainer>
         {imageLoaded ? (
@@ -48,6 +57,11 @@ function ProductCard({ headText, liquorInfo, onClick }: Props) {
         <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
+      {button && (
+        <Button $size='sm' $width='full' {...button}>
+          {button.label}
+        </Button>
+      )}
     </LiquorInfoContainer>
   );
 }
@@ -61,26 +75,23 @@ const ImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 370px;
 `;
 
-const LiquorInfoContainer = styled.li`
+const LiquorInfoContainer = styled.li<{ $size: string }>`
   cursor: pointer;
+
+  position: relative;
 
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   width: 100%;
-  max-width: 370px;
-  padding: 20px;
-
-  .img {
-    overflow: hidden;
-  }
+  max-width: ${({ $size }) => $size}px;
 
   img {
-    height: 370px;
+    overflow: hidden;
+    height: ${({ $size }) => $size}px;
   }
 `;
 
@@ -108,7 +119,6 @@ const spin = keyframes`
 `;
 
 const SpinnerBox = styled.div`
-  position: relative;
   height: 370px;
 `;
 

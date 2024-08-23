@@ -7,6 +7,7 @@ import GroupBuyingPage from '@/pages/GroupBuyingPage';
 import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
 import CatalogPage from '@/pages/CatalogPage';
 import ManagementPage from '@/pages/ManagementPage';
+import BuyerDetailPage from '@/pages/BuyerDetailPage';
 import NavContentLayout from '@/layouts/NavContentLayout';
 import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
 import MainLayout from '@/layouts/MainLayout';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: 'management',
         element: <ManagementPage />,
+      },
+      {
+        path: 'management/:id',
+        element: <BuyerDetailPage />,
       },
     ],
   },
