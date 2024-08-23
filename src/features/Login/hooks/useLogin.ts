@@ -5,14 +5,14 @@ import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { saveTokens } from '@/utils/storage';
-import useSessionStore from '@/store/sessionStore';
+import useLoginStore from '@/store/loginStore';
 import { LoginForm } from '../types/login';
 import { login } from '../api/login.api';
 
 export const useLogin = () => {
   const navigate = useNavigate();
   const [isAutoLogin, setIsAutoLogin] = useState(false);
-  const setIsLoggedIn = useSessionStore((state) => state.setIsLoggedIn);
+  const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
 
   const { mutate: handleLogin } = useMutation({
     mutationFn: (loginData: LoginForm) => login(loginData),

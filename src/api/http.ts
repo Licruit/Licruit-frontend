@@ -1,9 +1,9 @@
 import { BASE_URL, DEFAULT_TIMOUT } from '@/constants/api';
 import PATH from '@/constants/path';
 import { STORAGE_KEY } from '@/constants/storage';
-import useSessionStore from '@/store/sessionStore';
-import { deleteTokenFromStorage, getTokenFromStorage } from '@/utils/storage';
+import { deleteAllFromStorage, getTokenFromStorage } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import useLoginStore from '@/store/loginStore';
 import { toast } from 'react-toastify';
 
 const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
@@ -30,7 +30,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
       return res;
     },
     async (err) => {
-      const { isLoggedIn, setIsLoggedIn } = useSessionStore.getState();
+      const { isLoggedIn, setIsLoggedIn } = useLoginStore();
       const { refreshToken } = getTokenFromStorage();
 
       if (isLoggedIn && err.response.status === 401) {
@@ -54,7 +54,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
           return axiosInstance(originRequest);
         } catch (error) {
           setIsLoggedIn(false);
-          deleteTokenFromStorage();
+          deleteAllFromStorage();
           toast.info('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
           window.location.href = PATH.login;
           return Promise.reject(error);

@@ -15,10 +15,12 @@ export const getTokenFromStorage = () => {
   return tokens;
 };
 
-export const deleteTokenFromStorage = () => {
+export const deleteAllFromStorage = () => {
   const removeTokensFromStorage = (storage: Storage) => {
     storage.removeItem(STORAGE_KEY.accessToken);
     storage.removeItem(STORAGE_KEY.refreshToken);
+    storage.removeItem(STORAGE_KEY.userType);
+    storage.removeItem(STORAGE_KEY.loginState);
   };
 
   removeTokensFromStorage(sessionStorage);
