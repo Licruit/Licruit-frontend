@@ -57,6 +57,11 @@ export const INPUT = {
     isRequired: true,
     hasValidation: true,
   },
+  title: {
+    label: '제목명',
+    placeholder: '제목을 입력해 주세요',
+    isRequired: true,
+  },
   content: {
     label: '내용',
     isRequired: true,
