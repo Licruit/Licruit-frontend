@@ -10,14 +10,29 @@ interface Props {
 
 function CounterBox({ detailData }: Props) {
   const quantity = useWatch({ name: 'quantity' });
-  const { price, deliveryFee, freeDeliveryFee, orderCount, totalMax } =
-    detailData;
+  const {
+    price,
+    deliveryFee,
+    freeDeliveryFee,
+    orderCount,
+    totalMax,
+    deliveryRegions,
+  } = detailData;
 
   return (
     <Container>
       <div className='description'>
-        <span>택배배송 (+{formatNumber(deliveryFee)}원)</span>
-        <span>{formatNumber(freeDeliveryFee)}원 이상 결제시 무료 배송</span>
+        <span>배송가능 지역 : {deliveryRegions.join(',')}</span>
+        <span>
+          {deliveryFee === 0 ? (
+            '무료배송'
+          ) : (
+            <>
+              택배배송 (+{formatNumber(deliveryFee)}원) ·{' '}
+              {formatNumber(freeDeliveryFee)}원 이상 결제시 무료 배송
+            </>
+          )}
+        </span>
       </div>
       <SelectorWrapper>
         <Counter remainedQuantity={totalMax - orderCount} />

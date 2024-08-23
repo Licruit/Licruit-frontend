@@ -18,17 +18,28 @@ function GroupBuyingForm({ detailData }: Props) {
   const { id: buyingId } = useParams();
   const { methods, handleRegister } = useRegister(Number(buyingId));
 
-  const { liquorName, isParticipated, orderCount, totalMin, deadline } =
-    detailData;
+  const {
+    liquorName,
+    isParticipated,
+    orderCount,
+    totalMin,
+    deadline,
+    totalMax,
+  } = detailData;
   const isOver = orderCount >= totalMin || isClosed(deadline);
 
   return (
     <FormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit((data) => handleRegister(data))}>
         <FormBox>
-          <OptionName>
+          <BoxHeader>
             <span>{liquorName}</span>
-          </OptionName>
+            {totalMax > 0 && (
+              <Button $style='outlined' $theme='primary' $size='sm'>
+                현재 {totalMax - orderCount}병 신청가능
+              </Button>
+            )}
+          </BoxHeader>
           <Divider />
           <CounterBox detailData={detailData} />
         </FormBox>
@@ -98,9 +109,11 @@ const FormBox = styled.div`
   background-color: ${({ theme }) => theme.color.neutral[100]};
 `;
 
-const OptionName = styled.div`
+const BoxHeader = styled.div`
   width: 100%;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
   ${({ theme }) => theme.typo.body.medium[14]}
   color: ${({ theme }) => theme.color.neutral[600]};
 `;
