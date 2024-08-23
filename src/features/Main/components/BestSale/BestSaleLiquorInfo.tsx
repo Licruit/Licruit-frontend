@@ -2,22 +2,31 @@ import styled from 'styled-components';
 
 import { Badge } from '@/styles/components/Badge';
 import HeaderInfo from '../common/HeadInfo';
-import { LiquorInfoProps } from '../../types/main';
+
+interface LiquorInfoProps {
+  orderCount: number;
+  imageUrl: string;
+  leftDate: number;
+  title: string;
+  description: string;
+  onClick: () => void;
+}
 
 function BestSaleLiquorInfo({
-  headText,
-  badgeText,
+  orderCount,
+  leftDate,
   title,
   description,
   imageUrl,
+  onClick,
 }: LiquorInfoProps) {
   return (
-    <LiquorInfoContainer>
-      <HeaderInfo>{headText}</HeaderInfo>
+    <LiquorInfoContainer onClick={onClick}>
+      <HeaderInfo>{orderCount}명 신청</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
-            {badgeText}
+            {leftDate === 0 ? '오늘마감' : `${leftDate}일전`}
           </Badge>
           <Title>{title}</Title>
           <LiquorDescription>{description}</LiquorDescription>
@@ -45,8 +54,8 @@ const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
   height: 453px;
   padding-top: 175px;
 
-  background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
-    no-repeat;
+  background: url(${({ $imageUrl }) => $imageUrl}) lightgray center no-repeat;
+  background-size: contain;
 `;
 
 const LiquorInfo = styled.div`
