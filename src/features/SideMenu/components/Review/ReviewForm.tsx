@@ -3,29 +3,53 @@ import { GlassIcon } from 'public/assets/icons';
 import styled, { useTheme } from 'styled-components';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { INPUT } from '../../constants/input';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import { NOTICE } from '../../constants/notice';
 import { DESCRIPTION } from '../../constants/description';
+import useReviewMutation from '../../hooks/useReviewMutation';
+
+interface Form {
+  title: string;
+  content: string;
+}
 
 function ReviewForm() {
   const [rate, setRate] = useState<number>(1);
+  const id = useMyPageSideMenuStore((state) => state.id);
+  const { mutate: postReview } = useReviewMutation();
   const theme = useTheme();
-  const methods = useForm();
+  const methods = useForm<Form>();
+
+  const {
+    register,
+    formState: { isValid },
+    handleSubmit,
+  } = methods;
 
   const handleClickRateIcon = (rateNumber: number) => {
     setRate(rateNumber + 1);
   };
 
-  const {
-    register,
-    formState: { isValid },
-  } = methods;
+  const handleOnSubmit = (data: Form) => {
+    if (id !== null) {
+      const req = {
+        orderId: 1,
+        title: data.title,
+        content: data.content,
+        score: rate,
+      };
+
+      postReview(req);
+    }
+  };
+
   return (
     <>
       <FormProvider {...methods}>
-        <Form>
+        <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
           <ProfileInput
             {...INPUT.title}
             isRequired
@@ -70,6 +94,7 @@ function ReviewForm() {
             $theme='primary'
             $size='lg'
             $width='full'
+            type='submit'
             disabled={!isValid}
           >
             작성하기
