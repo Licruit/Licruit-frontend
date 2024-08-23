@@ -49,8 +49,6 @@ function ManagementLayout({ children }: Props) {
       $theme: 'primary',
     };
     headText = undefined;
-  } else if (id) {
-    headText = undefined;
   }
 
   return (
@@ -59,6 +57,7 @@ function ManagementLayout({ children }: Props) {
         liquorInfo={liquors}
         headText={headText}
         button={buttonProps}
+        size='264'
       />
       {children}
     </Container>

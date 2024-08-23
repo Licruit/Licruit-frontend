@@ -23,9 +23,10 @@ interface Props {
   liquorInfo: LiquorInfo;
   onClick?: () => void;
   button?: ButtonProps;
+  size: string;
 }
 
-function ProductCard({ headText, liquorInfo, onClick, button }: Props) {
+function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function ProductCard({ headText, liquorInfo, onClick, button }: Props) {
   }, [liquorInfo.img]);
 
   return (
-    <LiquorInfoContainer onClick={onClick}>
+    <LiquorInfoContainer $size={size} onClick={onClick}>
       {headText && <HeadInfo>{headText}</HeadInfo>}
       <ImgContainer>
         {imageLoaded ? (
@@ -74,10 +75,9 @@ const ImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 370px;
 `;
 
-const LiquorInfoContainer = styled.li`
+const LiquorInfoContainer = styled.li<{ $size: string }>`
   cursor: pointer;
 
   position: relative;
@@ -87,11 +87,11 @@ const LiquorInfoContainer = styled.li`
   gap: 20px;
 
   width: 100%;
-  max-width: 370px;
+  max-width: ${({ $size }) => $size}px;
 
   img {
     overflow: hidden;
-    height: 370px;
+    height: ${({ $size }) => $size}px;
   }
 `;
 
