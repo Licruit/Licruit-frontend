@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function LoginPage() {
-  const { isFailed, handleLogin } = useLogin();
+  const { handleLogin, isAutoLogin, setIsAutoLogin } = useLogin();
 
   return (
     <>
@@ -28,7 +28,10 @@ function LoginPage() {
         }
       >
         <FormTitle type='login' />
-        <LoginForm isFailed={isFailed} />
+        <LoginForm
+          isAutoLogin={isAutoLogin}
+          toggleAutoLogin={() => setIsAutoLogin((prev) => !prev)}
+        />
       </GenericForm>
     </>
   );

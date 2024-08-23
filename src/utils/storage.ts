@@ -13,3 +13,15 @@ export const deleteTokenFromStorage = () => {
     refreshToken: sessionStorage.removeItem(STORAGE_KEY.refreshToken),
   };
 };
+
+export const saveTokens = (
+  isAutoLogin: boolean,
+  accessToken: string,
+  refreshToken: string,
+  isWholesaler: boolean
+) => {
+  const storage = isAutoLogin ? localStorage : sessionStorage;
+  storage.setItem(STORAGE_KEY.accessToken, accessToken);
+  storage.setItem(STORAGE_KEY.refreshToken, refreshToken);
+  storage.setItem(STORAGE_KEY.userType, String(isWholesaler));
+};
