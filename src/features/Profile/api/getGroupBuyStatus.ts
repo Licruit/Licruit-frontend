@@ -1,17 +1,6 @@
 import { httpClient } from '@/api/http';
 import { AxiosResponse } from 'axios';
-
-interface ShopStatusRes {
-  id: string;
-  status: string;
-  statusCount: string;
-}
-
-interface CompanyStatusRes {
-  openBuying: string;
-  shortfall: string;
-  achievement: string;
-}
+import { ShopStatusRes, CompanyStatusRes } from '../model/groupbuystatus.model';
 
 export const getShopCurrentStatus = async () => {
   const result: AxiosResponse<ShopStatusRes[]> =
