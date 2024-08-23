@@ -1,11 +1,13 @@
 import Button from '@/components/Button/Button';
 import { GlassIcon } from 'public/assets/icons';
 import styled, { useTheme } from 'styled-components';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { INPUT } from '../../constants/input';
 import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
+import { NOTICE } from '../../constants/notice';
+import { DESCRIPTION } from '../../constants/description';
 
 function ReviewForm() {
   const [rate, setRate] = useState<number>(1);
@@ -16,53 +18,73 @@ function ReviewForm() {
     setRate(rateNumber + 1);
   };
 
-  const { register } = methods;
+  const {
+    register,
+    formState: { isValid },
+  } = methods;
   return (
     <>
-      <ProfileInput {...INPUT.title} name='title' isRequired />
-      <IntroduceWrapper>
-        <Label {...INPUT.content} />
-        <Introduce
-          placeholder='내용을 입력해주세요'
-          maxLength={400}
-          {...register('content', { required: true })}
-        />
-        <Notice>
-          <strong>리뷰 작성 전 유의사항을 꼭 확인해 주세요 ! </strong>
-          사용자와 도매업자에게 상처를 줄 수 있는 욕설, 비방, 명예훼손성 표현은
-          삼가해 주세요. 리크루트와 함께 상생하는 리뷰 문화를 만들어 갑시다.
-        </Notice>
-      </IntroduceWrapper>
-      <SatisfyWrapper>
-        <LabelWrapper>
-          <Label label='만족도' isRequired />
-          <Description>
-            해당 전통주에 만족하셨나요? 와인잔을 선택해 평점을 남겨주세요 !
-          </Description>
-        </LabelWrapper>
-        <ReviewRateWrapper>
-          {Array.from({ length: 5 }, (_, index) => index).map((item) => (
-            <GlassIcon
-              key={item}
-              fill={
-                item < rate
-                  ? theme.color.primary[500]
-                  : theme.color.neutral[400]
-              }
-              width={42}
-              height={42}
-              onClick={() => handleClickRateIcon(item)}
+      <FormProvider {...methods}>
+        <Form>
+          <ProfileInput
+            {...INPUT.title}
+            isRequired
+            {...register('title', { required: true })}
+          />
+          <IntroduceWrapper>
+            <Label {...INPUT.content} />
+            <Introduce
+              placeholder='내용을 입력해주세요'
+              maxLength={400}
+              {...register('content', { required: true })}
             />
-          ))}
-          <CurrentRate>현재 {rate}잔이에요</CurrentRate>
-        </ReviewRateWrapper>
-      </SatisfyWrapper>
-      <Button $style='solid' $theme='primary' $size='lg' $width='full'>
-        작성하기
-      </Button>
+            <Notice>
+              <strong>{NOTICE.strong}</strong>
+              {NOTICE.normal}
+            </Notice>
+          </IntroduceWrapper>
+          <SatisfyWrapper>
+            <LabelWrapper>
+              <Label label='만족도' isRequired />
+              <Description>{DESCRIPTION.review}</Description>
+            </LabelWrapper>
+            <ReviewRateWrapper>
+              {Array.from({ length: 5 }, (_, index) => index).map((item) => (
+                <GlassIcon
+                  key={item}
+                  fill={
+                    item < rate
+                      ? theme.color.primary[500]
+                      : theme.color.neutral[400]
+                  }
+                  width={42}
+                  height={42}
+                  onClick={() => handleClickRateIcon(item)}
+                />
+              ))}
+              <CurrentRate>현재 {rate}잔이에요</CurrentRate>
+            </ReviewRateWrapper>
+          </SatisfyWrapper>
+          <Button
+            $style='solid'
+            $theme='primary'
+            $size='lg'
+            $width='full'
+            disabled={!isValid}
+          >
+            작성하기
+          </Button>
+        </Form>
+      </FormProvider>
     </>
   );
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const IntroduceWrapper = styled.div`
   display: flex;
