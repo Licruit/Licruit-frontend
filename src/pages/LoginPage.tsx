@@ -18,7 +18,7 @@ function LoginPage() {
         url='https://www.licruit.site/auth/login'
       />
       <GenericForm<LoginFormType>
-        onSubmit={handleLogin}
+        onSubmit={(data) => handleLogin(data)}
         formOptions={{ mode: 'onChange' }}
         caption={
           <JoinGuide>
