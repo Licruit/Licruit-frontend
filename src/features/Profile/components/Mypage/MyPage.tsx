@@ -9,6 +9,7 @@ import useProfileQuery from '../../hooks/useProfileQuery';
 import ContentList from './ContentList';
 import useGroupBuyListQuery from '../../hooks/useGroupBuyListQuery';
 import { GroupBuyListRes } from '../../model/groupbuylist.model';
+import useGroupBuyStatusQuery from '../../hooks/useGroupBuyStatusQuery';
 
 interface Props {
   onClose: () => void;
@@ -20,23 +21,29 @@ function MyPage({ onClose }: Props) {
 
   const { data: userProfile } = useProfileQuery();
   const { data: groupBuyLists } = useGroupBuyListQuery();
+  const { data: groupBuyStatus } = useGroupBuyStatusQuery();
+
+  const statusCounts = groupBuyStatus
+    ? groupBuyStatus?.map((item) => Number(item.statusCount))
+    : [];
 
   const { checkIsCompany } = useUserType();
   const isCompany = checkIsCompany();
 
   useEffect(() => {
-    const status = ['신청', '승인대기', '배송중', '배송완료'];
-
+    const statusLabels = ['신청', '승인대기', '배송중', '배송완료'];
     if (groupBuyLists) {
-      setContentList(
-        groupBuyLists?.filter(
-          (listItem) => listItem.status === status[content - 1]
-        )
-      );
+      if (content !== 0) {
+        setContentList(
+          groupBuyLists.filter(
+            (item) => item.status === statusLabels[content - 1]
+          )
+        );
+      }
     }
   }, [content, groupBuyLists]);
 
-  if (!userProfile || !groupBuyLists) return null;
+  if (!userProfile || !groupBuyLists || !groupBuyStatus) return null;
 
   return (
     <>
@@ -51,7 +58,7 @@ function MyPage({ onClose }: Props) {
         }
       />
       <Profile userProfile={userProfile} />
-      <ContentCategory setContent={setContent} />
+      <ContentCategory setContent={setContent} statusCounts={statusCounts} />
       {content !== 0 && <ContentList contentList={contentList} />}
       {isCompany && <CompanyShowButtons />}
     </>

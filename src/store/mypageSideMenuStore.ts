@@ -4,7 +4,8 @@ type Step = 'my-page' | 'edit-profile' | 'signout' | 'review' | 'group-buying';
 
 interface MyPageSideMenuStates {
   content: Step;
-  setContent: (value: Step) => void;
+  id: number | null;
+  setContent: (content: Step, id?: number | null) => void;
 }
 
 interface MyPageIsOpenStates {
@@ -15,7 +16,9 @@ interface MyPageIsOpenStates {
 
 export const useMyPageSideMenuStore = create<MyPageSideMenuStates>((set) => ({
   content: 'my-page',
-  setContent: (updatedContent) => set({ content: updatedContent }),
+  id: null,
+  setContent: (updatedContent: Step, updatedId?: number | null) =>
+    set({ content: updatedContent, id: updatedId }),
 }));
 
 export const useMyPageIsOpenStore = create<MyPageIsOpenStates>((set) => ({

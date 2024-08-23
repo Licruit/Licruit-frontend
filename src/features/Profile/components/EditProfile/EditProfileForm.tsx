@@ -39,7 +39,7 @@ function EditProfileForm({ userProfile, image }: Props) {
   );
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { mutate: editProfile } = useProfileMutation();
-  const checkIsCompany = useUserType();
+  const { checkIsCompany } = useUserType();
 
   const methods = useForm<GetProfile>({
     mode: 'onChange',

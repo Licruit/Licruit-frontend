@@ -2,17 +2,17 @@ import styled from 'styled-components';
 import useUserType from '@/hooks/usertype/useUserType';
 
 interface Props {
+  statusCounts: number[];
   setContent: (content: number) => void;
 }
 
-function ContentCategory({ setContent }: Props) {
+function ContentCategory({ statusCounts, setContent }: Props) {
   const { checkIsCompany } = useUserType();
 
   const isCompany = checkIsCompany();
   const categories = isCompany
     ? ['공동구매 오픈', '신청현황', '미달성', '성사']
     : ['신청현황', '승인대기', '배송중', '배송완료'];
-  const categoryCounts = [2, 3, 0, 0];
 
   return (
     <ContentCategoryContainer>
@@ -24,7 +24,7 @@ function ContentCategory({ setContent }: Props) {
         {categories.map((category, index) => (
           <CategoryItem key={category} onClick={() => setContent(index + 1)}>
             <p>{category}</p>
-            <p>{categoryCounts[index]}</p>
+            <p>{statusCounts[index]}</p>
           </CategoryItem>
         ))}
       </CategoryWrapper>
