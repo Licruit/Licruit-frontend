@@ -1,8 +1,10 @@
 import { BASE_URL, DEFAULT_TIMOUT } from '@/constants/api';
+import PATH from '@/constants/path';
 import { STORAGE_KEY } from '@/constants/storage';
 import useSessionStore from '@/store/sessionStore';
 import { deleteTokenFromStorage, getTokenFromStorage } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { toast } from 'react-toastify';
 
 const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
   const axiosInstance = axios.create({
@@ -43,15 +45,18 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
           const newAccessToken = result.data.accessToken;
 
           if (newAccessToken) {
-            sessionStorage.setItem(STORAGE_KEY.accessToken, newAccessToken);
+            const storage = sessionStorage.getItem(STORAGE_KEY.refreshToken)
+              ? sessionStorage
+              : localStorage;
+            storage.setItem(STORAGE_KEY.accessToken, newAccessToken);
             originRequest.headers.Authorization = newAccessToken;
           }
           return axiosInstance(originRequest);
         } catch (error) {
           setIsLoggedIn(false);
           deleteTokenFromStorage();
-          window.alert('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
-          window.location.href = '/auth/login';
+          toast.info('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
+          window.location.href = PATH.login;
           return Promise.reject(error);
         }
       }

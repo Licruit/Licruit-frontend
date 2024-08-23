@@ -1,17 +1,28 @@
 import { STORAGE_KEY } from '@/constants/storage';
 
 export const getTokenFromStorage = () => {
-  return {
-    accessToken: sessionStorage.getItem(STORAGE_KEY.accessToken),
-    refreshToken: sessionStorage.getItem(STORAGE_KEY.refreshToken),
-  };
+  const getTokensFromStorage = (storage: Storage) => ({
+    accessToken: storage.getItem(STORAGE_KEY.accessToken),
+    refreshToken: storage.getItem(STORAGE_KEY.refreshToken),
+  });
+
+  let tokens = getTokensFromStorage(sessionStorage);
+
+  if (!tokens.accessToken || !tokens.refreshToken) {
+    tokens = getTokensFromStorage(localStorage);
+  }
+
+  return tokens;
 };
 
 export const deleteTokenFromStorage = () => {
-  return {
-    accessToken: sessionStorage.removeItem(STORAGE_KEY.accessToken),
-    refreshToken: sessionStorage.removeItem(STORAGE_KEY.refreshToken),
+  const removeTokensFromStorage = (storage: Storage) => {
+    storage.removeItem(STORAGE_KEY.accessToken);
+    storage.removeItem(STORAGE_KEY.refreshToken);
   };
+
+  removeTokensFromStorage(sessionStorage);
+  removeTokensFromStorage(localStorage);
 };
 
 export const saveTokens = (
