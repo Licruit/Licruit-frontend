@@ -79,18 +79,18 @@ const ImgContainer = styled.div`
 
 const LiquorInfoContainer = styled.li`
   cursor: pointer;
+
   position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   width: 100%;
   max-width: 370px;
 
-  .img {
-    overflow: hidden;
-  }
-
   img {
+    overflow: hidden;
     height: 370px;
   }
 `;
@@ -127,8 +127,10 @@ const Spinner = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   width: 40px;
   height: 40px;
+
   border: 4px solid ${({ theme }) => theme.color.neutral[200]};
   border-top: 4px solid ${({ theme }) => theme.color.primary[500]};
   border-radius: 50%;
