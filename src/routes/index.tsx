@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <ManagementPage />,
       },
       {
-        path: 'buyerManagement',
+        path: 'management/:id',
         element: <BuyerDetailPage />,
       },
     ],

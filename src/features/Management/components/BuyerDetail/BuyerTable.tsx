@@ -1,48 +1,40 @@
 import { formatNumber, formatPhoneNumber } from '@/utils/format';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
+import { OrderDetail } from '../../hooks/useOrderDetail';
 
-function BuyerTable() {
-  const mockData = {
-    createdAt: '2024-08-14T08:55:14.000Z',
-    businessName: '주식회사와이앤제이에프에스',
-    contact: '01011111111',
-    address:
-      '경기도 파주시 파주읍 통일로 1430-73경기 파주시 파주읍 봉서리 124-3',
-    liquorName: '연천 율무 동동주',
-    pricePerBottle: 13000,
-    totalPrice: 70000,
-  };
-
+function BuyerTable({ orderDetail }: { orderDetail: OrderDetail }) {
   return (
     <Container>
       <table>
         <thead>
           <tr>
             <th scope='col' colSpan={2}>
-              신청 상세내역{' '}
-              <span>{dayjs(mockData.createdAt).format('YYYY.MM.DD')} 신청</span>
+              신청 상세내역
+              <span>
+                {dayjs(orderDetail.createdAt).format('YYYY.MM.DD')} 신청
+              </span>
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              구매자 <p>{mockData.businessName}</p>
+              구매자 <p>{orderDetail.businessName}</p>
             </td>
             <td>
-              사업장 주소 <p>{mockData.address}</p>
+              사업장 주소 <p>{orderDetail.address}</p>
             </td>
           </tr>
           <tr>
             <td>
-              대표(개인) 연락처 <p>{formatPhoneNumber(mockData.contact)}</p>
+              대표(개인) 연락처 <p>{formatPhoneNumber(orderDetail.contact)}</p>
             </td>
             <td>
               선택상품
               <p>
-                {mockData.liquorName} (+{formatNumber(mockData.pricePerBottle)}
-                {})
+                {orderDetail.liquorName} (+
+                {formatNumber(orderDetail.pricePerBottle)})
               </p>
             </td>
           </tr>
@@ -55,7 +47,7 @@ function BuyerTable() {
               style={{ textAlign: 'right', fontWeight: 'bold' }}
             >
               <span>총 결제금액</span>
-              {formatNumber(mockData.totalPrice)}
+              {formatNumber(orderDetail.totalPrice)}
             </th>
           </tr>
         </tfoot>
