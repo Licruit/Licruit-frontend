@@ -27,22 +27,27 @@ function ManagementLayout({ children }: Props) {
     $style: 'solid',
     $theme: 'primary',
   };
+
+const src =location.search;
+
+  
   if (id) {
     headText = undefined;
   }
-  if (location.search === '?achievement') {
+  
+  if (src === '?achievement') {
     buttonProps = {
       label: '전체확정',
       $style: 'outlined',
       $theme: 'primary',
     };
-  } else if (location.search === '?shortfall') {
+  } else if (src === '?shortfall') {
     buttonProps = {
       label: '미달성',
       $style: 'outlined',
       $theme: 'neutral',
     };
-  } else if (location.search === '?cancel') {
+  } else if (src === '?cancel') {
     buttonProps = {
       label: '전체경고',
       $style: 'solid',
