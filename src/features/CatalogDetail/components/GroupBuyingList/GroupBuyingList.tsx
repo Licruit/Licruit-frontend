@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 import GroupBuyingListItem from './GroupBuyingListItem';
+import { useCurrentBuyings } from '../../hooks/useCurrentBuyings';
 
 function GroupBuyingList() {
+  const { buyings, totalBuyings } = useCurrentBuyings();
+
+  if (!buyings) return <></>;
+
   return (
     <Container>
       <StatusBar>
         <div className='dot' />
-        현재 진행되는 공동구매는 없습니다.
+        {totalBuyings === 0
+          ? '현재 진행되는 공동구매는 없습니다.'
+          : `현재 ${totalBuyings}개의 공동구매가 진행 중입니다.`}
       </StatusBar>
       <div className='list-wrapper'>
-        <GroupBuyingListItem />
-        <GroupBuyingListItem />
-        <GroupBuyingListItem />
+        {buyings.map((item) => (
+          <GroupBuyingListItem key={item.id} buyingData={item} />
+        ))}
       </div>
     </Container>
   );
@@ -30,7 +37,6 @@ const Container = styled.div`
   .list-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
   }
 `;
 
