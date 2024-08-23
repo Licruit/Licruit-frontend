@@ -54,7 +54,9 @@ function BestSale() {
             ))}
           </ButtonCategory>
         </div>
-        <MoreButton>더보기</MoreButton>
+        <MoreButton onClick={() => navigate('group-buying?sort=ranking')}>
+          더보기
+        </MoreButton>
       </CategoryHeader>
       <LiquorContent>
         {/* 추후 서버 데이터로 대체 예정 */}
