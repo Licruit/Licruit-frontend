@@ -1,4 +1,4 @@
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { BackIcon } from 'public/assets/icons';
 
 import MyPageHeader from '../common/MyPageHeader';
