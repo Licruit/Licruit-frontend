@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
 
@@ -11,13 +12,20 @@ interface LiquorInfo {
   description: string;
 }
 
+export interface ButtonProps {
+  label: string;
+  $style: 'solid' | 'outlined';
+  $theme: 'primary' | 'neutral';
+}
+
 interface Props {
   headText?: string;
   liquorInfo: LiquorInfo;
   onClick?: () => void;
+  button?: ButtonProps;
 }
 
-function ProductCard({ headText, liquorInfo, onClick }: Props) {
+function ProductCard({ headText, liquorInfo, onClick, button }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -48,6 +56,11 @@ function ProductCard({ headText, liquorInfo, onClick }: Props) {
         <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
+      {button && (
+        <Button $size='sm' $width='full' {...button}>
+          {button.label}
+        </Button>
+      )}
     </LiquorInfoContainer>
   );
 }
