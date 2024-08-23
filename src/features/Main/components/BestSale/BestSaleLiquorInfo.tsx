@@ -1,27 +1,30 @@
 import styled from 'styled-components';
 
 import { Badge } from '@/styles/components/Badge';
+import { useNavigate } from 'react-router-dom';
 import HeaderInfo from '../common/HeadInfo';
 
-interface LiquorInfoProps {
+export interface Props {
+  id: number;
   orderCount: number;
   imageUrl: string;
   leftDate: number;
   title: string;
   description: string;
-  onClick: () => void;
 }
 
 function BestSaleLiquorInfo({
+  id,
   orderCount,
   leftDate,
   title,
   description,
   imageUrl,
-  onClick,
-}: LiquorInfoProps) {
+}: Props) {
+  const navigate = useNavigate();
+
   return (
-    <LiquorInfoContainer onClick={onClick}>
+    <LiquorInfoContainer onClick={() => navigate(`group-buying/${id}`)}>
       <HeaderInfo>{orderCount}명 신청</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>

@@ -59,15 +59,15 @@ function BestSale() {
         </MoreButton>
       </CategoryHeader>
       <LiquorContent>
-        {/* 추후 서버 데이터로 대체 예정 */}
         {liquorContent.map((liquorInfo) => (
           <BestLiquorInfo
+            key={liquorInfo.id}
+            id={liquorInfo.id}
             orderCount={liquorInfo.orderCount}
             title={liquorInfo.title}
             description={liquorInfo.content}
             leftDate={liquorInfo.leftDate}
             imageUrl={liquorInfo.img}
-            onClick={() => navigate(`group-buying/${liquorInfo.id}`)}
           />
         ))}
       </LiquorContent>
