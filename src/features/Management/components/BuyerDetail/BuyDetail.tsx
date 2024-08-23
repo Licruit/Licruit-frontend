@@ -1,15 +1,17 @@
+import { Suspense } from 'react';
 import Button from '@/components/Button/Button';
 import PATH from '@/constants/path';
 import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import BuyerTable from './BuyerTable';
 import { useOrderDetail } from '../../hooks/useOrderDetail';
-import { Suspense } from 'react';
+
 function BuyDetail() {
   const { id: orderId } = useParams();
   const { orderDetail } = useOrderDetail(Number(orderId));
   const navigate = useNavigate();
   return (
-    <>
+    <Container>
       <Suspense fallback={<></>}>
         <BuyerTable orderDetail={orderDetail} />
       </Suspense>
@@ -22,8 +24,12 @@ function BuyDetail() {
       >
         목록으로 돌아가기
       </Button>
-    </>
+    </Container>
   );
 }
 
 export default BuyDetail;
+
+const Container = styled.div`
+  width: 100%;
+`;
