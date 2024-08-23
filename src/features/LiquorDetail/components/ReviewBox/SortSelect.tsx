@@ -11,6 +11,7 @@ function SortSelect() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOption = (option: 0 | 1) => {
+    setIsOpen(false);
     const updatedParams = new URLSearchParams(searchParams.toString());
     updatedParams.set('sort', option.toString());
     navigate(`?${updatedParams.toString()}`, { replace: true });
