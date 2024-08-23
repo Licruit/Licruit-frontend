@@ -1,7 +1,7 @@
 import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
 import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
-import MyPageSideMenu from '@/features/Profile/components/Mypage/MyPageSideMenu';
+import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu';
 import { useEffect, useState } from 'react';
 import MetaTag from '@/components/MetaTag';
 

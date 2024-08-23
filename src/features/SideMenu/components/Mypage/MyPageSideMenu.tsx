@@ -5,6 +5,7 @@ import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
 import GroupBuy from '../GroupBuy/GroupBuyOpenForm';
 import SignOut from '../SignOut/SignOut';
+import Review from '../Review/Review';
 
 interface Props {
   onClose: () => void;
@@ -26,6 +27,7 @@ function MyPageSideMenu({ onClose }: Props) {
         {content === 'edit-profile' && <EditProfile />}
         {content === 'group-buying' && <GroupBuy />}
         {content === 'signout' && <SignOut onClose={onClose} />}
+        {content === 'review' && <Review />}
       </Container>
     </Overlay>,
     document.body
