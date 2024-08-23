@@ -1,19 +1,30 @@
 import styled from 'styled-components';
-
 import { Badge } from '@/styles/components/Badge';
+import { useNavigate } from 'react-router-dom';
 import HeadInfo from '../common/HeadInfo';
-import { LiquorInfoProps } from '../../types/main';
+
+interface Props {
+  id: number;
+  reviewAvg: number;
+  imageUrl: string;
+  badgeText: string;
+  title: string;
+  description: string;
+}
 
 function RateLiquorInfo({
-  headText,
+  id,
+  reviewAvg,
   imageUrl,
   badgeText,
   title,
   description,
-}: LiquorInfoProps) {
+}: Props) {
+  const navigate = useNavigate();
+
   return (
-    <LiquorInfoContainer>
-      <HeadInfo>{headText}</HeadInfo>
+    <LiquorInfoContainer onClick={() => navigate(`catalog/${id}`)}>
+      <HeadInfo>현재 {reviewAvg}잔이에요 !</HeadInfo>
       <img src={imageUrl} alt='liquor' />
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
@@ -33,12 +44,14 @@ const Title = styled.div`
 
 const LiquorInfoContainer = styled.li`
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 
   img {
-    width: 100%;
+    height: 264px;
   }
 `;
 
@@ -52,8 +65,14 @@ const LiquorInfo = styled.div`
 `;
 
 const LiquorDescription = styled.div`
-  ${({ theme }) => theme.typo.body.medium[14]};
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
   color: ${({ theme }) => theme.color.neutral[400]};
+  text-overflow: ellipsis;
+  ${({ theme }) => theme.typo.body.medium[14]};
 `;
 
 export default RateLiquorInfo;
