@@ -3,7 +3,7 @@ import { ButtonProps } from '@/features/Catalog/components/Main/ProductCard';
 import MockImage from 'public/assets/images/main/mock-image1 38.svg';
 
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const liquors = {
@@ -19,56 +19,55 @@ interface Props {
 
 function ManagementLayout({ children }: Props) {
   const location = useLocation();
+  const { id } = useParams();
 
+  let headText: string | undefined = `총 ${1500}병 신청됐습니다`;
   let buttonProps: ButtonProps = {
     label: '확정',
     $style: 'solid',
     $theme: 'primary',
   };
-
-  if (location.pathname === '/management') {
-    if (location.search === '?achievement') {
-      buttonProps = {
-        label: '전체확정',
-        $style: 'outlined',
-        $theme: 'primary',
-      };
-    } else if (location.search === '?shortfall') {
-      buttonProps = {
-        label: '미달성',
-        $style: 'outlined',
-        $theme: 'neutral',
-      };
-    } else if (location.search === '?cancel') {
-      buttonProps = {
-        label: '전체경고',
-        $style: 'solid',
-        $theme: 'primary',
-      };
-    } else {
-      buttonProps = {
-        label: '확정',
-        $style: 'solid',
-        $theme: 'primary',
-      };
-    }
+  if (id) {
+    headText = undefined;
+  }
+  if (location.search === '?achievement') {
+    buttonProps = {
+      label: '전체확정',
+      $style: 'outlined',
+      $theme: 'primary',
+    };
+  } else if (location.search === '?shortfall') {
+    buttonProps = {
+      label: '미달성',
+      $style: 'outlined',
+      $theme: 'neutral',
+    };
+  } else if (location.search === '?cancel') {
+    buttonProps = {
+      label: '전체경고',
+      $style: 'solid',
+      $theme: 'primary',
+    };
+    headText = undefined;
+  } else if (id) {
+    headText = undefined;
   }
 
   return (
-    <Constainer>
+    <Container>
       <ProductCard
         liquorInfo={liquors}
-        headText='총 1500병 신청됐습니다'
+        headText={headText}
         button={buttonProps}
       />
       {children}
-    </Constainer>
+    </Container>
   );
 }
 
 export default ManagementLayout;
 
-const Constainer = styled.div`
+const Container = styled.div`
   display: flex;
   gap: 40px;
 `;
