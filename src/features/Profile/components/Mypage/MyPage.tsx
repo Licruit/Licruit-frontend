@@ -38,7 +38,7 @@ function MyPage({ onClose }: Props) {
     }
   }, [content, groupBuyLists]);
 
-  if (!userProfile) return null;
+  if (!userProfile) return <></>;
 
   return (
     <>
