@@ -9,9 +9,9 @@ import useHighRateQuery from '../../hooks/useHighRateQuery';
 
 function Rate() {
   const navigate = useNavigate();
-  const { data: highRateLiquors } = useHighRateQuery();
+  const { highRateLiquors } = useHighRateQuery();
 
-  const liquors = highRateLiquors ? highRateLiquors.slice(0, 5) : [];
+  const liquors = highRateLiquors || [];
 
   return (
     <RateContainer>

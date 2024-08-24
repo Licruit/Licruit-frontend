@@ -2,12 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import getHighRate from '../api/getHighRate';
 
 const useHighRateQuery = () => {
-  const { data } = useQuery({
+  const { data: highRateLiquors } = useQuery({
     queryKey: ['high-rate'],
     queryFn: getHighRate,
+    select: (data) => data.slice(0, 5),
   });
 
-  return { data };
+  return { highRateLiquors };
 };
 
 export default useHighRateQuery;

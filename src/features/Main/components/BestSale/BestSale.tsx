@@ -21,11 +21,11 @@ function BestSale() {
     (key) => CONTENT[key as keyof typeof CONTENT] === selectedButton
   ) as BestSaleParams;
 
-  const { data: bestSaleLiquor } = useBestSaleQuery(sort);
+  const { bestSaleLiquors } = useBestSaleQuery(sort);
 
   useEffect(() => {
-    if (bestSaleLiquor) setLiquorContent(bestSaleLiquor.slice(0, 3));
-  }, [bestSaleLiquor]);
+    if (bestSaleLiquors) setLiquorContent(bestSaleLiquors);
+  }, [bestSaleLiquors]);
 
   const handleClickButton = (content: string) => {
     setSelectedButton(content);

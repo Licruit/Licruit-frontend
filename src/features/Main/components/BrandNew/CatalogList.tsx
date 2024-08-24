@@ -9,13 +9,10 @@ interface Props {
 }
 
 function CatalogList({ setImageUrl }: Props) {
-  const { data: brandNewLiquors } = useBrandNewQuery();
+  const { brandNewLiquors } = useBrandNewQuery();
   const navigate = useNavigate();
 
-  const liquors = useMemo(
-    () => (brandNewLiquors ? brandNewLiquors.slice(0, 3) : []),
-    [brandNewLiquors]
-  );
+  const liquors = useMemo(() => brandNewLiquors || [], [brandNewLiquors]);
 
   useEffect(() => {
     if (liquors.length !== 0) setImageUrl(liquors[0].img);
