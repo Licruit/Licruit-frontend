@@ -1,13 +1,15 @@
 import Search from '@/components/Header/Search';
-import PATH from '@/constants/path';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function SearchBar() {
+  const { pathname } = useLocation();
+
   return (
     <Bar>
       <Search
         placeholder='구매자 또는 연락처를 입력해주세요'
-        searchPath={PATH.management}
+        searchPath={pathname}
       />
     </Bar>
   );
