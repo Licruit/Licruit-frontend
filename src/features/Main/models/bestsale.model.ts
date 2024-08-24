@@ -1,9 +1,6 @@
-interface Pagination {
-  currentPage: number;
-  totalPage: number;
-}
+import { Liquors, Pagination } from '../types/liquorInfo';
 
-interface Buying {
+interface Buying extends Liquors {
   id: number;
   title: string;
   content: string;

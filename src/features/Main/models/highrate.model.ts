@@ -1,16 +1,4 @@
-interface Pagination {
-  currentPage: number;
-  totalPage: number;
-}
-
-interface Liquors {
-  id: number;
-  name: string;
-  description: string;
-  img: string;
-  categoryName: string;
-  reviewAvg: string;
-}
+import { Liquors, Pagination } from '../types/liquorInfo';
 
 export interface HighRateRes {
   liquors: Liquors[];
