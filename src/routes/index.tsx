@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         element: <BuyerListPage />,
       },
       {
-        path: ':buyingId/:buyerId',
+        path: ':buyingId/:orderId',
         element: <BuyerDetailPage />,
       },
     ],

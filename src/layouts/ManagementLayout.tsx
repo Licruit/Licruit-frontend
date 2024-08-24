@@ -16,7 +16,7 @@ const liquors = {
 
 function ManagementLayout() {
   const location = useLocation();
-  const { buyingId, buyerId } = useParams();
+  const { buyingId, orderId } = useParams();
 
   let headText: string | undefined = `총 ${1500}병 신청됐습니다`;
   let buttonProps: ButtonProps = {
@@ -54,7 +54,7 @@ function ManagementLayout() {
 
   return (
     <>
-      {buyerId ? <Header /> : <HeaderWithSearch />}
+      {orderId ? <Header /> : <HeaderWithSearch />}
       <Container>
         <ProductCard
           liquorInfo={liquors}

@@ -1,4 +1,3 @@
-import { SearchBar } from '@/features/Management';
 import styled from 'styled-components';
 
 function BuyerListPage() {
@@ -11,4 +10,6 @@ function BuyerListPage() {
 
 export default BuyerListPage;
 
-const Container = styled.div``;
+const Container = styled.div`
+  flex: 1;
+`;
