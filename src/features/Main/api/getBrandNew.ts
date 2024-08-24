@@ -1,13 +1,11 @@
 import { httpClient } from '@/api/http';
 import { AxiosResponse } from 'axios';
-import { BrandNew } from '../models/brandnew.model';
+import { Liquors } from '../types/liquorInfo';
 
 const getBrandNew = async () => {
-  const result: AxiosResponse<BrandNew> = await httpClient.get('/liquors', {
-    params: { page: 1 },
-  });
+  const result: AxiosResponse<Liquors[]> = await httpClient.get('/liquors/new');
 
-  return result.data.liquors;
+  return result.data;
 };
 
 export default getBrandNew;
