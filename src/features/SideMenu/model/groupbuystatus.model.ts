@@ -6,6 +6,7 @@ export interface ShopStatusRes {
 
 export interface CompanyStatusRes {
   openBuying: string;
+  liquorSum: string;
   shortfall: string;
   achievement: string;
 }

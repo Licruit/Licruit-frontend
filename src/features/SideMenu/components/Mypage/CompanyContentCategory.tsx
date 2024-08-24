@@ -5,9 +5,13 @@ import useCompanyStatusQuery from '../../hooks/useCompanyStatusQuery';
 function CompanyContentCategory() {
   const { data: companyCurrentStatus } = useCompanyStatusQuery();
 
-  const statusCounts = companyCurrentStatus
-    ? Object.values(companyCurrentStatus)
-    : [];
+  const statusCounts = companyCurrentStatus || {
+    openBuying: 0,
+    liquorSum: 0,
+    shortfall: 0,
+    achievement: 0,
+  };
+
   // TODO: 각 버튼 클릭시 공동구매 목록페이지로 이동
   return (
     <ContentCategoryContainer>
@@ -15,19 +19,19 @@ function CompanyContentCategory() {
       <CategoryWrapper>
         <CategoryItem>
           <p>공동구매 오픈</p>
-          <p>{statusCounts[0]}</p>
+          <p>{statusCounts.openBuying}</p>
         </CategoryItem>
         <CategoryItem>
           <p>신청현황</p>
-          <p>{statusCounts[1]}</p>
+          <p>{statusCounts.liquorSum}</p>
         </CategoryItem>
         <CategoryItem>
           <p>미달성</p>
-          <p>{statusCounts[2]}</p>
+          <p>{statusCounts.shortfall}</p>
         </CategoryItem>
         <CategoryItem>
           <p>성사</p>
-          <p>{statusCounts[3]}</p>
+          <p>{statusCounts.achievement}</p>
         </CategoryItem>
       </CategoryWrapper>
     </ContentCategoryContainer>
