@@ -7,8 +7,8 @@ import BuyerTable from './BuyerTable';
 import { useOrderDetail } from '../../hooks/useOrderDetail';
 
 function BuyDetail() {
-  const { id: orderId } = useParams();
-  const { orderDetail } = useOrderDetail(Number(orderId));
+  const { buyingId } = useParams();
+  const { orderDetail } = useOrderDetail(Number(buyingId));
   const navigate = useNavigate();
   return (
     <Container>
