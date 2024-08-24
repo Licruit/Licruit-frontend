@@ -17,7 +17,8 @@ function Footer() {
 export default Footer;
 
 const Container = styled.div`
-  padding: 20px 0;
+  width: 100%;
+  padding: 20px;
 
   img {
     width: 100%;

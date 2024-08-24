@@ -11,8 +11,8 @@ function NavContentLayout() {
       <CatalogHeader />
       <Container>
         <Outlet />
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 }
