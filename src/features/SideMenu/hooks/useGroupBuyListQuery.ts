@@ -8,7 +8,7 @@ const useGroupBuyListQuery = (isCompany: boolean) => {
     enabled: !isCompany,
   });
 
-  return { data };
+  return { groupBuyLists: data };
 };
 
 export default useGroupBuyListQuery;

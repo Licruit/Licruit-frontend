@@ -22,8 +22,8 @@ function MyPage({ onClose }: Props) {
   const { checkIsCompany } = useUserType();
   const isCompany = checkIsCompany();
 
-  const { data: userProfile } = useProfileQuery();
-  const { data: groupBuyLists } = useGroupBuyListQuery(isCompany);
+  const { userProfile } = useProfileQuery();
+  const { groupBuyLists } = useGroupBuyListQuery(isCompany);
 
   useEffect(() => {
     const statusLabels = ['신청', '승인대기', '배송중', '배송완료'];
