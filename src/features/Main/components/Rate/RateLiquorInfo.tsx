@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Badge } from '@/styles/components/Badge';
 import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import HeadInfo from '../common/HeadInfo';
 
 interface Props {
@@ -23,7 +24,7 @@ function RateLiquorInfo({
   const navigate = useNavigate();
 
   return (
-    <LiquorInfoContainer onClick={() => navigate(`catalog/${id}`)}>
+    <LiquorInfoContainer onClick={() => navigate(`${PATH.catalog}/${id}`)}>
       <HeadInfo>현재 {reviewAvg}잔이에요 !</HeadInfo>
       <img src={imageUrl} alt='liquor' />
       <LiquorInfo>

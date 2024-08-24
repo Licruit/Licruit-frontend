@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
 import { IMAGES } from '@/constants/images';
 import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import { BANNER_TEXT } from '../../constants/banner';
 
 function JoinUs() {
@@ -14,7 +14,7 @@ function JoinUs() {
           <Title>{BANNER_TEXT.join.title}</Title>
           <Description>{BANNER_TEXT.join.description}</Description>
         </InfoWrapper>
-        <JoinButton onClick={() => navigate('auth/signUp')}>
+        <JoinButton onClick={() => navigate(PATH.join)}>
           회원가입 하러가기
         </JoinButton>
       </Content>

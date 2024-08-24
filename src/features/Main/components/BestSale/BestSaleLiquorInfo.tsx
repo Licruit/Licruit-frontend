@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Badge } from '@/styles/components/Badge';
 import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import HeaderInfo from '../common/HeadInfo';
 
 export interface Props {
@@ -24,7 +25,7 @@ function BestSaleLiquorInfo({
   const navigate = useNavigate();
 
   return (
-    <LiquorInfoContainer onClick={() => navigate(`group-buying/${id}`)}>
+    <LiquorInfoContainer onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
       <HeaderInfo>{orderCount}명 신청</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>

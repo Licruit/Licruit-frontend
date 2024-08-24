@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import Category from '../common/Category';
 import CatalogList from './CatalogList';
 import MoreButton from '../common/MoreButton';
@@ -19,7 +20,7 @@ function Catalog({ setImageUrl }: Props) {
           title={CATEGORY_TEXT.new.title}
           description={CATEGORY_TEXT.new.description}
         />
-        <MoreButton onClick={() => navigate('catalog')}>더보기</MoreButton>
+        <MoreButton onClick={() => navigate(PATH.catalog)}>더보기</MoreButton>
       </CatalogHeader>
       <CatalogList setImageUrl={setImageUrl} />
     </CatalogContainer>

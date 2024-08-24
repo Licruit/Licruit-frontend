@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import Category from '../common/Category';
 import MoreButton from '../common/MoreButton';
 import RateLiquorInfo from './RateLiquorInfo';
@@ -19,7 +20,7 @@ function Rate() {
           title={CATEGORY_TEXT.rate.title}
           description={CATEGORY_TEXT.rate.description}
         />
-        <MoreButton onClick={() => navigate('catalog')}>더보기</MoreButton>
+        <MoreButton onClick={() => navigate(PATH.catalog)}>더보기</MoreButton>
       </CategoryHeader>
       <LiquorContent>
         {liquors.map((liquorItem) => (
