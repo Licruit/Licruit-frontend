@@ -6,7 +6,7 @@ import useCancelOrderMutation from '../../hooks/useCancelOrderMutation';
 
 function ContentListItem({ ...props }: GroupBuyListRes) {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  const { handleClickCancel } = useCancelOrderMutation();
+  const { handleCancelOrder } = useCancelOrderMutation();
 
   const ListItemData = { ...props };
   const ListType = ListItemData.status;
@@ -51,7 +51,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
           $width='full'
           onClick={
             ListType === '신청'
-              ? () => handleClickCancel(Number(ListItemData.buyingId))
+              ? () => handleCancelOrder(Number(ListItemData.buyingId))
               : handleClickReview
           }
           disabled={Number(ListItemData.isWroteReview) !== 1}
