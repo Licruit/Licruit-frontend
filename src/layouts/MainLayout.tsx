@@ -17,7 +17,7 @@ function MainLayout() {
 
 export default MainLayout;
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 40px;

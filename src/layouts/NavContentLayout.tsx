@@ -19,7 +19,7 @@ function NavContentLayout() {
 
 export default NavContentLayout;
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   gap: 40px;
