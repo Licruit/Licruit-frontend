@@ -1,31 +1,15 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
+import { Buyer } from '../../models/buyer.model';
 
-const data = [
-  {
-    buyer: 'Lorem ipsum dolor sit amet',
-    contact: '010-0000-0000',
-    product: '백경 13. 탁주 (+16,000원)',
-    status: '신청',
-  },
-  {
-    buyer: 'Lorem ipsum dolor sit amet',
-    contact: '010-0000-0000',
-    product: '백경 13. 탁주 (+16,000원)',
-    status: '신청',
-  },
-  {
-    buyer: 'Lorem ipsum dolor sit amet',
-    contact: '010-0000-0000',
-    product: '백경 13. 탁주 (+16,000원)',
-    status: '신청',
-  },
-];
+interface Props {
+  buyers: Buyer[];
+}
 
-function BuyerList() {
+function BuyerList({ buyers }: Props) {
   return (
     <Table>
-      <thead>
+      <THead>
         <tr>
           <th>구매자</th>
           <th>연락처</th>
@@ -33,17 +17,25 @@ function BuyerList() {
           <th>구매상태</th>
           <th />
         </tr>
-      </thead>
-      <tbody>
-        {data.map((row) => (
-          <tr key={row.contact}>
+      </THead>
+      <TBody>
+        {buyers.map((row) => (
+          <tr key={row.id}>
             <td>
-              <strong>{row.buyer}</strong>
+              <strong>
+                {String(row.userCompanyNumber).replace(
+                  /(\d{3})(\d{2})(\d{5})/,
+                  '$1-$2-$3'
+                )}
+              </strong>
             </td>
             <td>
-              {row.contact.replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3')}
+              {String(row.contact).replace(
+                /(\d{3})(\d{3,4})(\d{4})/,
+                '$1-$2-$3'
+              )}
             </td>
-            <td>{row.product}</td>
+            <td>{row.liquorName}</td>
             <td>{row.status}</td>
             <td>
               <div className='button-cell'>
@@ -54,7 +46,7 @@ function BuyerList() {
             </td>
           </tr>
         ))}
-      </tbody>
+      </TBody>
     </Table>
   );
 }
@@ -65,21 +57,21 @@ const Table = styled.table`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
   border-width: 1px 0;
+`;
 
-  thead {
-    ${({ theme }) => theme.typo.heading.bold[16]}
-    color: ${({ theme }) => theme.color.neutral[900]};
-  }
+const THead = styled.thead`
+  ${({ theme }) => theme.typo.heading.bold[16]}
+  color: ${({ theme }) => theme.color.neutral[900]};
 
   th {
     padding: 20px 0;
     text-align: start;
   }
+`;
 
-  tbody {
-    ${({ theme }) => theme.typo.body.medium[14]}
-    color: ${({ theme }) => theme.color.neutral[600]};
-  }
+const TBody = styled.tbody`
+  ${({ theme }) => theme.typo.body.medium[14]}
+  color: ${({ theme }) => theme.color.neutral[600]};
 
   td {
     padding: 20px 0;
