@@ -1,10 +1,17 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import Category from '../common/Category';
 import CatalogList from './CatalogList';
 import MoreButton from '../common/MoreButton';
 import { CATEGORY_TEXT } from '../../constants/category';
 
-function Catalog() {
+interface Props {
+  setImageUrl: (value: string) => void;
+}
+
+function Catalog({ setImageUrl }: Props) {
+  const navigate = useNavigate();
+
   return (
     <CatalogContainer>
       <CatalogHeader>
@@ -12,15 +19,16 @@ function Catalog() {
           title={CATEGORY_TEXT.new.title}
           description={CATEGORY_TEXT.new.description}
         />
-        <MoreButton>더보기</MoreButton>
+        <MoreButton onClick={() => navigate('catalog')}>더보기</MoreButton>
       </CatalogHeader>
-      <CatalogList />
+      <CatalogList setImageUrl={setImageUrl} />
     </CatalogContainer>
   );
 }
 
 const CatalogContainer = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 40px;
 `;
