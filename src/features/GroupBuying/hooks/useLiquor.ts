@@ -8,7 +8,7 @@ export const useLiquor = (sort: string) => {
     hasNextPage,
   } = useInfiniteQuery({
     initialPageParam: 1,
-    queryKey: ['buyings'],
+    queryKey: ['buyings', sort],
     queryFn: ({ pageParam }) => getLiquor(pageParam, sort),
     getNextPageParam: (lastPage) => {
       const nextPage = lastPage.pagination.currentPage + 1;

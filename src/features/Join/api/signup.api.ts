@@ -18,7 +18,6 @@ export const getKSIC = async (): Promise<DropdownItem[]> => {
 export const verificationBusiness = async (companyNumber: string) => {
   const data = { b_no: [companyNumber] };
   const response = await axios.post(BUSINESS_URL, data);
-  console.log(response.data);
   if (response.data.data[0].b_stt !== BUSINESS_TYPE) {
     throw new Error();
   }

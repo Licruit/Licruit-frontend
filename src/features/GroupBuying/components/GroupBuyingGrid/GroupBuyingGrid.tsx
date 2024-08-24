@@ -1,4 +1,5 @@
 import GroupBuyingCard from '@/components/Liquor/GroupBuyingCard';
+import { v4 as uuidv4 } from 'uuid';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLiquor } from '../../hooks/useLiquor';
@@ -8,17 +9,17 @@ import { GroupBuying } from '../../types/liquor';
 function GroupBuyingGrid() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const params = searchParams.get('sort');
-
+  const sort = searchParams.get('sort');
   const { liquorData, fetchNextPage, hasNextPage } = useLiquor(
-    params || 'ranking'
+    sort || 'ranking'
   );
+
   const { setTarget } = useIntersectionObs({ hasNextPage, fetchNextPage });
 
   return (
     <Container>
       {liquorData?.pages.map((item: GroupBuying) => {
-        return <GroupBuyingCard {...item} key={item.id} />;
+        return <GroupBuyingCard {...item} key={uuidv4()} />;
       })}
       <div ref={setTarget} style={{ height: '10px' }} />
     </Container>

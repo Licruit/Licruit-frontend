@@ -1,5 +1,6 @@
 import Tab from '@/components/Header/Tabs';
 import { GroupBuyingGrid, GroupBuyingHeader } from '@/features/GroupBuying';
+import Region from '@/features/GroupBuying/components/Header/Region';
 import Preview from '@/features/GroupBuying/components/Preview';
 import styled from 'styled-components';
 
@@ -11,9 +12,12 @@ function GroupBuyingPage() {
       </PreviewWrapper>
       <ContentWrapper>
         <GroupBuyingHeader />
-        <TabBox>
-          <Tab type='group_buying' queryKey='sort' />
-        </TabBox>
+        <Filter>
+          <TabBox>
+            <Tab type='group_buying' queryKey='sort' />
+          </TabBox>
+          <Region />
+        </Filter>
         <GroupBuyingGrid />
       </ContentWrapper>
     </Container>
@@ -37,6 +41,12 @@ const ContentWrapper = styled.div`
   flex: 2;
   height: 100vh;
   padding: 20px;
+`;
+
+const Filter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const TabBox = styled.div`
