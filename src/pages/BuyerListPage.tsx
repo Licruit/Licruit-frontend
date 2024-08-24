@@ -19,6 +19,9 @@ export default BuyerListPage;
 
 const Container = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const TabBox = styled.div`
