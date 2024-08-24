@@ -29,8 +29,8 @@ const ContentListContainer = styled.ul<{ $hasContent: boolean }>`
   margin-top: -20px;
 
   border-right: 1px solid ${({ theme }) => theme.color.neutral[900]};
-  ${({ theme, $hasContent }) =>
-    $hasContent && `border-bottom: 1px solid ${theme.color.neutral[900]}`};
+  border-bottom: ${({ theme, $hasContent }) =>
+    $hasContent ? `1px solid ${theme.color.neutral[900]}` : 'none'};
   border-left: 1px solid ${({ theme }) => theme.color.neutral[900]};
 `;
 
