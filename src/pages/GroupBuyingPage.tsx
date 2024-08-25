@@ -46,10 +46,9 @@ const PreviewWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  overflow: scroll;
+  overflow: auto;
   flex: 2;
-  height: 100vh;
-  padding: 20px;
+  padding: 20px 20px 40px;
 `;
 
 const Filter = styled.div`

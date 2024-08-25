@@ -14,7 +14,6 @@ function GroupBuyingGrid({ region, sort }: Props) {
     sort || 'ranking',
     region || null
   );
-  console.log(liquorData);
   const { setTarget } = useIntersectionObs({ hasNextPage, fetchNextPage });
   return (
     <Container>
