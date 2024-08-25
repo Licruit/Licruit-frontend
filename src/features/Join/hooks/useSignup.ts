@@ -1,18 +1,11 @@
-import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { DropdownItem } from '@/components/Input/Dropdown';
-import {
-  duplicateBusiness,
-  getKSIC,
-  verificationBusiness,
-} from '../api/signup.api';
+import { toast } from 'react-toastify';
+import { duplicateBusiness, getKSIC } from '../api/signup.api';
 
-export const useSignup = () => {
-  const { watch, setError, clearErrors } = useFormContext();
+export const useSignup = (companyNumber: string) => {
   const [isVerified, setIsVerified] = useState(false);
-
-  const companyNumber = watch('companyNumber') as string;
 
   const { data: industryData } = useQuery<DropdownItem[], Error>({
     queryKey: ['ksic'],
@@ -22,30 +15,11 @@ export const useSignup = () => {
 
   const duplicationMutation = useMutation<boolean, Error>({
     mutationFn: () => duplicateBusiness(companyNumber),
-    onSuccess: (isduplicate) => {
-      if (!isduplicate) {
-        clearErrors('companyNumber');
-        verificationMutation.mutate();
-      } else {
-        setError('companyNumber', {
-          type: 'manual',
-          message: '사업자 확인이 필요합니다.',
-        });
-      }
+    onSuccess: () => {
+      setIsVerified(true);
     },
     onError: () => {
-      setError('companyNumber', {
-        type: 'manual',
-        message: '이미 사용된 사업자번호입니다.',
-      });
-    },
-  });
-
-  const verificationMutation = useMutation<void, Error>({
-    mutationFn: () => verificationBusiness(companyNumber),
-    onSuccess: () => {
-      clearErrors('companyNumber');
-      setIsVerified(true);
+      toast.error('중복된 사업자 번호입니다.');
     },
   });
 
