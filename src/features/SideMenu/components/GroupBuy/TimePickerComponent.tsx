@@ -20,7 +20,7 @@ function TimePickerComponent({ label, isRequired, name }: Props) {
       <Controller
         name={name}
         control={control}
-        rules={{ required: true }}
+        rules={{ required: isRequired }}
         render={({ field: { onChange } }) => (
           <DatePicker
             showTimeSelect
