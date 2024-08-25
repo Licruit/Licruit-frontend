@@ -17,6 +17,7 @@ interface Props {
 
 const Dropdown = forwardRef<HTMLDivElement, Props>(
   ({ options, placeholder, name }) => {
+    const [selectedOption, setSelectedOption] = useState(placeholder);
     const [isOpen, setIsOpen] = useState(false);
     const theme = useTheme();
     const { setValue, watch } = useFormContext();
@@ -26,8 +27,10 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
     const handleSelect = (option: DropdownItem | string) => {
       if (typeof option === 'string') {
         setValue(name, option, { shouldValidate: true });
+        setSelectedOption(option);
       } else {
         setValue(name, option.id, { shouldValidate: true });
+        setSelectedOption(option.name);
       }
       setIsOpen(false);
     };
@@ -48,7 +51,7 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
                 onClick={() => setIsOpen((prev) => !prev)}
               >
                 <div className='select-input'>
-                  {selectedValue ?? placeholder}
+                  {selectedOption ?? placeholder}
                   <DownArrowIcon fill={theme.color.neutral[400]} />
                 </div>
               </DropdownHeader>

@@ -39,9 +39,9 @@ export const useSignup = () => {
   const handleUploadCertificate = (formData: FormData) => {
     uploadCertificate(formData, {
       onSuccess: (data) => {
+        console.log('서버 응답:', data);
         setCompanyData({
           companyNumber: data.companyNumber,
-          // isWholesaler: true,
           isWholesaler: data.isWholesaler,
         });
         handleSendId();

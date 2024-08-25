@@ -17,6 +17,7 @@ function IndustryForm() {
   const placeRef = useRef<HTMLDivElement>(null);
 
   const { industryData, companyData } = useSignup();
+
   const address = watch('industry');
   useClickOutside(placeRef, closePostcode);
   return (
