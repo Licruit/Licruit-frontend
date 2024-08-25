@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
 import styled from 'styled-components';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 
 interface Props {
   isValid: boolean;

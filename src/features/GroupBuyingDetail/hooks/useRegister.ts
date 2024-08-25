@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useSessionStore from '@/store/sessionStore';
+import useLoginStore from '@/store/loginStore';
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -12,7 +12,7 @@ interface BuyingForm {
 
 export const useRegister = (buyingId: number) => {
   const queryClient = useQueryClient();
-  const isLoggedIn = useSessionStore((state) => state.isLoggedIn);
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   const methods = useForm<BuyingForm>({
     mode: 'onChange',
