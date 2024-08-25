@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
-import { formatBusinessNumber } from '@/utils/format';
+import { formatCompanyNumber } from '@/utils/format';
 import { GetProfile } from '../../model/profile.model';
 
 interface Props {
@@ -18,7 +18,7 @@ function Profile({ userProfile }: Props) {
         <ProfileInfo>
           <Name>{userProfile.businessName}</Name>
           <BusinessNumber>
-            {formatBusinessNumber(userProfile.companyNumber)}
+            {formatCompanyNumber(userProfile.companyNumber)}
           </BusinessNumber>
         </ProfileInfo>
       </ProfileInfoWrapper>
