@@ -165,6 +165,10 @@ const Introduce = styled.textarea`
   padding: 17px 0 0 18px;
 
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.neutral[400]};
+  }
 `;
 
 const TypeNumber = styled.div`

@@ -1,13 +1,13 @@
 import PATH from '@/constants/path';
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
-import useSessionStore from '@/store/sessionStore';
+import useLoginStore from '@/store/loginStore';
 import { CartIcon } from 'public/assets/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Navigation() {
-  const isLoggedIn = useSessionStore((state) => state.isLoggedIn);
   const openMyPage = useMyPageIsOpenStore((state) => state.open);
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   return (
     <div>

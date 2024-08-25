@@ -1,14 +1,16 @@
 import FormInput from '@/components/Input/FormInput';
 import PATH from '@/constants/path';
+import { CheckboxIcon } from 'public/assets/icons';
 import { useFormContext } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface Props {
-  isFailed: boolean;
+  isAutoLogin: boolean;
+  toggleAutoLogin: () => void;
 }
 
-function LoginForm({ isFailed }: Props) {
+function LoginForm({ isAutoLogin, toggleAutoLogin }: Props) {
   const { register } = useFormContext();
 
   return (
@@ -26,14 +28,18 @@ function LoginForm({ isFailed }: Props) {
           {...register('password', { required: true })}
         />
       </div>
-      <ErrorAndLink>
-        <span className='error'>
-          {isFailed
-            ? '사업자 등록번호 또는 비밀번호가 잘못되었습니다. 다시 한 번 입력해주세요'
-            : ''}
-        </span>
+      <BottomBar>
+        <AutoLoginButton
+          type='button'
+          className='auto-login'
+          onClick={toggleAutoLogin}
+          $isActive={isAutoLogin}
+        >
+          <CheckboxIcon width={17} height={17} />
+          자동 로그인
+        </AutoLoginButton>
         <Link to={PATH.find_password}>비밀번호 찾기</Link>
-      </ErrorAndLink>
+      </BottomBar>
     </Container>
   );
 }
@@ -54,18 +60,27 @@ const Container = styled.div`
   }
 `;
 
-const ErrorAndLink = styled.div`
+const BottomBar = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   ${({ theme }) => theme.typo.body.medium[12]}
 
-  .error {
-    color: ${({ theme }) => theme.color.error};
-  }
-
-  & > a {
-    align-self: flex-end;
+  & a {
     color: ${({ theme }) => theme.color.neutral[400]};
+  }
+`;
+
+const AutoLoginButton = styled.button<{ $isActive: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.color.primary[500] : theme.color.neutral[400]};
+  ${({ theme }) => theme.typo.body.medium[12]}
+
+  svg {
+    fill: ${({ theme, $isActive }) =>
+      $isActive ? theme.color.primary[500] : theme.color.neutral[400]};
   }
 `;

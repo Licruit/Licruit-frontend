@@ -1,5 +1,5 @@
 export const CONTENT = {
-  rank: '랭킹',
-  new: '최신',
-  time: '마감임박',
+  ranking: '랭킹',
+  recent: '최신',
+  deadline: '마감임박',
 };

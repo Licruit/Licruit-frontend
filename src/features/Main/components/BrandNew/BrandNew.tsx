@@ -1,32 +1,34 @@
 import styled from 'styled-components';
-import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
+import { useState } from 'react';
 import Catalog from './Catalog';
 
 function BrandNew() {
+  const [imageUrl, setImageUrl] = useState('');
+
   return (
     <BrandNewContainer>
-      <Catalog />
+      <Catalog setImageUrl={setImageUrl} />
       <div className='img-wrapper'>
-        <img src={LiquorUrl} alt='liquor' />
+        <img src={imageUrl} alt='liquor' />
       </div>
     </BrandNewContainer>
   );
 }
 
 const BrandNewContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 20px;
-
   width: 100%;
-  height: fit-content;
+  height: 785px;
 
   .img-wrapper {
-    overflow: hidden;
     display: flex;
+    flex: 1;
+    align-items: center;
     justify-content: center;
 
     img {
+      width: 100%;
       height: 100%;
     }
   }
