@@ -10,7 +10,6 @@ interface Props {
   placeholder: string;
   name: string;
   value?: string;
-  type?: string;
   'aria-label'?: string;
   maxLength?: number;
   isPrice?: boolean;
