@@ -1,9 +1,15 @@
 import MetaTag from '@/components/MetaTag';
 import { ProductGrid } from '@/features/Catalog';
 import Filter from '@/features/Catalog/components/Filter/Filter';
+import ProductFallback from '@/features/Catalog/components/ProductFallback';
+import { useQueryParams } from '@/features/Catalog/hooks/useQueryParams';
+import { ErrorBoundary } from 'react-error-boundary';
 import styled from 'styled-components';
 
 function CatalogPage() {
+  const { page, category, search, minAlcohol, maxAlcohol, sort } =
+    useQueryParams();
+
   return (
     <>
       <MetaTag
@@ -17,7 +23,12 @@ function CatalogPage() {
           <Filter />
         </div>
         <div className='article'>
-          <ProductGrid />
+          <ErrorBoundary
+            FallbackComponent={ProductFallback}
+            resetKeys={[page, category, search, minAlcohol, maxAlcohol, sort]}
+          >
+            <ProductGrid />
+          </ErrorBoundary>
         </div>
       </Content>
     </>
