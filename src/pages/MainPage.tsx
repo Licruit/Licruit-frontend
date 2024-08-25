@@ -2,17 +2,11 @@ import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
 import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
 import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu';
-import { useEffect } from 'react';
 import MetaTag from '@/components/MetaTag';
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 
 function MainPage() {
   const { isOpen, close } = useMyPageIsOpenStore();
-
-  useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
-  }, [isOpen]);
 
   return (
     <>
