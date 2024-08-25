@@ -15,9 +15,8 @@ function Confirm({ onNext }: Props) {
   return (
     <>
       <SignOutDescription>
-        탈퇴 후에는 사업자 등록번호 0000-00-0000으로 재가입 불가능하며,
-        <br />
-        해당 사업자 등록번호와 데이터는 복구되지 않습니다.
+        탈퇴 후에는 사업자 등록번호 0000-00-0000과 관련된 모든 데이터는 복구되지
+        않습니다
       </SignOutDescription>
       <CheckWrapper
         $isChecked={isChecked}
