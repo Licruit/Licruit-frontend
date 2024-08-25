@@ -32,7 +32,7 @@ function MyPageSideMenu({ onClose }: Props) {
   };
 
   return createPortal(
-    <Overlay onClick={closeMyPage}>
+    <Overlay onMouseDown={closeMyPage}>
       <Container>
         {content === 'my-page' && <MyPage onClose={onClose} />}
         {content === 'edit-profile' && <EditProfile />}
