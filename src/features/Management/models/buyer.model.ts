@@ -1,6 +1,6 @@
 export interface Buyer {
   id: number;
-  userCompanyNumber: number;
+  businessName: string;
   contact: number;
   liquorName: string;
   liquorPrice: number;
