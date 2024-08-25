@@ -74,7 +74,12 @@ function EditProfileForm({ userProfile, image }: Props) {
           aria-label='edit-profile-form'
           onSubmit={handleSubmit((data) => {
             editProfile({
-              profile: { ...data, sectorId: selectedCategory, image },
+              profile: {
+                ...data,
+                contact: data.contact.replace(/-/g, ''),
+                sectorId: selectedCategory,
+                image,
+              },
             });
           })}
         >
