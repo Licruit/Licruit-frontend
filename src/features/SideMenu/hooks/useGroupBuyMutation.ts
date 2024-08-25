@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { format } from 'date-fns';
+import { formatPriceToNumber } from '@/utils/format';
 import postGroupBuy from '../api/postGroupBuy';
 import { GroupBuyReq } from '../model/groupbuy.model';
 import { GroupBuyForm } from '../types/groupbuyopenform';
@@ -24,10 +25,10 @@ const useGroupBuyMutation = () => {
       deliveryEnd: format(data.deliveryDates[1], 'yyyy-MM-dd'),
       totalMin: Number(data.totalMin),
       totalMax: data.totalMax ? Number(data.totalMax) : null,
-      price: Number(data.price.replace(/,/g, '')),
-      deliveryFee: Number(data.deliveryFee.replace(/,/g, '')),
+      price: formatPriceToNumber(data.price),
+      deliveryFee: formatPriceToNumber(data.deliveryFee),
       freeDeliveryFee: data.freeDeliveryFee
-        ? Number(data.freeDeliveryFee.replace(/,/g, ''))
+        ? formatPriceToNumber(data.freeDeliveryFee)
         : null,
       title: data.title,
       content: data.content,
