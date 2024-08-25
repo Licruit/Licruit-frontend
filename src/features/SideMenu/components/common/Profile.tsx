@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { GetProfile } from '../../model/profile.model';
 
 interface Props {
