@@ -1,9 +1,8 @@
 import Button from '@/components/Button/Button';
 import { BackIcon, EditIcon } from 'public/assets/icons';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
-import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { useRef, useState } from 'react';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import MyPageHeader from '../common/MyPageHeader';
 import EditProfileForm from './EditProfileForm';
 import useProfileImageMutation from '../../hooks/useProfileImageMutaion';
@@ -11,14 +10,13 @@ import useProfileQuery from '../../hooks/useProfileQuery';
 
 function EditProfile() {
   const { mutate: uploadProfileImage } = useProfileImageMutation();
-  const { data: userProfile, isError } = useProfileQuery();
+  const { userProfile } = useProfileQuery();
   const [imageUrl, setImageUrl] = useState<string>(userProfile?.img || '');
   const [image, setImage] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
 
   if (!userProfile) return null;
-  if (isError) toast.error('잠시후 다시 시도해 주세요.'); // TODO: error boundary 활용
 
   const handleUploadImageButtonClick = () => {
     if (!inputRef.current) return;
