@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CheckIcon, DownArrowIcon } from 'public/assets/icons';
 
@@ -17,6 +17,7 @@ function FilterOption({
 }: FilterOptionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useTheme();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -35,7 +36,7 @@ function FilterOption({
           <DownArrowIcon fill={theme.color.neutral[400]} />
         )}
       </SubTitle>
-      <Content $isOpen={isOpen}>
+      <Content ref={contentRef} $isOpen={isOpen}>
         <ul>
           {options.map((option) => {
             const isSelected = option === selectedOption;
@@ -81,7 +82,9 @@ const SubTitle = styled.li`
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`
-  display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
+  overflow: hidden;
+  max-height: ${({ $isOpen }) => ($isOpen ? '300px' : '0')};
+  transition: max-height 0.3s ease-out;
 `;
 
 const Item = styled.li<{ $isSelected: boolean }>`

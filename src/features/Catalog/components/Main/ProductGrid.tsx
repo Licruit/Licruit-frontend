@@ -3,7 +3,6 @@ import Pagination from '@/components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
-import Empty from '../Empty';
 
 function ProductGrid() {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ function ProductGrid() {
   return (
     <Container>
       <List>
-        {catalogData && catalogData.liquors ? (
+        {catalogData && catalogData.liquors && (
           <>
             {catalogData.liquors.map((item) => {
               return (
@@ -25,8 +24,6 @@ function ProductGrid() {
               );
             })}
           </>
-        ) : (
-          <Empty />
         )}
       </List>
       {catalogData && catalogData.pagination ? (
@@ -47,11 +44,8 @@ const Container = styled.div`
 `;
 
 const List = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
   margin-bottom: 30px;
-
-  @media (width >= 768px) {
-    justify-content: space-between;
-  }
 `;
