@@ -15,7 +15,6 @@ function EditProfile() {
   const [image, setImage] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  console.log(userProfile);
 
   if (!userProfile) return null;
 
