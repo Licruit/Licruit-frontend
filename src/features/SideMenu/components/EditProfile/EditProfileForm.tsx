@@ -30,7 +30,6 @@ interface Props {
 }
 
 function EditProfileForm({ userProfile, image }: Props) {
-  // TODO 카테고리 서버 데이터 변경시 같이 수정
   const currentCategoryId = category.findIndex(
     (item) => item === userProfile.sectorName
   );
@@ -71,6 +70,7 @@ function EditProfileForm({ userProfile, image }: Props) {
         <Form
           aria-label='edit-profile-form'
           onSubmit={handleSubmit((data) => {
+            console.log(data);
             editProfile({
               profile: { ...data, sectorId: selectedCategory, image },
             });
@@ -104,11 +104,13 @@ function EditProfileForm({ userProfile, image }: Props) {
             {...INPUT.contact}
             {...register('contact', { required: true })}
           />
-          <CategoryButtons
-            categories={category}
-            value={userProfile?.sectorName || ''}
-            onSetCategory={getCategory}
-          />
+          {!isCompany && (
+            <CategoryButtons
+              categories={category}
+              value={userProfile?.sectorName || ''}
+              onSetCategory={getCategory}
+            />
+          )}
 
           <Button
             $style='solid'
