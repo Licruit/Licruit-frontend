@@ -1,6 +1,8 @@
 import styled, { useTheme } from 'styled-components';
 import { InfoIcon } from 'public/assets/icons';
 import { ForwardedRef, forwardRef, useState } from 'react';
+import { useWatch } from 'react-hook-form';
+import { formatPrice } from '@/utils/format';
 import Label from './Label';
 
 interface Props {
@@ -8,8 +10,10 @@ interface Props {
   placeholder: string;
   name: string;
   value?: string;
+  type?: string;
   'aria-label'?: string;
   maxLength?: number;
+  isPrice?: boolean;
   isRequired?: boolean;
   hasValidation?: boolean;
   hasInfo?: boolean;
@@ -21,8 +25,8 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
       label,
       isRequired,
       placeholder,
-      value = '',
       hasValidation,
+      isPrice = false,
       hasInfo,
       maxLength,
       ...props
@@ -31,6 +35,9 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
   ) => {
     const [isInfoShow, setIsInfoShow] = useState(false);
     const theme = useTheme();
+
+    const value: string = useWatch({ name: props.name }) || '';
+    const formattedValue = isPrice ? formatPrice(value) : value;
 
     const handleMouseOverOnInfo = () => {
       setIsInfoShow(true);
@@ -63,6 +70,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
             type='text'
             placeholder={placeholder}
             ref={ref}
+            value={formattedValue}
             maxLength={maxLength}
             {...props}
             aria-label={props['aria-label']}
