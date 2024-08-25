@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import useUserType from '@/hooks/usertype/useUserType';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { formatPhoneNumber } from '@/utils/format';
+import { REGEXP } from '@/constants/form/form';
 import { INPUT } from '../../constants/input';
 import useProfileMutation from '../../hooks/useProfileMutation';
 import Label from '../common/Label';
@@ -51,6 +52,7 @@ function EditProfileForm({ userProfile, image }: Props) {
       introduce: userProfile?.introduce,
     },
   });
+
   const {
     register,
     formState: { isValid },
@@ -102,7 +104,10 @@ function EditProfileForm({ userProfile, image }: Props) {
           <ProfileInput {...INPUT.address} {...register('address')} />
           <ProfileInput
             {...INPUT.contact}
-            {...register('contact', { required: true })}
+            {...register('contact', {
+              required: true,
+              pattern: REGEXP.contact,
+            })}
           />
           {!isCompany && (
             <CategoryButtons
