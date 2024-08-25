@@ -42,13 +42,12 @@ const Container = styled.div`
 
 const PreviewWrapper = styled.div`
   flex: 1;
-  margin-right: 20px;
 `;
 
 const ContentWrapper = styled.div`
   overflow: auto;
   flex: 2;
-  padding: 20px 20px 40px;
+  padding: 20px 40px 40px;
 `;
 
 const Filter = styled.div`

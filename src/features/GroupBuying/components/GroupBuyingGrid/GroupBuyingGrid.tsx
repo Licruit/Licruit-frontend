@@ -29,7 +29,10 @@ function GroupBuyingGrid({ region, sort }: Props) {
 export default GroupBuyingGrid;
 
 const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(374px, 1fr));
+  @media (max-width: 1230px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
   gap: 20px;
 `;
