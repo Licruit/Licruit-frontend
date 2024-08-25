@@ -84,7 +84,7 @@ const SelectorWrapper = styled.div`
 `;
 
 const NonMemberView = styled.div`
-  width: 100%;
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 `;

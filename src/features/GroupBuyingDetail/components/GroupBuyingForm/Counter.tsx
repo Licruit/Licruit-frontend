@@ -83,14 +83,15 @@ const CountInput = styled.input`
 `;
 
 const ActionButton = styled.button<{ $isDisabled: boolean }>`
+  cursor: ${({ $isDisabled }) => ($isDisabled ? 'default' : 'pointer')};
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: ${({ $isDisabled }) => ($isDisabled ? 'default' : 'pointer')};
 
-  &:hover(:not($isDisabled)) {
+  &:hover {
     svg {
-      fill: ${({ theme }) => theme.color.primary[500]};
+      fill: ${({ theme, $isDisabled }) =>
+        !$isDisabled && theme.color.primary[500]};
     }
   }
 `;
