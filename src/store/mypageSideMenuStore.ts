@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 
 type Step = 'my-page' | 'edit-profile' | 'signout' | 'review' | 'group-buying';
+type Props = { id?: number; user?: string };
 
 interface MyPageSideMenuStates {
   content: Step;
-  id: number | null;
-  setContent: (content: Step, id?: number | null) => void;
+  props: Props;
+  setContent: (content: Step, props?: Props) => void;
 }
 
 interface MyPageIsOpenStates {
@@ -16,9 +17,9 @@ interface MyPageIsOpenStates {
 
 export const useMyPageSideMenuStore = create<MyPageSideMenuStates>((set) => ({
   content: 'my-page',
-  id: null,
-  setContent: (updatedContent: Step, updatedId?: number | null) =>
-    set({ content: updatedContent, id: updatedId }),
+  props: {},
+  setContent: (updatedContent: Step, updatedProps?: Props) =>
+    set({ content: updatedContent, props: updatedProps }),
 }));
 
 export const useMyPageIsOpenStore = create<MyPageIsOpenStates>((set) => ({

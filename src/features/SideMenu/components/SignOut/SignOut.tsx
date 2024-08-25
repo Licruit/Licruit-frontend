@@ -23,6 +23,7 @@ interface Form extends SignOutReq {
 function SignOut({ onClose }: Props) {
   const [isError, setIsError] = useState(false);
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
+  const userInfo = useMyPageSideMenuStore((state) => state.props);
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const theme = useTheme();
   const methods = useForm<Form>({ mode: 'onChange' });
@@ -67,10 +68,10 @@ function SignOut({ onClose }: Props) {
         <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
           <Funnel>
             <Step stepNum={1}>
-              <Reason onNext={() => setStep(2)} />
+              <Reason onNext={() => setStep(2)} userName={userInfo.user} />
             </Step>
             <Step stepNum={2}>
-              <Confirm onNext={() => setStep(3)} />
+              <Confirm onNext={() => setStep(3)} companyNumber={userInfo.id} />
             </Step>
             <Step stepNum={3}>
               <CheckUser isError={isError} />

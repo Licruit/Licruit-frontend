@@ -21,7 +21,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
         } as const);
 
   const handleClickReview = () => {
-    setContent('review', Number(ListItemData.buyingId));
+    setContent('review', { id: Number(ListItemData.buyingId) });
   };
 
   return (

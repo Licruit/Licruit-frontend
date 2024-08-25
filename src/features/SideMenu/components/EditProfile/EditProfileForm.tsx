@@ -132,7 +132,16 @@ function EditProfileForm({ userProfile, image }: Props) {
           </Button>
         </Form>
       </FormProvider>
-      <SignOut onClick={() => setContent('signout')}>회원탈퇴</SignOut>
+      <SignOut
+        onClick={() =>
+          setContent('signout', {
+            id: Number(userProfile.companyNumber),
+            user: userProfile.businessName,
+          })
+        }
+      >
+        회원탈퇴
+      </SignOut>
     </>
   );
 }

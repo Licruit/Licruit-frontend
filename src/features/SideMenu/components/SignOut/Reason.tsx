@@ -6,10 +6,11 @@ import { SignOutDescription } from '@/styles/components/Description';
 import { STORE_OTIONS } from '../../constants/options';
 
 interface Props {
+  userName?: string;
   onNext: () => void;
 }
 
-function Reason({ onNext }: Props) {
+function Reason({ userName, onNext }: Props) {
   const { register } = useFormContext();
 
   const selectedOption = useWatch({
@@ -26,9 +27,7 @@ function Reason({ onNext }: Props) {
   return (
     <>
       <SignOutDescription>
-        {
-          'OOO님,\r\n회원 탈퇴 사유를 알려주시면, 저희 리크루트가 더 나은 서비스를 제공할 수 있도록 노력하겠습니다.'
-        }
+        {`${userName || ''}님,\r\n회원 탈퇴 사유를 알려주시면, 저희 리크루트가 더 나은 서비스를 제공할 수 있도록 노력하겠습니다.`}
       </SignOutDescription>
       <Dropdown
         options={STORE_OTIONS}
