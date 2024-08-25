@@ -5,6 +5,8 @@ export const useRegion = () => {
   const { data: regionData } = useQuery({
     queryKey: ['region'],
     queryFn: getRegion,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
   });
   return { regionData };
 };
