@@ -40,7 +40,9 @@ function CounterBox({ detailData }: Props) {
       <SelectorWrapper>
         {isLoggedIn ? (
           <>
-            <Counter remainedQuantity={totalMax - orderCount} />
+            <Counter
+              remainedQuantity={totalMax === 0 ? null : totalMax - orderCount}
+            />
             <span className='price'>{formatNumber(price * quantity)}원</span>
           </>
         ) : (
