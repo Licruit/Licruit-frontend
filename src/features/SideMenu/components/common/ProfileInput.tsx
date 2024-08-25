@@ -2,7 +2,7 @@ import styled, { useTheme } from 'styled-components';
 import { InfoIcon } from 'public/assets/icons';
 import { ForwardedRef, forwardRef, useState } from 'react';
 import { useWatch } from 'react-hook-form';
-import { formatPrice } from '@/utils/format';
+import { formatPhoneNumber, formatPrice } from '@/utils/format';
 import Label from './Label';
 
 interface Props {
@@ -37,7 +37,11 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
     const theme = useTheme();
 
     const value: string = useWatch({ name: props.name }) || '';
-    const formattedValue = isPrice ? formatPrice(value) : value;
+    const formattedValue = isPrice
+      ? formatPrice(value)
+      : props.name === 'contact'
+        ? formatPhoneNumber(value)
+        : value;
 
     const handleMouseOverOnInfo = () => {
       setIsInfoShow(true);
