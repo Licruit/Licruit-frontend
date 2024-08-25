@@ -48,7 +48,7 @@ const StyledButton = styled.button<Omit<Props, 'children'>>`
   box-sizing: border-box;
   width: ${({ $width }) => ($width === 'fit' ? 'fit-content' : '100%')};
 
-  transition: all 0.2s ease-in;
+  transition: all 0.08s ease-in;
 
   &:disabled {
     cursor: default;

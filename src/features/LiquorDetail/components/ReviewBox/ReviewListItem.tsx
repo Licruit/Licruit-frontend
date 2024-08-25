@@ -1,30 +1,33 @@
 import Rating from '@/components/Rating/Rating';
 import styled from 'styled-components';
+import { formatDate } from '@/utils/date';
+import { Review } from '../../models/review.model';
+import { formatCompanyNumber } from '../../utils/formatCompanyNumber';
 
-function ReviewListItem() {
+interface Props {
+  reviewData: Review;
+}
+
+function ReviewListItem({ reviewData }: Props) {
+  const { img, name, userCompanyNumber, content, score, createdAt } =
+    reviewData;
+
   return (
     <Container>
       <div className='profile-wrapper'>
         <Profile>
-          <div className='temp-profile' />
+          <img src={img} alt='user profile' />
           <div className='info-wrapper'>
-            <h5>작성자</h5>
-            <span>607-**-****</span>
+            <h5>{name}</h5>
+            <span>{formatCompanyNumber(userCompanyNumber)}</span>
           </div>
         </Profile>
         <ReviewInfo>
-          <Rating rating={3.5} size={20} />
-          <span className='date'>2024.08.01</span>
+          <Rating rating={score} size={20} />
+          <span className='date'>{formatDate(createdAt)}</span>
         </ReviewInfo>
       </div>
-      <p className='review'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum
-        dolor sit amet, consectetur t amet, consectett amet, consectet Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit
-        amet, consectetur t amet, consectett amet, consectet ...Lorem ipsum
-        dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet,
-        consectetur t amet, consectett amet, consectet
-      </p>
+      <p className='review'>{content}</p>
     </Container>
   );
 }
@@ -44,7 +47,8 @@ const Container = styled.div`
 
   .review {
     color: ${({ theme }) => theme.color.neutral[400]};
-    ${({ theme }) => theme.typo.body.medium[14]}
+    ${({ theme }) => theme.typo.body.medium[14]};
+    white-space: pre-wrap;
   }
 `;
 
@@ -53,10 +57,9 @@ const Profile = styled.div`
   gap: 12px;
   align-items: center;
 
-  .temp-profile {
+  img {
     width: 48px;
     height: 48px;
-    background-color: ${({ theme }) => theme.color.primary[500]};
   }
 
   .info-wrapper {

@@ -4,7 +4,12 @@ import { GlassesIcon } from 'public/assets/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { StyledInput } from '../Input/FormInput';
 
-function Search() {
+interface Props {
+  placeholder: string;
+  searchPath: string;
+}
+
+function Search({ placeholder, searchPath }: Props) {
   const [search, setSearch] = useState<string>('');
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,7 +27,7 @@ function Search() {
     } else {
       searchParams.delete('search');
     }
-    navigate(`/catalog?${searchParams}`);
+    navigate(`${searchPath}?${searchParams}`);
   };
 
   return (
@@ -33,7 +38,7 @@ function Search() {
           <StyledInput
             type='text'
             value={search}
-            placeholder='찾고 싶은 전통주를 입력하세요'
+            placeholder={placeholder}
             onChange={handleChange}
           />
         </SearchBar>

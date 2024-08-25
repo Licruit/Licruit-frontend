@@ -20,7 +20,6 @@ function IndustryForm() {
   const address = watch('industry');
 
   useClickOutside(placeRef, closePostcode);
-
   return (
     <Container>
       <InputWrapper ref={placeRef}>

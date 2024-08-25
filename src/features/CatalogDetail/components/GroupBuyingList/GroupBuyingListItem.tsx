@@ -1,21 +1,21 @@
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
+import { Buying } from '../../models/buying.model';
 
-function GroupBuyingListItem() {
+interface Props {
+  buyingData: Buying;
+}
+
+function GroupBuyingListItem({ buyingData }: Props) {
+  const { leftDate, buyingTitle, buyingContent } = buyingData;
+
   return (
     <Container>
       <Badge $size='sm' $type='black'>
-        20일 남음
+        {leftDate}일 남음
       </Badge>
-      <h2 className='item-name'>
-        우아하고 순수한 첫번째 고래
-        <br />
-        백경 13. 탁주
-      </h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum
-        dolor sit amet, consectetur t amet, consectett amet, consectet ...
-      </p>
+      <h2 className='item-name'>{buyingTitle}</h2>
+      <p>{buyingContent}</p>
     </Container>
   );
 }

@@ -1,17 +1,19 @@
 import PATH from '@/constants/path';
-import useSessionStore from '@/store/sessionStore';
+import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
+import useLoginStore from '@/store/loginStore';
 import { CartIcon } from 'public/assets/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Navigation() {
-  const isLoggedIn = useSessionStore((state) => state.isLoggedIn);
+  const openMyPage = useMyPageIsOpenStore((state) => state.open);
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   return (
     <div>
       {isLoggedIn ? (
         <Nav $gap={24}>
-          <NavLink to={PATH.login}>MY PAGE</NavLink>
+          <MyPageButton onClick={openMyPage}>MY PAGE</MyPageButton>
           <LinkWithIcon>
             <li>
               <NavLink to={PATH.join}>LOGOUT</NavLink>
@@ -41,6 +43,10 @@ const Nav = styled.nav<{ $gap: number }>`
 `;
 
 const NavLink = styled(Link)`
+  ${({ theme }) => theme.typo.body.medium[14]}
+`;
+
+const MyPageButton = styled.button`
   ${({ theme }) => theme.typo.body.medium[14]}
 `;
 

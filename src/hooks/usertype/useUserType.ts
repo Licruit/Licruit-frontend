@@ -6,7 +6,7 @@ const useUserType = () => {
     return isWholesaler === 'true';
   };
 
-  return checkIsCompany;
+  return { checkIsCompany };
 };
 
 export default useUserType;

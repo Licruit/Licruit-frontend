@@ -1,25 +1,26 @@
 import GroupBuyingCard from '@/components/Liquor/GroupBuyingCard';
-import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import { useLiquor } from '../../hooks/useLiquor';
 import { useIntersectionObs } from '../../hooks/useObserver';
 import { GroupBuying } from '../../types/liquor';
 
-function GroupBuyingGrid() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const params = searchParams.get('sort');
-
+interface Props {
+  region?: string | null;
+  sort?: string | null;
+}
+function GroupBuyingGrid({ region, sort }: Props) {
   const { liquorData, fetchNextPage, hasNextPage } = useLiquor(
-    params || 'ranking'
+    sort || 'ranking',
+    region || null
   );
   const { setTarget } = useIntersectionObs({ hasNextPage, fetchNextPage });
-
   return (
     <Container>
-      {liquorData?.pages.map((item: GroupBuying, index) => {
-        return <GroupBuyingCard {...item} key={`${item.id}-${index}`} />;
+      {liquorData?.pages.map((item: GroupBuying) => {
+        return <GroupBuyingCard {...item} key={uuidv4()} />;
       })}
+
       <div ref={setTarget} style={{ height: '10px' }} />
     </Container>
   );
@@ -28,7 +29,11 @@ function GroupBuyingGrid() {
 export default GroupBuyingGrid;
 
 const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(374px, 1fr));
   gap: 20px;
+
+  @media (width <= 1230px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 `;
