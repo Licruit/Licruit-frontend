@@ -44,11 +44,9 @@ const Container = styled.div`
 `;
 
 const List = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-  @media (width >= 768px) {
-    justify-content: space-between;
-  }
+  gap: 20px;
+  margin-bottom: 30px;
 `;
