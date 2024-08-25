@@ -43,10 +43,8 @@ const LiquorInfoContainer = styled.li`
 
 const HeaderInfo = styled.div`
   padding: 20px;
-
   font-size: ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[50]};
-
   background: ${({ theme }) => theme.color.primary[500]};
 `;
 

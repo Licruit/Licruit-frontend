@@ -16,8 +16,8 @@ export default Region;
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
   gap: 12px;
+  align-items: center;
 `;
 
 const Label = styled.div`

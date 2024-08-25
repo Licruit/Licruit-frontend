@@ -52,8 +52,8 @@ const ContentWrapper = styled.div`
 
 const Filter = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const TabBox = styled.div`

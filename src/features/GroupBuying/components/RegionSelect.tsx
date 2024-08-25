@@ -77,9 +77,9 @@ const SelectBox = styled.button`
 
 const OptionBox = styled.div`
   position: absolute;
+  z-index: 999;
   top: 100%;
   left: 0;
-  z-index: 999;
 
   width: 100%;
 
