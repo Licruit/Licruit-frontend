@@ -1,8 +1,9 @@
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
 import { useClickOutside } from '@/hooks/gesture/useClickOutside';
+import { WHOLESALER } from '@/features/Join/constants/business';
 
 export interface DropdownItem {
   id: number;
@@ -23,13 +24,17 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
     const { setValue, watch } = useFormContext();
 
     const selectedValue = watch(name);
+    const isWholesaler = watch('isWholesaler');
 
     const handleSelect = (option: DropdownItem | string) => {
       if (typeof option === 'string') {
         setValue(name, option, { shouldValidate: true });
         setSelectedOption(option);
       } else {
-        setValue(name, option.id, { shouldValidate: true });
+        setValue(name, option.id, {
+          shouldValidate: true,
+        });
+
         setSelectedOption(option.name);
       }
       setIsOpen(false);
@@ -39,6 +44,11 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
 
     useClickOutside(industryRef, () => setIsOpen(false));
 
+    useEffect(() => {
+      if (isWholesaler) {
+        setValue(name, WHOLESALER, { shouldValidate: true });
+      }
+    }, [isWholesaler]);
     return (
       <DropdownContainer ref={industryRef}>
         <Controller

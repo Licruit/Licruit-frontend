@@ -47,6 +47,7 @@ function SignUpPage() {
       isMarketing,
     };
     signupMutation.mutate(filteredData);
+    console.log(filteredData, 'filteredData');
   };
   return (
     <>

@@ -19,7 +19,7 @@ function IndustryForm() {
   const { industryData } = useSignup();
 
   const address = watch('industry');
-  const wholesaler = watch('isWholesaler');
+  const isWholesaler = watch('isWholesaler');
   useClickOutside(placeRef, closePostcode);
   return (
     <Container>
@@ -57,13 +57,13 @@ function IndustryForm() {
           required: true,
         })}
       />
-      {wholesaler ? null : (
+      <DropDownBox isWholesaler={isWholesaler}>
         <Dropdown
           name='sectorId'
           options={industryData}
           placeholder='업종 카테고리를 선택해주세요'
         />
-      )}
+      </DropDownBox>
     </Container>
   );
 }
@@ -101,4 +101,12 @@ const InputWrapper = styled.div`
 const StyledFormInput = styled(FormInput)`
   cursor: not-allowed;
   background-color: ${({ theme }) => theme.color.neutral[100]};
+`;
+
+const DropDownBox = styled.div<{ isWholesaler: boolean }>`
+  display: flex;
+  gap: 10px;
+  visibility: ${({ isWholesaler }) => (isWholesaler ? 'hidden' : 'visible')};
+  width: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
+  height: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
 `;
