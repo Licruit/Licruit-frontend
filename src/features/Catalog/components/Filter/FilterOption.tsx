@@ -82,8 +82,8 @@ const SubTitle = styled.li`
 `;
 
 const Content = styled.div<{ $isOpen: boolean }>`
-  max-height: ${({ $isOpen }) => ($isOpen ? '300px' : '0')};
   overflow: hidden;
+  max-height: ${({ $isOpen }) => ($isOpen ? '300px' : '0')};
   transition: max-height 0.3s ease-out;
 `;
 
