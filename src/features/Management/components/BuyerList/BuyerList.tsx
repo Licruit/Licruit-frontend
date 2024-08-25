@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { formatCompanyNumber, formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
 
@@ -23,18 +24,10 @@ function BuyerList({ buyers }: Props) {
           <tr key={row.id}>
             <td>
               <strong>
-                {String(row.userCompanyNumber).replace(
-                  /(\d{3})(\d{2})(\d{5})/,
-                  '$1-$2-$3'
-                )}
+                {formatCompanyNumber(String(row.userCompanyNumber))}
               </strong>
             </td>
-            <td>
-              {String(row.contact).replace(
-                /(\d{3})(\d{3,4})(\d{4})/,
-                '$1-$2-$3'
-              )}
-            </td>
+            <td>{formatPhoneNumber(String(row.contact))}</td>
             <td>{row.liquorName}</td>
             <td>{row.status}</td>
             <td>
