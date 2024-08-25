@@ -67,6 +67,8 @@ function GroupBuyOpenForm() {
     postGroupBuy(req);
   };
 
+  console.log(watch('dates'));
+
   return (
     <FormProvider {...methods}>
       <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
@@ -82,11 +84,19 @@ function GroupBuyOpenForm() {
         />
         <SearchProduct {...register('liquor', { required: true })} />
         <InputWrapper>
-          <DatePickerComponent {...INPUT.period} name='dates' />
+          <DatePickerComponent
+            {...INPUT.period}
+            name='dates'
+            minDate={new Date()}
+          />
           <TimePickerComponent {...INPUT.startTime} name='time' />
         </InputWrapper>
         <InputWrapper>
-          <DatePickerComponent {...INPUT.delivery} name='deliveryDates' />
+          <DatePickerComponent
+            {...INPUT.delivery}
+            name='deliveryDates'
+            minDate={watch('dates') ? watch('dates')[1] : null}
+          />
           <ProfileInput
             {...INPUT.price}
             {...register('price', { required: true })}
