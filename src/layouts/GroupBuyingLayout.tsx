@@ -22,7 +22,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Grid = styled.div`
+const Grid = styled.main`
   display: flex;
   flex-direction: column;
 `;
