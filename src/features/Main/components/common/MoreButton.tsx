@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 interface Props {
   children: React.ReactNode;
+  onClick: () => void;
 }
 
-function MoreButton({ children }: Props) {
-  return <StyledButton>{children}</StyledButton>;
+function MoreButton({ children, onClick }: Props) {
+  return <StyledButton onClick={onClick}>{children}</StyledButton>;
 }
 
 const StyledButton = styled.div`
