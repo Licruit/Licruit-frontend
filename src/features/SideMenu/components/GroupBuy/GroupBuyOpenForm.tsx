@@ -67,8 +67,6 @@ function GroupBuyOpenForm() {
     postGroupBuy(req);
   };
 
-  console.log(watch('dates'));
-
   return (
     <FormProvider {...methods}>
       <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>

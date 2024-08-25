@@ -1,6 +1,6 @@
 import styled, { useTheme } from 'styled-components';
 import { InfoIcon } from 'public/assets/icons';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import Label from './Label';
 
 interface Props {
@@ -29,16 +29,32 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
     }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
+    const [isInfoShow, setIsInfoShow] = useState(false);
     const theme = useTheme();
+
+    const handleMouseOverOnInfo = () => {
+      setIsInfoShow(true);
+    };
+
+    const handleMouseOutOnInfo = () => {
+      setIsInfoShow(false);
+    };
 
     return (
       <InputWrapper>
+        {hasInfo && isInfoShow && (
+          <InfoTooltip>
+            구매자가 일정 금액 이상을 구매하면 배송비가 무료로 적용됩니다
+          </InfoTooltip>
+        )}
         <LabelWrapper>
           <Label label={label} isRequired={isRequired} />
           {hasInfo && (
             <InfoIcon
               fill={theme.color.neutral[400]}
               style={{ cursor: 'pointer' }}
+              onMouseOver={handleMouseOverOnInfo}
+              onMouseOut={handleMouseOutOnInfo}
             />
           )}
         </LabelWrapper>
@@ -73,6 +89,7 @@ const InputWrapper = styled.div`
 `;
 
 const LabelWrapper = styled.div`
+  position: relative;
   display: flex;
   gap: 6px;
   align-items: center;
@@ -107,6 +124,21 @@ const TypeNumber = styled.div`
   bottom: 17px;
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};
+`;
+
+const InfoTooltip = styled.div`
+  position: absolute;
+  z-index: 999;
+  top: -75%;
+  left: -33%;
+
+  padding: 12px;
+
+  color: ${({ theme }) => theme.color.neutral[500]};
+  ${({ theme }) => theme.typo.body.medium[12]};
+
+  background: rgb(255 255 255 / 80%);
+  border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 `;
 
 export default ProfileInput;
