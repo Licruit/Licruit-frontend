@@ -1,5 +1,5 @@
 import Button from '@/components/Button/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import styled from 'styled-components';
 import useUserType from '@/hooks/usertype/useUserType';
@@ -26,6 +26,9 @@ function EditProfileForm({ userProfile, image }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<number>(
     currentCategoryId + 1
   );
+  const [isImageChange, setIsImageChange] = useState(false);
+  const [prevImage, setPrevImage] = useState(image);
+
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { mutate: editProfile } = useProfileMutation();
   const { checkIsCompany } = useUserType();
@@ -43,10 +46,17 @@ function EditProfileForm({ userProfile, image }: Props) {
 
   const {
     register,
-    formState: { isValid },
+    formState: { isValid, isDirty },
     watch,
     handleSubmit,
   } = methods;
+
+  useEffect(() => {
+    if (prevImage !== image) {
+      setIsImageChange(true);
+      setPrevImage(image);
+    }
+  }, [image, prevImage]);
 
   const introduceValue = watch('introduce') || '';
   const isCompany = checkIsCompany();
@@ -115,7 +125,7 @@ function EditProfileForm({ userProfile, image }: Props) {
             $theme='primary'
             $size='md'
             $width='full'
-            disabled={!isValid}
+            disabled={!isValid || (!isDirty && !isImageChange)}
             type='submit'
           >
             적용하기
