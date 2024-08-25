@@ -11,7 +11,6 @@ const useGroupBuyMutation = () => {
     onSuccess: () => {
       setContent('my-page');
     },
-    onError: () => window.alert('잠시후 다시 시도해 주세요.'),
   });
 };
 
