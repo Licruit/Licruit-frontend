@@ -1,4 +1,5 @@
 import Button from '@/components/Button/Button';
+import PATH from '@/constants/path';
 import { useCategory } from '@/hooks/category/useCategory';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -22,7 +23,7 @@ function Category() {
     } else {
       searchParams.set('category', item.toString());
     }
-    navigate(`/catalog?${searchParams.toString()}`);
+    navigate(`${PATH.catalog}?${searchParams.toString()}`);
   };
   return (
     <Container>
