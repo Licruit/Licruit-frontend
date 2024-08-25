@@ -16,3 +16,4 @@ export { default as WavingIcon } from './waving.svg?react';
 export { default as GlassIcon } from './glass.svg?react';
 export { default as BackIcon } from './backarrow.svg?react';
 export { default as AccentIcon } from './buttonaccent.svg?react';
+export { default as CheckboxIcon } from './checkbox.svg?react';
