@@ -70,7 +70,6 @@ function EditProfileForm({ userProfile, image }: Props) {
         <Form
           aria-label='edit-profile-form'
           onSubmit={handleSubmit((data) => {
-            console.log(data);
             editProfile({
               profile: { ...data, sectorId: selectedCategory, image },
             });
