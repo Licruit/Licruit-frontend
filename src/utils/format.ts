@@ -19,3 +19,7 @@ export const formatPrice = (price: string) => {
 export const formatPriceToNumber = (price: string) => {
   return Number(price.replace(/,/g, ''));
 };
+
+export const formatPhoneNumberToNumber = (phoneNumber: string) => {
+  return phoneNumber.replace(/-/g, '');
+};
