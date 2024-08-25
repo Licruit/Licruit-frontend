@@ -1,31 +1,37 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import PATH from '@/constants/path';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { STORAGE_KEY } from '@/constants/storage';
-import useSessionStore from '@/store/sessionStore';
+import { AxiosError } from 'axios';
+import { saveTokens } from '@/utils/storage';
+import useLoginStore from '@/store/loginStore';
 import { LoginForm } from '../types/login';
 import { login } from '../api/login.api';
 
 export const useLogin = () => {
   const navigate = useNavigate();
-  const setIsLoggedIn = useSessionStore((state) => state.setIsLoggedIn);
-  const [isFailed, setIsFailed] = useState<boolean>(false);
+  const [isAutoLogin, setIsAutoLogin] = useState(false);
+  const setIsLoggedIn = useLoginStore((state) => state.setIsLoggedIn);
 
-  const handleLogin = async (value: LoginForm) => {
-    login(value).then((res) => {
-      if (res) {
-        setIsLoggedIn(true);
-        sessionStorage.setItem(STORAGE_KEY.accessToken, res.data.accessToken);
-        sessionStorage.setItem(STORAGE_KEY.refreshToken, res.data.refreshToken);
-        sessionStorage.setItem(
-          STORAGE_KEY.userType,
-          String(res.data.isWholesaler)
+  const { mutate: handleLogin } = useMutation({
+    mutationFn: (loginData: LoginForm) => login(loginData),
+    onError: (err) => {
+      if (err instanceof AxiosError && err.response?.status === 401) {
+        toast.error(
+          '사업자 등록번호 또는 비밀번호가 잘못되었습니다. 다시 한 번 입력해주세요'
         );
-        navigate('/');
       } else {
-        setIsFailed(true);
+        throw err;
       }
-    });
-  };
+    },
+    onSuccess: (result) => {
+      const { accessToken, refreshToken, isWholesaler } = result.data;
+      saveTokens(isAutoLogin, accessToken, refreshToken, isWholesaler);
+      setIsLoggedIn(true);
+      navigate(PATH.main);
+    },
+  });
 
-  return { isFailed, handleLogin };
+  return { handleLogin, isAutoLogin, setIsAutoLogin };
 };

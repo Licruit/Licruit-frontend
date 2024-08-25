@@ -2,7 +2,7 @@ import Button from '@/components/Button/Button';
 import { BackIcon, EditIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { useRef, useState } from 'react';
 import MyPageHeader from '../common/MyPageHeader';
 import EditProfileForm from './EditProfileForm';

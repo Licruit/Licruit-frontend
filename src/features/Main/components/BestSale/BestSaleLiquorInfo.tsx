@@ -1,23 +1,36 @@
 import styled from 'styled-components';
 
 import { Badge } from '@/styles/components/Badge';
+import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import HeaderInfo from '../common/HeadInfo';
-import { LiquorInfoProps } from '../../types/main';
+
+export interface Props {
+  id: number;
+  orderCount: number;
+  imageUrl: string;
+  leftDate: number;
+  title: string;
+  description: string;
+}
 
 function BestSaleLiquorInfo({
-  headText,
-  badgeText,
+  id,
+  orderCount,
+  leftDate,
   title,
   description,
   imageUrl,
-}: LiquorInfoProps) {
+}: Props) {
+  const navigate = useNavigate();
+
   return (
-    <LiquorInfoContainer>
-      <HeaderInfo>{headText}</HeaderInfo>
+    <LiquorInfoContainer onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
+      <HeaderInfo>{orderCount}명 신청</HeaderInfo>
       <LiquorInfoWrapper $imageUrl={imageUrl}>
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
-            {badgeText}
+            {leftDate === 0 ? '오늘마감' : `${leftDate}일전`}
           </Badge>
           <Title>{title}</Title>
           <LiquorDescription>{description}</LiquorDescription>
@@ -45,8 +58,8 @@ const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
   height: 453px;
   padding-top: 175px;
 
-  background: url(${({ $imageUrl }) => $imageUrl}) lightgray 50% / cover
-    no-repeat;
+  background: url(${({ $imageUrl }) => $imageUrl}) lightgray center no-repeat;
+  background-size: contain;
 `;
 
 const LiquorInfo = styled.div`
