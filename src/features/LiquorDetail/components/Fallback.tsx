@@ -13,12 +13,12 @@ function Fallback({ error }: FallbackProps) {
 export default Fallback;
 
 const EmptyReview = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
   height: 500px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   color: ${({ theme }) => theme.color.neutral[600]};
   ${({ theme }) => theme.typo.body.semi_bold[16]}

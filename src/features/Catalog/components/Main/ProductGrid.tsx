@@ -20,6 +20,7 @@ function ProductGrid() {
                   key={item.id}
                   liquorInfo={item}
                   onClick={() => navigate(`/catalog/${item.id}`)}
+                  size='370'
                 />
               );
             })}

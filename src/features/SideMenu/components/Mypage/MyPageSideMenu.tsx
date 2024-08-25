@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { createPortal } from 'react-dom';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';

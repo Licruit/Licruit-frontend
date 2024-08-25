@@ -46,9 +46,9 @@ const Container = styled.div`
   }
 
   .review {
-    white-space: pre-wrap;
     color: ${({ theme }) => theme.color.neutral[400]};
-    ${({ theme }) => theme.typo.body.medium[14]}
+    ${({ theme }) => theme.typo.body.medium[14]};
+    white-space: pre-wrap;
   }
 `;
 

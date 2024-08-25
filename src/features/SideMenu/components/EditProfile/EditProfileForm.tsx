@@ -2,7 +2,7 @@ import Button from '@/components/Button/Button';
 import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import styled from 'styled-components';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import useUserType from '@/hooks/usertype/useUserType';
 import { INPUT } from '../../constants/input';
 import useProfileMutation from '../../hooks/useProfileMutation';
@@ -165,6 +165,10 @@ const Introduce = styled.textarea`
   padding: 17px 0 0 18px;
 
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.neutral[400]};
+  }
 `;
 
 const TypeNumber = styled.div`

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import postGroupBuy from '../api/postGroupBuy';
 import { GroupBuyReq } from '../model/groupbuy.model';
 

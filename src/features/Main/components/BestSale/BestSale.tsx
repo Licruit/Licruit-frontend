@@ -1,16 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
+import { useNavigate } from 'react-router-dom';
 import MoreButton from '../common/MoreButton';
 import Category from '../common/Category';
 import BestLiquorInfo from './BestSaleLiquorInfo';
-
 import { CONTENT } from '../../constants/button';
 import { CATEGORY_TEXT } from '../../constants/category';
+import useBestSaleQuery from '../../hooks/useBestSaleQuery';
+import { BestSaleParams, BestSaleRes } from '../../models/bestsale.model';
 
 function BestSale() {
-  const [selectedButton, setSelectedButton] = useState(CONTENT.rank);
+  const [selectedButton, setSelectedButton] = useState(CONTENT.ranking);
+  const [liquorContent, setLiquorContent] = useState<BestSaleRes['buyings']>(
+    []
+  );
+  const navigate = useNavigate();
+
+  const sort = Object.keys(CONTENT).find(
+    (key) => CONTENT[key as keyof typeof CONTENT] === selectedButton
+  ) as BestSaleParams;
+
+  const { bestSaleLiquors } = useBestSaleQuery(sort);
+
+  useEffect(() => {
+    if (bestSaleLiquors) setLiquorContent(bestSaleLiquors);
+  }, [bestSaleLiquors]);
 
   const handleClickButton = (content: string) => {
     setSelectedButton(content);
@@ -39,31 +54,22 @@ function BestSale() {
             ))}
           </ButtonCategory>
         </div>
-        <MoreButton>더보기</MoreButton>
+        <MoreButton onClick={() => navigate('group-buying?sort=ranking')}>
+          더보기
+        </MoreButton>
       </CategoryHeader>
       <LiquorContent>
-        {/* 추후 서버 데이터로 대체 예정 */}
-        <BestLiquorInfo
-          headText='1400명 신청'
-          title='우아하고 순수한 첫번째 고래백경 13. 탁주'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
-          badgeText='오늘마감'
-          imageUrl={LiquorUrl}
-        />
-        <BestLiquorInfo
-          headText='1400명 신청'
-          title='우아하고 순수한 첫번째 고래백경 13. 탁주'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
-          badgeText='오늘마감'
-          imageUrl={LiquorUrl}
-        />
-        <BestLiquorInfo
-          headText='1400명 신청'
-          title='우아하고 순수한 첫번째 고래백경 13. 탁주'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem ipsum dolor sit amet, consectetur adipiscin'
-          badgeText='오늘마감'
-          imageUrl={LiquorUrl}
-        />
+        {liquorContent.map((liquorInfo) => (
+          <BestLiquorInfo
+            key={liquorInfo.id}
+            id={liquorInfo.id}
+            orderCount={liquorInfo.orderCount}
+            title={liquorInfo.title}
+            description={liquorInfo.content}
+            leftDate={liquorInfo.leftDate}
+            imageUrl={liquorInfo.img}
+          />
+        ))}
       </LiquorContent>
     </BestSaleContainer>
   );

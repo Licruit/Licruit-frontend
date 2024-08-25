@@ -60,7 +60,7 @@ export default BuyerTable;
 
 const Container = styled.div`
   width: 100%;
-  margin: 20px 0;
+  margin-bottom: 20px;
 
   table {
     width: 100%;
