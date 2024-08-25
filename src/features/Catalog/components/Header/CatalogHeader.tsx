@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PATH from '@/constants/path';
 import Search from '@/components/Header/Search';
 import styled from 'styled-components';
 import Category from './Category';
@@ -22,7 +23,10 @@ function CatalogHeader() {
       <Title>TRADITIONAL LIQUOR SPACE</Title>
       <div className='classification'>
         <Category />
-        <Search />
+        <Search
+          placeholder='찾고 싶은 전통주를 입력하세요'
+          searchPath={PATH.catalog}
+        />
       </div>
     </Container>
   );

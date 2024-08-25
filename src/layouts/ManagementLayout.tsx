@@ -1,9 +1,10 @@
+import Footer from '@/components/Footer';
+import Header from '@/components/Header/Header';
+import HeaderWithSearch from '@/components/Header/HeaderWithSearch';
 import { ProductCard } from '@/features/Catalog';
 import { ButtonProps } from '@/features/Catalog/components/Main/ProductCard';
 import MockImage from 'public/assets/images/main/mock-image1 38.svg';
-
-import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const liquors = {
@@ -13,13 +14,9 @@ const liquors = {
   description: '고세종고세종고세종고세종고세종',
 };
 
-interface Props {
-  children: React.ReactNode;
-}
-
-function ManagementLayout({ children }: Props) {
+function ManagementLayout() {
   const location = useLocation();
-  const { id } = useParams();
+  const { buyingId, orderId } = useParams();
 
   let headText: string | undefined = `총 ${1500}병 신청됐습니다`;
   let buttonProps: ButtonProps = {
@@ -28,13 +25,12 @@ function ManagementLayout({ children }: Props) {
     $theme: 'primary',
   };
 
-const src =location.search;
+  const src = location.search;
 
-  
-  if (id) {
+  if (buyingId) {
     headText = undefined;
   }
-  
+
   if (src === '?achievement') {
     buttonProps = {
       label: '전체확정',
@@ -57,21 +53,27 @@ const src =location.search;
   }
 
   return (
-    <Container>
-      <ProductCard
-        liquorInfo={liquors}
-        headText={headText}
-        button={buttonProps}
-        size='264'
-      />
-      {children}
-    </Container>
+    <>
+      {orderId ? <Header /> : <HeaderWithSearch />}
+      <Container>
+        <ProductCard
+          liquorInfo={liquors}
+          headText={headText}
+          button={buttonProps}
+          size='264'
+        />
+        <Outlet />
+      </Container>
+      <Footer />
+    </>
   );
 }
 
 export default ManagementLayout;
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   gap: 40px;
+  width: 100%;
+  padding: 20px;
 `;

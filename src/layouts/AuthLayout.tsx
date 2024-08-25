@@ -30,7 +30,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const Content = styled.div`
+const Content = styled.main`
   display: flex;
   flex: 1;
   width: 100%;

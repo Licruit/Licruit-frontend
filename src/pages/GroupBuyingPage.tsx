@@ -1,9 +1,17 @@
 import Tab from '@/components/Header/Tabs';
 import { GroupBuyingGrid, GroupBuyingHeader } from '@/features/GroupBuying';
+import Fallback from '@/features/GroupBuying/components/Fallback';
+import Region from '@/features/GroupBuying/components/Header/Region';
 import Preview from '@/features/GroupBuying/components/Preview';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function GroupBuyingPage() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const sort = searchParams.get('sort');
+  const region = searchParams.get('region');
   return (
     <Container>
       <PreviewWrapper>
@@ -11,10 +19,15 @@ function GroupBuyingPage() {
       </PreviewWrapper>
       <ContentWrapper>
         <GroupBuyingHeader />
-        <TabBox>
-          <Tab type='group_buying' queryKey='sort' />
-        </TabBox>
-        <GroupBuyingGrid />
+        <Filter>
+          <TabBox>
+            <Tab type='group_buying' queryKey='sort' />
+          </TabBox>
+          <Region />
+        </Filter>
+        <ErrorBoundary FallbackComponent={Fallback} resetKeys={[sort, region]}>
+          <GroupBuyingGrid sort={sort} region={region} />
+        </ErrorBoundary>
       </ContentWrapper>
     </Container>
   );
@@ -29,14 +42,18 @@ const Container = styled.div`
 
 const PreviewWrapper = styled.div`
   flex: 1;
-  margin-right: 20px;
 `;
 
 const ContentWrapper = styled.div`
-  overflow: scroll;
+  overflow: auto;
   flex: 2;
-  height: 100vh;
-  padding: 20px;
+  padding: 20px 40px 40px;
+`;
+
+const Filter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const TabBox = styled.div`

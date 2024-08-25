@@ -1,14 +1,7 @@
-import BuyDetail from '@/features/Management/components/BuyerDetail/BuyDetail';
-import ManagementLayout from '@/layouts/ManagementLayout';
+import { BuyDetail } from '@/features/Management';
 
 function ManagementPage() {
-  return (
-    <div>
-      <ManagementLayout>
-        <BuyDetail />
-      </ManagementLayout>
-    </div>
-  );
+  return <BuyDetail />;
 }
 
 export default ManagementPage;
