@@ -12,19 +12,7 @@ import Label from '../common/Label';
 import ProfileInput from '../common/ProfileInput';
 import CategoryButtons from './CategoryButtons';
 import { GetProfile } from '../../model/profile.model';
-
-// TODO 서버 데이터로 변경하기
-const category = [
-  '한식',
-  '일식',
-  '양식',
-  '중식',
-  '이자카야',
-  '요리주점',
-  '레스토랑',
-  '도매업체',
-  '기타',
-];
+import { CATEGORY } from '../../constants/category';
 
 interface Props {
   userProfile: GetProfile;
@@ -32,7 +20,7 @@ interface Props {
 }
 
 function EditProfileForm({ userProfile, image }: Props) {
-  const currentCategoryId = category.findIndex(
+  const currentCategoryId = CATEGORY.findIndex(
     (item) => item === userProfile.sectorName
   );
   const [selectedCategory, setSelectedCategory] = useState<number>(
@@ -116,7 +104,7 @@ function EditProfileForm({ userProfile, image }: Props) {
           />
           {!isCompany && (
             <CategoryButtons
-              categories={category}
+              categories={CATEGORY}
               value={userProfile?.sectorName || ''}
               onSetCategory={getCategory}
             />
