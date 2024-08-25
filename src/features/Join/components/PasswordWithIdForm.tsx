@@ -12,7 +12,7 @@ function PasswordWithIdForm() {
 
   const { register, trigger, watch } = useFormContext();
 
-  const { isVerified, handleUploadCertificate, companyData } = useSignup();
+  const { isVerified, handleUploadCertificate } = useSignup();
 
   const handleUploadImageButtonClick = () => {
     if (!inputRef.current) return;
@@ -46,7 +46,7 @@ function PasswordWithIdForm() {
           <FormBox isVerified={isVerified}>
             <FormInput
               type='number'
-              value={companyData.companyNumber}
+              value={companyNumber}
               disabled={isVerified}
               {...register('companyNumber', {
                 required: true,

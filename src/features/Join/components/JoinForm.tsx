@@ -12,7 +12,6 @@ function JoinForm({ Funnel, Step }: ProcessProps) {
         {/* <ConsentForm /> */}
       </Step>
       <Step stepNum={2}>
-        {' '}
         <IndustryForm />
         {/* <AuthForm /> */}
       </Step>

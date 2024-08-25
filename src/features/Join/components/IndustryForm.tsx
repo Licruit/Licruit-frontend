@@ -16,9 +16,10 @@ function IndustryForm() {
 
   const placeRef = useRef<HTMLDivElement>(null);
 
-  const { industryData, companyData } = useSignup();
+  const { industryData } = useSignup();
 
   const address = watch('industry');
+  const wholesaler = watch('isWholesaler');
   useClickOutside(placeRef, closePostcode);
   return (
     <Container>
@@ -56,7 +57,7 @@ function IndustryForm() {
           required: true,
         })}
       />
-      {companyData.isWholesaler ? null : (
+      {wholesaler ? null : (
         <Dropdown
           name='sectorId'
           options={industryData}

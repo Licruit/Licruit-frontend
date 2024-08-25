@@ -8,13 +8,10 @@ import useCerficationMutation from './useCerficationMutation';
 
 export const useSignup = () => {
   const [isVerified, setIsVerified] = useState(false);
-  const [companyData, setCompanyData] = useState({
-    companyNumber: '',
-    isWholesaler: false,
-  });
-  const { mutate: uploadCertificate } = useCerficationMutation();
-  const { setValue } = useFormContext();
 
+  const { mutate: uploadCertificate } = useCerficationMutation();
+  const { setValue, watch } = useFormContext();
+  const companyNumber = watch('companyNumber');
   const { data: industryData } = useQuery<DropdownItem[], Error>({
     queryKey: ['ksic'],
     queryFn: getKSIC,
@@ -22,10 +19,10 @@ export const useSignup = () => {
   });
 
   const duplicationMutation = useMutation<boolean, Error>({
-    mutationFn: () => duplicateBusiness(companyData.companyNumber),
+    mutationFn: () => duplicateBusiness(companyNumber),
     onSuccess: () => {
       setIsVerified(true);
-      setValue('companyNumber', companyData.companyNumber);
+      setValue('companyNumber', companyNumber);
     },
     onError: () => {
       toast.error('중복된 사업자 번호입니다.');
@@ -39,11 +36,9 @@ export const useSignup = () => {
   const handleUploadCertificate = (formData: FormData) => {
     uploadCertificate(formData, {
       onSuccess: (data) => {
-        console.log('서버 응답:', data);
-        setCompanyData({
-          companyNumber: data.companyNumber,
-          isWholesaler: data.isWholesaler,
-        });
+        setValue('isWholesaler', data.isWholesaler);
+        setValue('companyNumber', data.companyNumber);
+
         handleSendId();
       },
       onError: () => {
@@ -57,6 +52,5 @@ export const useSignup = () => {
     isVerified,
     setIsVerified,
     handleUploadCertificate,
-    companyData,
   };
 };
