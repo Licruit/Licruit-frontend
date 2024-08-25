@@ -1,10 +1,17 @@
 import Tab from '@/components/Header/Tabs';
 import { GroupBuyingGrid, GroupBuyingHeader } from '@/features/GroupBuying';
+import Fallback from '@/features/GroupBuying/components/Fallback';
 import Region from '@/features/GroupBuying/components/Header/Region';
 import Preview from '@/features/GroupBuying/components/Preview';
+import { ErrorBoundary } from 'react-error-boundary';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function GroupBuyingPage() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const sort = searchParams.get('sort');
+  const region = searchParams.get('region');
   return (
     <Container>
       <PreviewWrapper>
@@ -18,7 +25,9 @@ function GroupBuyingPage() {
           </TabBox>
           <Region />
         </Filter>
-        <GroupBuyingGrid />
+        <ErrorBoundary FallbackComponent={Fallback} resetKeys={[sort, region]}>
+          <GroupBuyingGrid sort={sort} region={region} />
+        </ErrorBoundary>
       </ContentWrapper>
     </Container>
   );

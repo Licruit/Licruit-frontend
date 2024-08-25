@@ -83,7 +83,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <GroupBuyingLayout />,
+    element: (
+      <GlobalErrorBoundary>
+        <GroupBuyingLayout />
+      </GlobalErrorBoundary>
+    ),
     children: [
       {
         path: 'group-buying',
