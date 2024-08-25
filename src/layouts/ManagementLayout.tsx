@@ -72,8 +72,8 @@ function ManagementLayout() {
 export default ManagementLayout;
 
 const Container = styled.main`
-  width: 100%;
   display: flex;
   gap: 40px;
+  width: 100%;
   padding: 20px;
 `;

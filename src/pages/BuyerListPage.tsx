@@ -28,8 +28,8 @@ function BuyerListPage() {
 export default BuyerListPage;
 
 const Container = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
 `;

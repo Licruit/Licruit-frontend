@@ -32,6 +32,5 @@ const Bar = styled.div`
 
   background: rgb(255 255 255 / 60%);
   backdrop-filter: blur(10px);
-
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
 `;

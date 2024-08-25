@@ -76,7 +76,7 @@ const TBody = styled.tbody`
   td {
     padding: 20px 0;
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
-    border-width: 1px 0px;
+    border-width: 1px 0;
 
     strong {
       color: ${({ theme }) => theme.color.neutral[900]};
