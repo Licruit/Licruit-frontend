@@ -1,7 +1,7 @@
 import { useFunnel } from '@/hooks/form/useFunnel';
 import { BackIcon } from 'public/assets/icons';
 import styled, { useTheme } from 'styled-components';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import MyPageHeader from '../common/MyPageHeader';

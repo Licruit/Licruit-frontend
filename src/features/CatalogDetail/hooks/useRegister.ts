@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import useSessionStore from '@/store/sessionStore';
+import useLoginStore from '@/store/loginStore';
 import { LiquorDetailType } from '@/features/LiquorDetail';
 import { toast } from 'react-toastify';
 import { register } from '../api/register.api';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const useRegister = (id: number) => {
-  const { isLoggedIn } = useSessionStore();
+  const { isLoggedIn } = useLoginStore();
   const queryClient = useQueryClient();
 
   const handleRegister = (liked: boolean) => {

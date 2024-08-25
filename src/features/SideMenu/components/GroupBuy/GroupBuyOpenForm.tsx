@@ -1,7 +1,7 @@
 import { CloseIcon } from 'public/assets/icons';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { FormProvider, useForm } from 'react-hook-form';
 import { format } from 'date-fns';
 import MyPageHeader from '../common/MyPageHeader';
