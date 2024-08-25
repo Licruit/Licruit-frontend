@@ -13,6 +13,7 @@ export const useCatalog = () => {
   const search = searchParams.get('search');
   const minAlcohol = searchParams.get('minAlcohol');
   const maxAlcohol = searchParams.get('maxAlcohol');
+  const sort = searchParams.get('sort');
 
   const params: CatalogParams = {
     page: Number(page),
@@ -20,6 +21,7 @@ export const useCatalog = () => {
     search: search || undefined,
     minAlcohol: minAlcohol ? Number(minAlcohol) : undefined,
     maxAlcohol: maxAlcohol ? Number(maxAlcohol) : undefined,
+    sort: sort ? Number(sort) : undefined,
   };
   const {
     data: catalogData,
