@@ -7,7 +7,7 @@ import { useLiquorStore } from '@/features/GroupBuying/store/useLiquorStore';
 function GroupBuyingCard(liquor: GroupBuying) {
   const navigation = useNavigate();
   const { setHoveredLiquor } = useLiquorStore();
-  const { orderCount, img, categoryName, title, content, id } = liquor;
+  const { orderCount, img, leftDate, title, content, id } = liquor;
 
   const handleMouseEnter = () => {
     setHoveredLiquor(liquor);
@@ -23,7 +23,7 @@ function GroupBuyingCard(liquor: GroupBuying) {
       >
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
-            {categoryName}
+            {leftDate === 0 ? '오늘마감' : `${leftDate}일 남음`}
           </Badge>
           <Title>{title}</Title>
           <LiquorDescription>{content}</LiquorDescription>
