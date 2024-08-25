@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { FormProvider, useForm } from 'react-hook-form';
-import { format } from 'date-fns';
 import { REGEXP } from '@/constants/form/form';
 import MyPageHeader from '../common/MyPageHeader';
 import ProfileInput from '../common/ProfileInput';
@@ -15,28 +14,13 @@ import Label from '../common/Label';
 import RegionsButtons from './RegionsButtons';
 import SearchProduct from './SearchProduct';
 import useGroupBuyMutation from '../../hooks/useGroupBuyMutation';
-
-interface Form {
-  liquor: { name: string; id: number };
-  dates: Date[];
-  time: string;
-  deliveryDates: Date[];
-  totalMin: number;
-  totalMax: number;
-  individualMin: number;
-  price: string;
-  deliveryFee: string;
-  freeDeliveryFee?: string;
-  title: string;
-  content: string;
-  regions: string[];
-}
+import { GroupBuyForm } from '../../types/groupbuyopenform';
 
 function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  const { mutate: postGroupBuy } = useGroupBuyMutation();
+  const { handleGroupBuyOpen } = useGroupBuyMutation();
 
-  const methods = useForm<Form>({
+  const methods = useForm<GroupBuyForm>({
     mode: 'onChange',
   });
 
@@ -47,34 +31,11 @@ function GroupBuyOpenForm() {
     formState: { isValid },
   } = methods;
 
-  const handleOnSubmit = (data: Form) => {
-    const req = {
-      openDate: format(data.dates[0], 'yyyy-MM-dd'),
-      deadline: format(data.dates[1], 'yyyy-MM-dd'),
-      openTime: format(data.time, 'HH:mm'),
-      deliveryStart: format(data.deliveryDates[0], 'yyyy-MM-dd'),
-      deliveryEnd: format(data.deliveryDates[1], 'yyyy-MM-dd'),
-      totalMin: Number(data.totalMin),
-      totalMax: data.totalMax ? Number(data.totalMax) : null,
-      price: Number(data.price.replace(/,/g, '')),
-      deliveryFee: Number(data.deliveryFee.replace(/,/g, '')),
-      freeDeliveryFee: data.freeDeliveryFee
-        ? Number(data.freeDeliveryFee.replace(/,/g, ''))
-        : null,
-      title: data.title,
-      content: data.content,
-      liquorId: data.liquor.id,
-      regions: data.regions,
-    };
-
-    postGroupBuy(req);
-  };
-
   return (
     <FormProvider {...methods}>
       <Form
         onSubmit={handleSubmit((data) => {
-          handleOnSubmit(data);
+          handleGroupBuyOpen(data);
         })}
       >
         <MyPageHeader
