@@ -17,7 +17,7 @@ interface Props {
 
 function MyPageSideMenu({ onClose }: Props) {
   const isOpen = useMyPageIsOpenStore((state) => state.isOpen);
-  const content = useMyPageSideMenuStore((state) => state.content);
+  const { content, setContent } = useMyPageSideMenuStore();
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
@@ -27,6 +27,7 @@ function MyPageSideMenu({ onClose }: Props) {
   const closeMyPage = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
+      setContent('my-page');
     }
   };
 
