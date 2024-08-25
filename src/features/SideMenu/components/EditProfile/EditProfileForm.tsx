@@ -4,6 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import styled from 'styled-components';
 import useUserType from '@/hooks/usertype/useUserType';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
+import { formatPhoneNumber } from '@/utils/format';
 import { INPUT } from '../../constants/input';
 import useProfileMutation from '../../hooks/useProfileMutation';
 import Label from '../common/Label';
@@ -44,7 +45,7 @@ function EditProfileForm({ userProfile, image }: Props) {
     mode: 'onChange',
     defaultValues: {
       businessName: userProfile?.businessName,
-      contact: userProfile?.contact,
+      contact: formatPhoneNumber(userProfile?.contact),
       address: userProfile?.address,
       homepage: userProfile?.homepage,
       introduce: userProfile?.introduce,
