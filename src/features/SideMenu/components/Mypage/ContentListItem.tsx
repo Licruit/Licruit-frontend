@@ -1,26 +1,64 @@
-import MockImage from 'public/assets/images/main/mock-image1 38.svg';
 import Button from '@/components/Button/Button';
 import styled from 'styled-components';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
+import { GroupBuyListRes } from '../../model/groupbuylist.model';
+import useCancelOrderMutation from '../../hooks/useCancelOrderMutation';
 
-function ContentListItem() {
+function ContentListItem({ ...props }: GroupBuyListRes) {
+  const setContent = useMyPageSideMenuStore((state) => state.setContent);
+  const { handleCancelOrder } = useCancelOrderMutation();
+
+  const ListItemData = { ...props };
+  const ListType = ListItemData.status;
+
+  const ButtonType =
+    ListType === '신청'
+      ? ({ $style: 'outlined', $theme: 'neutral', text: '취소하기' } as const)
+      : ({
+          $style: 'solid',
+          $theme: 'primary',
+          text: '리뷰 작성하기',
+        } as const);
+
+  const handleClickReview = () => {
+    setContent('review', Number(ListItemData.buyingId));
+  };
+
   return (
     <ListItem>
-      <Date>2024.07.21</Date>
+      <Date>{ListItemData.createdAt}</Date>
       <Devider />
       <ItemInfoWrapper>
-        <img src={MockImage} alt='liquor' />
+        <img src={ListItemData.img} alt='liquor' />
         <ItemInfo>
           <StateBadge>
             <div className='icon' />
-            신청
+            {ListItemData.status}
           </StateBadge>
-          <ItemTitle>우아하고 순수한 첫번째 고래백경 13. 탁주</ItemTitle>
-          <ItemDesc>Lorem ipsum dolor sit amet, consectetur wdqdqw...</ItemDesc>
+          <ItemTitle>{ListItemData.title}</ItemTitle>
+          <ItemDesc>{ListItemData.content}</ItemDesc>
+          <PaymentInfo>
+            {Number(ListItemData.totalPrice).toLocaleString()}원 ·{' '}
+            {ListItemData.quantity}개
+          </PaymentInfo>
         </ItemInfo>
       </ItemInfoWrapper>
-      <Button $style='outlined' $theme='neutral' $size='sm' $width='full'>
-        취소하기
-      </Button>
+      {(ListType === '신청' || ListType === '배송완료') && (
+        <Button
+          $style={ButtonType.$style}
+          $theme={ButtonType.$theme}
+          $size='sm'
+          $width='full'
+          onClick={
+            ListType === '신청'
+              ? () => handleCancelOrder(Number(ListItemData.buyingId))
+              : handleClickReview
+          }
+          disabled={Number(ListItemData.isWroteReview) !== 1}
+        >
+          {ButtonType.text}
+        </Button>
+      )}
     </ListItem>
   );
 }
@@ -84,6 +122,11 @@ const ItemTitle = styled.div`
 const ItemDesc = styled.p`
   ${({ theme }) => theme.typo.body.medium[14]};
   color: ${({ theme }) => theme.color.neutral[600]};
+`;
+
+const PaymentInfo = styled.p`
+  ${({ theme }) => theme.typo.body.semi_bold[14]};
+  color: ${({ theme }) => theme.color.primary[500]};
 `;
 
 export default ContentListItem;

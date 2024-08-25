@@ -1,6 +1,10 @@
 import styled from 'styled-components';
-import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
+import {
+  useMyPageIsOpenStore,
+  useMyPageSideMenuStore,
+} from '@/store/mypageSideMenuStore';
 import { createPortal } from 'react-dom';
+import { useEffect } from 'react';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
 import GroupBuy from '../GroupBuy/GroupBuyOpenForm';
@@ -12,7 +16,13 @@ interface Props {
 }
 
 function MyPageSideMenu({ onClose }: Props) {
+  const isOpen = useMyPageIsOpenStore((state) => state.isOpen);
   const content = useMyPageSideMenuStore((state) => state.content);
+
+  useEffect(() => {
+    if (isOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+  }, [isOpen]);
 
   const closeMyPage = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {

@@ -1,4 +1,5 @@
 import Button from '@/components/Button/Button';
+import PATH from '@/constants/path';
 import { useCategory } from '@/hooks/category/useCategory';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,6 +14,17 @@ function Category() {
   const { categories } = useCategory();
   const allCategories = [{ id: 0, name: '전체' }, ...(categories || [])];
 
+  const handleCategoryClick = (item: number) => {
+    if (page) {
+      searchParams.set('page', String(1));
+    }
+    if (item === 0) {
+      searchParams.delete('category');
+    } else {
+      searchParams.set('category', item.toString());
+    }
+    navigate(`${PATH.catalog}?${searchParams.toString()}`);
+  };
   return (
     <Container>
       {allCategories?.map((item) => (
@@ -28,15 +40,7 @@ function Category() {
           $style='outlined'
           $size='sm'
           onClick={() => {
-            if (page) {
-              searchParams.set('page', String(1));
-            }
-            if (item.id === 0) {
-              searchParams.delete('category');
-            } else {
-              searchParams.set('category', item.id.toString());
-            }
-            navigate(`/catalog?${searchParams.toString()}`);
+            handleCategoryClick(item.id);
           }}
         >
           {item.name}

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import LiquorUrl from 'public/assets/images/main/mock-image1 38.svg';
+import { formatNumber } from '@/utils/format';
 import { Badge } from '@/styles/components/Badge';
 import { useLiquorStore } from '../store/useLiquorStore';
 
@@ -18,7 +19,9 @@ function Preview() {
     },
     {
       key: 'price',
-      value: hoveredLiquor?.price ? `${hoveredLiquor.price}원` : '가격',
+      value: hoveredLiquor?.price
+        ? `${formatNumber(hoveredLiquor.price)}원`
+        : '가격',
     },
   ];
 

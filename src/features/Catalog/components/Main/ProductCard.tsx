@@ -72,6 +72,7 @@ const Title = styled.div`
 `;
 
 const ImgContainer = styled.div`
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;

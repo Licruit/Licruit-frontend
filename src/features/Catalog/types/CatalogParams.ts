@@ -4,4 +4,5 @@ export interface CatalogParams {
   minAlcohol?: number;
   maxAlcohol?: number;
   page: number;
+  sort?: number;
 }
