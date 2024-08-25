@@ -7,7 +7,7 @@ import { useLiquorStore } from '@/features/GroupBuying/store/useLiquorStore';
 function GroupBuyingCard(liquor: GroupBuying) {
   const navigation = useNavigate();
   const { setHoveredLiquor } = useLiquorStore();
-  const { orderCount, img, categoryName, title, content, id } = liquor;
+  const { orderCount, img, leftDate, title, content, id } = liquor;
 
   const handleMouseEnter = () => {
     setHoveredLiquor(liquor);
@@ -23,7 +23,7 @@ function GroupBuyingCard(liquor: GroupBuying) {
       >
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
-            {categoryName}
+            {leftDate === 0 ? '오늘마감' : `${leftDate}일 남음`}
           </Badge>
           <Title>{title}</Title>
           <LiquorDescription>{content}</LiquorDescription>
@@ -39,16 +39,12 @@ const LiquorInfoContainer = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 374px;
 `;
 
 const HeaderInfo = styled.div`
-  width: 100%;
   padding: 20px;
-
   font-size: ${({ theme }) => theme.typo.heading.bold[16]};
   color: ${({ theme }) => theme.color.neutral[50]};
-
   background: ${({ theme }) => theme.color.primary[500]};
 `;
 
@@ -62,8 +58,8 @@ const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
 
   position: relative;
 
-  width: 374px;
-  height: 374px;
+  width: 100%;
+  padding-bottom: 100%;
 
   background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
 `;
@@ -75,8 +71,6 @@ const LiquorInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  align-items: flex-start;
-  justify-content: end;
 
   width: 100%;
   padding: 20px;
