@@ -1,26 +1,18 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { FieldError, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import FormInput from '@/components/Input/FormInput';
 import Button from '@/components/Button/Button';
 import PasswordForm from '@/components/Form/PasswordForm';
 import { useSignup } from '../hooks/useSignup';
-import useCerficationMutation from '../hooks/useCerficationMutation';
 
 function PasswordWithIdForm() {
-  const [companyData, setCompanyData] = useState({
-    companyNumber: '',
-    isWholesaler: false,
-  });
-  const { mutate: uploadCertificate } = useCerficationMutation();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const {
-    formState: { errors },
-  } = useFormContext();
+  const { register, trigger, watch } = useFormContext();
 
-  const { handleSendId, isVerified } = useSignup(companyData.companyNumber);
+  const { isVerified, handleUploadCertificate, companyData } = useSignup();
 
   const handleUploadImageButtonClick = () => {
     if (!inputRef.current) return;
@@ -36,65 +28,60 @@ function PasswordWithIdForm() {
     const formData = new FormData();
     formData.append('image', event.target.files[0]);
 
-    uploadCertificate(formData, {
-      onSuccess: (data) => {
-        setCompanyData({
-          companyNumber: data.companyNumber,
-          isWholesaler: data.isWholesaler,
-        });
-        handleSendId();
-      },
-    });
+    handleUploadCertificate(formData);
   };
+
+  const companyNumber = watch('companyNumber');
+
+  useEffect(() => {
+    if (companyNumber) {
+      trigger('companyNumber');
+    }
+  }, [companyNumber, trigger]);
+
   return (
     <Container>
       <InputWrapper>
         <InputWithButton>
-          {isVerified ? (
-            <>
-              <FormInput
-                type='number'
-                value={companyData.companyNumber}
-                disabled={isVerified}
-              />
+          <FormBox isVerified={isVerified}>
+            <FormInput
+              type='number'
+              value={companyData.companyNumber}
+              disabled={isVerified}
+              {...register('companyNumber', {
+                required: true,
+              })}
+            />
 
-              <Button
-                type='button'
-                $style={isVerified ? 'solid' : 'outlined'}
-                $size='lg'
-                $theme='primary'
-                $disableHover
-              >
-                인증완료
-              </Button>
-            </>
-          ) : (
-            <>
-              <UploadImageInput
-                type='file'
-                accept='image/*'
-                ref={inputRef}
-                onChange={upLoadImage}
-              />
-              <Button
-                type='button'
-                onClick={handleUploadImageButtonClick}
-                $style='outlined'
-                $size='lg'
-                $theme='primary'
-                $width='full'
-              >
-                사업자등록증 업로드
-              </Button>
-            </>
-          )}
+            <Button
+              type='button'
+              $style={isVerified ? 'solid' : 'outlined'}
+              $size='lg'
+              $theme='primary'
+              $disableHover
+            >
+              인증완료
+            </Button>
+          </FormBox>
+          <UploadBox isVerified={isVerified}>
+            <UploadImageInput
+              type='file'
+              accept='image/*'
+              ref={inputRef}
+              onChange={upLoadImage}
+            />
+            <Button
+              type='button'
+              onClick={handleUploadImageButtonClick}
+              $style='outlined'
+              $size='lg'
+              $theme='primary'
+              $width='full'
+            >
+              사업자등록증 업로드
+            </Button>
+          </UploadBox>
         </InputWithButton>
-
-        {errors.companyNumber && (
-          <ErrorMessage>
-            {(errors.companyNumber as FieldError).message}
-          </ErrorMessage>
-        )}
       </InputWrapper>
       <PasswordForm />
     </Container>
@@ -112,7 +99,6 @@ const Container = styled.div`
 
 const InputWithButton = styled.div`
   display: flex;
-  gap: 10px;
   width: 100%;
 `;
 
@@ -129,4 +115,16 @@ export const ErrorMessage = styled.div`
 
 const UploadImageInput = styled.input`
   display: none;
+`;
+
+const FormBox = styled.div<{ isVerified: boolean }>`
+  display: flex;
+  visibility: ${({ isVerified }) => (isVerified ? 'visible' : 'hidden')};
+  width: ${({ isVerified }) => (isVerified ? '100%' : '0')};
+  height: ${({ isVerified }) => (isVerified ? '100%' : '0')};
+`;
+
+const UploadBox = styled.div<{ isVerified: boolean }>`
+  display: ${({ isVerified }) => (isVerified ? 'none' : 'block')};
+  width: 100%;
 `;

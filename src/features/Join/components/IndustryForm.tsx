@@ -16,9 +16,8 @@ function IndustryForm() {
 
   const placeRef = useRef<HTMLDivElement>(null);
 
-  const { industryData } = useSignup();
+  const { industryData, companyData } = useSignup();
   const address = watch('industry');
-
   useClickOutside(placeRef, closePostcode);
   return (
     <Container>
@@ -56,11 +55,13 @@ function IndustryForm() {
           required: true,
         })}
       />
-      <Dropdown
-        name='sectorId'
-        options={industryData}
-        placeholder='업종 카테고리를 선택해주세요'
-      />
+      {companyData.isWholesaler ? null : (
+        <Dropdown
+          name='sectorId'
+          options={industryData}
+          placeholder='업종 카테고리를 선택해주세요'
+        />
+      )}
     </Container>
   );
 }
