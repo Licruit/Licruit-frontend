@@ -1,5 +1,5 @@
 import Button from '@/components/Button/Button';
-import useMyPageSideMenuStore from '@/store/mypageSideMenuStore';
+import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import styled from 'styled-components';
 
 function CompanyShowButtons() {

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import MetaTag from '@/components/MetaTag';
 
 function MainPage() {
-  const [isMyPageOpen, setOpen] = useState(true);
+  const [isMyPageOpen, setOpen] = useState(false);
 
   useEffect(() => {
     if (isMyPageOpen) document.body.style.overflow = 'hidden';

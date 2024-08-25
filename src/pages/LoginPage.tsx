@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function LoginPage() {
-  const { isFailed, handleLogin } = useLogin();
+  const { handleLogin, isAutoLogin, setIsAutoLogin } = useLogin();
 
   return (
     <>
@@ -18,7 +18,7 @@ function LoginPage() {
         url='https://www.licruit.site/auth/login'
       />
       <GenericForm<LoginFormType>
-        onSubmit={handleLogin}
+        onSubmit={(data) => handleLogin(data)}
         formOptions={{ mode: 'onChange' }}
         caption={
           <JoinGuide>
@@ -28,7 +28,10 @@ function LoginPage() {
         }
       >
         <FormTitle type='login' />
-        <LoginForm isFailed={isFailed} />
+        <LoginForm
+          isAutoLogin={isAutoLogin}
+          toggleAutoLogin={() => setIsAutoLogin((prev) => !prev)}
+        />
       </GenericForm>
     </>
   );
