@@ -47,7 +47,7 @@ function CounterBox({ detailData }: Props) {
           </>
         ) : (
           <NonMemberView>
-            <span className='price'>회원가</span>
+            <span className='price'>회원전용가격</span>
           </NonMemberView>
         )}
       </SelectorWrapper>
