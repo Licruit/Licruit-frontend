@@ -1,4 +1,5 @@
 import FormInput from '@/components/Input/FormInput';
+import MaskInput from '@/components/Input/MaskInput';
 import { useFormContext, useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 import { SignOutDescription } from '@/styles/components/Description';
@@ -27,10 +28,10 @@ function CheckUser({ isError }: Props) {
         탈퇴하시려면 사업자 등록번호와 비밀번호를 입력해주시길 바랍니다.
       </SignOutDescription>
       <InputWrapper>
-        <FormInput
-          type='number'
+        <MaskInput
+          type='text'
+          maskType='companyNumber'
           placeholder='사업자 등록번호를 입력해주세요'
-          {...register('companyNumber', { required: true })}
         />
         <FormInput
           type='password'
