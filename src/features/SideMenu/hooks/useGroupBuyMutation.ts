@@ -17,23 +17,38 @@ const useGroupBuyMutation = () => {
   });
 
   const handleGroupBuyOpen = (data: GroupBuyForm) => {
+    const {
+      dates,
+      time,
+      deliveryDates,
+      totalMin,
+      totalMax,
+      price,
+      deliveryFee,
+      freeDeliveryFee,
+      title,
+      content,
+      liquor,
+      regions,
+    } = data;
+
     const req = {
-      openDate: format(data.dates[0], 'yyyy-MM-dd'),
-      deadline: format(data.dates[1], 'yyyy-MM-dd'),
-      openTime: format(data.time, 'HH:mm'),
-      deliveryStart: format(data.deliveryDates[0], 'yyyy-MM-dd'),
-      deliveryEnd: format(data.deliveryDates[1], 'yyyy-MM-dd'),
-      totalMin: Number(data.totalMin),
-      totalMax: data.totalMax ? Number(data.totalMax) : null,
-      price: formatPriceToNumber(data.price),
-      deliveryFee: formatPriceToNumber(data.deliveryFee),
-      freeDeliveryFee: data.freeDeliveryFee
-        ? formatPriceToNumber(data.freeDeliveryFee)
+      openDate: format(dates[0], 'yyyy-MM-dd'),
+      deadline: format(dates[1], 'yyyy-MM-dd'),
+      openTime: format(time, 'HH:mm'),
+      deliveryStart: format(deliveryDates[0], 'yyyy-MM-dd'),
+      deliveryEnd: format(deliveryDates[1], 'yyyy-MM-dd'),
+      totalMin: Number(totalMin),
+      totalMax: totalMax ? Number(totalMax) : null,
+      price: formatPriceToNumber(price),
+      deliveryFee: formatPriceToNumber(deliveryFee),
+      freeDeliveryFee: freeDeliveryFee
+        ? formatPriceToNumber(freeDeliveryFee)
         : null,
-      title: data.title,
-      content: data.content,
-      liquorId: data.liquor.id,
-      regions: data.regions,
+      title,
+      content,
+      liquorId: liquor.id,
+      regions,
     };
 
     mutate(req);
