@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
 import HeaderWithSearch from '@/components/Header/HeaderWithSearch';
+import ScrollToTop from '@/components/ScrollToTop';
 import { ProductCard } from '@/features/Catalog';
 import { ButtonProps } from '@/features/Catalog/components/Main/ProductCard';
 import MockImage from 'public/assets/images/main/mock-image1 38.svg';
@@ -65,6 +66,7 @@ function ManagementLayout() {
         <Outlet />
       </Container>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

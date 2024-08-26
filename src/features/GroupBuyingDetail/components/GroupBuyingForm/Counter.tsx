@@ -5,12 +5,12 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import styled, { useTheme } from 'styled-components';
 
 interface Props {
-  remainedQuantity: number;
+  remainedQuantity: number | null;
 }
 
 function Counter({ remainedQuantity }: Props) {
   const theme = useTheme();
-  const isOver = remainedQuantity <= 0;
+  const isOver = Boolean(remainedQuantity && remainedQuantity <= 0);
   const { setValue } = useFormContext();
   const quantity = useWatch({ name: 'quantity' });
 
@@ -25,13 +25,19 @@ function Counter({ remainedQuantity }: Props) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    setValue('quantity', clamp(value, 1, remainedQuantity));
+    setValue('quantity', clamp(value, 1, remainedQuantity || undefined));
   };
 
   return (
     <Container>
-      <ActionButton type='button' onClick={() => handleClick(-1)}>
-        <RemoveIcon fill={theme.color.neutral[600]} />
+      <ActionButton
+        type='button'
+        $isDisabled={isOver}
+        onClick={() => handleClick(-1)}
+      >
+        <RemoveIcon
+          fill={isOver ? theme.color.neutral[400] : theme.color.neutral[600]}
+        />
       </ActionButton>
       <CountInput
         type='number'
@@ -39,8 +45,14 @@ function Counter({ remainedQuantity }: Props) {
         disabled={isOver}
         onChange={handleChange}
       />
-      <ActionButton type='button' onClick={() => handleClick(1)}>
-        <AddIcon fill={theme.color.neutral[600]} />
+      <ActionButton
+        type='button'
+        $isDisabled={isOver}
+        onClick={() => handleClick(1)}
+      >
+        <AddIcon
+          fill={isOver ? theme.color.neutral[400] : theme.color.neutral[600]}
+        />
       </ActionButton>
     </Container>
   );
@@ -63,16 +75,23 @@ const CountInput = styled.input`
   width: 50px;
   text-align: center;
   border: none;
+
+  &:disabled {
+    color: ${({ theme }) => theme.color.neutral[400]};
+    background-color: ${({ theme }) => theme.color.common[100]};
+  }
 `;
 
-const ActionButton = styled.button`
+const ActionButton = styled.button<{ $isDisabled: boolean }>`
+  cursor: ${({ $isDisabled }) => ($isDisabled ? 'default' : 'pointer')};
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
     svg {
-      fill: ${({ theme }) => theme.color.primary[500]};
+      fill: ${({ theme, $isDisabled }) =>
+        !$isDisabled && theme.color.primary[500]};
     }
   }
 `;
