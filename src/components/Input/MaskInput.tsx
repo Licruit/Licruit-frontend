@@ -19,7 +19,7 @@ function MaskInput({ maskType, regExp, ...props }: Props) {
         ? formatPhoneNumber(value)
         : formatCompanyNumber(value)
     );
-    setValue(maskType, value.replace(/[^\d]/g, ''));
+    setValue(maskType, value.replace(/[^\d]/g, ''), { shouldValidate: true });
   };
 
   return (
@@ -34,7 +34,6 @@ function MaskInput({ maskType, regExp, ...props }: Props) {
         {...register(maskType, {
           required: true,
           pattern: regExp,
-          onChange: handleChange,
         })}
       />
     </Wrapper>
@@ -65,4 +64,5 @@ const HiddenInput = styled.input`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: -10;
 `;
