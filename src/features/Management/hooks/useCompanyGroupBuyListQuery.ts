@@ -6,7 +6,7 @@ const useCompanyGroupBuyListQuery = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const sort = searchParams.get('sort') || undefined;
+  const sort = searchParams.get('filter') || undefined;
   const page = Number(searchParams.get('page') || 1);
 
   const { data: companyGroupBuyList } = useQuery({
