@@ -151,9 +151,12 @@ const ContentList = styled.ul`
 `;
 
 const ContentItem = styled.li`
+  cursor: pointer;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
+
   width: 19%;
 `;
 
