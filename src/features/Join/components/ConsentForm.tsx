@@ -133,9 +133,9 @@ const AgreeInput = styled.input`
 
 const Term = styled.li`
   cursor: pointer;
-  padding: 10px;
   display: flex;
   align-items: center;
+  padding: 10px;
 
   input {
     margin-right: 8px;

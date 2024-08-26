@@ -120,9 +120,11 @@ const UploadImageInput = styled.input`
 const FormBox = styled.div<{ isVerified: boolean }>`
   display: flex;
   gap: 10px;
-  visibility: ${({ isVerified }) => (isVerified ? 'visible' : 'hidden')};
+
   width: ${({ isVerified }) => (isVerified ? '100%' : '0')};
   height: ${({ isVerified }) => (isVerified ? '100%' : '0')};
+
+  visibility: ${({ isVerified }) => (isVerified ? 'visible' : 'hidden')};
 `;
 
 const UploadBox = styled.div<{ isVerified: boolean }>`

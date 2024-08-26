@@ -106,7 +106,9 @@ const StyledFormInput = styled(FormInput)`
 const DropDownBox = styled.div<{ isWholesaler: boolean }>`
   display: flex;
   gap: 10px;
-  visibility: ${({ isWholesaler }) => (isWholesaler ? 'hidden' : 'visible')};
+
   width: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
   height: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
+
+  visibility: ${({ isWholesaler }) => (isWholesaler ? 'hidden' : 'visible')};
 `;
