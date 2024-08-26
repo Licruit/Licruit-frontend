@@ -17,8 +17,9 @@ function IndustryForm() {
   const placeRef = useRef<HTMLDivElement>(null);
 
   const { industryData } = useSignup();
-  const address = watch('industry');
 
+  const address = watch('industry');
+  const isWholesaler = watch('isWholesaler');
   useClickOutside(placeRef, closePostcode);
   return (
     <Container>
@@ -56,11 +57,13 @@ function IndustryForm() {
           required: true,
         })}
       />
-      <Dropdown
-        name='sectorId'
-        options={industryData}
-        placeholder='업종 카테고리를 선택해주세요'
-      />
+      <DropDownBox isWholesaler={isWholesaler}>
+        <Dropdown
+          name='sectorId'
+          options={industryData}
+          placeholder='업종 카테고리를 선택해주세요'
+        />
+      </DropDownBox>
     </Container>
   );
 }
@@ -98,4 +101,14 @@ const InputWrapper = styled.div`
 const StyledFormInput = styled(FormInput)`
   cursor: not-allowed;
   background-color: ${({ theme }) => theme.color.neutral[100]};
+`;
+
+const DropDownBox = styled.div<{ isWholesaler: boolean }>`
+  display: flex;
+  gap: 10px;
+
+  width: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
+  height: ${({ isWholesaler }) => (isWholesaler ? '0' : '100%')};
+
+  visibility: ${({ isWholesaler }) => (isWholesaler ? 'hidden' : 'visible')};
 `;
