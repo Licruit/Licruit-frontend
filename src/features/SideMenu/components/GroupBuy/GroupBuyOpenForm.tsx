@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { FormProvider, useForm } from 'react-hook-form';
-import { format } from 'date-fns';
+import { REGEXP } from '@/constants/form/form';
 import MyPageHeader from '../common/MyPageHeader';
 import ProfileInput from '../common/ProfileInput';
 import { INPUT } from '../../constants/input';
@@ -14,28 +14,13 @@ import Label from '../common/Label';
 import RegionsButtons from './RegionsButtons';
 import SearchProduct from './SearchProduct';
 import useGroupBuyMutation from '../../hooks/useGroupBuyMutation';
-
-interface Form {
-  liquor: { name: string; id: number };
-  dates: Date[];
-  time: string;
-  deliveryDates: Date[];
-  totalMin: number;
-  totalMax: number;
-  individualMin: number;
-  price: number;
-  deliveryFee: number;
-  freeDeliveryFee?: number;
-  title: string;
-  content: string;
-  regions: string[];
-}
+import { GroupBuyForm } from '../../types/groupbuyopenform';
 
 function GroupBuyOpenForm() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
-  const { mutate: postGroupBuy } = useGroupBuyMutation();
+  const { handleGroupBuyOpen } = useGroupBuyMutation();
 
-  const methods = useForm<Form>({
+  const methods = useForm<GroupBuyForm>({
     mode: 'onChange',
   });
 
@@ -46,30 +31,13 @@ function GroupBuyOpenForm() {
     formState: { isValid },
   } = methods;
 
-  const handleOnSubmit = (data: Form) => {
-    const req = {
-      openDate: format(data.dates[0], 'yyyy-MM-dd'),
-      deadline: format(data.dates[1], 'yyyy-MM-dd'),
-      openTime: format(data.time, 'HH:mm'),
-      deliveryStart: format(data.deliveryDates[0], 'yyyy-MM-dd'),
-      deliveryEnd: format(data.deliveryDates[1], 'yyyy-MM-dd'),
-      totalMin: Number(data.totalMin),
-      totalMax: Number(data.totalMax),
-      price: Number(data.price),
-      deliveryFee: Number(data.deliveryFee),
-      freeDeliveryFee: Number(data.freeDeliveryFee),
-      title: data.title,
-      content: data.content,
-      liquorId: data.liquor.id,
-      regions: data.regions,
-    };
-
-    postGroupBuy(req);
-  };
-
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={handleSubmit((data) => handleOnSubmit(data))}>
+      <Form
+        onSubmit={handleSubmit((data) => {
+          handleGroupBuyOpen(data);
+        })}
+      >
         <MyPageHeader
           title='공동구매 올리기'
           icon={
@@ -82,32 +50,46 @@ function GroupBuyOpenForm() {
         />
         <SearchProduct {...register('liquor', { required: true })} />
         <InputWrapper>
-          <DatePickerComponent {...INPUT.period} name='dates' />
+          <DatePickerComponent
+            {...INPUT.period}
+            name='dates'
+            minDate={new Date()}
+          />
           <TimePickerComponent {...INPUT.startTime} name='time' />
         </InputWrapper>
         <InputWrapper>
-          <DatePickerComponent {...INPUT.delivery} name='deliveryDates' />
+          <DatePickerComponent
+            {...INPUT.delivery}
+            name='deliveryDates'
+            minDate={watch('dates') ? watch('dates')[1] : null}
+          />
           <ProfileInput
             {...INPUT.price}
             {...register('price', { required: true })}
+            isPrice
           />
         </InputWrapper>
         <ProfileInput
           {...INPUT.min}
-          {...register('totalMin', { required: true })}
+          {...register('totalMin', {
+            required: true,
+            pattern: REGEXP.isNumber,
+          })}
         />
         <ProfileInput
           {...INPUT.max}
-          {...register('totalMax', { required: true })}
+          {...register('totalMax', { pattern: REGEXP.isNumber })}
         />
         <InputWrapper>
           <ProfileInput
             {...INPUT.deliveryFee}
             {...register('deliveryFee', { required: true })}
+            isPrice
           />
           <ProfileInput
             {...INPUT.freeDelivery}
             {...register('freeDeliveryFee')}
+            isPrice
           />
         </InputWrapper>
         <RegionsButtons {...register('regions', { required: true })} />
@@ -115,7 +97,7 @@ function GroupBuyOpenForm() {
           {...INPUT.groupBuy}
           maxLength={40}
           value={watch('title')}
-          {...register('title', { required: true, max: 25 })}
+          {...register('title', { required: true, max: 40 })}
         />
         <IntroduceWrapper>
           <Label {...INPUT.content} />

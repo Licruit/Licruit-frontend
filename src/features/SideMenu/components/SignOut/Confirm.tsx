@@ -2,22 +2,24 @@ import { CheckIcon } from 'public/assets/icons';
 import styled, { useTheme } from 'styled-components';
 import { useState } from 'react';
 import { SignOutDescription } from '@/styles/components/Description';
+import { formatCompanyNumber } from '@/features/LiquorDetail/utils/formatCompanyNumber';
 import CancelAndNext from '../common/CancelAndNext';
 
 interface Props {
+  companyNumber?: number;
   onNext: () => void;
 }
 
-function Confirm({ onNext }: Props) {
+function Confirm({ companyNumber, onNext }: Props) {
   const theme = useTheme();
   const [isChecked, setIsChecked] = useState(false);
 
   return (
     <>
       <SignOutDescription>
-        탈퇴 후에는 사업자 등록번호 0000-00-0000으로 재가입 불가능하며,
-        <br />
-        해당 사업자 등록번호와 데이터는 복구되지 않습니다.
+        탈퇴 후에는 사업자 등록번호{' '}
+        {companyNumber ? formatCompanyNumber(companyNumber) : ''}과 관련된 모든
+        데이터는 복구되지 않습니다
       </SignOutDescription>
       <CheckWrapper
         $isChecked={isChecked}

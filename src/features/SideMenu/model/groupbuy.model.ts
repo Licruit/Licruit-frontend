@@ -5,10 +5,10 @@ export interface GroupBuyReq {
   deliveryStart: string;
   deliveryEnd: string;
   totalMin: number;
-  totalMax: number;
+  totalMax: number | null;
   price: number;
   deliveryFee: number;
-  freeDeliveryFee?: number;
+  freeDeliveryFee?: number | null;
   title: string;
   content: string;
   liquorId: number;

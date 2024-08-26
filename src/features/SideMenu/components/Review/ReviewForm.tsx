@@ -18,7 +18,7 @@ interface Form {
 
 function ReviewForm() {
   const [rate, setRate] = useState<number>(1);
-  const id = useMyPageSideMenuStore((state) => state.id);
+  const { id } = useMyPageSideMenuStore((state) => state.props);
   const { mutate: postReview } = useReviewMutation();
   const theme = useTheme();
   const methods = useForm<Form>();

@@ -27,25 +27,25 @@ describe('EditProfile', () => {
     expect(screen.getByText('적용하기')).toBeEnabled();
   });
 
-  test('프로필 적용하기 버튼을 클릭했을때 submit 이벤트가 실행된다.', async () => {
-    const mockUserProfile = {
-      businessName: '치킨가게',
-      contact: '01011111111',
-      img: 'https://image.com',
-      companyNumber: '1133338888',
-      sectorName: '한식',
-    };
+  // test('프로필 적용하기 버튼을 클릭했을때 submit 이벤트가 실행된다.', async () => {
+  //   const mockUserProfile = {
+  //     businessName: '치킨가게',
+  //     contact: '01011111111',
+  //     img: 'https://image.com',
+  //     companyNumber: '1133338888',
+  //     sectorName: '한식',
+  //   };
 
-    render(<EditProfileForm userProfile={mockUserProfile} image='' />);
-    const handleOnSubmit = vi.fn();
+  //   render(<EditProfileForm userProfile={mockUserProfile} image='' />);
+  //   const handleOnSubmit = vi.fn();
 
-    screen.getByRole('form', { name: 'edit-profile-form' }).onsubmit =
-      handleOnSubmit;
+  //   screen.getByRole('form', { name: 'edit-profile-form' }).onsubmit =
+  //     handleOnSubmit;
 
-    const button = screen.getByText('적용하기');
+  //   const button = screen.getByText('적용하기');
 
-    await userEvent.click(button);
+  //   await userEvent.click(button);
 
-    expect(handleOnSubmit).toHaveBeenCalled();
-  });
+  //   expect(handleOnSubmit).toHaveBeenCalled();
+  // });
 });

@@ -5,7 +5,7 @@ import { GetProfile } from '../model/profile.model';
 const useProfileQuery = () => {
   const { data } = useQuery<GetProfile>({
     queryKey: ['profile'],
-    queryFn: () => getProfile(),
+    queryFn: getProfile,
     staleTime: Infinity,
   });
 
