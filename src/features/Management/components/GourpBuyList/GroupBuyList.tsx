@@ -2,123 +2,42 @@ import Button from '@/components/Button/Button';
 import Pagination from '@/components/Pagination/Pagination';
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
+import useCompanyGroupBuyListQuery from '../../hooks/useCompanyGroupBuyListQuery';
 
 function GroupBuyList() {
+  const { companyGroupBuyList } = useCompanyGroupBuyListQuery();
+
+  if (!companyGroupBuyList) return <></>;
+
   return (
     <>
       <ContentList>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
+        {companyGroupBuyList.buyings.map((item) => (
+          <ContentItem>
+            <ContentImg $imageUrl={item.liquorImg} />
+            <ContentInfo>
+              <Badge $size='sm' $type='black'>
+                {item.leftDate}일 남음
+              </Badge>
+              <h3 className='title'>{item.title}</h3>
+              <p className='description'>{item.content}</p>
+            </ContentInfo>
+            <Button
+              $style='outlined'
+              $theme='neutral'
+              $size='sm'
+              $width='full'
+              $transparent
+            >
+              자세히 보기
+            </Button>
+          </ContentItem>
+        ))}
       </ContentList>
-      <Pagination totalItems={3} currentPage={1} />
+      <Pagination
+        totalItems={companyGroupBuyList.pagination.totalPage}
+        currentPage={companyGroupBuyList.pagination.currentPage}
+      />
     </>
   );
 }
@@ -136,14 +55,16 @@ const ContentItem = styled.li`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: space-between;
 
-  width: 310px;
+  width: 395px;
 `;
 
-const ContentImg = styled.div`
+const ContentImg = styled.div<{ $imageUrl: string }>`
   aspect-ratio: 1/1;
   width: 100%;
-  background: url('<path-to-image>') lightgray 50% / cover no-repeat;
+  background: ${({ $imageUrl }) =>
+    `url(${$imageUrl}) white 50% / contain no-repeat`};
 `;
 
 const ContentInfo = styled.div`
@@ -157,8 +78,14 @@ const ContentInfo = styled.div`
   }
 
   .description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
     ${({ theme }) => theme.typo.body.medium[14]};
     color: ${({ theme }) => theme.color.neutral[400]};
+    text-overflow: ellipsis;
   }
 `;
 
