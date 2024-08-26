@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import useLoginStore from '@/store/loginStore';
 import { useWatch } from 'react-hook-form';
 import { formatNumber } from '@/utils/format';
 import Counter from './Counter';
@@ -9,6 +10,7 @@ interface Props {
 }
 
 function CounterBox({ detailData }: Props) {
+  const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const quantity = useWatch({ name: 'quantity' });
   const {
     price,
@@ -28,15 +30,26 @@ function CounterBox({ detailData }: Props) {
             '무료배송'
           ) : (
             <>
-              택배배송 (+{formatNumber(deliveryFee)}원) ·{' '}
-              {formatNumber(freeDeliveryFee)}원 이상 결제시 무료 배송
+              택배배송 (+{formatNumber(deliveryFee)}원)
+              {freeDeliveryFee !== 0 &&
+                ` · ${formatNumber(freeDeliveryFee)}원 이상 결제시 무료 배송`}
             </>
           )}
         </span>
       </div>
       <SelectorWrapper>
-        <Counter remainedQuantity={totalMax - orderCount} />
-        <span className='price'>{formatNumber(price * quantity)}원</span>
+        {isLoggedIn ? (
+          <>
+            <Counter
+              remainedQuantity={totalMax === 0 ? null : totalMax - orderCount}
+            />
+            <span className='price'>{formatNumber(price * quantity)}원</span>
+          </>
+        ) : (
+          <NonMemberView>
+            <span className='price'>회원전용가격</span>
+          </NonMemberView>
+        )}
       </SelectorWrapper>
     </Container>
   );
@@ -68,4 +81,10 @@ const SelectorWrapper = styled.div`
     ${({ theme }) => theme.typo.heading.bold[20]}
     color: ${({ theme }) => theme.color.neutral[900]};
   }
+`;
+
+const NonMemberView = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 `;

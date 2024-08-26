@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
+import ScrollToTop from '@/components/ScrollToTop';
 import { CatalogHeader } from '@/features/Catalog';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,6 +14,7 @@ function NavContentLayout() {
         <Outlet />
       </Container>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
