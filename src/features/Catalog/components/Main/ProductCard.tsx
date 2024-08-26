@@ -1,9 +1,10 @@
 import Button from '@/components/Button/Button';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
+import { Spinner } from '@/styles/components/Spinner';
 
 import { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 interface LiquorInfo {
   img: string;
@@ -45,7 +46,7 @@ function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
           </div>
         ) : (
           <SpinnerBox>
-            <Spinner />
+            <StyledSpinner />
           </SpinnerBox>
         )}
       </ImgContainer>
@@ -114,16 +115,11 @@ const LiquorDescription = styled.div`
   text-overflow: ellipsis;
 `;
 
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
-
 const SpinnerBox = styled.div`
   height: 370px;
 `;
 
-const Spinner = styled.div`
+const StyledSpinner = styled(Spinner)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -131,12 +127,5 @@ const Spinner = styled.div`
 
   width: 40px;
   height: 40px;
-
-  border: 4px solid ${({ theme }) => theme.color.neutral[200]};
-  border-top: 4px solid ${({ theme }) => theme.color.primary[500]};
-  border-radius: 50%;
-
-  animation: ${spin} 1s linear infinite;
 `;
-
 export default ProductCard;
