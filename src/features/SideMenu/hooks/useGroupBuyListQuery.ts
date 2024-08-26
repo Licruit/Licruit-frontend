@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import getGroupBuyList from '../api/getGroupBuyList';
+import getCompanyGroupBuyList from '../api/getGroupBuyList';
 
 const useGroupBuyListQuery = (isCompany: boolean) => {
   const { data } = useQuery({
     queryKey: ['group-buy-list'],
-    queryFn: getGroupBuyList,
+    queryFn: getCompanyGroupBuyList,
     enabled: !isCompany,
   });
 
