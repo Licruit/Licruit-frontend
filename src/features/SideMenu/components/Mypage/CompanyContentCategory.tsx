@@ -47,7 +47,7 @@ const ContentCategoryContainer = styled.div`
 
 const CategoryWrapper = styled.div`
   display: flex;
-  gap: 60px;
+  justify-content: space-between;
   width: 100%;
   padding: 20px 40px;
 `;

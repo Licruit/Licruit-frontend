@@ -17,21 +17,24 @@ interface Props {
 
 function MyPageSideMenu({ onClose }: Props) {
   const isOpen = useMyPageIsOpenStore((state) => state.isOpen);
-  const content = useMyPageSideMenuStore((state) => state.content);
+  const { content, setContent } = useMyPageSideMenuStore();
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [isOpen]);
 
   const closeMyPage = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
+      setContent('my-page');
     }
   };
 
   return createPortal(
-    <Overlay onClick={closeMyPage}>
+    <Overlay onMouseDown={closeMyPage}>
       <Container>
         {content === 'my-page' && <MyPage onClose={onClose} />}
         {content === 'edit-profile' && <EditProfile />}

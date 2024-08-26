@@ -9,9 +9,10 @@ interface Props {
   label: string;
   name: string;
   isRequired: boolean;
+  minDate: Date | null;
 }
 
-function DatePickerComponent({ label, isRequired, name }: Props) {
+function DatePickerComponent({ label, isRequired, name, minDate }: Props) {
   const [startDate, setStartDate] = useState<Date | undefined>();
   const [endDate, setEndDate] = useState<Date | undefined>();
 
@@ -37,7 +38,7 @@ function DatePickerComponent({ label, isRequired, name }: Props) {
             placeholderText='2024.01.01~2024.12.31'
             startDate={startDate}
             endDate={endDate}
-            minDate={new Date()}
+            minDate={minDate === null ? undefined : minDate}
             customInput={<Input />}
             dateFormat='yyyy.MM.dd'
             onChange={(date) => {

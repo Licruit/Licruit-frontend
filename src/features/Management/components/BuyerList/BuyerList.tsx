@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { formatCompanyNumber, formatPhoneNumber } from '@/utils/format';
+import { formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
 
@@ -23,9 +23,7 @@ function BuyerList({ buyers }: Props) {
         {buyers.map((row) => (
           <tr key={row.id}>
             <td>
-              <strong>
-                {formatCompanyNumber(String(row.userCompanyNumber))}
-              </strong>
+              <strong>{row.businessName}</strong>
             </td>
             <td>{formatPhoneNumber(String(row.contact))}</td>
             <td>{row.liquorName}</td>
