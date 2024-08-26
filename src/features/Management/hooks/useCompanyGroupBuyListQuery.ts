@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import getCompanyGroupBuyList from '../api/getCompanyGroupBuyList';
 
@@ -9,7 +9,7 @@ const useCompanyGroupBuyListQuery = () => {
   const sort = searchParams.get('filter') || undefined;
   const page = Number(searchParams.get('page') || 1);
 
-  const { data: companyGroupBuyList } = useQuery({
+  const { data: companyGroupBuyList } = useSuspenseQuery({
     queryKey: ['company-group-buy-list', { sort, page }],
     queryFn: getCompanyGroupBuyList,
   });
