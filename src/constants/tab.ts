@@ -1,5 +1,6 @@
 export const TAB = {
   order: {
+    all: '전체',
     achievement: '성사',
     shortfall: '미달성내역',
   },
