@@ -110,11 +110,11 @@ const FormBox = styled.div`
 `;
 
 const BoxHeader = styled.div`
-  width: 100%;
-  padding: 20px;
-
   display: flex;
   justify-content: space-between;
+
+  width: 100%;
+  padding: 20px;
 
   ${({ theme }) => theme.typo.body.medium[14]}
   color: ${({ theme }) => theme.color.neutral[600]};

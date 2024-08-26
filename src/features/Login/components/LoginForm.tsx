@@ -73,8 +73,8 @@ const BottomBar = styled.div`
 
 const AutoLoginButton = styled.button<{ $isActive: boolean }>`
   display: flex;
-  align-items: center;
   gap: 4px;
+  align-items: center;
   color: ${({ theme, $isActive }) =>
     $isActive ? theme.color.primary[500] : theme.color.neutral[400]};
   ${({ theme }) => theme.typo.body.medium[12]}

@@ -1,55 +1,87 @@
-import { FieldError, useFormContext } from 'react-hook-form';
+import { useEffect, useRef } from 'react';
+
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import FormInput from '@/components/Input/FormInput';
 import Button from '@/components/Button/Button';
-import { REGEXP } from '@/constants/form/form';
 import PasswordForm from '@/components/Form/PasswordForm';
 import { useSignup } from '../hooks/useSignup';
 
 function PasswordWithIdForm() {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { handleSendId, isVerified, setIsVerified } = useSignup();
-  const handleInputChange = () => {
-    if (isVerified) {
-      setIsVerified(false);
-    }
+  const { register, trigger, watch } = useFormContext();
+
+  const { isVerified, handleUploadCertificate } = useSignup();
+
+  const handleUploadImageButtonClick = () => {
+    if (!inputRef.current) return;
+    inputRef.current.click();
   };
+
+  const upLoadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+
+    const formData = new FormData();
+    formData.append('image', event.target.files[0]);
+
+    handleUploadCertificate(formData);
+  };
+
+  const companyNumber = watch('companyNumber');
+
+  useEffect(() => {
+    if (companyNumber) {
+      trigger('companyNumber');
+    }
+  }, [companyNumber, trigger]);
 
   return (
     <Container>
       <InputWrapper>
         <InputWithButton>
-          <FormInput
-            type='number'
-            placeholder='사업자 등록번호를 입력해주세요'
-            {...register('companyNumber', {
-              required: true,
-              pattern: REGEXP.companyNumber,
-              onChange: handleInputChange,
-            })}
-          />
-          {/* 1408026673 */}
+          <FormBox isVerified={isVerified}>
+            <FormInput
+              type='number'
+              value={companyNumber}
+              disabled={isVerified}
+              {...register('companyNumber', {
+                required: true,
+              })}
+            />
 
-          <Button
-            type='button'
-            onClick={handleSendId}
-            $style={isVerified ? 'solid' : 'outlined'}
-            $size='lg'
-            $theme='primary'
-          >
-            {isVerified ? '인증완료' : '인증요청'}
-          </Button>
+            <Button
+              type='button'
+              $style={isVerified ? 'solid' : 'outlined'}
+              $size='lg'
+              $theme='primary'
+              $disableHover
+            >
+              인증완료
+            </Button>
+          </FormBox>
+          <UploadBox isVerified={isVerified}>
+            <UploadImageInput
+              type='file'
+              accept='image/*'
+              ref={inputRef}
+              onChange={upLoadImage}
+            />
+            <Button
+              type='button'
+              onClick={handleUploadImageButtonClick}
+              $style='outlined'
+              $size='lg'
+              $theme='primary'
+              $width='full'
+            >
+              사업자등록증 업로드
+            </Button>
+          </UploadBox>
         </InputWithButton>
-
-        {errors.companyNumber && (
-          <ErrorMessage>
-            {(errors.companyNumber as FieldError).message}
-          </ErrorMessage>
-        )}
       </InputWrapper>
       <PasswordForm />
     </Container>
@@ -67,7 +99,6 @@ const Container = styled.div`
 
 const InputWithButton = styled.div`
   display: flex;
-  gap: 10px;
   width: 100%;
 `;
 
@@ -80,4 +111,23 @@ export const ErrorMessage = styled.div`
   height: 12px;
   color: ${({ theme }) => theme.color.error};
   ${({ theme }) => theme.typo.body.medium[12]}
+`;
+
+const UploadImageInput = styled.input`
+  display: none;
+`;
+
+const FormBox = styled.div<{ isVerified: boolean }>`
+  display: flex;
+  gap: 10px;
+
+  width: ${({ isVerified }) => (isVerified ? '100%' : '0')};
+  height: ${({ isVerified }) => (isVerified ? '100%' : '0')};
+
+  visibility: ${({ isVerified }) => (isVerified ? 'visible' : 'hidden')};
+`;
+
+const UploadBox = styled.div<{ isVerified: boolean }>`
+  display: ${({ isVerified }) => (isVerified ? 'none' : 'block')};
+  width: 100%;
 `;

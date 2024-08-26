@@ -133,7 +133,13 @@ const AgreeInput = styled.input`
 
 const Term = styled.li`
   cursor: pointer;
+  display: flex;
+  align-items: center;
   padding: 10px;
+
+  input {
+    margin-right: 8px;
+  }
 `;
 
 const Essential = styled.label`
