@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
+import HeaderWithSearch from '@/components/Header/HeaderWithSearch';
 import ScrollToTop from '@/components/ScrollToTop';
 import { ProductCard } from '@/features/Catalog';
 import { ButtonProps } from '@/features/Catalog/components/Main/ProductCard';
@@ -16,7 +17,7 @@ const liquors = {
 
 function ManagementLayout() {
   const location = useLocation();
-  const { buyingId } = useParams();
+  const { buyingId, orderId } = useParams();
 
   let headText: string | undefined = `총 ${1500}병 신청됐습니다`;
   let buttonProps: ButtonProps = {
@@ -54,7 +55,7 @@ function ManagementLayout() {
 
   return (
     <>
-      <Header />
+      {!orderId && buyingId ? <HeaderWithSearch /> : <Header />}
       <Container>
         {buyingId && (
           <ProductCard

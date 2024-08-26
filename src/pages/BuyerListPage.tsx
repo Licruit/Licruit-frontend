@@ -1,19 +1,18 @@
 import Tab from '@/components/Header/Tabs';
 import Pagination from '@/components/Pagination/Pagination';
-import { BuyerList, SearchBar } from '@/features/Management';
+import { BuyerList } from '@/features/Management';
 import { useBuyerList } from '@/features/Management/hooks/useBuyerList';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function BuyerListPage() {
-  const { buyingId, orderId } = useParams();
+  const { buyingId } = useParams();
   const { buyers, pagination } = useBuyerList(Number(buyingId));
 
   if (!buyers || !pagination) return <></>;
 
   return (
     <>
-      {!orderId && buyingId && <SearchBar />}
       <Container>
         <TabBox>
           <Tab type='buyerList' queryKey='filter' />
