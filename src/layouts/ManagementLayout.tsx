@@ -55,14 +55,16 @@ function ManagementLayout() {
 
   return (
     <>
-      {orderId ? <Header /> : <HeaderWithSearch />}
+      {!orderId && buyingId ? <HeaderWithSearch /> : <Header />}
       <Container>
-        <ProductCard
-          liquorInfo={liquors}
-          headText={headText}
-          button={buttonProps}
-          size='264'
-        />
+        {buyingId && (
+          <ProductCard
+            liquorInfo={liquors}
+            headText={headText}
+            button={buttonProps}
+            size='264'
+          />
+        )}
         <Outlet />
       </Container>
       <Footer />
