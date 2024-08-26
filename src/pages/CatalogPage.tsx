@@ -2,7 +2,9 @@ import MetaTag from '@/components/MetaTag';
 import { ProductGrid } from '@/features/Catalog';
 import Filter from '@/features/Catalog/components/Filter/Filter';
 import ProductFallback from '@/features/Catalog/components/ProductFallback';
+import LoadingSpinner from '@/features/Catalog/components/Spinner';
 import { useQueryParams } from '@/features/Catalog/hooks/useQueryParams';
+import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import styled from 'styled-components';
 
@@ -27,7 +29,9 @@ function CatalogPage() {
             FallbackComponent={ProductFallback}
             resetKeys={[page, category, search, minAlcohol, maxAlcohol, sort]}
           >
-            <ProductGrid />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ProductGrid />
+            </Suspense>
           </ErrorBoundary>
         </div>
       </Content>
