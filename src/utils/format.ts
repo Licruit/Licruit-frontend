@@ -18,7 +18,7 @@ export const formatPriceToNumber = (price: string) => {
 
 export const formatPhoneNumberToNumber = (phoneNumber: string) => {
   return phoneNumber.replace(/-/g, '');
-}
+};
 
 export const formatCompanyNumber = (companyNum: string) => {
   return companyNum.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
