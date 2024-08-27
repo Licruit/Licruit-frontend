@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import PATH from '@/constants/path';
+import useClickToNavigate from '@/features/Main/hooks/useClickToNavigate';
 import ContentInfoHeader from '../common/ContentInfoHeader';
 import useCompanyStatusQuery from '../../hooks/useCompanyStatusQuery';
 
 function CompanyContentCategory() {
   const { data: companyCurrentStatus } = useCompanyStatusQuery();
-  const navigate = useNavigate();
+  const { handleClickToNavigate } = useClickToNavigate();
 
   const statusCounts = companyCurrentStatus || {
     openBuying: 0,
@@ -21,7 +21,7 @@ function CompanyContentCategory() {
       <CategoryWrapper>
         <CategoryItem
           className='clickable'
-          onClick={() => navigate(PATH.management)}
+          onClick={() => handleClickToNavigate(PATH.management)}
         >
           <p>공동구매 오픈</p>
           <p>{statusCounts.openBuying}</p>
@@ -32,14 +32,18 @@ function CompanyContentCategory() {
         </CategoryItem>
         <CategoryItem
           className='clickable'
-          onClick={() => navigate(`${PATH.management}?filter=shortfall`)}
+          onClick={() =>
+            handleClickToNavigate(`${PATH.management}?filter=shortfall`)
+          }
         >
           <p>미달성</p>
           <p>{statusCounts.shortfall}</p>
         </CategoryItem>
         <CategoryItem
           className='clickable'
-          onClick={() => navigate(`${PATH.management}?filter=acheivement`)}
+          onClick={() =>
+            handleClickToNavigate(`${PATH.management}?filter=acheivement`)
+          }
         >
           <p>성사</p>
           <p>{statusCounts.achievement}</p>
