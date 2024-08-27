@@ -2,123 +2,56 @@ import Button from '@/components/Button/Button';
 import Pagination from '@/components/Pagination/Pagination';
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
+import useCompanyGroupBuyListQuery from '../../hooks/useCompanyGroupBuyListQuery';
 
 function GroupBuyList() {
+  const { companyGroupBuyList } = useCompanyGroupBuyListQuery();
+  const navigate = useNavigate();
+
+  if (!companyGroupBuyList) return <></>;
+
+  const isEmpty = companyGroupBuyList.buyings.length === 0;
+
   return (
     <>
-      <ContentList>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-        <ContentItem>
-          <ContentImg />
-          <ContentInfo>
-            <Badge $size='sm' $type='black'>
-              마감
-            </Badge>
-            <h3 className='title'>우아하고 순수한 첫번째 고래 백경 13. 탁주</h3>
-            <p className='description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,Lorem
-              ipsum dolor sit amet, consectetur adipiscin
-            </p>
-          </ContentInfo>
-          <Button
-            $style='outlined'
-            $theme='neutral'
-            $size='sm'
-            $width='full'
-            $transparent
-          >
-            자세히 보기
-          </Button>
-        </ContentItem>
-      </ContentList>
-      <Pagination totalItems={3} currentPage={1} />
+      {isEmpty ? (
+        <Notice>
+          <h1 className='notice'>공동구매 목록이 없습니다</h1>
+        </Notice>
+      ) : (
+        <>
+          <ContentList>
+            {companyGroupBuyList?.buyings.map((item) => (
+              <ContentItem key={item.id}>
+                <ContentImg $imageUrl={item.liquorImg} />
+                <ContentInfo>
+                  <Badge $size='sm' $type='black'>
+                    {item.leftDate < 0 ? '마감' : `${item.leftDate}일 남음`}
+                  </Badge>
+                  <h3 className='title'>{item.title}</h3>
+                  <p className='description'>{item.content}</p>
+                </ContentInfo>
+                <Button
+                  $style='outlined'
+                  $theme='neutral'
+                  $size='sm'
+                  $width='full'
+                  $transparent
+                  onClick={() => navigate(`${PATH.management}/${item.id}`)}
+                >
+                  자세히 보기
+                </Button>
+              </ContentItem>
+            ))}
+          </ContentList>
+          <Pagination
+            totalItems={companyGroupBuyList?.pagination.totalPage}
+            currentPage={companyGroupBuyList?.pagination.currentPage}
+          />
+        </>
+      )}
     </>
   );
 }
@@ -131,19 +64,19 @@ const ContentList = styled.ul`
 `;
 
 const ContentItem = styled.li`
-  cursor: pointer;
-
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: space-between;
 
-  width: 310px;
+  width: 395px;
 `;
 
-const ContentImg = styled.div`
+const ContentImg = styled.div<{ $imageUrl: string }>`
   aspect-ratio: 1/1;
   width: 100%;
-  background: url('<path-to-image>') lightgray 50% / cover no-repeat;
+  background: ${({ $imageUrl }) =>
+    `url(${$imageUrl}) white 50% / contain no-repeat`};
 `;
 
 const ContentInfo = styled.div`
@@ -157,8 +90,28 @@ const ContentInfo = styled.div`
   }
 
   .description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
     ${({ theme }) => theme.typo.body.medium[14]};
     color: ${({ theme }) => theme.color.neutral[400]};
+    text-overflow: ellipsis;
+  }
+`;
+
+const Notice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 40vh;
+
+  .notice {
+    ${({ theme }) => theme.typo.body.semi_bold[16]}
+    color: ${({ theme }) => theme.color.neutral[500]}
   }
 `;
 
