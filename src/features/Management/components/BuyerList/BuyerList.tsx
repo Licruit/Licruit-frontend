@@ -2,12 +2,15 @@ import styled from 'styled-components';
 import { formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
+import { useBuyerStatus } from '../../hooks/useBuyerStatus';
 
 interface Props {
   buyers: Buyer[];
 }
 
 function BuyerList({ buyers }: Props) {
+  const { handleConfirm } = useBuyerStatus();
+
   return (
     <Table>
       <THead>
@@ -21,17 +24,20 @@ function BuyerList({ buyers }: Props) {
       </THead>
       <TBody>
         {buyers.map((row) => (
-          <tr key={row.id}>
+          <tr key={row.id} onClick={() => handleConfirm(row.id)}>
             <td>
               <strong>{row.businessName}</strong>
             </td>
             <td>{formatPhoneNumber(String(row.contact))}</td>
             <td>{row.liquorName}</td>
             <td>{row.status}</td>
-            <td>
+            <td style={{ width: 200 }}>
               <div className='button-cell'>
                 <Button $style='outlined' $size='sm' $theme='neutral'>
-                  확정
+                  구매 확정
+                </Button>
+                <Button $style='outlined' $size='sm' $theme='neutral'>
+                  취소
                 </Button>
               </div>
             </td>
@@ -65,7 +71,7 @@ const TBody = styled.tbody`
   color: ${({ theme }) => theme.color.neutral[600]};
 
   td {
-    padding: 20px 0;
+    padding: 10px 0;
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
     border-width: 1px 0;
 
@@ -77,6 +83,7 @@ const TBody = styled.tbody`
   .button-cell {
     display: flex;
     justify-content: end;
+    gap: 10px;
   }
 
   tr:last-child td {

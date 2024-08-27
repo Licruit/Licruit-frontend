@@ -5,7 +5,7 @@ import { GetBuyerListRes } from '../models/buyer.model';
 interface Props {
   buyingId: number;
   page: number;
-  filter: 'cancel' | undefined;
+  filter: string | undefined;
 }
 
 export const getBuyerList = async ({ buyingId, page, filter }: Props) => {
@@ -17,6 +17,13 @@ export const getBuyerList = async ({ buyingId, page, filter }: Props) => {
         sort: filter,
       },
     }
+  );
+  return response.data;
+};
+
+export const confirmBuyerStatus = async (buyingId: number, orderId: number) => {
+  const response = await httpClient.put(
+    `/buyings/wholesaler/confirm/${buyingId}/${orderId}`
   );
   return response.data;
 };
