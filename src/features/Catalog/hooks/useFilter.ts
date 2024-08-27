@@ -19,6 +19,7 @@ export const useFilter = () => {
   };
 
   const selectAlcohol = (filter: string) => {
+    searchParams.delete('page');
     const [min, max] = filter.match(/\d+/g)?.map(Number) || [];
     const isSelected = selectedAlcohol === filter;
     setSelectedAlcohol(isSelected ? null : filter);
@@ -45,6 +46,8 @@ export const useFilter = () => {
     selectedRating,
     selectedAlcohol,
     selectAlcohol,
+    setSelectedRating,
+    setSelectedAlcohol,
     selectRating,
     clearFilter,
   };
