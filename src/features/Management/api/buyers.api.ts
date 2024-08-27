@@ -27,3 +27,10 @@ export const confirmBuyerStatus = async (buyingId: number, orderId: number) => {
   );
   return response.data;
 };
+
+export const confirmAllBuyer = async (buyingId: number) => {
+  const response = await httpClient.put(
+    `/buyings/wholesaler/confirm/${buyingId}`
+  );
+  return response.data;
+};
