@@ -49,7 +49,7 @@ const HeaderInfo = styled.div`
 `;
 
 const Title = styled.div`
-  ${({ theme }) => theme.typo.heading.bold[36]};
+  ${({ theme }) => theme.typo.heading.bold[28]};
   color: ${({ theme }) => theme.color.common[100]};
 `;
 
