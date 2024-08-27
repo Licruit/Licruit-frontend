@@ -14,7 +14,7 @@ export const getBuyerList = async ({ buyingId, page, filter }: Props) => {
     {
       params: {
         page,
-        sort: filter,
+        type: filter,
       },
     }
   );
