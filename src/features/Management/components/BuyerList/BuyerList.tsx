@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
@@ -9,6 +10,8 @@ interface Props {
 }
 
 function BuyerList({ buyers }: Props) {
+  const naviagate = useNavigate();
+  const { pathname } = useLocation();
   const { handleConfirm } = useBuyerStatus();
 
   return (
@@ -24,7 +27,7 @@ function BuyerList({ buyers }: Props) {
       </THead>
       <TBody>
         {buyers.map((row) => (
-          <tr key={row.id} onClick={() => handleConfirm(row.id)}>
+          <tr key={row.id} onClick={() => naviagate(`${pathname}/${row.id}`)}>
             <td>
               <strong>{row.businessName}</strong>
             </td>
@@ -33,7 +36,15 @@ function BuyerList({ buyers }: Props) {
             <td>{row.status}</td>
             <td style={{ width: 200 }}>
               <div className='button-cell'>
-                <Button $style='outlined' $size='sm' $theme='neutral'>
+                <Button
+                  $style='outlined'
+                  $size='sm'
+                  $theme='neutral'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleConfirm(row.id);
+                  }}
+                >
                   구매 확정
                 </Button>
                 <Button $style='outlined' $size='sm' $theme='neutral'>
