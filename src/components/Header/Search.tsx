@@ -40,6 +40,7 @@ function Search({ placeholder, searchPath }: Props) {
             value={search}
             placeholder={placeholder}
             onChange={handleChange}
+            $hasVisibility={false}
           />
         </SearchBar>
       </form>

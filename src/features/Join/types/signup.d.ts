@@ -2,7 +2,7 @@ export interface SignupFormType {
   companyNumber: string;
   password: string;
   businessName: string;
-  contact: string;
+  contact: number;
   address: string;
   sectorId: number;
   isVerified: boolean;

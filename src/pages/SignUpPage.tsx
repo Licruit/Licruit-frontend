@@ -13,7 +13,7 @@ function SignUpPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(1);
   const navigate = useNavigate();
 
-  const signupMutation = useMutation<
+  const { mutate: signUp } = useMutation<
     void,
     Error,
     Omit<SignupFormType, 'isVerified'>
@@ -46,7 +46,7 @@ function SignUpPage() {
       sectorId,
       isMarketing,
     };
-    signupMutation.mutate(filteredData);
+    signUp(filteredData);
   };
   return (
     <>

@@ -1,17 +1,17 @@
 import FormInput from '@/components/Input/FormInput';
 import styled from 'styled-components';
+import { REGEXP } from '@/constants/form/form';
 import { useCode } from '@/hooks/form/useCode';
 import Button from '@/components/Button/Button';
 import { useFormContext } from 'react-hook-form';
-import { REGEXP } from '@/constants/form/form';
 import Timer from './Timer';
+import MaskInput from '../Input/MaskInput';
 
 function AuthForm() {
   const {
     register,
     watch,
     setError,
-
     formState: { errors },
   } = useFormContext();
   const { handleSendCode, expTime, handleVerifyCode } = useCode();
@@ -20,11 +20,12 @@ function AuthForm() {
   return (
     <Container>
       <InputWithButton>
-        <FormInput
+        <MaskInput
           type='tel'
+          maskType='contact'
+          regExp={REGEXP.contact}
           disabled={isVerified}
           placeholder='전화번호를 입력해주세요'
-          {...register('contact', { required: true, pattern: REGEXP.contact })}
         />
         <Button
           type='button'
