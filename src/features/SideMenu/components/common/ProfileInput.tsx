@@ -24,7 +24,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
       label,
       isRequired,
       placeholder,
-      hasValidation,
+      hasValidation = false,
       isPrice = false,
       hasInfo,
       maxLength,
@@ -77,6 +77,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
             maxLength={maxLength}
             {...props}
             aria-label={props['aria-label']}
+            $hasValidation={hasValidation}
           />
         </IconWrapper>
         {hasValidation && (
@@ -106,9 +107,10 @@ const LabelWrapper = styled.div`
   align-items: center;
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ $hasValidation: boolean }>`
   flex: 1;
-  padding: 17px 18px;
+  padding: ${({ $hasValidation }) =>
+    $hasValidation ? '17px 65px 17px 18px' : '17px 18px'};
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]};
