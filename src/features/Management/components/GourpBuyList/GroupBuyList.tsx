@@ -28,7 +28,7 @@ function GroupBuyList() {
                 <ContentImg $imageUrl={item.liquorImg} />
                 <ContentInfo>
                   <Badge $size='sm' $type='black'>
-                    {item.leftDate}일 남음
+                    {item.leftDate < 0 ? '마감' : `${item.leftDate}일 남음`}
                   </Badge>
                   <h3 className='title'>{item.title}</h3>
                   <p className='description'>{item.content}</p>
