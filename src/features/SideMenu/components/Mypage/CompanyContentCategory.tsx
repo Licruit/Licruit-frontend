@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import PATH from '@/constants/path';
 import ContentInfoHeader from '../common/ContentInfoHeader';
 import useCompanyStatusQuery from '../../hooks/useCompanyStatusQuery';
 
 function CompanyContentCategory() {
   const { data: companyCurrentStatus } = useCompanyStatusQuery();
+  const navigate = useNavigate();
 
   const statusCounts = companyCurrentStatus || {
     openBuying: 0,
@@ -12,12 +15,14 @@ function CompanyContentCategory() {
     achievement: 0,
   };
 
-  // TODO: 각 버튼 클릭시 공동구매 목록페이지로 이동
   return (
     <ContentCategoryContainer>
       <ContentInfoHeader />
       <CategoryWrapper>
-        <CategoryItem>
+        <CategoryItem
+          className='clickable'
+          onClick={() => navigate(PATH.management)}
+        >
           <p>공동구매 오픈</p>
           <p>{statusCounts.openBuying}</p>
         </CategoryItem>
@@ -25,11 +30,17 @@ function CompanyContentCategory() {
           <p>신청현황</p>
           <p>{statusCounts.liquorSum}</p>
         </CategoryItem>
-        <CategoryItem>
+        <CategoryItem
+          className='clickable'
+          onClick={() => navigate(`${PATH.management}?filter=shortfall`)}
+        >
           <p>미달성</p>
           <p>{statusCounts.shortfall}</p>
         </CategoryItem>
-        <CategoryItem>
+        <CategoryItem
+          className='clickable'
+          onClick={() => navigate(`${PATH.management}?filter=acheivement`)}
+        >
           <p>성사</p>
           <p>{statusCounts.achievement}</p>
         </CategoryItem>
@@ -63,6 +74,10 @@ const CategoryItem = styled.div`
   p {
     ${({ theme }) => theme.typo.body.medium[14]};
     color: ${({ theme }) => theme.color.neutral[900]};
+  }
+
+  .clickble {
+    cursor: pointer;
   }
 `;
 

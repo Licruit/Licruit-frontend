@@ -1,9 +1,12 @@
 import Button from '@/components/Button/Button';
+import PATH from '@/constants/path';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function CompanyShowButtons() {
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
+  const navigate = useNavigate();
 
   return (
     <ButtonContainer>
@@ -23,6 +26,7 @@ function CompanyShowButtons() {
         $theme='primary'
         $width='full'
         style={{ justifyContent: 'left' }}
+        onClick={() => navigate(PATH.management)}
       >
         공동구매 목록
       </Button>
