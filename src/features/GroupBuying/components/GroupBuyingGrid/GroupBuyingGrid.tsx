@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import GroupBuyingCard from '@/components/Liquor/GroupBuyingCard';
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import { useInView } from 'react-intersection-observer';
 import { useLiquor } from '../../hooks/useLiquor';
