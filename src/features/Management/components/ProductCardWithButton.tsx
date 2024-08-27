@@ -80,8 +80,8 @@ function ProductCardWithButton() {
 export default ProductCardWithButton;
 
 const Container = styled.div`
-  width: 265px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 265px;
 `;

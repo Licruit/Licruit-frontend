@@ -93,8 +93,8 @@ const TBody = styled.tbody`
 
   .button-cell {
     display: flex;
-    justify-content: end;
     gap: 10px;
+    justify-content: end;
   }
 
   tr:last-child td {
