@@ -4,6 +4,8 @@ import HeaderWithSearch from '@/components/Header/HeaderWithSearch';
 import ScrollToTop from '@/components/ScrollToTop';
 import { ProductCard } from '@/features/Catalog';
 import { ButtonProps } from '@/features/Catalog/components/Main/ProductCard';
+import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu';
+import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import MockImage from 'public/assets/images/main/mock-image1 38.svg';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,6 +20,7 @@ const liquors = {
 function ManagementLayout() {
   const location = useLocation();
   const { buyingId, orderId } = useParams();
+  const { isOpen, close } = useMyPageIsOpenStore();
 
   let headText: string | undefined = `총 ${1500}병 신청됐습니다`;
   let buttonProps: ButtonProps = {
@@ -66,6 +69,7 @@ function ManagementLayout() {
           />
         )}
         <Outlet />
+        {isOpen && <MyPageSideMenu onClose={close} />}
       </Container>
       <Footer />
       <ScrollToTop />
