@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Dropdown = forwardRef<HTMLDivElement, Props>(
-  ({ options, placeholder, name }) => {
+  ({ options, placeholder, name }, ref) => {
     const [selectedOption, setSelectedOption] = useState(placeholder);
     const [isOpen, setIsOpen] = useState(false);
     const theme = useTheme();
@@ -50,7 +50,7 @@ const Dropdown = forwardRef<HTMLDivElement, Props>(
       }
     }, [isWholesaler]);
     return (
-      <DropdownContainer ref={industryRef}>
+      <DropdownContainer ref={ref}>
         <Controller
           name={name}
           rules={{ required: placeholder }}

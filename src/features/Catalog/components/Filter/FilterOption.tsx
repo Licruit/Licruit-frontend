@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { CheckIcon, DownArrowIcon } from 'public/assets/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface FilterOptionProps {
   title: string;
@@ -19,10 +20,29 @@ function FilterOption({
   const theme = useTheme();
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleOptionSelect = (option: string) => {
+    searchParams.delete('page');
+
+    if (title === '도수') {
+      const [min, max] = option.match(/\d+/g)?.map(Number) || [];
+      searchParams.set('minAlcohol', min.toString());
+      searchParams.set('maxAlcohol', max.toString());
+    } else if (title === '평점') {
+      searchParams.set('rating', option);
+    }
+
+    onSelectOption(option);
+
+    navigate({ search: searchParams.toString() });
+  };
   return (
     <List>
       <SubTitle onClick={handleToggle}>
@@ -44,7 +64,7 @@ function FilterOption({
               <Item
                 key={option}
                 $isSelected={isSelected}
-                onClick={() => onSelectOption(option)}
+                onClick={() => handleOptionSelect(option)}
               >
                 {option}
                 {isSelected && (
