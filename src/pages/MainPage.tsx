@@ -3,6 +3,10 @@ import { IMAGES } from '@/constants/images';
 import { Banner } from '@/styles/components/Banner';
 import MetaTag from '@/components/MetaTag';
 
+const Component = () => {
+  return new Error();
+};
+
 function MainPage() {
   return (
     <>
@@ -13,6 +17,7 @@ function MainPage() {
         imgsrc={IMAGES.banner}
         url='https://www.licruit.site'
       />
+      <Component />
       <Banner $imageUrl={IMAGES.banner} />
       <BestSale />
       <Rate />
