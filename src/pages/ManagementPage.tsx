@@ -1,4 +1,4 @@
-import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { CategoryTab, GroupBuyList } from '@/features/Management';
 import { Suspense } from 'react';
 import styled from 'styled-components';

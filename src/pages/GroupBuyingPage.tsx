@@ -1,8 +1,11 @@
 import Tab from '@/components/Header/Tabs';
-import { GroupBuyingGrid, GroupBuyingHeader } from '@/features/GroupBuying';
-import Fallback from '@/features/GroupBuying/components/Fallback';
-import Region from '@/features/GroupBuying/components/Header/Region';
-import Preview from '@/features/GroupBuying/components/Preview';
+import {
+  GroupBuyingGrid,
+  GroupBuyingHeader,
+  Fallback,
+  Region,
+  Preview,
+} from '@/features/GroupBuying';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';

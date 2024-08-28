@@ -2,7 +2,7 @@ import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
-import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
 import MoreButton from '../common/MoreButton';
 import Category from '../common/Category';

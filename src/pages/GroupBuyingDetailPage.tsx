@@ -1,5 +1,8 @@
-import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
-import { useGroupBuyingDetail } from '@/features/GroupBuyingDetail/hooks/useGroupBuyingDetail';
+import {
+  SideBar,
+  WholesalerInfo,
+  useGroupBuyingDetail,
+} from '@/features/GroupBuyingDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';

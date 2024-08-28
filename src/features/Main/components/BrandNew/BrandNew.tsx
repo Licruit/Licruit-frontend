@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Suspense, useState } from 'react';
-import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import Catalog from './Catalog';
 

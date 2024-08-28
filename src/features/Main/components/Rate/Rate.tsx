@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
-import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import PATH from '@/constants/path';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import Category from '../common/Category';

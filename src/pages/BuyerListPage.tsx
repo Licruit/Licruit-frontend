@@ -1,7 +1,6 @@
 import Tab from '@/components/Header/Tabs';
 import Pagination from '@/components/Pagination/Pagination';
-import { BuyerList } from '@/features/Management';
-import { useBuyerList } from '@/features/Management/hooks/useBuyerList';
+import { BuyerList, useBuyerList } from '@/features/Management';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
