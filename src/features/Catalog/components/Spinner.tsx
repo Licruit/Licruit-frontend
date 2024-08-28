@@ -17,7 +17,6 @@ const spin = keyframes`
 
 const SpinnerBox = styled.div`
   position: relative;
-
   width: 100%;
   padding-bottom: 100%;
 `;
