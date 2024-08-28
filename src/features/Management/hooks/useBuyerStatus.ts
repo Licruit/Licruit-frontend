@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { confirmBuyerStatus } from '../api/buyers.api';
+import { cancelOrder, confirmBuyerStatus } from '../api/buyers.api';
 
 export const useBuyerStatus = () => {
   const { buyingId } = useParams();
@@ -19,5 +19,23 @@ export const useBuyerStatus = () => {
     },
   });
 
-  return { handleConfirm };
+  const { mutate: handleCancel } = useMutation({
+    mutationFn: (orderId: number) => cancelOrder(orderId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['buyerList', { buyingId, page, filter }],
+      });
+    },
+  });
+
+  const { mutate: handleReport } = useMutation({
+    mutationFn: (orderId: number) => cancelOrder(orderId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['buyerList', { buyingId, page, filter }],
+      });
+    },
+  });
+
+  return { handleConfirm, handleCancel, handleReport };
 };

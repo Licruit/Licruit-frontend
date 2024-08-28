@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
@@ -11,8 +11,10 @@ interface Props {
 
 function BuyerList({ buyers }: Props) {
   const naviagate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get('filter');
   const { pathname } = useLocation();
-  const { handleConfirm } = useBuyerStatus();
+  const { handleConfirm, handleCancel } = useBuyerStatus();
 
   return (
     <Table>
@@ -36,20 +38,44 @@ function BuyerList({ buyers }: Props) {
             <td>{row.status}</td>
             <td style={{ width: 200 }}>
               <div className='button-cell'>
-                <Button
-                  $style='outlined'
-                  $size='sm'
-                  $theme='neutral'
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleConfirm(row.id);
-                  }}
-                >
-                  구매 확정
-                </Button>
-                <Button $style='outlined' $size='sm' $theme='neutral'>
-                  취소
-                </Button>
+                {filter === 'ordered' ? (
+                  <Button
+                    $style='outlined'
+                    $size='sm'
+                    $theme='neutral'
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleConfirm(row.id);
+                    }}
+                  >
+                    경고
+                  </Button>
+                ) : (
+                  <>
+                    <Button
+                      $style='outlined'
+                      $size='sm'
+                      $theme='neutral'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleConfirm(row.id);
+                      }}
+                    >
+                      구매 확정
+                    </Button>
+                    <Button
+                      $style='outlined'
+                      $size='sm'
+                      $theme='neutral'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCancel(row.id);
+                      }}
+                    >
+                      취소
+                    </Button>
+                  </>
+                )}
               </div>
             </td>
           </tr>
