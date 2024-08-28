@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useState } from 'react';
 import Catalog from './Catalog';
 
@@ -9,11 +9,20 @@ function BrandNew() {
     <BrandNewContainer>
       <Catalog setImageUrl={setImageUrl} />
       <div className='img-wrapper'>
-        <img src={imageUrl} alt='liquor' />
+        {imageUrl && <img key={imageUrl} src={imageUrl} alt='liquor' />}
       </div>
     </BrandNewContainer>
   );
 }
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const BrandNewContainer = styled.div`
   display: flex;
@@ -30,6 +39,8 @@ const BrandNewContainer = styled.div`
     img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      animation: ${fadeIn} 0.5s ease-in-out;
     }
   }
 `;
