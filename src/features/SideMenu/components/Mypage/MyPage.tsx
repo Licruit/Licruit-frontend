@@ -1,5 +1,5 @@
 import { CloseIcon } from 'public/assets/icons';
-import useUserType from '@/hooks/usertype/useUserType';
+import { useUserType } from '@/hooks/useCheckUser';
 import { useEffect, useState } from 'react';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';

@@ -15,15 +15,21 @@ export const useLogin = () => {
 
   const { mutate: handleLogin } = useMutation({
     mutationFn: (loginData: LoginForm) => login(loginData),
-
     onError: () => {
       toast.error(
         '사업자 등록번호 또는 비밀번호가 잘못되었습니다. 다시 한 번 입력해주세요'
       );
     },
     onSuccess: (result) => {
-      const { accessToken, refreshToken, isWholesaler } = result.data;
-      saveTokens(isAutoLogin, accessToken, refreshToken, isWholesaler);
+      const { accessToken, refreshToken, isWholesaler, isBlacklist } =
+        result.data;
+      saveTokens(
+        isAutoLogin,
+        accessToken,
+        refreshToken,
+        isWholesaler,
+        isBlacklist
+      );
       setIsLoggedIn(true);
       navigate(PATH.main);
     },

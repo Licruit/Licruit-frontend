@@ -2,7 +2,7 @@ import Button from '@/components/Button/Button';
 import { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import styled from 'styled-components';
-import useUserType from '@/hooks/usertype/useUserType';
+import { useUserType } from '@/hooks/useCheckUser';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { formatPhoneNumber, formatPhoneNumberToNumber } from '@/utils/format';
 import { REGEXP } from '@/constants/form/form';
