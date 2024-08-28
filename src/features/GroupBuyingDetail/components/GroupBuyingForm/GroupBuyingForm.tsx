@@ -18,32 +18,15 @@ function GroupBuyingForm({ detailData }: Props) {
   const { id: buyingId } = useParams();
   const { methods, handleRegister } = useRegister(Number(buyingId));
 
-  const {
-    liquorName,
-    isParticipated,
-    orderCount,
-    totalMin,
-    deadline,
-    totalMax,
-  } = detailData;
-  const isOver = orderCount >= totalMin || isClosed(deadline);
+  const { liquorName, isParticipated, orderCount, deadline, totalMax } =
+    detailData;
+  const isOver =
+    (totalMax !== 0 && orderCount <= totalMax) || isClosed(deadline);
 
   return (
     <FormProvider {...methods}>
       <Form onSubmit={methods.handleSubmit((data) => handleRegister(data))}>
-        <FormBox>
-          <BoxHeader>
-            <span>{liquorName}</span>
-            {totalMax > 0 && (
-              <Button $style='outlined' $theme='primary' $size='sm'>
-                현재 {totalMax - orderCount}병 신청가능
-              </Button>
-            )}
-          </BoxHeader>
-          <Divider />
-          <CounterBox detailData={detailData} />
-        </FormBox>
-        {isOver && (
+        {isOver ? (
           <Button
             type='button'
             $style='solid'
@@ -54,6 +37,19 @@ function GroupBuyingForm({ detailData }: Props) {
           >
             신청 마감
           </Button>
+        ) : (
+          <FormBox>
+            <BoxHeader>
+              <span>{liquorName}</span>
+              {totalMax > 0 && (
+                <Button $style='outlined' $theme='primary' $size='sm'>
+                  현재 {totalMax - orderCount}병 신청가능
+                </Button>
+              )}
+            </BoxHeader>
+            <Divider />
+            <CounterBox detailData={detailData} />
+          </FormBox>
         )}
         {!isOver && (
           <Button
