@@ -1,11 +1,13 @@
 import Tab from '@/components/Header/Tabs';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import {
   GroupBuyingGrid,
   GroupBuyingHeader,
-  Fallback,
+  EmptyFallback,
   Region,
   Preview,
 } from '@/features/GroupBuying';
+import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -28,8 +30,13 @@ function GroupBuyingPage() {
           </TabBox>
           <Region />
         </Filter>
-        <ErrorBoundary FallbackComponent={Fallback} resetKeys={[sort, region]}>
-          <GroupBuyingGrid sort={sort} region={region} />
+        <ErrorBoundary
+          FallbackComponent={EmptyFallback}
+          resetKeys={[sort, region]}
+        >
+          <Suspense fallback={<LoadingSpinner />}>
+            <GroupBuyingGrid sort={sort} region={region} />
+          </Suspense>
         </ErrorBoundary>
       </ContentWrapper>
     </Container>

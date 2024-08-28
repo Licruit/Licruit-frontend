@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getLiquor } from '../api/liquor.api';
 
 export const useLiquor = (sort: string, region: string | null) => {
@@ -6,7 +6,7 @@ export const useLiquor = (sort: string, region: string | null) => {
     data: liquorData,
     fetchNextPage,
     hasNextPage,
-  } = useInfiniteQuery({
+  } = useSuspenseInfiniteQuery({
     initialPageParam: 1,
     queryKey: ['buyings', sort, region],
     queryFn: ({ pageParam }) => getLiquor(pageParam, sort, region),
