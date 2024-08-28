@@ -15,6 +15,8 @@ import CatalogDetailPage from '@/pages/CatalogDetailPage';
 import ManagementLayout from '@/layouts/ManagementLayout';
 import NotFoundPage from '@/pages/NotFoundPage';
 import BuyerListPage from '@/pages/BuyerListPage';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
@@ -26,7 +28,11 @@ const router = createBrowserRouter([
       { index: true, element: <MainPage /> },
       {
         path: 'group-buying/:id',
-        element: <GroupBuyingDetailPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GroupBuyingDetailPage />
+          </Suspense>
+        ),
       },
       {
         path: 'catalog/:id',
