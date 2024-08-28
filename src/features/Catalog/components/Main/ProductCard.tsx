@@ -1,11 +1,9 @@
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
-import { Spinner } from '@/styles/components/Spinner';
 
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Spinner from '../Spinner';
-
 
 interface LiquorInfo {
   img: string;
@@ -46,7 +44,6 @@ function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
           </div>
         ) : (
           <Spinner />
-
         )}
       </ImgContainer>
 
@@ -108,6 +105,5 @@ const LiquorDescription = styled.div`
   color: ${({ theme }) => theme.color.neutral[400]};
   text-overflow: ellipsis;
 `;
-
 
 export default ProductCard;
