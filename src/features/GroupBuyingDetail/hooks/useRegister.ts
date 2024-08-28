@@ -3,6 +3,7 @@ import useLoginStore from '@/store/loginStore';
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useBlackList } from '@/hooks/useCheckUser';
 import { registerGroupBuying } from '../api/groupBuying.api';
 import { GroupBuyingDetail } from '../models/groupBuyingDetail.model';
 
@@ -12,6 +13,7 @@ interface BuyingForm {
 
 export const useRegister = (buyingId: number) => {
   const queryClient = useQueryClient();
+  const { isBlackList } = useBlackList();
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
   const methods = useForm<BuyingForm>({
@@ -22,7 +24,9 @@ export const useRegister = (buyingId: number) => {
   });
 
   const handleRegister = ({ quantity }: BuyingForm) => {
-    if (isLoggedIn) {
+    if (isBlackList) {
+      toast.warn('블랙리스트 회원은 서비스 이용이 제한됩니다.');
+    } else if (isLoggedIn) {
       mutate({ quantity });
     } else {
       toast.info('로그인 후 이용 가능한 서비스입니다.');

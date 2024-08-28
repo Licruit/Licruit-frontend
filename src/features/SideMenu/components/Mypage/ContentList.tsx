@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import useUserType from '@/hooks/usertype/useUserType';
+import { useUserType } from '@/hooks/useCheckUser';
 import ContentListItem from './ContentListItem';
 import { GroupBuyListRes } from '../../model/groupbuylist.model';
 import useGroupBuyListQuery from '../../hooks/useGroupBuyListQuery';
@@ -11,10 +11,7 @@ interface Props {
 
 function ContentList({ content }: Props) {
   const [contentList, setContentList] = useState<GroupBuyListRes[]>([]);
-
-  const { checkIsCompany } = useUserType();
-  const isCompany = checkIsCompany();
-
+  const { isCompany } = useUserType();
   const { groupBuyLists } = useGroupBuyListQuery(isCompany);
 
   useEffect(() => {

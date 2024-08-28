@@ -1,5 +1,5 @@
 import { CloseIcon } from 'public/assets/icons';
-import useUserType from '@/hooks/usertype/useUserType';
+import { useUserType } from '@/hooks/useCheckUser';
 import { useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import MyPageHeader from '../common/MyPageHeader';
@@ -17,9 +17,7 @@ interface Props {
 
 function MyPage({ onClose }: Props) {
   const [content, setContent] = useState(0);
-
-  const { checkIsCompany } = useUserType();
-  const isCompany = checkIsCompany();
+  const { isCompany } = useUserType();
 
   const { userProfile } = useProfileQuery();
 
