@@ -12,7 +12,6 @@ import NavContentLayout from '@/layouts/NavContentLayout';
 import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
 import MainLayout from '@/layouts/MainLayout';
 import CatalogDetailPage from '@/pages/CatalogDetailPage';
-import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import ManagementLayout from '@/layouts/ManagementLayout';
 import NotFoundPage from '@/pages/NotFoundPage';
 import BuyerListPage from '@/pages/BuyerListPage';
@@ -21,11 +20,7 @@ import PublicRoutes from './PublicRoutes';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <GlobalErrorBoundary>
-        <MainLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <MainLayout />,
     errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <MainPage /> },
@@ -41,11 +36,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/management',
-    element: (
-      <GlobalErrorBoundary>
-        <ManagementLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <ManagementLayout />,
     children: [
       {
         path: '',
@@ -63,11 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth',
-    element: (
-      <GlobalErrorBoundary>
-        <PublicRoutes />
-      </GlobalErrorBoundary>
-    ),
+    element: <PublicRoutes />,
     children: [
       {
         path: 'login',
@@ -85,11 +72,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/catalog',
-    element: (
-      <GlobalErrorBoundary>
-        <NavContentLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <NavContentLayout />,
     children: [
       {
         path: '',
@@ -98,15 +81,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
-    element: (
-      <GlobalErrorBoundary>
-        <GroupBuyingLayout />
-      </GlobalErrorBoundary>
-    ),
+    path: '/group-buying',
+    element: <GroupBuyingLayout />,
     children: [
       {
-        path: 'group-buying',
+        index: true,
         element: <GroupBuyingPage />,
       },
     ],

@@ -7,6 +7,7 @@ import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import ProductCardWithButton from '@/features/Management/components/ProductCardWithButton';
 import { Outlet, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function ManagementLayout() {
   const { buyingId, orderId } = useParams();
@@ -15,13 +16,15 @@ function ManagementLayout() {
   return (
     <>
       {!orderId && buyingId ? <HeaderWithSearch /> : <Header />}
-      <Container>
-        {buyingId && <ProductCardWithButton />}
-        <Outlet />
-        {isOpen && <MyPageSideMenu onClose={close} />}
-      </Container>
-      <Footer />
-      <ScrollToTop />
+      <GlobalErrorBoundary>
+        <Container>
+          {buyingId && <ProductCardWithButton />}
+          <Outlet />
+          {isOpen && <MyPageSideMenu onClose={close} />}
+        </Container>
+        <Footer />
+        <ScrollToTop />
+      </GlobalErrorBoundary>
     </>
   );
 }
