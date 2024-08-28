@@ -43,9 +43,9 @@ function MaskInput({ maskType, regExp, ...props }: Props) {
 export default MaskInput;
 
 const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
   position: relative;
+  display: flex;
+  flex: 1;
 `;
 
 const StyledInput = styled.input`
@@ -60,9 +60,10 @@ const StyledInput = styled.input`
 `;
 
 const HiddenInput = styled.input`
-  opacity: 0;
   position: absolute;
+  z-index: -10;
   top: 0;
   left: 0;
-  z-index: -10;
+
+  opacity: 0;
 `;
