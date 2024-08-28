@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import Catalog from './Catalog';
 
 function BrandNew() {
@@ -7,13 +9,19 @@ function BrandNew() {
 
   return (
     <BrandNewContainer>
-      <Catalog setImageUrl={setImageUrl} />
-      <div className='img-wrapper'>
-        <img src={imageUrl} alt='liquor' />
-      </div>
+      <GlobalErrorBoundary>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Catalog setImageUrl={setImageUrl} />
+          <div className='img-wrapper'>
+            <img src={imageUrl} alt='liquor' />
+          </div>
+        </Suspense>
+      </GlobalErrorBoundary>
     </BrandNewContainer>
   );
 }
+
+export default BrandNew;
 
 const BrandNewContainer = styled.div`
   display: flex;
@@ -33,5 +41,3 @@ const BrandNewContainer = styled.div`
     }
   }
 `;
-
-export default BrandNew;

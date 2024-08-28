@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
+import LoadingSpinner from '@/features/Catalog/components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import MoreButton from '../common/MoreButton';
 import Category from '../common/Category';
@@ -8,13 +10,10 @@ import BestLiquorInfo from './BestSaleLiquorInfo';
 import { CONTENT } from '../../constants/button';
 import { CATEGORY_TEXT } from '../../constants/category';
 import useBestSaleQuery from '../../hooks/useBestSaleQuery';
-import { BestSaleParams, BestSaleRes } from '../../models/bestsale.model';
+import { BestSaleParams } from '../../models/bestsale.model';
 
 function BestSale() {
   const [selectedButton, setSelectedButton] = useState(CONTENT.ranking);
-  const [liquorContent, setLiquorContent] = useState<BestSaleRes['buyings']>(
-    []
-  );
   const navigate = useNavigate();
 
   const sort = Object.keys(CONTENT).find(
@@ -22,10 +21,6 @@ function BestSale() {
   ) as BestSaleParams;
 
   const { bestSaleLiquors } = useBestSaleQuery(sort);
-
-  useEffect(() => {
-    if (bestSaleLiquors) setLiquorContent(bestSaleLiquors);
-  }, [bestSaleLiquors]);
 
   const handleClickButton = (content: string) => {
     setSelectedButton(content);
@@ -58,19 +53,23 @@ function BestSale() {
           더보기
         </MoreButton>
       </CategoryHeader>
-      <LiquorContent>
-        {liquorContent.map((liquorInfo) => (
-          <BestLiquorInfo
-            key={liquorInfo.id}
-            id={liquorInfo.id}
-            orderCount={liquorInfo.orderCount}
-            title={liquorInfo.title}
-            description={liquorInfo.content}
-            leftDate={liquorInfo.leftDate}
-            imageUrl={liquorInfo.img}
-          />
-        ))}
-      </LiquorContent>
+      <GlobalErrorBoundary size='md'>
+        <Suspense fallback={<LoadingSpinner />}>
+          <LiquorContent>
+            {bestSaleLiquors.map((liquorInfo) => (
+              <BestLiquorInfo
+                key={liquorInfo.id}
+                id={liquorInfo.id}
+                orderCount={liquorInfo.orderCount}
+                title={liquorInfo.title}
+                description={liquorInfo.content}
+                leftDate={liquorInfo.leftDate}
+                imageUrl={liquorInfo.img}
+              />
+            ))}
+          </LiquorContent>
+        </Suspense>
+      </GlobalErrorBoundary>
     </BestSaleContainer>
   );
 }
