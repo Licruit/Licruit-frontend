@@ -5,7 +5,7 @@ import { GetBuyerListRes } from '../models/buyer.model';
 interface Props {
   buyingId: number;
   page: number;
-  filter: 'cancel' | undefined;
+  filter: string | undefined;
 }
 
 export const getBuyerList = async ({ buyingId, page, filter }: Props) => {
@@ -14,9 +14,35 @@ export const getBuyerList = async ({ buyingId, page, filter }: Props) => {
     {
       params: {
         page,
-        sort: filter,
+        type: filter,
       },
     }
   );
+  return response.data;
+};
+
+export const confirmBuyerStatus = async (buyingId: number, orderId: number) => {
+  const response = await httpClient.put(
+    `/buyings/wholesaler/confirm/${buyingId}/${orderId}`
+  );
+  return response.data;
+};
+
+export const confirmAllBuyer = async (buyingId: number) => {
+  const response = await httpClient.put(
+    `/buyings/wholesaler/confirm/${buyingId}`
+  );
+  return response.data;
+};
+
+export const cancelOrder = async (orderId: number) => {
+  const response = await httpClient.delete(
+    `/buyings/wholesaler/order/${orderId}`
+  );
+  return response.data;
+};
+
+export const reportBuyer = async (orderId: number) => {
+  const response = await httpClient.post(`/buyings/blacklist/${orderId}`);
   return response.data;
 };

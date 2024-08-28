@@ -36,6 +36,7 @@ module.exports = {
     camelcase: ['warn', { properties: 'never' }],
     'no-alert': 'off',
     'no-plusplus': 'off',
+    'no-restricted-globals': 'off',
     'react/no-unused-prop-types': 'warn',
     'react/jsx-no-useless-fragment': 'off',
     'consistent-return': 'off',

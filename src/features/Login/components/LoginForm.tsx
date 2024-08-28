@@ -1,4 +1,5 @@
 import FormInput from '@/components/Input/FormInput';
+import MaskInput from '@/components/Input/MaskInput';
 import PATH from '@/constants/path';
 import { CheckboxIcon } from 'public/assets/icons';
 import { useFormContext } from 'react-hook-form';
@@ -16,10 +17,10 @@ function LoginForm({ isAutoLogin, toggleAutoLogin }: Props) {
   return (
     <Container>
       <div className='input-wrapper'>
-        <FormInput
-          type='number'
+        <MaskInput
+          type='text'
+          maskType='companyNumber'
           placeholder='사업자 등록번호를 입력해주세요'
-          {...register('companyNumber', { required: true })}
         />
         <FormInput
           type='password'

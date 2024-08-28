@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import GroupBuyingCard from '@/components/Liquor/GroupBuyingCard';
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
+import { useInView } from 'react-intersection-observer';
 import { useLiquor } from '../../hooks/useLiquor';
-import { useIntersectionObs } from '../../hooks/useObserver';
 import { GroupBuying } from '../../types/liquor';
 
 interface Props {
@@ -10,18 +10,26 @@ interface Props {
   sort?: string | null;
 }
 function GroupBuyingGrid({ region, sort }: Props) {
-  const { liquorData, fetchNextPage, hasNextPage } = useLiquor(
+  const { liquorData, fetchNextPage } = useLiquor(
     sort || 'ranking',
     region || null
   );
-  const { setTarget } = useIntersectionObs({ hasNextPage, fetchNextPage });
+
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView, fetchNextPage]);
+
   return (
     <Container>
-      {liquorData?.pages.map((item: GroupBuying) => {
-        return <GroupBuyingCard {...item} key={uuidv4()} />;
+      {liquorData?.pages.map((item: GroupBuying, i: number) => {
+        // eslint-disable-next-line react/no-array-index-key
+        return <GroupBuyingCard {...item} key={`${item.id}-${i}`} />;
       })}
-
-      <div ref={setTarget} style={{ height: '10px' }} />
+      <div ref={ref} style={{ height: '10px' }} />
     </Container>
   );
 }

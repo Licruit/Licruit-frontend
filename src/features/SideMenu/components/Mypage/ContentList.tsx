@@ -1,18 +1,37 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { useUserType } from '@/hooks/useCheckUser';
 import ContentListItem from './ContentListItem';
 import { GroupBuyListRes } from '../../model/groupbuylist.model';
+import useGroupBuyListQuery from '../../hooks/useGroupBuyListQuery';
 
 interface Props {
-  contentList: GroupBuyListRes[];
+  content: number;
 }
 
-function ContentList({ contentList }: Props) {
+function ContentList({ content }: Props) {
+  const [contentList, setContentList] = useState<GroupBuyListRes[]>([]);
+  const { isCompany } = useUserType();
+  const { groupBuyLists } = useGroupBuyListQuery(isCompany);
+
+  useEffect(() => {
+    const statusLabels = ['신청', '승인대기', '배송중', '배송완료'];
+    if (groupBuyLists) {
+      if (content !== 0) {
+        setContentList(
+          groupBuyLists.filter(
+            (item) => item.status === statusLabels[content - 1]
+          )
+        );
+      }
+    }
+  }, [content, groupBuyLists]);
+
   return (
     <ContentListContainer $hasContent={contentList.length > 0}>
       {contentList.map((listItem) => (
         <ContentListItem key={listItem.id} {...listItem} />
       ))}
-
       <BlurBox />
     </ContentListContainer>
   );

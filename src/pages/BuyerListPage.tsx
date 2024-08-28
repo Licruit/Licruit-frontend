@@ -12,16 +12,18 @@ function BuyerListPage() {
   if (!buyers || !pagination) return <></>;
 
   return (
-    <Container>
-      <TabBox>
-        <Tab type='buyerList' queryKey='filter' />
-      </TabBox>
-      <BuyerList buyers={buyers} />
-      <Pagination
-        totalItems={pagination.totalPage}
-        currentPage={pagination.currentPage}
-      />
-    </Container>
+    <>
+      <Container>
+        <TabBox>
+          <Tab type='buyerList' queryKey='filter' />
+        </TabBox>
+        <BuyerList buyers={buyers} />
+        <Pagination
+          totalItems={pagination.totalPage}
+          currentPage={pagination.currentPage}
+        />
+      </Container>
+    </>
   );
 }
 

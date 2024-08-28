@@ -1,15 +1,15 @@
 import { CloseIcon } from 'public/assets/icons';
-import useUserType from '@/hooks/usertype/useUserType';
-import { useEffect, useState } from 'react';
+import { useUserType } from '@/hooks/useCheckUser';
+import { useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import MyPageHeader from '../common/MyPageHeader';
 import Profile from '../common/Profile';
 import CompanyShowButtons from './CompanyShowButtons';
 import useProfileQuery from '../../hooks/useProfileQuery';
 import ContentList from './ContentList';
-import useGroupBuyListQuery from '../../hooks/useGroupBuyListQuery';
-import { GroupBuyListRes } from '../../model/groupbuylist.model';
 import ShopContentCategory from './ShopContentCategory';
 import CompanyContentCategory from './CompanyContentCategory';
+import Fallback from './ContentListFallback';
 
 interface Props {
   onClose: () => void;
@@ -17,26 +17,9 @@ interface Props {
 
 function MyPage({ onClose }: Props) {
   const [content, setContent] = useState(0);
-  const [contentList, setContentList] = useState<GroupBuyListRes[]>([]);
-
-  const { checkIsCompany } = useUserType();
-  const isCompany = checkIsCompany();
+  const { isCompany } = useUserType();
 
   const { userProfile } = useProfileQuery();
-  const { groupBuyLists } = useGroupBuyListQuery(isCompany);
-
-  useEffect(() => {
-    const statusLabels = ['신청', '승인대기', '배송중', '배송완료'];
-    if (groupBuyLists) {
-      if (content !== 0) {
-        setContentList(
-          groupBuyLists.filter(
-            (item) => item.status === statusLabels[content - 1]
-          )
-        );
-      }
-    }
-  }, [content, groupBuyLists]);
 
   if (!userProfile) return <></>;
 
@@ -58,7 +41,11 @@ function MyPage({ onClose }: Props) {
       ) : (
         <ShopContentCategory setContent={setContent} />
       )}
-      {content !== 0 && <ContentList contentList={contentList} />}
+      {content !== 0 && (
+        <ErrorBoundary FallbackComponent={Fallback} resetKeys={[content]}>
+          <ContentList content={content} />
+        </ErrorBoundary>
+      )}
       {isCompany && <CompanyShowButtons />}
     </>
   );

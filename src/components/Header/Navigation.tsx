@@ -4,8 +4,10 @@ import useLoginStore from '@/store/loginStore';
 import { CartIcon } from 'public/assets/icons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useLogOut from '@/hooks/logout/useLogOut';
 
 function Navigation() {
+  const handleLogOut = useLogOut();
   const openMyPage = useMyPageIsOpenStore((state) => state.open);
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
 
@@ -16,7 +18,9 @@ function Navigation() {
           <MyPageButton onClick={openMyPage}>MY PAGE</MyPageButton>
           <LinkWithIcon>
             <li>
-              <NavLink to={PATH.join}>LOGOUT</NavLink>
+              <button type='button' onClick={handleLogOut}>
+                LOGOUT
+              </button>
             </li>
             <li className='cart-wrapper'>
               <CartIcon fill='#141517' />

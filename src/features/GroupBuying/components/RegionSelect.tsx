@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 
 interface Props {
-  data: { id: number; name: string }[];
+  data?: { id: number; name: string }[];
 }
 function RegionSelect({ data = [] }: Props) {
   const [selectedValue, setSelectedValue] = useState('전체');
