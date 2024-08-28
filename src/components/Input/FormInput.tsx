@@ -15,7 +15,12 @@ const FormInput = forwardRef<HTMLInputElement, Props>(
 
     return (
       <Wrapper>
-        <StyledInput type={isVisible ? 'text' : type} ref={ref} {...props} />
+        <StyledInput
+          type={isVisible ? 'text' : type}
+          ref={ref}
+          $hasVisibility={hasVisibility || false}
+          {...props}
+        />
         {hasVisibility && (
           <Visibility
             type='button'
@@ -36,9 +41,10 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{ $hasVisibility: boolean }>`
   width: 100%;
   padding: 18px;
+  padding-right: ${({ $hasVisibility }) => $hasVisibility && '50px'};
   border: 1px solid ${({ theme }) => theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]}

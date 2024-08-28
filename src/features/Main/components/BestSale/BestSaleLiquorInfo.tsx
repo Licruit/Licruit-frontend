@@ -58,7 +58,7 @@ const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
   height: 453px;
   padding-top: 175px;
 
-  background: url(${({ $imageUrl }) => $imageUrl}) lightgray center no-repeat;
+  background: url(${({ $imageUrl }) => $imageUrl}) white center no-repeat;
   background-size: contain;
 `;
 
