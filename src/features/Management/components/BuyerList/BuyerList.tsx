@@ -38,7 +38,7 @@ function BuyerList({ buyers }: Props) {
             <td>{row.status}</td>
             <td style={{ width: 200 }}>
               <div className='button-cell'>
-                {filter === 'ordered' ? (
+                {filter === 'cancel' ? (
                   <Button
                     $style='outlined'
                     $size='sm'
@@ -52,17 +52,19 @@ function BuyerList({ buyers }: Props) {
                   </Button>
                 ) : (
                   <>
-                    <Button
-                      $style='outlined'
-                      $size='sm'
-                      $theme='neutral'
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleConfirm(row.id);
-                      }}
-                    >
-                      구매 확정
-                    </Button>
+                    {row.status !== '확정' && (
+                      <Button
+                        $style='outlined'
+                        $size='sm'
+                        $theme='neutral'
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleConfirm(row.id);
+                        }}
+                      >
+                        구매 확정
+                      </Button>
+                    )}
                     <Button
                       $style='outlined'
                       $size='sm'
