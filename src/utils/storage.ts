@@ -20,6 +20,7 @@ export const deleteAllFromStorage = () => {
     storage.removeItem(STORAGE_KEY.accessToken);
     storage.removeItem(STORAGE_KEY.refreshToken);
     storage.removeItem(STORAGE_KEY.userType);
+    storage.removeItem(STORAGE_KEY.blackList);
   };
 
   removeTokensFromStorage(sessionStorage);

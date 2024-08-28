@@ -6,7 +6,7 @@ import { GetBuyerListRes } from '../models/buyer.model';
 export const useBuyerList = (buyingId: number) => {
   const [searchParams] = useSearchParams();
   const page = Number(searchParams.get('page') || 1);
-  const filter = searchParams.get('filter') || undefined;
+  const filter = searchParams.get('filter') === 'cancel' ? 'cancel' : undefined;
 
   const { data } = useQuery<GetBuyerListRes>({
     queryKey: ['buyerList', { buyingId, page, filter }],

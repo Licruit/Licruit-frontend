@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { formatPhoneNumber } from '@/utils/format';
 import Button from '@/components/Button/Button';
 import { Buyer } from '../../models/buyer.model';
@@ -11,10 +11,8 @@ interface Props {
 
 function BuyerList({ buyers }: Props) {
   const naviagate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const filter = searchParams.get('filter');
   const { pathname } = useLocation();
-  const { handleConfirm, handleCancel } = useBuyerStatus();
+  const { handleConfirm, handleCancel, handleReport } = useBuyerStatus();
 
   return (
     <Table>
@@ -38,33 +36,32 @@ function BuyerList({ buyers }: Props) {
             <td>{row.status}</td>
             <td style={{ width: 200 }}>
               <div className='button-cell'>
-                {filter === 'cancel' ? (
+                {row.status === '취소' && (
                   <Button
                     $style='outlined'
                     $size='sm'
                     $theme='neutral'
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleConfirm(row.id);
+                      handleReport(row.id);
                     }}
                   >
                     경고
                   </Button>
-                ) : (
+                )}
+                {row.status === '신청' && (
                   <>
-                    {row.status !== '확정' && (
-                      <Button
-                        $style='outlined'
-                        $size='sm'
-                        $theme='neutral'
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleConfirm(row.id);
-                        }}
-                      >
-                        구매 확정
-                      </Button>
-                    )}
+                    <Button
+                      $style='outlined'
+                      $size='sm'
+                      $theme='neutral'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleConfirm(row.id);
+                      }}
+                    >
+                      구매 확정
+                    </Button>
                     <Button
                       $style='outlined'
                       $size='sm'
@@ -110,7 +107,7 @@ const TBody = styled.tbody`
   color: ${({ theme }) => theme.color.neutral[600]};
 
   td {
-    padding: 10px 0;
+    padding: 20px 0;
     border: 1px solid ${({ theme }) => theme.color.neutral[400]};
     border-width: 1px 0;
 
@@ -123,6 +120,10 @@ const TBody = styled.tbody`
     display: flex;
     gap: 10px;
     justify-content: end;
+  }
+
+  td:last-child {
+    padding: 10px 0;
   }
 
   tr:last-child td {
