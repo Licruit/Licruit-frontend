@@ -61,7 +61,7 @@ function ProductCardWithButton() {
       {buyingId && (
         <ProductCard
           liquorInfo={{
-            img: '',
+            img: groupBuyingDetail.img,
             categoryName: getRemainedDay(groupBuyingDetail.deadline),
             name: groupBuyingDetail.title,
             description: groupBuyingDetail.content,
