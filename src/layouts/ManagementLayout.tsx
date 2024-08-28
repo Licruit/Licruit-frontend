@@ -19,7 +19,9 @@ function ManagementLayout() {
       <GlobalErrorBoundary>
         <Container>
           {buyingId && <ProductCardWithButton />}
-          <Outlet />
+          <GlobalErrorBoundary size='md'>
+            <Outlet />
+          </GlobalErrorBoundary>
           {isOpen && <MyPageSideMenu onClose={close} />}
         </Container>
         <Footer />

@@ -50,7 +50,11 @@ const router = createBrowserRouter([
       },
       {
         path: ':buyingId',
-        element: <BuyerListPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <BuyerListPage />
+          </Suspense>
+        ),
       },
       {
         path: ':buyingId/:orderId',
