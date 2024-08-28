@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import { forwardRef } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { useRegion } from '@/features/GroupBuying/hooks/useRegion';
 import { INPUT } from '../../constants/input';
 import Label from '../common/Label';
-import { LOCATION } from '../../constants/location';
 
 const RegionsButtons = forwardRef(() => {
   const { setValue } = useFormContext();
   const selected = useWatch({ name: 'regions', defaultValue: [] });
+  const { regionData } = useRegion();
+
+  if (!regionData) return <></>;
 
   const handleClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     const region = event.currentTarget.innerText;
@@ -23,17 +26,17 @@ const RegionsButtons = forwardRef(() => {
     <CategoryWrapper>
       <Label {...INPUT.location} extraDesc />
       <CategoryButtonWrapper>
-        {LOCATION.map((location) => (
+        {regionData.map((location) => (
           <Button
-            key={location}
+            key={location.id}
             $style='outlined'
-            $theme={selected.includes(location) ? 'primary' : 'neutral'}
+            $theme={selected.includes(location.name) ? 'primary' : 'neutral'}
             $size='sm'
             $transparent
             type='button'
             onClick={(event) => handleClickButton(event)}
           >
-            {location}
+            {location.name}
           </Button>
         ))}
       </CategoryButtonWrapper>

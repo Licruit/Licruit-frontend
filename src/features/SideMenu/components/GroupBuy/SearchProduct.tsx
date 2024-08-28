@@ -1,11 +1,12 @@
 import { GlassesIcon } from 'public/assets/icons';
 import styled, { useTheme } from 'styled-components';
 import { getCatalog } from '@/features/Catalog/api/catalog.api';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import { Liquors } from '@/features/Catalog/types/catalog';
 import { useFormContext } from 'react-hook-form';
 import Label from '../common/Label';
 import { INPUT } from '../../constants/input';
+import useDebounce from '../../hooks/useDebounce';
 
 type LiqourInfo = { name: string; id: number };
 
@@ -16,6 +17,20 @@ const SearchProduct = forwardRef(
     const [isSearching, setIsSearching] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
+    const { debouncedValue } = useDebounce(inputValue, 1000);
+
+    useEffect(() => {
+      const fetchProducts = async () => {
+        const products = await getCatalog({
+          queryKey: ['', { search: debouncedValue, page: 1 }],
+        });
+
+        if (products) setSearchResults(products.liquors);
+      };
+
+      if (debouncedValue) fetchProducts();
+    }, [debouncedValue]);
+
     const { setValue } = useFormContext();
 
     const handleOnSearch = async (
@@ -25,12 +40,6 @@ const SearchProduct = forwardRef(
 
       setIsSearching(true);
       setInputValue(searchValue);
-
-      const products = await getCatalog({
-        queryKey: ['', { search: searchValue, page: 1 }],
-      });
-
-      if (products) setSearchResults(products.liquors);
     };
 
     const handleClickSearch = (liqour: LiqourInfo) => {
@@ -50,6 +59,7 @@ const SearchProduct = forwardRef(
             ref={ref}
             {...props}
             onChange={(event) => handleOnSearch(event)}
+            onBlur={() => setIsSearching(false)}
           />
         </IconWrapper>
         {isSearching && (

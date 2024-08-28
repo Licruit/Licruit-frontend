@@ -1,15 +1,19 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
 import ScrollToTop from '@/components/ScrollToTop';
+import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu';
+import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
 function MainLayout() {
+  const { isOpen, close } = useMyPageIsOpenStore();
   return (
     <>
       <Header />
       <Container>
         <Outlet />
+        {isOpen && <MyPageSideMenu onClose={close} />}
       </Container>
       <Footer />
       <ScrollToTop />
