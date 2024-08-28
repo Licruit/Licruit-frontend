@@ -19,7 +19,7 @@ export const useRegister = (id: number) => {
     if (isBlackList) {
       toast.warn('블랙리스트 회원은 서비스 이용이 제한됩니다.');
     } else if (isLoggedIn) {
-      mutate({ liquorId: +id!, liked });
+      mutate({ liquorId: Number(id)!, liked });
     } else {
       toast.info('로그인 후 이용 가능한 서비스입니다.');
     }
