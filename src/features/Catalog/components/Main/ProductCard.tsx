@@ -1,4 +1,3 @@
-import Button from '@/components/Button/Button';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
 import { Spinner } from '@/styles/components/Spinner';
@@ -23,11 +22,10 @@ interface Props {
   headText?: string;
   liquorInfo: LiquorInfo;
   onClick?: () => void;
-  button?: ButtonProps;
   size: string;
 }
 
-function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
+function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -58,11 +56,6 @@ function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
         <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
-      {button && (
-        <Button $size='sm' $width='full' {...button}>
-          {button.label}
-        </Button>
-      )}
     </LiquorInfoContainer>
   );
 }
