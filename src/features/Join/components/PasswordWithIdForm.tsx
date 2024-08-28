@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import FormInput from '@/components/Input/FormInput';
+import MaskInput from '@/components/Input/MaskInput';
+import { REGEXP } from '@/constants/form/form';
 import Button from '@/components/Button/Button';
 import PasswordForm from '@/components/Form/PasswordForm';
 import { useSignup } from '../hooks/useSignup';
@@ -10,7 +11,7 @@ import { useSignup } from '../hooks/useSignup';
 function PasswordWithIdForm() {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { register, trigger, watch } = useFormContext();
+  const { trigger, watch } = useFormContext();
 
   const { isVerified, handleUploadCertificate } = useSignup();
 
@@ -44,13 +45,12 @@ function PasswordWithIdForm() {
       <InputWrapper>
         <InputWithButton>
           <FormBox isVerified={isVerified}>
-            <FormInput
-              type='number'
-              value={companyNumber}
+            <MaskInput
+              type='text'
+              regExp={REGEXP.companyNumber}
+              maskType='companyNumber'
               disabled={isVerified}
-              {...register('companyNumber', {
-                required: true,
-              })}
+              placeholder='사업자 등록번호를 입력해주세요'
             />
 
             <Button

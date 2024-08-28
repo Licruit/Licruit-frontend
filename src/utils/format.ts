@@ -3,7 +3,9 @@ export const formatNumber = (value: number) => {
 };
 
 export const formatPhoneNumber = (phoneNumber: string) => {
-  return phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+  return phoneNumber
+    .replace(/[^0-9]/g, '')
+    .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
 };
 
 export const formatPrice = (price: string) => {
@@ -21,5 +23,7 @@ export const formatPhoneNumberToNumber = (phoneNumber: string) => {
 };
 
 export const formatCompanyNumber = (companyNum: string) => {
-  return companyNum.replace(/(\d{3})(\d{2})(\d{5})/, '$1-$2-$3');
+  return companyNum
+    .replace(/[^0-9]/g, '')
+    .replace(/^(\d{3})(\d{2})(\d{5})$/, '$1-$2-$3');
 };

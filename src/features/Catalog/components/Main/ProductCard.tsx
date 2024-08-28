@@ -1,10 +1,11 @@
-import Button from '@/components/Button/Button';
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
+import { Spinner } from '@/styles/components/Spinner';
 
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Spinner from '../Spinner';
+
 
 interface LiquorInfo {
   img: string;
@@ -23,11 +24,10 @@ interface Props {
   headText?: string;
   liquorInfo: LiquorInfo;
   onClick?: () => void;
-  button?: ButtonProps;
   size: string;
 }
 
-function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
+function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
           </div>
         ) : (
           <Spinner />
+
         )}
       </ImgContainer>
 
@@ -56,11 +57,6 @@ function ProductCard({ headText, liquorInfo, onClick, button, size }: Props) {
         <Title>{liquorInfo.name}</Title>
         <LiquorDescription>{liquorInfo.description}</LiquorDescription>
       </LiquorInfo>
-      {button && (
-        <Button $size='sm' $width='full' {...button}>
-          {button.label}
-        </Button>
-      )}
     </LiquorInfoContainer>
   );
 }
@@ -112,5 +108,6 @@ const LiquorDescription = styled.div`
   color: ${({ theme }) => theme.color.neutral[400]};
   text-overflow: ellipsis;
 `;
+
 
 export default ProductCard;

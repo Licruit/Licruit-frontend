@@ -1,21 +1,16 @@
 import AuthForm from '@/components/Form/AuthForm';
-import FormInput from '@/components/Input/FormInput';
+import MaskInput from '@/components/Input/MaskInput';
 import { REGEXP } from '@/constants/form/form';
-import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 function AuthWithIdForm() {
-  const { register } = useFormContext();
-
   return (
     <InputWrapper>
-      <FormInput
-        type='number'
+      <MaskInput
+        type='text'
+        regExp={REGEXP.companyNumber}
+        maskType='companyNumber'
         placeholder='사업자 등록번호를 입력해주세요'
-        {...register('companyNumber', {
-          required: true,
-          pattern: REGEXP.companyNumber,
-        })}
       />
       <AuthForm />
     </InputWrapper>
