@@ -23,6 +23,8 @@ function Search({ placeholder, searchPath }: Props) {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (search) {
+      searchParams.delete('page');
+
       searchParams.set('search', search);
     } else {
       searchParams.delete('search');

@@ -22,6 +22,7 @@ function GroupBuyingGrid({ region, sort }: Props) {
       fetchNextPage();
     }
   }, [inView, fetchNextPage]);
+
   return (
     <Container>
       {liquorData?.pages.map((item: GroupBuying, i: number) => {
