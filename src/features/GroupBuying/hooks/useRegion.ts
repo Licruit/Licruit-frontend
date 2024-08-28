@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getRegion } from '../api/region.api';
 
 export const useRegion = () => {
-  const { data: regionData } = useQuery({
+  const { data: regionData } = useSuspenseQuery({
     queryKey: ['region'],
     queryFn: getRegion,
     staleTime: Infinity,

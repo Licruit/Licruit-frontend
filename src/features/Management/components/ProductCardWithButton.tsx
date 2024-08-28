@@ -12,7 +12,6 @@ function ProductCardWithButton() {
   const { handleConfirmAll, handleDeleteBuying } = useBuyingStatus(
     Number(buyingId)
   );
-  if (!groupBuyingDetail) return <></>;
 
   const isOver =
     groupBuyingDetail.orderCount >= groupBuyingDetail.totalMin &&

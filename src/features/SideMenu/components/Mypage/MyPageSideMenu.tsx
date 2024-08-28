@@ -3,8 +3,9 @@ import {
   useMyPageIsOpenStore,
   useMyPageSideMenuStore,
 } from '@/store/mypageSideMenuStore';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import MyPage from './MyPage';
 import EditProfile from '../EditProfile/EditProfile';
 import GroupBuy from '../GroupBuy/GroupBuyOpenForm';
@@ -36,11 +37,13 @@ function MyPageSideMenu({ onClose }: Props) {
   return createPortal(
     <Overlay onMouseDown={closeMyPage}>
       <Container>
-        {content === 'my-page' && <MyPage onClose={onClose} />}
-        {content === 'edit-profile' && <EditProfile />}
-        {content === 'group-buying' && <GroupBuy />}
-        {content === 'signout' && <SignOut onClose={onClose} />}
-        {content === 'review' && <Review />}
+        <Suspense fallback={<LoadingSpinner />}>
+          {content === 'my-page' && <MyPage onClose={onClose} />}
+          {content === 'edit-profile' && <EditProfile />}
+          {content === 'group-buying' && <GroupBuy />}
+          {content === 'signout' && <SignOut onClose={onClose} />}
+          {content === 'review' && <Review />}
+        </Suspense>
       </Container>
     </Overlay>,
     document.body

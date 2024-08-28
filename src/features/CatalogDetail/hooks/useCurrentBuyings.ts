@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getCurrentBuyings } from '../api/buyings.api';
 import { Buying } from '../models/buying.model';
@@ -6,7 +6,7 @@ import { Buying } from '../models/buying.model';
 export const useCurrentBuyings = () => {
   const { id: liquorId } = useParams();
 
-  const { data } = useQuery<Buying[]>({
+  const { data } = useSuspenseQuery<Buying[]>({
     queryKey: ['currentBuyings', liquorId],
     queryFn: () => getCurrentBuyings(Number(liquorId)),
   });
