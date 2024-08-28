@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useLoginStore from '@/store/loginStore';
+import { useBlackList } from '@/hooks/useCheckUser';
 import { LiquorDetailType } from '@/features/LiquorDetail';
 import { toast } from 'react-toastify';
 import { register } from '../api/register.api';
@@ -12,9 +13,12 @@ interface Props {
 export const useRegister = (id: number) => {
   const { isLoggedIn } = useLoginStore();
   const queryClient = useQueryClient();
+  const { isBlackList } = useBlackList();
 
   const handleRegister = (liked: boolean) => {
-    if (isLoggedIn) {
+    if (isBlackList) {
+      toast.warn('블랙리스트 회원은 서비스 이용이 제한됩니다.');
+    } else if (isLoggedIn) {
       mutate({ liquorId: +id!, liked });
     } else {
       toast.info('로그인 후 이용 가능한 서비스입니다.');

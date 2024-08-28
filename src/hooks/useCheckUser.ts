@@ -6,13 +6,13 @@ const useStorageCheck = (key: string, checkFunctionName: string) => {
     return value === 'true';
   };
 
-  return { [checkFunctionName]: checkValue };
+  return { [checkFunctionName]: checkValue() };
 };
 
 export const useBlackList = () => {
-  return useStorageCheck(STORAGE_KEY.blackList, 'checkIsBlackList');
+  return useStorageCheck(STORAGE_KEY.blackList, 'isBlackList');
 };
 
 export const useUserType = () => {
-  return useStorageCheck(STORAGE_KEY.userType, 'checkIsCompany');
+  return useStorageCheck(STORAGE_KEY.userType, 'isCompany');
 };

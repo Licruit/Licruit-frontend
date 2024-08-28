@@ -31,7 +31,7 @@ function EditProfileForm({ userProfile, image }: Props) {
 
   const setContent = useMyPageSideMenuStore((state) => state.setContent);
   const { mutate: editProfile } = useProfileMutation();
-  const { checkIsCompany } = useUserType();
+  const { isCompany } = useUserType();
 
   const methods = useForm<GetProfile>({
     mode: 'onChange',
@@ -59,7 +59,6 @@ function EditProfileForm({ userProfile, image }: Props) {
   }, [image, prevImage]);
 
   const introduceValue = watch('introduce') || '';
-  const isCompany = checkIsCompany();
 
   const getCategory = (value: number) => {
     setSelectedCategory(value);
