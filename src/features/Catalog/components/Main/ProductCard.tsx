@@ -1,9 +1,9 @@
 import HeadInfo from '@/features/Main/components/common/HeadInfo';
 import { Badge } from '@/styles/components/Badge';
-import { Spinner } from '@/styles/components/Spinner';
 
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Spinner from '../Spinner';
 
 interface LiquorInfo {
   img: string;
@@ -43,9 +43,7 @@ function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
             <img src={liquorInfo.img} alt='liquor' />
           </div>
         ) : (
-          <SpinnerBox>
-            <StyledSpinner />
-          </SpinnerBox>
+          <Spinner />
         )}
       </ImgContainer>
 
@@ -108,17 +106,4 @@ const LiquorDescription = styled.div`
   text-overflow: ellipsis;
 `;
 
-const SpinnerBox = styled.div`
-  height: 370px;
-`;
-
-const StyledSpinner = styled(Spinner)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 40px;
-  height: 40px;
-`;
 export default ProductCard;

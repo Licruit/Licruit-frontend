@@ -30,7 +30,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
       return res;
     },
     async (err) => {
-      const { isLoggedIn, setIsLoggedIn } = useLoginStore();
+      const { isLoggedIn, setIsLoggedIn } = useLoginStore.getState();
       const { refreshToken } = getTokenFromStorage();
 
       if (isLoggedIn && err.response.status === 401) {

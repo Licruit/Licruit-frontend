@@ -55,7 +55,7 @@ const InfoWrapper = styled.div`
 
 const Description = styled.div`
   ${({ theme }) => theme.typo.body.medium[14]};
-  color: ${({ theme }) => theme.color.common[0]};
+  color: ${({ theme }) => theme.color.neutral[400]};
   text-align: center;
 `;
 

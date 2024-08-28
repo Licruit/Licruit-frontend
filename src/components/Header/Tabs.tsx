@@ -16,7 +16,9 @@ function Tab({ type, queryKey }: TabProps) {
   const selectedTab = searchParams.get(queryKey) || tabs[0][0];
 
   const handleClickButton = (tab: string) => {
-    setSearchParams({ [queryKey]: tab });
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set(queryKey, tab);
+    setSearchParams(newSearchParams);
   };
 
   return (

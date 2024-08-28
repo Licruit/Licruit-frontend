@@ -21,12 +21,11 @@ function FilterTags({
   const hasFilters = selectedAlcohol || selectedRating;
 
   const renderFilterButton = (label: string, onClick: () => void) => (
-    <Button $style='outlined' $size='sm' $theme='primary'>
+    <Button $style='outlined' $size='sm' $theme='primary' onClick={onClick}>
       {label}
       <CloseIcon
         fill={theme.color.primary[500]}
         style={{ cursor: 'pointer' }}
-        onClick={onClick}
       />
     </Button>
   );

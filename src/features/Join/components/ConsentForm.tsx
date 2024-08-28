@@ -63,8 +63,11 @@ function ConsentForm() {
 
       <ul>
         {terms.map((item) => (
-          <Term key={item.id}>
-            <Option onChange={() => handleTermChecked(item.id, item.required)}>
+          <Term
+            key={item.id}
+            onClick={() => handleTermChecked(item.id, item.required)}
+          >
+            <Option>
               <CheckIcon
                 fill={
                   item.isChecked
