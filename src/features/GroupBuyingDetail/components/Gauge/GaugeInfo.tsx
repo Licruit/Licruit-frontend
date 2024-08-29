@@ -16,7 +16,7 @@ function GaugeInfo({ orderQuantity, goalQuantity }: Props) {
         <h2>
           {remainedQuantity > 0 ? (
             <>
-              앞으로 <strong>{formatNumber(remainedQuantity)}병</strong>{' '}
+              앞으로 <strong>{formatNumber(remainedQuantity)}병</strong>
               남았습니다
             </>
           ) : (

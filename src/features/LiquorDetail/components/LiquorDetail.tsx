@@ -4,7 +4,7 @@ import LiquorInfo from './LiquorInfo';
 import { useLiquorDetail } from '../hooks/useLiquorDetail';
 
 interface Props {
-  liquorId: number | undefined;
+  liquorId: number;
   children: React.ReactNode;
 }
 

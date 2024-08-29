@@ -36,7 +36,8 @@ function FilterOption({
       searchParams.set('minAlcohol', min.toString());
       searchParams.set('maxAlcohol', max.toString());
     } else if (title === '평점') {
-      searchParams.set('rating', option);
+      const sort = option === '높은순' ? 0 : 1;
+      searchParams.set('sort', sort.toString());
     }
 
     onSelectOption(option);
