@@ -47,7 +47,7 @@ function ConsentForm() {
 
   return (
     <Container>
-      <AllAgree onClick={handleAllChecked}>
+      <AllAgree onClick={handleAllChecked} allChecked={allChecked}>
         <div className='check-box'>
           <CheckIcon
             fill={
@@ -110,7 +110,7 @@ const Container = styled.div`
   }
 `;
 
-const AllAgree = styled.div`
+const AllAgree = styled.div<{ allChecked: boolean }>`
   display: flex;
   gap: 6px;
   align-items: center;
@@ -118,7 +118,8 @@ const AllAgree = styled.div`
   margin-bottom: 20px;
   padding: 18.5px 24px;
 
-  color: ${({ theme }) => theme.color.neutral[400]};
+  color: ${({ theme, allChecked }) =>
+    allChecked ? theme.color.primary[500] : theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]}
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
