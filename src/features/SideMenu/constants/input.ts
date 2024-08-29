@@ -1,7 +1,7 @@
 export const INPUT = {
   shop: {
     label: '상호명',
-    placeholder: '최근학',
+    placeholder: 'Licruit',
     isRequired: true,
     hasValidation: true,
     'aria-label': 'businessName',
