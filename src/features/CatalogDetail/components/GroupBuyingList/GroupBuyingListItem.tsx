@@ -1,5 +1,7 @@
 import { Badge } from '@/styles/components/Badge';
 import styled from 'styled-components';
+import PATH from '@/constants/path';
+import { useNavigate } from 'react-router-dom';
 import { Buying } from '../../models/buying.model';
 
 interface Props {
@@ -7,10 +9,11 @@ interface Props {
 }
 
 function GroupBuyingListItem({ buyingData }: Props) {
-  const { leftDate, buyingTitle, buyingContent } = buyingData;
+  const navigate = useNavigate();
+  const { leftDate, buyingTitle, buyingContent, id } = buyingData;
 
   return (
-    <Container>
+    <Container onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
       <Badge $size='sm' $type='black'>
         {leftDate}일 남음
       </Badge>

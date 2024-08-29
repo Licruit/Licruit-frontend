@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import LiquorInfo from './LiquorInfo';
 import { useLiquorDetail } from '../hooks/useLiquorDetail';
 
@@ -12,9 +13,11 @@ function LiquorDetail({ liquorId, children }: Props) {
 
   return (
     <Container>
-      <img src={liquorImg} alt='liquorImage' className='liquor-img' />
-      {children}
-      <LiquorInfo liquorId={liquorId} />
+      <GlobalErrorBoundary size='md'>
+        <img src={liquorImg} alt='liquorImage' className='liquor-img' />
+        {children}
+        <LiquorInfo liquorId={liquorId} />
+      </GlobalErrorBoundary>
     </Container>
   );
 }

@@ -1,6 +1,10 @@
-import { SideBar, WholesalerInfo } from '@/features/GroupBuyingDetail';
-import { useGroupBuyingDetail } from '@/features/GroupBuyingDetail/hooks/useGroupBuyingDetail';
+import {
+  SideBar,
+  WholesalerInfo,
+  useGroupBuyingDetail,
+} from '@/features/GroupBuyingDetail';
 import { LiquorDetail } from '@/features/LiquorDetail';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -13,7 +17,9 @@ function GroupBuyingDetailPage() {
       <LiquorDetail liquorId={liquorId}>
         <WholesalerInfo />
       </LiquorDetail>
-      <SideBar />
+      <GlobalErrorBoundary size='md'>
+        <SideBar />
+      </GlobalErrorBoundary>
     </Container>
   );
 }

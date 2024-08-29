@@ -4,6 +4,7 @@ import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function GroupBuyingLayout() {
   const { isOpen, close } = useMyPageIsOpenStore();
@@ -11,11 +12,13 @@ function GroupBuyingLayout() {
   return (
     <Container>
       <Header />
-      <Grid>
-        <Outlet />
-      </Grid>
-      {isOpen && <MyPageSideMenu onClose={close} />}
-      <ScrollToTop />
+      <GlobalErrorBoundary>
+        <Grid>
+          <Outlet />
+        </Grid>
+        {isOpen && <MyPageSideMenu onClose={close} />}
+        <ScrollToTop />
+      </GlobalErrorBoundary>
     </Container>
   );
 }
