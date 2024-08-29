@@ -1,4 +1,5 @@
 import Tab from '@/components/Header/Tabs';
+import MetaTag from '@/components/MetaTag';
 import LoadingSpinner from '@/components/Spinner/Spinner';
 import {
   GroupBuyingGrid,
@@ -18,28 +19,36 @@ function GroupBuyingPage() {
   const sort = searchParams.get('sort');
   const region = searchParams.get('region');
   return (
-    <Container>
-      <PreviewWrapper>
-        <Preview />
-      </PreviewWrapper>
-      <ContentWrapper>
-        <GroupBuyingHeader />
-        <Filter>
-          <TabBox>
-            <Tab type='group_buying' queryKey='sort' />
-          </TabBox>
-          <Region />
-        </Filter>
-        <ErrorBoundary
-          FallbackComponent={EmptyFallback}
-          resetKeys={[sort, region]}
-        >
-          <Suspense fallback={<LoadingSpinner />}>
-            <GroupBuyingGrid sort={sort} region={region} />
-          </Suspense>
-        </ErrorBoundary>
-      </ContentWrapper>
-    </Container>
+    <>
+      <MetaTag
+        title='리크루트 공동 구매'
+        description='리크루트 플랫폼에서 공동 구매에 대한 정보를 확인할 수 있는 페이지입니다.'
+        keywords='리크루트, 공동 구매, 리크루트 공동 구매, 리크루트 정보, 술 구매'
+        url='https://www.licruit.site/group-buying'
+      />
+      <Container>
+        <PreviewWrapper>
+          <Preview />
+        </PreviewWrapper>
+        <ContentWrapper>
+          <GroupBuyingHeader />
+          <Filter>
+            <TabBox>
+              <Tab type='group_buying' queryKey='sort' />
+            </TabBox>
+            <Region />
+          </Filter>
+          <ErrorBoundary
+            FallbackComponent={EmptyFallback}
+            resetKeys={[sort, region]}
+          >
+            <Suspense fallback={<LoadingSpinner />}>
+              <GroupBuyingGrid sort={sort} region={region} />
+            </Suspense>
+          </ErrorBoundary>
+        </ContentWrapper>
+      </Container>
+    </>
   );
 }
 
