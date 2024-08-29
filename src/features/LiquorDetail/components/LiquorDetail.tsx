@@ -14,7 +14,12 @@ function LiquorDetail({ liquorId, children }: Props) {
   return (
     <Container>
       <GlobalErrorBoundary size='md'>
-        <img src={liquorImg} alt='liquorImage' className='liquor-img' />
+        <img
+          src={liquorImg}
+          alt='liquorImage'
+          className='liquor-img'
+          loading='eager'
+        />
         {children}
         <LiquorInfo liquorId={liquorId} />
       </GlobalErrorBoundary>

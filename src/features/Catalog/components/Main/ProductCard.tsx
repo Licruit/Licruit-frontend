@@ -40,7 +40,7 @@ function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
       <ImgContainer>
         {imageLoaded ? (
           <div className='img'>
-            <img src={liquorInfo.img} alt='liquor' />
+            <img src={liquorInfo.img} alt='liquor' loading='lazy' />
           </div>
         ) : (
           <Spinner />
