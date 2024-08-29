@@ -15,7 +15,7 @@ function GroupBuyingListItem({ buyingData }: Props) {
   return (
     <Container onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
       <Badge $size='sm' $type='black'>
-        {leftDate}일 남음
+        {leftDate <= 0 ? '오늘 마감' : `${leftDate}일 남음`}
       </Badge>
       <h2 className='item-name'>{buyingTitle}</h2>
       <p>{buyingContent}</p>
