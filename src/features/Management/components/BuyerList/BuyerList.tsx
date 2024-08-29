@@ -92,6 +92,10 @@ const TBody = styled.tbody`
     }
   }
 
+  tr {
+    cursor: pointer;
+  }
+
   td:last-child {
     padding: 10px 0;
   }

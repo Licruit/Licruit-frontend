@@ -40,8 +40,8 @@ function SideBar() {
               height={18}
             />
           )}
-          {liked ? '구매 신청완료' : '구매 신청하기'} (현재 {likes}명
-          신청했어요!)
+          {liked ? '공동구매 요청완료' : '공동구매 요청하기'} (현재 {likes}명이
+          요청했어요!)
         </Button>
       </GlobalErrorBoundary>
     </Container>
