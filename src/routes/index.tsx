@@ -12,26 +12,27 @@ import NavContentLayout from '@/layouts/NavContentLayout';
 import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
 import MainLayout from '@/layouts/MainLayout';
 import CatalogDetailPage from '@/pages/CatalogDetailPage';
-import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import ManagementLayout from '@/layouts/ManagementLayout';
 import NotFoundPage from '@/pages/NotFoundPage';
 import BuyerListPage from '@/pages/BuyerListPage';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import PublicRoutes from './PublicRoutes';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <GlobalErrorBoundary>
-        <MainLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <MainLayout />,
     errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <MainPage /> },
       {
         path: 'group-buying/:id',
-        element: <GroupBuyingDetailPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GroupBuyingDetailPage />
+          </Suspense>
+        ),
       },
       {
         path: 'catalog/:id',
@@ -41,11 +42,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/management',
-    element: (
-      <GlobalErrorBoundary>
-        <ManagementLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <ManagementLayout />,
     children: [
       {
         path: '',
@@ -53,7 +50,11 @@ const router = createBrowserRouter([
       },
       {
         path: ':buyingId',
-        element: <BuyerListPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <BuyerListPage />
+          </Suspense>
+        ),
       },
       {
         path: ':buyingId/:orderId',
@@ -63,11 +64,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/auth',
-    element: (
-      <GlobalErrorBoundary>
-        <PublicRoutes />
-      </GlobalErrorBoundary>
-    ),
+    element: <PublicRoutes />,
     children: [
       {
         path: 'login',
@@ -85,11 +82,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/catalog',
-    element: (
-      <GlobalErrorBoundary>
-        <NavContentLayout />
-      </GlobalErrorBoundary>
-    ),
+    element: <NavContentLayout />,
     children: [
       {
         path: '',
@@ -98,15 +91,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
-    element: (
-      <GlobalErrorBoundary>
-        <GroupBuyingLayout />
-      </GlobalErrorBoundary>
-    ),
+    path: '/group-buying',
+    element: <GroupBuyingLayout />,
     children: [
       {
-        path: 'group-buying',
+        index: true,
         element: <GroupBuyingPage />,
       },
     ],

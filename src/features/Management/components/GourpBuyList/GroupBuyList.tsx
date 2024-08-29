@@ -10,8 +10,6 @@ function GroupBuyList() {
   const { companyGroupBuyList } = useCompanyGroupBuyListQuery();
   const navigate = useNavigate();
 
-  if (!companyGroupBuyList) return <></>;
-
   const isEmpty = companyGroupBuyList.buyings.length === 0;
 
   return (

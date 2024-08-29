@@ -11,8 +11,6 @@ function SideBar() {
   const { id: buyingId } = useParams();
   const { groupBuyingDetail } = useGroupBuyingDetail(Number(buyingId));
 
-  if (!groupBuyingDetail) return null;
-
   const { deadline, title, content, orderCount, totalMin } = groupBuyingDetail;
 
   return (

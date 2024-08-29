@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import getHighRate from '../api/getHighRate';
 
 const useHighRateQuery = () => {
-  const { data: highRateLiquors } = useQuery({
+  const { data: highRateLiquors } = useSuspenseQuery({
     queryKey: ['high-rate'],
     queryFn: getHighRate,
     select: (data) => data.slice(0, 5),
