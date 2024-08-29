@@ -21,5 +21,5 @@ export const isClosed = (deadline: string) => {
 
   const dayDiff = targetDate.diff(today, 'day');
 
-  return dayDiff <= 0;
+  return dayDiff < 0;
 };
