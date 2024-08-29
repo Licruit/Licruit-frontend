@@ -52,7 +52,9 @@ const LiquorInfoContainer = styled.li`
   align-items: center;
 
   img {
+    width: 264px;
     height: 264px;
+    object-fit: contain;
   }
 `;
 
