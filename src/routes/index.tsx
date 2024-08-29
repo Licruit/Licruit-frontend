@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import LoadingSpinner from '@/components/Spinner/Spinner';
+import MainPage from '@/pages/MainPage';
+import MainLayout from '@/layouts/MainLayout';
 import PublicRoutes from './PublicRoutes';
 
-const MainPage = React.lazy(() => import('@/pages/MainPage'));
 const LoginPage = React.lazy(() => import('@/pages/LoginPage'));
 const SignUpPage = React.lazy(() => import('@/pages/SignUpPage'));
 const FindPasswordPage = React.lazy(() => import('@/pages/FindPasswordPage'));
@@ -20,7 +21,6 @@ const NavContentLayout = React.lazy(() => import('@/layouts/NavContentLayout'));
 const GroupBuyingLayout = React.lazy(
   () => import('@/layouts/GroupBuyingLayout')
 );
-const MainLayout = React.lazy(() => import('@/layouts/MainLayout'));
 const ManagementLayout = React.lazy(() => import('@/layouts/ManagementLayout'));
 const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 
