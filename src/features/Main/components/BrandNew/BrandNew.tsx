@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import styled from 'styled-components';
 import React, { Suspense, useState } from 'react';
 import LoadingSpinner from '@/components/Spinner/Spinner';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
