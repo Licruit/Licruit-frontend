@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { Suspense, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import LoadingSpinner from '@/components/Spinner/Spinner';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
-import Catalog from './Catalog';
+
+const Catalog = React.lazy(() => import('./Catalog'));
 
 function BrandNew() {
   const [imageUrl, setImageUrl] = useState('');
@@ -13,7 +14,7 @@ function BrandNew() {
         <Suspense fallback={<LoadingSpinner />}>
           <Catalog setImageUrl={setImageUrl} />
           <div className='img-wrapper'>
-            <img src={imageUrl} alt='liquor' />
+            <img src={imageUrl} alt='liquor' loading='lazy' />
           </div>
         </Suspense>
       </GlobalErrorBoundary>

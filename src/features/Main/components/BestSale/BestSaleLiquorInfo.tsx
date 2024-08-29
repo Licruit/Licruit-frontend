@@ -27,7 +27,13 @@ function BestSaleLiquorInfo({
   return (
     <LiquorInfoContainer onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
       <HeaderInfo>{orderCount}명 신청</HeaderInfo>
-      <LiquorInfoWrapper $imageUrl={imageUrl}>
+      <LiquorInfoWrapper>
+        <img
+          className='liquor-image'
+          src={imageUrl}
+          alt={title}
+          loading='eager'
+        />
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
             {leftDate === 0 ? '오늘마감' : `${leftDate}일전`}
@@ -51,15 +57,22 @@ const LiquorInfoContainer = styled.li`
   gap: 20px;
 `;
 
-const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
+const LiquorInfoWrapper = styled.div`
   cursor: pointer;
 
   width: 453px;
   height: 453px;
   padding-top: 175px;
+  position: relative;
 
-  background: url(${({ $imageUrl }) => $imageUrl}) white center no-repeat;
-  background-size: contain;
+  .liquor-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    z-index: -10;
+  }
 `;
 
 const LiquorInfo = styled.div`

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { IMAGES } from '@/constants/images';
 import { useNavigate } from 'react-router-dom';
 import PATH from '@/constants/path';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { BANNER_TEXT } from '../../constants/banner';
 
 function JoinUs() {
@@ -9,6 +11,14 @@ function JoinUs() {
 
   return (
     <JoinUsContainer>
+      <Suspense fallback={<LoadingSpinner />}>
+        <img
+          className='join-banner'
+          src={IMAGES.join}
+          alt='join-banner'
+          loading='lazy'
+        />
+      </Suspense>
       <Content>
         <InfoWrapper>
           <Title>{BANNER_TEXT.join.title}</Title>
@@ -35,7 +45,15 @@ const JoinUsContainer = styled.div`
   width: 100%;
   height: 272px;
 
-  background: url(${IMAGES.join}) lightgray 0 -257.75px / 100% 289.522% no-repeat;
+  position: relative;
+
+  .join-banner {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+  }
 `;
 
 const Content = styled.div`

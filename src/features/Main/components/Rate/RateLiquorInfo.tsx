@@ -26,7 +26,7 @@ function RateLiquorInfo({
   return (
     <LiquorInfoContainer onClick={() => navigate(`${PATH.catalog}/${id}`)}>
       <HeadInfo>현재 {reviewAvg}잔이에요 !</HeadInfo>
-      <img src={imageUrl} alt='liquor' />
+      <img src={imageUrl} alt={title} loading='lazy' />
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
           {badgeText}

@@ -6,9 +6,9 @@ import PATH from '@/constants/path';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import Category from '../common/Category';
 import MoreButton from '../common/MoreButton';
-import RateLiquorInfo from './RateLiquorInfo';
 import { CATEGORY_TEXT } from '../../constants/category';
 import useHighRateQuery from '../../hooks/useHighRateQuery';
+import RateLiquorInfo from './RateLiquorInfo';
 
 function Rate() {
   const navigate = useNavigate();

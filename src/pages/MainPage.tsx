@@ -1,6 +1,5 @@
-import { BestSale, Rate, JoinUs, BrandNew } from '@/features/Main';
+import { BestSale, Rate, BrandNew, Banner, JoinUs } from '@/features/Main';
 import { IMAGES } from '@/constants/images';
-import { Banner } from '@/styles/components/Banner';
 import MetaTag from '@/components/MetaTag';
 
 function MainPage() {
@@ -13,7 +12,7 @@ function MainPage() {
         imgsrc={IMAGES.banner}
         url='https://www.licruit.site'
       />
-      <Banner $imageUrl={IMAGES.banner} />
+      <Banner />
       <BestSale />
       <Rate />
       <JoinUs />
