@@ -44,6 +44,7 @@ const Container = styled.div`
     display: flex;
     gap: 36px;
     margin-top: 20px;
+
     ${({ theme }) => theme.typo.body.medium[14]};
     li {
       color: ${({ theme }) => theme.color.primary[500]};
