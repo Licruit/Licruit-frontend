@@ -1,29 +1,42 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import MainPage from '@/pages/MainPage';
-import LoginPage from '@/pages/LoginPage';
-import SignUpPage from '@/pages/SignUpPage';
-import FindPasswordPage from '@/pages/FindPasswordPage';
-import GroupBuyingPage from '@/pages/GroupBuyingPage';
-import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
-import CatalogPage from '@/pages/CatalogPage';
-import ManagementPage from '@/pages/ManagementPage';
-import BuyerDetailPage from '@/pages/BuyerDetailPage';
-import NavContentLayout from '@/layouts/NavContentLayout';
-import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
-import MainLayout from '@/layouts/MainLayout';
-import CatalogDetailPage from '@/pages/CatalogDetailPage';
-import ManagementLayout from '@/layouts/ManagementLayout';
-import NotFoundPage from '@/pages/NotFoundPage';
-import BuyerListPage from '@/pages/BuyerListPage';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import LoadingSpinner from '@/components/Spinner/Spinner';
 import PublicRoutes from './PublicRoutes';
+
+const MainPage = React.lazy(() => import('@/pages/MainPage'));
+const LoginPage = React.lazy(() => import('@/pages/LoginPage'));
+const SignUpPage = React.lazy(() => import('@/pages/SignUpPage'));
+const FindPasswordPage = React.lazy(() => import('@/pages/FindPasswordPage'));
+const GroupBuyingPage = React.lazy(() => import('@/pages/GroupBuyingPage'));
+const GroupBuyingDetailPage = React.lazy(
+  () => import('@/pages/GroupBuyingDetailPage')
+);
+const CatalogPage = React.lazy(() => import('@/pages/CatalogPage'));
+const ManagementPage = React.lazy(() => import('@/pages/ManagementPage'));
+const BuyerDetailPage = React.lazy(() => import('@/pages/BuyerDetailPage'));
+const CatalogDetailPage = React.lazy(() => import('@/pages/CatalogDetailPage'));
+const BuyerListPage = React.lazy(() => import('@/pages/BuyerListPage'));
+const NavContentLayout = React.lazy(() => import('@/layouts/NavContentLayout'));
+const GroupBuyingLayout = React.lazy(
+  () => import('@/layouts/GroupBuyingLayout')
+);
+const MainLayout = React.lazy(() => import('@/layouts/MainLayout'));
+const ManagementLayout = React.lazy(() => import('@/layouts/ManagementLayout'));
+const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
-    errorElement: <NotFoundPage />,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <MainLayout />
+      </Suspense>
+    ),
+    errorElement: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <NotFoundPage />
+      </Suspense>
+    ),
     children: [
       { index: true, element: <MainPage /> },
       {
@@ -36,17 +49,29 @@ const router = createBrowserRouter([
       },
       {
         path: 'catalog/:id',
-        element: <CatalogDetailPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <CatalogDetailPage />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/management',
-    element: <ManagementLayout />,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <ManagementLayout />
+      </Suspense>
+    ),
     children: [
       {
         path: '',
-        element: <ManagementPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ManagementPage />
+          </Suspense>
+        ),
       },
       {
         path: ':buyingId',
@@ -58,45 +83,81 @@ const router = createBrowserRouter([
       },
       {
         path: ':buyingId/:orderId',
-        element: <BuyerDetailPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <BuyerDetailPage />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/auth',
-    element: <PublicRoutes />,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <PublicRoutes />
+      </Suspense>
+    ),
     children: [
       {
         path: 'login',
-        element: <LoginPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <LoginPage />
+          </Suspense>
+        ),
       },
       {
         path: 'signUp',
-        element: <SignUpPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <SignUpPage />
+          </Suspense>
+        ),
       },
       {
         path: 'find-password',
-        element: <FindPasswordPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <FindPasswordPage />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/catalog',
-    element: <NavContentLayout />,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <NavContentLayout />
+      </Suspense>
+    ),
     children: [
       {
         path: '',
-        element: <CatalogPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <CatalogPage />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: '/group-buying',
-    element: <GroupBuyingLayout />,
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <GroupBuyingLayout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
-        element: <GroupBuyingPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GroupBuyingPage />
+          </Suspense>
+        ),
       },
     ],
   },
