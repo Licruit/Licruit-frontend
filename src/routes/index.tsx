@@ -27,16 +27,8 @@ const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <MainLayout />
-      </Suspense>
-    ),
-    errorElement: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <NotFoundPage />
-      </Suspense>
-    ),
+    element: <MainLayout />,
+    errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <MainPage /> },
       {
@@ -49,29 +41,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'catalog/:id',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <CatalogDetailPage />
-          </Suspense>
-        ),
+        element: <CatalogDetailPage />,
       },
     ],
   },
   {
     path: '/management',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <ManagementLayout />
-      </Suspense>
-    ),
+    element: <ManagementLayout />,
     children: [
       {
         path: '',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <ManagementPage />
-          </Suspense>
-        ),
+        element: <ManagementPage />,
       },
       {
         path: ':buyingId',
@@ -83,81 +63,45 @@ const router = createBrowserRouter([
       },
       {
         path: ':buyingId/:orderId',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <BuyerDetailPage />
-          </Suspense>
-        ),
+        element: <BuyerDetailPage />,
       },
     ],
   },
   {
     path: '/auth',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <PublicRoutes />
-      </Suspense>
-    ),
+    element: <PublicRoutes />,
     children: [
       {
         path: 'login',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <LoginPage />
-          </Suspense>
-        ),
+        element: <LoginPage />,
       },
       {
         path: 'signUp',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <SignUpPage />
-          </Suspense>
-        ),
+        element: <SignUpPage />,
       },
       {
         path: 'find-password',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <FindPasswordPage />
-          </Suspense>
-        ),
+        element: <FindPasswordPage />,
       },
     ],
   },
   {
     path: '/catalog',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <NavContentLayout />
-      </Suspense>
-    ),
+    element: <NavContentLayout />,
     children: [
       {
         path: '',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <CatalogPage />
-          </Suspense>
-        ),
+        element: <CatalogPage />,
       },
     ],
   },
   {
     path: '/group-buying',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <GroupBuyingLayout />
-      </Suspense>
-    ),
+    element: <GroupBuyingLayout />,
     children: [
       {
         index: true,
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <GroupBuyingPage />
-          </Suspense>
-        ),
+        element: <GroupBuyingPage />,
       },
     ],
   },
