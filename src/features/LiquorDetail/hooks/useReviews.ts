@@ -1,10 +1,9 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { getReviews } from '../api/review.api';
 import { GetReviewReq } from '../models/review.model';
 
-export const useReviews = () => {
-  const { id: liquorId } = useParams();
+export const useReviews = (liquorId: number) => {
   const [searchParams] = useSearchParams();
 
   const page = Number(searchParams.get('page')) || 1;
