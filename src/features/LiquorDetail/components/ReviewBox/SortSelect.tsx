@@ -11,7 +11,6 @@ function SortSelect() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOption = (option: 0 | 1) => {
-    setIsOpen(false);
     const updatedParams = new URLSearchParams(searchParams.toString());
     updatedParams.set('sort', option.toString());
     navigate(`?${updatedParams.toString()}`, { replace: true });
@@ -19,7 +18,7 @@ function SortSelect() {
 
   return (
     <SelectBox type='button' onClick={() => setIsOpen((prev) => !prev)}>
-      {currentSort === '1' ? '낮은 순' : '높은 순'}{' '}
+      {currentSort === '1' ? '낮은 순' : '높은 순'}
       <DownArrowIcon fill={theme.color.neutral[400]} />
       {isOpen && (
         <OptionBox>

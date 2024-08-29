@@ -47,7 +47,7 @@ function ConsentForm() {
 
   return (
     <Container>
-      <AllAgree onClick={handleAllChecked}>
+      <AllAgree onClick={handleAllChecked} allChecked={allChecked}>
         <div className='check-box'>
           <CheckIcon
             fill={
@@ -63,10 +63,7 @@ function ConsentForm() {
 
       <ul>
         {terms.map((item) => (
-          <Term
-            key={item.id}
-            onClick={() => handleTermChecked(item.id, item.required)}
-          >
+          <Term key={item.id}>
             <Option>
               <CheckIcon
                 fill={
@@ -83,15 +80,15 @@ function ConsentForm() {
                 key={item.label}
                 type='checkbox'
                 {...register(item.name, { required: item.required })}
-                onClick={(e) => e.stopPropagation()}
+                onClick={() => handleTermChecked(item.id, item.required)}
               />
               <Essential htmlFor={item.name}>{item.label}</Essential>
-              {item.id ? (
-                <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
-              ) : (
-                ''
-              )}
             </Option>
+            {item.id ? (
+              <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
+            ) : (
+              ''
+            )}
           </Term>
         ))}
       </ul>
@@ -110,7 +107,7 @@ const Container = styled.div`
   }
 `;
 
-const AllAgree = styled.div`
+const AllAgree = styled.div<{ allChecked: boolean }>`
   display: flex;
   gap: 6px;
   align-items: center;
@@ -118,7 +115,8 @@ const AllAgree = styled.div`
   margin-bottom: 20px;
   padding: 18.5px 24px;
 
-  color: ${({ theme }) => theme.color.neutral[400]};
+  color: ${({ theme, allChecked }) =>
+    allChecked ? theme.color.primary[500] : theme.color.neutral[400]};
 
   ${({ theme }) => theme.typo.body.medium[14]}
   border: 0.8px solid ${({ theme }) => theme.color.neutral[400]};
@@ -158,7 +156,7 @@ const Essential = styled.label`
   }
 `;
 
-const Option = styled.div`
+const Option = styled.label`
   display: flex;
   align-items: center;
 

@@ -38,7 +38,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
           <ItemTitle>{ListItemData.title}</ItemTitle>
           <ItemDesc>{ListItemData.content}</ItemDesc>
           <PaymentInfo>
-            {Number(ListItemData.totalPrice).toLocaleString()}원 ·{' '}
+            {Number(ListItemData.totalPrice).toLocaleString()}원 ·
             {ListItemData.quantity}개
           </PaymentInfo>
         </ItemInfo>
