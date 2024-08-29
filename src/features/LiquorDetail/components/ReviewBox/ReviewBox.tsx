@@ -8,8 +8,6 @@ import { useReviews } from '../../hooks/useReviews';
 function ReviewBox() {
   const { reviews, pagination } = useReviews();
 
-  if (!reviews || !pagination) return <></>;
-
   return (
     <Container>
       <SortSelect />

@@ -25,7 +25,7 @@ function WholesalerInfo() {
       <Divider />
       <ExtraInfo>
         <span>
-          홈페이지 : <a href='homepage'>{homepage}</a>
+          홈페이지 : <a href={homepage}>{homepage}</a>
         </span>
         <span>누적 판매수 : {formatNumber(totalSales)}병</span>
       </ExtraInfo>

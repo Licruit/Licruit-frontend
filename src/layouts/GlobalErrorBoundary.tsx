@@ -2,11 +2,19 @@ import GlobalFallback from '@/components/Fallback/GlobalFallback';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 
-function GlobalErrorBoundary({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+function GlobalErrorBoundary({ children, size }: Props) {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <ErrorBoundary FallbackComponent={GlobalFallback} onReset={reset}>
+    <ErrorBoundary
+      fallbackRender={(props) => <GlobalFallback size={size} {...props} />}
+      onReset={reset}
+    >
       {children}
     </ErrorBoundary>
   );

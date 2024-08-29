@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useState } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
+import { Suspense, useState } from 'react';
 import TapBar from './TapBar';
 import ReviewBox from './ReviewBox/ReviewBox';
 import InfoBox from './InfoBox/InfoBox';
@@ -20,7 +21,9 @@ function LiquorInfo({ liquorId }: Props) {
         {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
         {currentTap === '리뷰' && (
           <ErrorBoundary FallbackComponent={Fallback}>
-            <ReviewBox />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ReviewBox />
+            </Suspense>
           </ErrorBoundary>
         )}
       </div>

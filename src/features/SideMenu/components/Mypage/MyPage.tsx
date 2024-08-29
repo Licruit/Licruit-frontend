@@ -18,10 +18,7 @@ interface Props {
 function MyPage({ onClose }: Props) {
   const [content, setContent] = useState(0);
   const { isCompany } = useUserType();
-
   const { userProfile } = useProfileQuery();
-
-  if (!userProfile) return <></>;
 
   return (
     <>

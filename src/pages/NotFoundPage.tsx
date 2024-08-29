@@ -11,21 +11,27 @@ function NotFoundPage() {
     <Container>
       <Header />
       <Content>
-        <Title>
-          <h1>404</h1>
-          <h3>Not Found</h3>
-        </Title>
+        <TextBox>
+          <h2>앗! 페이지를 찾을 수 없어요!</h2>
+          <p>
+            길을 잃으신 것 같아요.
+            <br />
+            메인으로 돌아가서 다시 시작해 보세요!
+          </p>
+        </TextBox>
 
-        <span>존재하지 않는 페이지입니다.</span>
-        <Button
-          type='button'
-          $size='md'
-          $style='solid'
-          $theme='primary'
-          onClick={() => navigate(PATH.main)}
-        >
-          메인 페이지로
-        </Button>
+        <div className='button-wrapper'>
+          <Button
+            type='button'
+            $size='lg'
+            $style='outlined'
+            $width='full'
+            $theme='primary'
+            onClick={() => navigate(PATH.main)}
+          >
+            메인 페이지로 돌아가기
+          </Button>
+        </div>
       </Content>
     </Container>
   );
@@ -54,21 +60,19 @@ const Content = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TextBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: center;
+  gap: 6px;
+  text-align: center;
 
-  color: ${({ theme }) => theme.color.primary[500]};
-
-  h1 {
-    font-size: 90px;
-    font-weight: 300;
+  h2 {
+    color: ${({ theme }) => theme.color.neutral[900]};
+    ${({ theme }) => theme.typo.heading.bold[30]}
   }
 
-  h3 {
-    font-size: 40px;
-    font-weight: 600;
+  p {
+    color: ${({ theme }) => theme.color.neutral[400]};
+    ${({ theme }) => theme.typo.body.semi_bold[16]}
   }
 `;
