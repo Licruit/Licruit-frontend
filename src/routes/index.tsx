@@ -1,23 +1,28 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import MainPage from '@/pages/MainPage';
-import LoginPage from '@/pages/LoginPage';
-import SignUpPage from '@/pages/SignUpPage';
-import FindPasswordPage from '@/pages/FindPasswordPage';
-import GroupBuyingPage from '@/pages/GroupBuyingPage';
-import GroupBuyingDetailPage from '@/pages/GroupBuyingDetailPage';
-import CatalogPage from '@/pages/CatalogPage';
-import ManagementPage from '@/pages/ManagementPage';
-import BuyerDetailPage from '@/pages/BuyerDetailPage';
-import NavContentLayout from '@/layouts/NavContentLayout';
-import GroupBuyingLayout from '@/layouts/GroupBuyingLayout';
-import MainLayout from '@/layouts/MainLayout';
-import CatalogDetailPage from '@/pages/CatalogDetailPage';
-import ManagementLayout from '@/layouts/ManagementLayout';
-import NotFoundPage from '@/pages/NotFoundPage';
-import BuyerListPage from '@/pages/BuyerListPage';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import LoadingSpinner from '@/components/Spinner/Spinner';
+import MainPage from '@/pages/MainPage';
+import MainLayout from '@/layouts/MainLayout';
 import PublicRoutes from './PublicRoutes';
+
+const LoginPage = React.lazy(() => import('@/pages/LoginPage'));
+const SignUpPage = React.lazy(() => import('@/pages/SignUpPage'));
+const FindPasswordPage = React.lazy(() => import('@/pages/FindPasswordPage'));
+const GroupBuyingPage = React.lazy(() => import('@/pages/GroupBuyingPage'));
+const GroupBuyingDetailPage = React.lazy(
+  () => import('@/pages/GroupBuyingDetailPage')
+);
+const CatalogPage = React.lazy(() => import('@/pages/CatalogPage'));
+const ManagementPage = React.lazy(() => import('@/pages/ManagementPage'));
+const BuyerDetailPage = React.lazy(() => import('@/pages/BuyerDetailPage'));
+const CatalogDetailPage = React.lazy(() => import('@/pages/CatalogDetailPage'));
+const BuyerListPage = React.lazy(() => import('@/pages/BuyerListPage'));
+const NavContentLayout = React.lazy(() => import('@/layouts/NavContentLayout'));
+const GroupBuyingLayout = React.lazy(
+  () => import('@/layouts/GroupBuyingLayout')
+);
+const ManagementLayout = React.lazy(() => import('@/layouts/ManagementLayout'));
+const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 
 const router = createBrowserRouter([
   {

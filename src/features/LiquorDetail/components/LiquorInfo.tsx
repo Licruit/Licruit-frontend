@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
 import LoadingSpinner from '@/components/Spinner/Spinner';
-import { Suspense, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import TapBar from './TapBar';
-import ReviewBox from './ReviewBox/ReviewBox';
 import InfoBox from './InfoBox/InfoBox';
 import Fallback from './Fallback';
+
+const ReviewBox = React.lazy(() => import('./ReviewBox/ReviewBox'));
 
 interface Props {
   liquorId: number | undefined;
