@@ -59,7 +59,6 @@ const SearchProduct = forwardRef(
             ref={ref}
             {...props}
             onChange={(event) => handleOnSearch(event)}
-            onBlur={() => setIsSearching(false)}
           />
         </IconWrapper>
         {isSearching && (

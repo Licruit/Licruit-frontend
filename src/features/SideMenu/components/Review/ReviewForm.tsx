@@ -34,14 +34,13 @@ function ReviewForm() {
   };
 
   const handleOnSubmit = (data: Form) => {
-    if (id !== null) {
+    if (id && id !== null) {
       const req = {
-        orderId: 1,
+        orderId: id,
         title: data.title,
         content: data.content,
         score: rate,
       };
-
       postReview(req);
     }
   };
