@@ -8,7 +8,7 @@ function Header() {
   return (
     <HeaderBar>
       <div className='wrapper'>
-        <NavLink to={PATH.main}>
+        <NavLink to={PATH.main} aria-label='Home'>
           <Logo />
         </NavLink>
         <Nav $gap={36}>
