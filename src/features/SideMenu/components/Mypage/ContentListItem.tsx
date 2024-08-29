@@ -10,6 +10,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
 
   const ListItemData = { ...props };
   const ListType = ListItemData.status;
+  console.log(ListItemData.isWroteReview);
 
   const ButtonType =
     ListType === '신청'
@@ -57,7 +58,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
           disabled={
             ListType === '신청'
               ? false
-              : Number(ListItemData.isWroteReview) !== 1
+              : Number(ListItemData.isWroteReview) === 1
           }
         >
           {ButtonType.text}
