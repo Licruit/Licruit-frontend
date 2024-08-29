@@ -26,7 +26,13 @@ function RateLiquorInfo({
   return (
     <LiquorInfoContainer onClick={() => navigate(`${PATH.catalog}/${id}`)}>
       <HeadInfo>현재 {reviewAvg}잔이에요 !</HeadInfo>
-      <img src={imageUrl} alt={title} loading='lazy' />
+      <img
+        src={imageUrl}
+        alt={title}
+        height={264}
+        width='auto'
+        loading='lazy'
+      />
       <LiquorInfo>
         <Badge $type='black' $size='sm'>
           {badgeText}
@@ -50,10 +56,6 @@ const LiquorInfoContainer = styled.li`
   flex-direction: column;
   gap: 20px;
   align-items: center;
-
-  img {
-    height: 264px;
-  }
 `;
 
 const LiquorInfo = styled.div`
