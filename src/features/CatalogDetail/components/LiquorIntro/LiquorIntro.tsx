@@ -1,15 +1,23 @@
 import Rating from '@/components/Rating/Rating';
 import styled from 'styled-components';
 import StatBox from '@/components/StatBox/StatBox';
+import { useLiquorDetail } from '@/features/LiquorDetail';
 
-function LiquorIntro() {
+interface Props {
+  liquorId: number | undefined;
+}
+
+function LiquorIntro({ liquorId }: Props) {
+  const { liquorDetail } = useLiquorDetail(liquorId);
+  const { reviewCount, reviewAvg } = liquorDetail;
+
   return (
     <Container>
       <StatBox title='리뷰' iconType='review'>
-        <span className='review-count'>10</span>
+        <span className='review-count'>{reviewCount}</span>
       </StatBox>
       <StatBox title='평점' iconType='review'>
-        <Rating rating={4.5} hasLabel />
+        <Rating rating={reviewAvg} hasLabel />
       </StatBox>
     </Container>
   );

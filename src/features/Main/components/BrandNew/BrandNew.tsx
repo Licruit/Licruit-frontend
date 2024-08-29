@@ -1,19 +1,28 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import Catalog from './Catalog';
+import React, { Suspense, useState } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
+
+const Catalog = React.lazy(() => import('./Catalog'));
 
 function BrandNew() {
   const [imageUrl, setImageUrl] = useState('');
 
   return (
     <BrandNewContainer>
-      <Catalog setImageUrl={setImageUrl} />
-      <div className='img-wrapper'>
-        <img src={imageUrl} alt='liquor' />
-      </div>
+      <GlobalErrorBoundary>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Catalog setImageUrl={setImageUrl} />
+          <div className='img-wrapper'>
+            <img src={imageUrl} alt='liquor' loading='lazy' />
+          </div>
+        </Suspense>
+      </GlobalErrorBoundary>
     </BrandNewContainer>
   );
 }
+
+export default BrandNew;
 
 const BrandNewContainer = styled.div`
   display: flex;
@@ -33,5 +42,3 @@ const BrandNewContainer = styled.div`
     }
   }
 `;
-
-export default BrandNew;

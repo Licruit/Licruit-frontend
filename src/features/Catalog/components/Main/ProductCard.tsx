@@ -3,7 +3,7 @@ import { Badge } from '@/styles/components/Badge';
 
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Spinner from '../Spinner';
+import Spinner from '../../../../components/Spinner/Spinner';
 
 interface LiquorInfo {
   img: string;
@@ -40,7 +40,7 @@ function ProductCard({ headText, liquorInfo, onClick, size }: Props) {
       <ImgContainer>
         {imageLoaded ? (
           <div className='img'>
-            <img src={liquorInfo.img} alt='liquor' />
+            <img src={liquorInfo.img} alt='liquor' loading='lazy' />
           </div>
         ) : (
           <Spinner />

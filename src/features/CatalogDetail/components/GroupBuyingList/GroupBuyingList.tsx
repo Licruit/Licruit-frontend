@@ -5,8 +5,6 @@ import { useCurrentBuyings } from '../../hooks/useCurrentBuyings';
 function GroupBuyingList() {
   const { buyings, totalBuyings } = useCurrentBuyings();
 
-  if (!buyings) return <></>;
-
   return (
     <Container>
       <StatusBar>

@@ -6,6 +6,7 @@ import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function NavContentLayout() {
   const { isOpen, close } = useMyPageIsOpenStore();
@@ -13,13 +14,15 @@ function NavContentLayout() {
   return (
     <>
       <Header />
-      <CatalogHeader />
-      <Container>
-        <Outlet />
-        {isOpen && <MyPageSideMenu onClose={close} />}
-      </Container>
-      <Footer />
-      <ScrollToTop />
+      <GlobalErrorBoundary>
+        <CatalogHeader />
+        <Container>
+          <Outlet />
+          {isOpen && <MyPageSideMenu onClose={close} />}
+        </Container>
+        <Footer />
+        <ScrollToTop />
+      </GlobalErrorBoundary>
     </>
   );
 }

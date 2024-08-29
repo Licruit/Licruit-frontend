@@ -1,6 +1,8 @@
 import { Divider } from '@/styles/components/Divider';
 import styled from 'styled-components';
 import { formatNumber } from '@/utils/format';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { useWholesalerInfo } from '../hooks/useWholesalerInfo';
 
 function WholesalerInfo() {
@@ -15,7 +17,15 @@ function WholesalerInfo() {
       <ProfileWrapper>
         <h5>도매업체 소개</h5>
         <Profile>
-          <img src={img} alt='도매업자 프로필 이미지' width={88} height={88} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <img
+              src={img}
+              alt='도매업자 프로필 이미지'
+              width={88}
+              height={88}
+              loading='lazy'
+            />
+          </Suspense>
           <div className='intro-wrapper'>
             <h4>{businessName}</h4>
             <p>{introduce}</p>
@@ -25,7 +35,7 @@ function WholesalerInfo() {
       <Divider />
       <ExtraInfo>
         <span>
-          홈페이지 : <a href='homepage'>{homepage}</a>
+          홈페이지 : <a href={homepage}>{homepage}</a>
         </span>
         <span>누적 판매수 : {formatNumber(totalSales)}병</span>
       </ExtraInfo>

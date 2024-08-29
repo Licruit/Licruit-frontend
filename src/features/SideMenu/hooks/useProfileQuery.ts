@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getProfile } from '../api/getProfile';
 import { GetProfile } from '../model/profile.model';
 
 const useProfileQuery = () => {
-  const { data } = useQuery<GetProfile>({
+  const { data } = useSuspenseQuery<GetProfile>({
     queryKey: ['profile'],
     queryFn: getProfile,
     staleTime: Infinity,

@@ -25,7 +25,7 @@ function GroupBuyingGrid({ region, sort }: Props) {
 
   return (
     <Container>
-      {liquorData?.pages.map((item: GroupBuying, i: number) => {
+      {liquorData.pages.map((item: GroupBuying, i: number) => {
         // eslint-disable-next-line react/no-array-index-key
         return <GroupBuyingCard {...item} key={`${item.id}-${i}`} />;
       })}

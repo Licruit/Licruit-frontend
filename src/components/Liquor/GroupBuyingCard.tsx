@@ -17,10 +17,10 @@ function GroupBuyingCard(liquor: GroupBuying) {
     <LiquorInfoContainer>
       <HeaderInfo>현재 {orderCount}병 신청됐습니다!</HeaderInfo>
       <LiquorInfoWrapper
-        $imageUrl={img}
         onClick={() => navigation(`/group-buying/${id}`)}
         onMouseEnter={handleMouseEnter}
       >
+        <img className='liquor-image' src={img} alt={title} loading='lazy' />
         <LiquorInfo>
           <Badge $size='sm' $type='white'>
             {leftDate === 0 ? '오늘마감' : `${leftDate}일 남음`}
@@ -53,15 +53,21 @@ const Title = styled.div`
   color: ${({ theme }) => theme.color.common[100]};
 `;
 
-const LiquorInfoWrapper = styled.div<{ $imageUrl: string }>`
+const LiquorInfoWrapper = styled.div`
   cursor: pointer;
-
   position: relative;
-
   width: 100%;
   padding-bottom: 100%;
 
-  background: url(${({ $imageUrl }) => $imageUrl}) white 50% / contain no-repeat;
+  .liquor-image {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 100%;
+  }
 `;
 
 const LiquorInfo = styled.div`

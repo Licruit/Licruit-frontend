@@ -34,6 +34,7 @@ export default Footer;
 
 const Container = styled.div`
   width: 100%;
+  margin-top: 50px;
   padding: 20px;
 
   img {
