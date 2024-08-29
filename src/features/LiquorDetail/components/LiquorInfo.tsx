@@ -8,7 +8,7 @@ import InfoBox from './InfoBox/InfoBox';
 import Fallback from './Fallback';
 
 interface Props {
-  liquorId: number | undefined;
+  liquorId: number;
 }
 
 function LiquorInfo({ liquorId }: Props) {
@@ -22,7 +22,7 @@ function LiquorInfo({ liquorId }: Props) {
         {currentTap === '리뷰' && (
           <ErrorBoundary FallbackComponent={Fallback}>
             <Suspense fallback={<LoadingSpinner />}>
-              <ReviewBox />
+              <ReviewBox liquorId={liquorId} />
             </Suspense>
           </ErrorBoundary>
         )}
