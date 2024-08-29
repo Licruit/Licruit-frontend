@@ -5,7 +5,6 @@ import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 
 const Catalog = React.lazy(() => import('./Catalog'));
 
-
 function BrandNew() {
   const [imageUrl, setImageUrl] = useState('');
 
@@ -23,9 +22,8 @@ function BrandNew() {
   );
 }
 
-
 export default BrandNew;
-  
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -34,7 +32,7 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-  
+
 const BrandNewContainer = styled.div`
   display: flex;
   gap: 20px;
