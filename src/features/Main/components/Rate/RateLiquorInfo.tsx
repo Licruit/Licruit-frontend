@@ -56,6 +56,12 @@ const LiquorInfoContainer = styled.li`
   flex-direction: column;
   gap: 20px;
   align-items: center;
+
+  img {
+    width: 264px;
+    height: 264px;
+    object-fit: contain;
+  }
 `;
 
 const LiquorInfo = styled.div`

@@ -1,7 +1,7 @@
 export const INPUT = {
   shop: {
     label: '상호명',
-    placeholder: '최근학',
+    placeholder: 'Licruit',
     isRequired: true,
     hasValidation: true,
     'aria-label': 'businessName',
@@ -15,6 +15,7 @@ export const INPUT = {
   address: {
     label: '사업장 주소',
     placeholder: '서울특별시 서울구 서울동 000-00',
+    isRequired: true,
     'aria-label': 'address',
   },
   category: { label: '업종 카테고리', isRequired: true },
