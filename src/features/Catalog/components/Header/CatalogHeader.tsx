@@ -28,19 +28,19 @@ const Container = styled.div<{ $isHided: boolean }>`
   z-index: 90;
   top: 75px;
   left: 0;
+  transform: ${({ $isHided }) => ($isHided ? 'translateY(-100%)' : 'none')};
 
   overflow: hidden;
 
   width: 100%;
   padding: 0 20px;
 
+  opacity: ${({ $isHided }) => ($isHided ? 0 : 1)};
   background: rgb(255 255 255 / 60%);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[400]};
 
   transition: all 0.3s ease-in-out;
-  opacity: ${({ $isHided }) => ($isHided ? 0 : 1)};
-  transform: ${({ $isHided }) => ($isHided ? 'translateY(-100%)' : 'none')};
 
   .classification {
     display: flex;

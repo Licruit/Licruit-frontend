@@ -43,9 +43,10 @@ const Container = styled.div`
   gap: 36px;
   align-items: center;
   justify-content: center;
-  padding: 30px 0;
 
   width: 100%;
+  padding: 30px 0;
+
   background-color: ${({ theme }) => theme.color.common[100]};
 
   .button-wrapper {

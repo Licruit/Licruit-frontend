@@ -60,18 +60,20 @@ const LiquorInfoContainer = styled.li`
 const LiquorInfoWrapper = styled.div`
   cursor: pointer;
 
+  position: relative;
+
   width: 453px;
   height: 453px;
   padding-top: 175px;
-  position: relative;
 
   .liquor-image {
     position: absolute;
+    z-index: -10;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+
     height: 100%;
-    z-index: -10;
   }
 `;
 

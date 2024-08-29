@@ -55,8 +55,8 @@ function BuyerList({ buyers, isEmpty }: Props) {
 export default BuyerList;
 
 const TableWrapper = styled.div`
-  width: 100%;
   display: flex;
+  width: 100%;
   height: fit-content;
   min-height: 500px;
 `;

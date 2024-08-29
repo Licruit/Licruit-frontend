@@ -38,6 +38,8 @@ const Title = styled.div`
 `;
 
 const JoinUsContainer = styled.div`
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,14 +47,13 @@ const JoinUsContainer = styled.div`
   width: 100%;
   height: 272px;
 
-  position: relative;
-
   .join-banner {
-    width: 100%;
     position: absolute;
+    z-index: -10;
     top: 0;
     left: 0;
-    z-index: -10;
+
+    width: 100%;
   }
 `;
 

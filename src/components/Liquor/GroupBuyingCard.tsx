@@ -61,11 +61,12 @@ const LiquorInfoWrapper = styled.div`
 
   .liquor-image {
     position: absolute;
+    z-index: -10;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+
     height: 100%;
-    z-index: -10;
   }
 `;
 
