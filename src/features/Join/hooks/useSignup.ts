@@ -3,6 +3,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { DropdownItem } from '@/components/Input/Dropdown';
 import { toast } from 'react-toastify';
 import { useFormContext } from 'react-hook-form';
+import { formatCompanyNumber } from '@/utils/format';
+
 import { duplicateBusiness, getKSIC } from '../api/signup.api';
 import useCerficationMutation from './useCerficationMutation';
 
@@ -22,7 +24,7 @@ export const useSignup = () => {
     mutationFn: () => duplicateBusiness(companyNumber),
     onSuccess: () => {
       setIsVerified(true);
-      setValue('companyNumber', companyNumber);
+      setValue('companyNumber', formatCompanyNumber(companyNumber.toString()));
     },
     onError: () => {
       toast.error('중복된 사업자 번호입니다.');
