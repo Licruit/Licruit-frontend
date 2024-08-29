@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 import Button from '@/components/Button/Button';
 import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
