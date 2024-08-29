@@ -63,10 +63,7 @@ function ConsentForm() {
 
       <ul>
         {terms.map((item) => (
-          <Term
-            key={item.id}
-            onClick={() => handleTermChecked(item.id, item.required)}
-          >
+          <Term key={item.id}>
             <Option>
               <CheckIcon
                 fill={
@@ -83,15 +80,15 @@ function ConsentForm() {
                 key={item.label}
                 type='checkbox'
                 {...register(item.name, { required: item.required })}
-                onClick={(e) => e.stopPropagation()}
+                onClick={() => handleTermChecked(item.id, item.required)}
               />
               <Essential htmlFor={item.name}>{item.label}</Essential>
-              {item.id ? (
-                <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
-              ) : (
-                ''
-              )}
             </Option>
+            {item.id ? (
+              <View>{item.src && <NavLink to={item.src}>보기</NavLink>}</View>
+            ) : (
+              ''
+            )}
           </Term>
         ))}
       </ul>
@@ -159,7 +156,7 @@ const Essential = styled.label`
   }
 `;
 
-const Option = styled.div`
+const Option = styled.label`
   display: flex;
   align-items: center;
 
