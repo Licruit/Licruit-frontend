@@ -1,8 +1,6 @@
 import MetaTag from '@/components/MetaTag';
-import { ProductGrid } from '@/features/Catalog';
-import Filter from '@/features/Catalog/components/Filter/Filter';
-import ProductFallback from '@/features/Catalog/components/ProductFallback';
-import LoadingSpinner from '@/features/Catalog/components/Spinner';
+import { ProductGrid, Filter, ProductFallback } from '@/features/Catalog';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import { useQueryParams } from '@/features/Catalog/hooks/useQueryParams';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';

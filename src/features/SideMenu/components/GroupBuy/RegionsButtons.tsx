@@ -11,8 +11,6 @@ const RegionsButtons = forwardRef(() => {
   const selected = useWatch({ name: 'regions', defaultValue: [] });
   const { regionData } = useRegion();
 
-  if (!regionData) return <></>;
-
   const handleClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     const region = event.currentTarget.innerText;
 

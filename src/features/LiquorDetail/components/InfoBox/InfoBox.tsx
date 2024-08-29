@@ -9,8 +9,6 @@ interface Props {
 function InfoBox({ liquorId }: Props) {
   const { liquorDetail } = useLiquorDetail(liquorId);
 
-  if (!liquorDetail) return null;
-
   const {
     categoryName,
     ingredient,

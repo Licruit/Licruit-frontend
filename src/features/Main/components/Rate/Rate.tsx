@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import PATH from '@/constants/path';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
 import Category from '../common/Category';
 import MoreButton from '../common/MoreButton';
-import RateLiquorInfo from './RateLiquorInfo';
 import { CATEGORY_TEXT } from '../../constants/category';
 import useHighRateQuery from '../../hooks/useHighRateQuery';
+import RateLiquorInfo from './RateLiquorInfo';
 
 function Rate() {
   const navigate = useNavigate();
@@ -22,19 +25,23 @@ function Rate() {
         />
         <MoreButton onClick={() => navigate(PATH.catalog)}>더보기</MoreButton>
       </CategoryHeader>
-      <LiquorContent>
-        {liquors.map((liquorItem) => (
-          <RateLiquorInfo
-            key={liquorItem.id}
-            id={liquorItem.id}
-            reviewAvg={Number(liquorItem.reviewAvg)}
-            imageUrl={liquorItem.img}
-            badgeText={liquorItem.categoryName}
-            title={liquorItem.name}
-            description={liquorItem.description}
-          />
-        ))}
-      </LiquorContent>
+      <GlobalErrorBoundary size='md'>
+        <Suspense fallback={<LoadingSpinner />}>
+          <LiquorContent>
+            {liquors.map((liquorItem) => (
+              <RateLiquorInfo
+                key={liquorItem.id}
+                id={liquorItem.id}
+                reviewAvg={Number(liquorItem.reviewAvg)}
+                imageUrl={liquorItem.img}
+                badgeText={liquorItem.categoryName}
+                title={liquorItem.name}
+                description={liquorItem.description}
+              />
+            ))}
+          </LiquorContent>
+        </Suspense>
+      </GlobalErrorBoundary>
     </RateContainer>
   );
 }

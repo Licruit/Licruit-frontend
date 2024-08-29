@@ -10,17 +10,17 @@ export const TOS = [
   {
     id: 1,
     name: 'private',
-    label: '개인정보 수집 및 이용약관',
+    label: '이용약관',
     required: true,
-    src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
+    src: 'https://www.notion.so/jimin1020/4eea2b3905514c7e831300d1abf6b349',
     isChecked: false,
   },
   {
     id: 2,
     name: 'purchase',
-    label: '구매 이용약관',
+    label: '개인정보처리방침',
     required: true,
-    src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
+    src: 'https://www.notion.so/jimin1020/d50d5df8985d4147bdfb20771f45672e',
     isChecked: false,
   },
   {
@@ -28,7 +28,7 @@ export const TOS = [
     name: 'marketing',
     label: '마케팅 할용동의',
     required: false,
-    src: 'https://www.notion.so/jimin1020/563d711489be45548ad23d7493596b5a',
+    src: null,
     isChecked: false,
   },
 ];

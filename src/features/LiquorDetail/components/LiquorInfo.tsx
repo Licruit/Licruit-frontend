@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useState } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
+import React, { Suspense, useState } from 'react';
 import TapBar from './TapBar';
-import ReviewBox from './ReviewBox/ReviewBox';
 import InfoBox from './InfoBox/InfoBox';
 import Fallback from './Fallback';
 
+const ReviewBox = React.lazy(() => import('./ReviewBox/ReviewBox'));
+
 interface Props {
-  liquorId: number | undefined;
+  liquorId: number;
 }
 
 function LiquorInfo({ liquorId }: Props) {
@@ -20,7 +22,9 @@ function LiquorInfo({ liquorId }: Props) {
         {currentTap === '정보' && <InfoBox liquorId={liquorId} />}
         {currentTap === '리뷰' && (
           <ErrorBoundary FallbackComponent={Fallback}>
-            <ReviewBox />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ReviewBox liquorId={liquorId} />
+            </Suspense>
           </ErrorBoundary>
         )}
       </div>
