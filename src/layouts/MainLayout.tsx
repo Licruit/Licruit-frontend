@@ -5,18 +5,21 @@ import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function MainLayout() {
   const { isOpen, close } = useMyPageIsOpenStore();
   return (
     <>
       <Header />
-      <Container>
-        <Outlet />
-        {isOpen && <MyPageSideMenu onClose={close} />}
-      </Container>
-      <Footer />
-      <ScrollToTop />
+      <GlobalErrorBoundary>
+        <Container>
+          <Outlet />
+          {isOpen && <MyPageSideMenu onClose={close} />}
+        </Container>
+        <Footer />
+        <ScrollToTop />
+      </GlobalErrorBoundary>
     </>
   );
 }

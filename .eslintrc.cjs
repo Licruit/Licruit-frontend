@@ -34,6 +34,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y'],
   rules: {
     camelcase: ['warn', { properties: 'never' }],
+    'react/no-unstable-nested-components': 'off',
     'no-alert': 'off',
     'no-plusplus': 'off',
     'no-restricted-globals': 'off',

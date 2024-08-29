@@ -15,4 +15,6 @@ export interface LiquorDetail {
   categoryName: string;
   likes: number;
   liked: 0 | 1;
+  reviewCount: number;
+  reviewAvg: number;
 }

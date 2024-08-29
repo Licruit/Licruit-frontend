@@ -2,19 +2,22 @@ import Header from '@/components/Header/Header';
 import { Poster } from 'public/assets/images';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function AuthLayout() {
   return (
     <Container>
       <Header />
-      <Content>
-        <Poster style={{ height: '100%', width: 'auto' }} />
-        <div className='wrapper'>
-          <FormLayout>
-            <Outlet />
-          </FormLayout>
-        </div>
-      </Content>
+      <GlobalErrorBoundary>
+        <Content>
+          <Poster style={{ height: '100%', width: 'auto' }} />
+          <div className='wrapper'>
+            <FormLayout>
+              <Outlet />
+            </FormLayout>
+          </div>
+        </Content>
+      </GlobalErrorBoundary>
     </Container>
   );
 }

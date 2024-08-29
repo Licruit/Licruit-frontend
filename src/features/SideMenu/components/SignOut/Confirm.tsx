@@ -17,7 +17,7 @@ function Confirm({ companyNumber, onNext }: Props) {
   return (
     <>
       <SignOutDescription>
-        탈퇴 후에는 사업자 등록번호{' '}
+        탈퇴 후에는 사업자 등록번호
         {companyNumber ? formatCompanyNumber(companyNumber) : ''}과 관련된 모든
         데이터는 복구되지 않습니다
       </SignOutDescription>

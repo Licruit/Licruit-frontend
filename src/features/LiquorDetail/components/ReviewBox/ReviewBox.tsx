@@ -5,10 +5,12 @@ import ReviewListItem from './ReviewListItem';
 import SortSelect from './SortSelect';
 import { useReviews } from '../../hooks/useReviews';
 
-function ReviewBox() {
-  const { reviews, pagination } = useReviews();
+interface Props {
+  liquorId: number;
+}
 
-  if (!reviews || !pagination) return <></>;
+function ReviewBox({ liquorId }: Props) {
+  const { reviews, pagination } = useReviews(liquorId);
 
   return (
     <Container>

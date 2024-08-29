@@ -6,6 +6,7 @@ export interface GroupBuyingDetail {
   totalMin: number;
   totalMax: number;
   price: number;
+  img: string;
   deliveryFee: number;
   freeDeliveryFee: number;
   title: string;

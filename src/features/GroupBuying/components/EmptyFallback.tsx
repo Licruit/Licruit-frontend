@@ -2,15 +2,15 @@ import { AxiosError } from 'axios';
 import { FallbackProps } from 'react-error-boundary';
 import styled from 'styled-components';
 
-function Fallback({ error }: FallbackProps) {
+function EmptyFallback({ error }: FallbackProps) {
   if (error instanceof AxiosError && error.response?.status === 404) {
     return <EmptyBuying>조회할 공동구매 목록이 없습니다.</EmptyBuying>;
   }
 
-  return <div>Fallback</div>;
+  return error;
 }
 
-export default Fallback;
+export default EmptyFallback;
 
 const EmptyBuying = styled.div`
   display: flex;

@@ -1,5 +1,7 @@
 import { CloseIcon } from 'public/assets/icons';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
 import Button from '@/components/Button/Button';
 import { useMyPageSideMenuStore } from '@/store/mypageSideMenuStore';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -92,7 +94,10 @@ function GroupBuyOpenForm() {
             isPrice
           />
         </InputWrapper>
-        <RegionsButtons {...register('regions', { required: true })} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <RegionsButtons {...register('regions', { required: true })} />
+        </Suspense>
+
         <ProfileInput
           {...INPUT.groupBuy}
           maxLength={40}

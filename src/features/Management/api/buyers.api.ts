@@ -34,3 +34,15 @@ export const confirmAllBuyer = async (buyingId: number) => {
   );
   return response.data;
 };
+
+export const cancelOrder = async (orderId: number) => {
+  const response = await httpClient.delete(
+    `/buyings/wholesaler/order/${orderId}`
+  );
+  return response.data;
+};
+
+export const reportBuyer = async (orderId: number) => {
+  const response = await httpClient.post(`/buyings/blacklist/${orderId}`);
+  return response.data;
+};

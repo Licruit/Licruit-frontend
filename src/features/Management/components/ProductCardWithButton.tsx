@@ -12,7 +12,6 @@ function ProductCardWithButton() {
   const { handleConfirmAll, handleDeleteBuying } = useBuyingStatus(
     Number(buyingId)
   );
-  if (!groupBuyingDetail) return <></>;
 
   const isOver =
     groupBuyingDetail.orderCount >= groupBuyingDetail.totalMin &&
@@ -61,7 +60,7 @@ function ProductCardWithButton() {
       {buyingId && (
         <ProductCard
           liquorInfo={{
-            img: '',
+            img: groupBuyingDetail.img,
             categoryName: getRemainedDay(groupBuyingDetail.deadline),
             name: groupBuyingDetail.title,
             description: groupBuyingDetail.content,

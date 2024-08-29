@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import Button from '@/components/Button/Button';
 import PATH from '@/constants/path';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,9 +11,7 @@ function BuyDetail() {
   const navigate = useNavigate();
   return (
     <Container>
-      <Suspense fallback={<></>}>
-        <BuyerTable orderDetail={orderDetail} />
-      </Suspense>
+      <BuyerTable orderDetail={orderDetail} />
       <Button
         onClick={() => navigate(PATH.management)}
         $style='outlined'

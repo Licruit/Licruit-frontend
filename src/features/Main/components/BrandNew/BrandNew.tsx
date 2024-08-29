@@ -1,20 +1,32 @@
 import styled, { keyframes } from 'styled-components';
-import { useState } from 'react';
-import Catalog from './Catalog';
+import styled from 'styled-components';
+import React, { Suspense, useState } from 'react';
+import LoadingSpinner from '@/components/Spinner/Spinner';
+import GlobalErrorBoundary from '@/layouts/GlobalErrorBoundary';
+
+const Catalog = React.lazy(() => import('./Catalog'));
+
 
 function BrandNew() {
   const [imageUrl, setImageUrl] = useState('');
 
   return (
     <BrandNewContainer>
-      <Catalog setImageUrl={setImageUrl} />
-      <div className='img-wrapper'>
-        {imageUrl && <img key={imageUrl} src={imageUrl} alt='liquor' />}
-      </div>
+      <GlobalErrorBoundary>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Catalog setImageUrl={setImageUrl} />
+          <div className='img-wrapper'>
+            <img src={imageUrl} alt='liquor' loading='lazy' />
+          </div>
+        </Suspense>
+      </GlobalErrorBoundary>
     </BrandNewContainer>
   );
 }
 
+
+export default BrandNew;
+  
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -23,7 +35,7 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-
+  
 const BrandNewContainer = styled.div`
   display: flex;
   gap: 20px;
@@ -44,5 +56,3 @@ const BrandNewContainer = styled.div`
     }
   }
 `;
-
-export default BrandNew;
