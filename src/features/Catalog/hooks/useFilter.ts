@@ -37,9 +37,21 @@ export const useFilter = () => {
   };
 
   const clearFilter = () => {
+    const searchQuery = searchParams.get('search');
+
+    searchParams.delete('minAlcohol');
+    searchParams.delete('maxAlcohol');
+    searchParams.delete('sort');
+    searchParams.delete('page');
+
+    if (searchQuery) {
+      navigate(`/catalog?search=${searchQuery}`);
+    } else {
+      navigate(`/catalog`);
+    }
+
     setSelectedRating(null);
     setSelectedAlcohol(null);
-    navigate(`/catalog`);
   };
 
   return {
