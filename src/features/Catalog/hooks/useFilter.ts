@@ -1,3 +1,4 @@
+import PATH from '@/constants/path';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -37,9 +38,21 @@ export const useFilter = () => {
   };
 
   const clearFilter = () => {
+    const searchQuery = searchParams.get('search');
+
+    searchParams.delete('minAlcohol');
+    searchParams.delete('maxAlcohol');
+    searchParams.delete('sort');
+    searchParams.delete('page');
+
+    if (searchQuery) {
+      navigate(`${PATH.catalog}?search=${searchQuery}`);
+    } else {
+      navigate(PATH.catalog);
+    }
+
     setSelectedRating(null);
     setSelectedAlcohol(null);
-    navigate(`/catalog`);
   };
 
   return {
