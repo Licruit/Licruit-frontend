@@ -1,3 +1,4 @@
+import PATH from '@/constants/path';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -45,9 +46,9 @@ export const useFilter = () => {
     searchParams.delete('page');
 
     if (searchQuery) {
-      navigate(`/catalog?search=${searchQuery}`);
+      navigate(`${PATH.catalog}?search=${searchQuery}`);
     } else {
-      navigate(`/catalog`);
+      navigate(PATH.catalog);
     }
 
     setSelectedRating(null);
