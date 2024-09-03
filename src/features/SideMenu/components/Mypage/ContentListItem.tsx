@@ -10,6 +10,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
 
   const ListItemData = { ...props };
   const ListType = ListItemData.status;
+  console.log(ListItemData.isWroteReview);
 
   const ButtonType =
     ListType === '신청'
@@ -21,7 +22,7 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
         } as const);
 
   const handleClickReview = () => {
-    setContent('review', { id: Number(ListItemData.buyingId) });
+    setContent('review', { id: Number(ListItemData.id) });
   };
 
   return (
@@ -51,10 +52,14 @@ function ContentListItem({ ...props }: GroupBuyListRes) {
           $width='full'
           onClick={
             ListType === '신청'
-              ? () => handleCancelOrder(Number(ListItemData.buyingId))
+              ? () => handleCancelOrder(Number(ListItemData.id))
               : handleClickReview
           }
-          disabled={Number(ListItemData.isWroteReview) !== 1}
+          disabled={
+            ListType === '신청'
+              ? false
+              : Number(ListItemData.isWroteReview) === 1
+          }
         >
           {ButtonType.text}
         </Button>

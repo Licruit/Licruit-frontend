@@ -21,7 +21,7 @@ function GroupBuyingForm({ detailData }: Props) {
   const { liquorName, isParticipated, orderCount, deadline, totalMax } =
     detailData;
   const isOver =
-    (totalMax !== 0 && orderCount <= totalMax) || isClosed(deadline);
+    (totalMax !== 0 && orderCount >= totalMax) || isClosed(deadline);
 
   return (
     <FormProvider {...methods}>

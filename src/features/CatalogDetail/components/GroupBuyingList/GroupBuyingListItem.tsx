@@ -15,7 +15,7 @@ function GroupBuyingListItem({ buyingData }: Props) {
   return (
     <Container onClick={() => navigate(`${PATH.group_buying}/${id}`)}>
       <Badge $size='sm' $type='black'>
-        {leftDate}일 남음
+        {leftDate <= 0 ? '오늘 마감' : `${leftDate}일 남음`}
       </Badge>
       <h2 className='item-name'>{buyingTitle}</h2>
       <p>{buyingContent}</p>
@@ -29,9 +29,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-
+  cursor: pointer;
   padding: 20px 0;
-
   border-bottom: 1px solid ${({ theme }) => theme.color.neutral[900]};
 
   .item-name {

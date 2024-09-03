@@ -119,6 +119,7 @@ export const useBuyerStatus = () => {
       );
     },
     onSettled: () => {
+      toast.info('경고 처리 되었습니다.');
       queryClient.invalidateQueries({
         queryKey: ['buyerList', { buyingId, page, filter }],
       });

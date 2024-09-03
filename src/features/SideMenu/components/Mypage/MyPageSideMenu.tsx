@@ -77,6 +77,18 @@ const Container = styled.div`
   padding: 20px;
 
   background: ${({ theme }) => theme.color.common[100]};
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(20px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  animation: slide-left 0.5s ease;
 `;
 
 export default MyPageSideMenu;

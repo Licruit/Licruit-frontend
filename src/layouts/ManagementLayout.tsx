@@ -1,6 +1,5 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header/Header';
-import HeaderWithSearch from '@/components/Header/HeaderWithSearch';
 import ScrollToTop from '@/components/ScrollToTop';
 import MyPageSideMenu from '@/features/SideMenu/components/Mypage/MyPageSideMenu';
 import { useMyPageIsOpenStore } from '@/store/mypageSideMenuStore';
@@ -10,12 +9,12 @@ import styled from 'styled-components';
 import GlobalErrorBoundary from './GlobalErrorBoundary';
 
 function ManagementLayout() {
-  const { buyingId, orderId } = useParams();
+  const { buyingId } = useParams();
   const { isOpen, close } = useMyPageIsOpenStore();
 
   return (
     <>
-      {!orderId && buyingId ? <HeaderWithSearch /> : <Header />}
+      <Header />
       <GlobalErrorBoundary>
         <Container>
           {buyingId && <ProductCardWithButton />}

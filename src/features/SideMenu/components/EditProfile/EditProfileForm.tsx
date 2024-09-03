@@ -103,7 +103,10 @@ function EditProfileForm({ userProfile, image }: Props) {
               <ProfileInput {...INPUT.url} {...register('homepage')} />
             </>
           )}
-          <ProfileInput {...INPUT.address} {...register('address')} />
+          <ProfileInput
+            {...INPUT.address}
+            {...register('address', { required: true })}
+          />
           <ProfileInput
             {...INPUT.contact}
             {...register('contact', {

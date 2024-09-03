@@ -1,5 +1,4 @@
 import Button from '@/components/Button/Button';
-import PATH from '@/constants/path';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import BuyerTable from './BuyerTable';
@@ -13,7 +12,7 @@ function BuyDetail() {
     <Container>
       <BuyerTable orderDetail={orderDetail} />
       <Button
-        onClick={() => navigate(PATH.management)}
+        onClick={() => navigate(-1)}
         $style='outlined'
         $theme='primary'
         $size='lg'
@@ -29,4 +28,5 @@ export default BuyDetail;
 
 const Container = styled.div`
   width: 100%;
+  flex: 1;
 `;
