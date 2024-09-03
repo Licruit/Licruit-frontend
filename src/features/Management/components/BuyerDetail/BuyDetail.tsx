@@ -28,4 +28,5 @@ export default BuyDetail;
 
 const Container = styled.div`
   width: 100%;
+  flex: 1;
 `;

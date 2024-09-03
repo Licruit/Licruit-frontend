@@ -36,7 +36,7 @@ export const useRegister = (buyingId: number) => {
   const { mutate } = useMutation({
     mutationFn: ({ quantity }: BuyingForm) =>
       registerGroupBuying(buyingId, quantity),
-    onMutate: async () => {
+    onMutate: async ({ quantity }: BuyingForm) => {
       await queryClient.cancelQueries({
         queryKey: ['groupBuyingDetail', buyingId],
       });
@@ -52,6 +52,7 @@ export const useRegister = (buyingId: number) => {
 
       queryClient.setQueryData(['groupBuyingDetail', buyingId], {
         ...prevData,
+        orderCount: prevData.orderCount + quantity,
         isParticipated: !prevData.isParticipated,
       });
 
