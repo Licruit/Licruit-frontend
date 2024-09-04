@@ -5,7 +5,7 @@
 > *전통주류 공동구매 매칭 서비스, Licruit*
 > 
 - **프로젝트 기간**: 2024.07.10 ~ 2024.08.30
-- **사이트 주소**: [www.licruit.site](https://www.notion.so/jimin1020/www.licruit.site)
+- **사이트 주소**: [www.licruit.site](https://www.licruit.site)
 - **팀 노션**: [Team Licruit 노션](https://www.notion.so/Licruit-3edfdb47d8184e89be785cc5d586348f?pvs=21)
 
 <br />
