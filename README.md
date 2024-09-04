@@ -1,30 +1,175 @@
-# React + TypeScript + Vite
+# 🥃 Licruit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![커버디자인](https://github.com/user-attachments/assets/e0846510-c70c-4343-b873-1559e6818da4)
 
-Currently, two official plugins are available:
+> *전통주류 공동구매 매칭 서비스, Licruit*
+> 
+- **프로젝트 기간**: 2024.07.10 ~ 2024.08.30
+- **사이트 주소**: [www.licruit.site](https://www.notion.so/jimin1020/www.licruit.site)
+- **팀 노션**: [Team Licruit 노션](https://www.notion.so/Licruit-3edfdb47d8184e89be785cc5d586348f?pvs=21)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br />
 
-## Expanding the ESLint configuration
+# 📔 프로젝트 소개
+> Liquor (주류, 술) + Recruit (구하다, 모집하다) = Licruit (주류를 구하다)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+주류라는 소상공인, 도매업체 상호간의 수요와 공급의 공통 매개체를 이용한 매칭 서비스.
 
-- Configure the top-level `parserOptions` property like this:
+### ✔️ 기획 배경
+우연한 계기로 소상공인과 주류 도매업체 간의 좁혀지지 않는 고충이 있음을 발견했습니다.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **양조장** : 본조장에서 제조하는 주류에 대해 홍보할 수 있는 채널이 부족하며, 피드백을 확인할 수 있는 컨텐츠가 부족합니다.
+- **도매업체** : 특정 주류에 대해 적은 수요를 맞춰 공급하기에는 적은 수익, 이를 해결하기 위해 대량 발주를 진행할 경우 재고가 남아 버리는 리스크가 발생합니다.
+- **소상공인** : 특정 주류에 대해 대량으로 주문을 넣기에 자본이 부족하며, 자본 문제를 해결해 대량으로 특정 주류를 납품 받았다고 해도 재고가 남는 문제가 발생합니다. 최종적으로는 한정된 주류만 납품받게 되는 고충이 발생.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### ✔️ 프로젝트 목적
+소상공인의 고충인 특정 주류에 대한 소량 납품 희망과 도매업체의 특정 주류에 대해 정확히 알 수 없는 수요로 인한 발주 망설임을 공동구매라는 컨텐츠를 이용해 해결하고자 했습니다.
+
+### ✔️ 기대 효과
+- **전통주 제조업체** : 주류 문화에서 소외되고 외면받는 전통주라는 카테고리를 홍보하게 되는 효과를 가져오게 되며, 본 조장에서 제조되는 주류에 대해 소비자에게 또는 소상공인에게 어떻게 다가가는지에 대한 피드백을 확인할 수 있습니다.
+- **주류 도매업체** : 주류에 대한 손쉽고 정확한 수요 조사와 과대 발주로 인한 잉여 재고 리스크가 감소합니다.
+- **소상공인** : 공동구매 참여로 인해 납품을 희망하는 주류에 대해 필요한 만큼, 소량 입고가 가능합니다.
+- **소비자** : 소상공인의 다양한 전통주 입고로 인해 더 넓은 스팩트럼의 주류 문화를 보다 저렴하게 경험할 수 있습니다.
+
+<br />
+
+# 🖥️ 핵심 기능 소개
+
+### **회원 가입**
+
+- **휴대폰 번호 인증:** AWS SNS 서비스를 이용해 사용자 휴대폰 번호를 인증합니다.
+- **사업자등록증 검증:** NAVER CLOVA OCR을 활용해 사업자등록증의 진위 여부를 확인합니다.
+- **주소 검색 기능:** 다음 Postcode API를 통해 사용자가 손쉽게 주소를 검색할 수 있습니다.
+
+### **카탈로그**
+
+- **주류 데이터 수집:** 웹 스크래핑을 통해 최신 주류 데이터를 수집합니다.
+- **검색 및 카테고리별 조회:** 주류를 검색하거나 카테고리별로 조회할 수 있습니다.
+- **도수 및 평점 필터링:** 도수와 평점을 기준으로 주류 목록을 필터링할 수 있습니다.
+- **전통주 상세 정보 및 리뷰:** 선택한 전통주의 상세 정보와 사용자 리뷰를 볼 수 있습니다.
+- **공동구매 요청 기능:** 원하는 공동구매가 없는 경우, 공동구매 요청을 할 수 있는 기능을 제공합니다.
+
+### **공동구매**
+
+- **필터링 기능:** 인기, 최신, 마감 임박 상품을 필터링할 수 있습니다.
+- **지역별 필터링:** 사용자의 위치에 맞춰 지역별로 공동구매를 필터링할 수 있습니다.
+- **무한 스크롤:** 스크롤을 내리면서 계속해서 공동구매 목록을 조회할 수 있습니다.
+- **주문기간 및 배송 예정일:** 공동구매의 주문 기간과 예상 배송일을 조회할 수 있습니다.
+- **수량 입력 및 신청:** 원하는 수량을 입력하고 공동구매에 참여할 수 있는 기능을 제공합니다.
+
+### 리뷰
+
+- **리뷰 작성:** 거래가 완료된 후 해당 제품에 대한 리뷰를 작성할 수 있습니다.
+- **만족도 입력:** 리뷰 작성 시 거래에 대한 만족도를 입력할 수 있습니다.
+
+<br />
+
+# 🛠️ 기술 스택
+
+<img width="1707" alt="스크린샷 2024-09-04 오후 2 53 22" src="https://github.com/user-attachments/assets/cef03c5d-c8f3-46a6-8485-45d7df338584">
+
+<br />
+
+# 📑 프로젝트 진행 과정
+
+<img width="1546" alt="스크린샷 2024-09-04 오후 2 54 47" src="https://github.com/user-attachments/assets/b9b72d4b-5d3b-4a13-b064-1c8ad283984d">
+
+<br />
+
+# 👥 Team Licruit
+
+<img width="963" alt="스크린샷 2024-09-04 오후 5 01 15" src="https://github.com/user-attachments/assets/c4849769-5690-4063-8115-4453d7864a8b">
+
+## Front-end
+
+- [**고세종**](https://github.com/SebellKo)
+    
+    > _전역 상태 및 퍼널을 이용한 **다중** **중첩** **모달** 관리 구현_
+    - 메인 페이지 콘텐츠 조회
+    - 프로필 관리 및 회원 탈퇴
+    - 공동구매 오픈
+    - 리뷰 작성
+    - 공동구매 관리(성사, 미달성) 목록
+    - MSW를 활용해 API 모킹 설정 및 테스트 환경 구축
+    - Stylelint 설정
+    - Jest를 활용한 유닛 테스트 및 통합 테스트 작성
+
+- [**류지민**](https://github.com/JIMIN1020)
+    
+    > _**CI/CD 파이프라인 구축과 에러 핸들링을 통해 안정적이고 효율적인 프론트엔드 개발 환경을 구축**_
+    - 사업자 로그인 기능 구현 및 비밀번호 찾기
+    - 전통주 상세 조회 페이지
+    - 공동구매 관리 및 공동구매 참여
+    - 공동구매 관리(주문내역, 취소) 목록
+    - CI/CD 파이프라인 구축 및 AWS 배포
+    - 테스트 커버리지 보고서 생성
+    - 에러 핸들링을 위한 Error Boundary 구현
+    - Google Analytics 설정
+    - ESlint 설정
+
+- [**최주희**](https://github.com/juhee067)
+    
+    > _**Sentry 통합 및 SEO 최적화 작업을 통해 웹사이트의 품질을 향상**_
+    - 사업자 회원가입
+    - 전통주 목록 조회 및 필터링
+    - 공동구매 목록 조회 및 무한스크롤
+    - 공동구매 구매자 관리
+    - 에러 추적을 위한 Sentry 통합 및 설정
+    - SEO를 위한 메타 태그 추가
+    - 페이지 렌더링 최적화를 위한 Snap 설정
+
+## Back-end
+
+- [**권하진**](https://github.com/hajin0324)
+    
+    > _**AWS를 활용한 배포와 CD 파이프라인 구축으로 안정적인 서버 환경 구축과 함께 
+    winston과 morgan을 활용해 서버의 신뢰성과 유지보수성을 향상**_
+    > 
+    - DB 테이블 설계
+    - 사용자 인증을 위한 SMS 인증 기능
+    - 비밀번호 변경
+    - 프로필 이미지 업로드
+    - 프로필 조회 및 업데이트
+    - 공동구매 오픈
+    - 도매업자 공동구매 관리(현황, 목록, 주문자 조회)
+    - 공동구매 상태 변경
+    - 리뷰 작성
+    - AWS EB 배포 및 AWS RDS 구축
+    - CD 파이프라인 구축
+    - 로그 관리 시스템 구축 (winston, morgan)
+
+- [**김민진**](https://github.com/ncherryu)
+    
+    > _**토큰 인증 시스템을 설계로 사용자 보안 강화 및 
+    테스트 환경과 실시간 에러 모니터링 시스템을 구축하며 안정성 향상**_
+    > 
+    - DB 테이블 설계
+    - 회원 관리 기능(회원가입, 로그인, 로그아웃, 탈퇴)
+    - 토큰 인증 및 관리(JWT 기반의 액세스 토큰과 리프레시 토큰)
+    - 전통주 목록 및 상세 조회
+    - 공동구매 요청/취소 및 좋아요
+    - 공동구매 전체 조회 및 상제 조회
+    - 공동구매 참여 및 취소
+    - 참여한 공동구매 목록 및 현황 조회
+    - 리뷰 조회
+    - 이미지에서 텍스트를 추출하는 OCR 기능
+    - ESlint 설정
+    - 유닛 테스트 및 통합 테스트를 위한 Jest 테스트 환경을 구축
+    - 에러 추적을 위한 Sentry 통합 및 설정
+
+<br />
+
+# **📖 Wiki**
+> *프로젝트 상세 정보는 [Wiki](https://github.com/Licruit/Licruit-frontend/wiki)에서 확인할 수 있습니다.*
+
+[1. 프로젝트 개요](https://github.com/Licruit/Licruit-frontend/wiki/1.-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
+
+[2. 비즈니스 규칙 및 사용자 시나리오](https://github.com/Licruit/Licruit-frontend/wiki/2.-%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4-%EA%B7%9C%EC%B9%99-%EB%B0%8F-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4)
+
+[3. 페이지별 기능 소개](https://github.com/Licruit/Licruit-frontend/wiki/3.-%ED%8E%98%EC%9D%B4%EC%A7%80%EB%B3%84-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C)
+
+[4. 프로젝트 구조](https://github.com/Licruit/Licruit-frontend/wiki/4.-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
+
+[5. 협업규칙 및 컨벤션](https://github.com/Licruit/Licruit-frontend/wiki/5.-%ED%98%91%EC%97%85%EA%B7%9C%EC%B9%99-%EB%B0%8F-%EC%BB%A8%EB%B2%A4%EC%85%98)
+
+[6. 기술적으로 고민한 것들](https://github.com/Licruit/Licruit-frontend/wiki/6.-%EA%B8%B0%EC%88%A0%EC%A0%81%EC%9C%BC%EB%A1%9C-%EA%B3%A0%EB%AF%BC%ED%95%9C-%EA%B2%83%EB%93%A4)
