@@ -92,7 +92,7 @@
     - 공동구매 관리(성사, 미달성) 목록
     - MSW를 활용해 API 모킹 설정 및 테스트 환경 구축
     - Stylelint 설정
-    - Jest를 활용한 유닛 테스트 및 통합 테스트 작성
+    - Vitest를 활용한 유닛 테스트 및 통합 테스트 작성
 
 - [**류지민**](https://github.com/JIMIN1020)
     
@@ -105,7 +105,7 @@
     - 테스트 커버리지 보고서 생성
     - 에러 핸들링을 위한 Error Boundary 구현
     - Google Analytics 설정
-    - ESlint 설정
+    - ESlint, Prettier 설정
 
 - [**최주희**](https://github.com/juhee067)
     
@@ -116,7 +116,7 @@
     - 공동구매 구매자 관리
     - 에러 추적을 위한 Sentry 통합 및 설정
     - SEO를 위한 메타 태그 추가
-    - 페이지 렌더링 최적화를 위한 Snap 설정
+    - 페이지 렌더링 최적화를 위한 Prerenderer 설정
 
 ## Back-end
 
