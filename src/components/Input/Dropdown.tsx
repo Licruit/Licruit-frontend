@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Controller, useFormContext } from 'react-hook-form';
 import { DownArrowIcon } from 'public/assets/icons';
@@ -16,74 +16,73 @@ interface Props {
   name: string;
 }
 
-const Dropdown = forwardRef<HTMLDivElement, Props>(
-  ({ options, placeholder, name }, ref) => {
-    const [selectedOption, setSelectedOption] = useState(placeholder);
-    const [isOpen, setIsOpen] = useState(false);
-    const theme = useTheme();
-    const { setValue, watch } = useFormContext();
+function Dropdown({ options, placeholder, name }: Props) {
+  const [selectedOption, setSelectedOption] = useState(placeholder);
+  const [isOpen, setIsOpen] = useState(false);
+  const theme = useTheme();
+  const { setValue, watch } = useFormContext();
 
-    const selectedValue = watch(name);
-    const isWholesaler = watch('isWholesaler');
+  const selectedValue = watch(name);
+  const isWholesaler = watch('isWholesaler');
 
-    const handleSelect = (option: DropdownItem | string) => {
-      if (typeof option === 'string') {
-        setValue(name, option, { shouldValidate: true });
-        setSelectedOption(option);
-      } else {
-        setValue(name, option.id, {
-          shouldValidate: true,
-        });
+  const handleSelect = (option: DropdownItem | string) => {
+    if (typeof option === 'string') {
+      setValue(name, option, { shouldValidate: true });
+      setSelectedOption(option);
+    } else {
+      setValue(name, option.id, {
+        shouldValidate: true,
+      });
 
-        setSelectedOption(option.name);
-      }
-      setIsOpen(false);
-    };
+      setSelectedOption(option.name);
+    }
+    setIsOpen(false);
+  };
 
-    const industryRef = useRef<HTMLDivElement>(null);
+  const industryRef = useRef<HTMLDivElement>(null);
 
-    useClickOutside(industryRef, () => setIsOpen(false));
+  useClickOutside(industryRef, () => setIsOpen(false));
 
-    useEffect(() => {
-      if (isWholesaler) {
-        setValue(name, WHOLESALER, { shouldValidate: true });
-      }
-    }, [isWholesaler]);
-    return (
-      <DropdownContainer ref={ref}>
-        <Controller
-          name={name}
-          rules={{ required: placeholder }}
-          render={() => (
-            <>
-              <DropdownHeader
-                $isSelected={selectedValue !== undefined}
-                onClick={() => setIsOpen((prev) => !prev)}
-              >
-                <div className='select-input'>
-                  {selectedOption ?? placeholder}
-                  <DownArrowIcon fill={theme.color.neutral[400]} />
-                </div>
-              </DropdownHeader>
-              {isOpen && (
-                <DropdownList>
-                  {options?.map((option) => (
-                    <DropdownItem
-                      key={typeof option === 'object' ? option.id : option}
-                      onClick={() => handleSelect(option)}
-                    >
-                      {typeof option === 'object' ? option.name : option}
-                    </DropdownItem>
-                  ))}
-                </DropdownList>
-              )}
-            </>
-          )}
-        />
-      </DropdownContainer>
-    );
-  }
-);
+  useEffect(() => {
+    if (isWholesaler) {
+      setValue(name, WHOLESALER, { shouldValidate: true });
+    }
+  }, [isWholesaler]);
+
+  return (
+    <DropdownContainer ref={industryRef}>
+      <Controller
+        name={name}
+        rules={{ required: placeholder }}
+        render={() => (
+          <>
+            <DropdownHeader
+              $isSelected={selectedValue !== undefined}
+              onClick={() => setIsOpen((prev) => !prev)}
+            >
+              <div className='select-input'>
+                {selectedOption ?? placeholder}
+                <DownArrowIcon fill={theme.color.neutral[400]} />
+              </div>
+            </DropdownHeader>
+            {isOpen && (
+              <DropdownList>
+                {options?.map((option) => (
+                  <DropdownItem
+                    key={typeof option === 'object' ? option.id : option}
+                    onClick={() => handleSelect(option)}
+                  >
+                    {typeof option === 'object' ? option.name : option}
+                  </DropdownItem>
+                ))}
+              </DropdownList>
+            )}
+          </>
+        )}
+      />
+    </DropdownContainer>
+  );
+}
 
 export default Dropdown;
 

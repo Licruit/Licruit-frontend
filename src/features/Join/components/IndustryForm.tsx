@@ -9,6 +9,7 @@ import Dropdown from '@/components/Input/Dropdown';
 import useMap from '../hooks/useMap';
 import { useSignup } from '../hooks/useSignup';
 
+const industryData = [{ id: 1, name: '한식' }];
 function IndustryForm() {
   const { register, watch } = useFormContext();
   const { isPostcodeVisible, handleSelect, openPostcode, closePostcode } =
@@ -16,14 +17,16 @@ function IndustryForm() {
 
   const placeRef = useRef<HTMLDivElement>(null);
 
-  const { industryData } = useSignup();
+  // const { industryData } = useSignup();
 
   const address = watch('industry');
+
   const isWholesaler = watch('isWholesaler');
   useClickOutside(placeRef, closePostcode);
+
   return (
     <Container>
-      <InputWrapper ref={placeRef}>
+      <InputWrapper>
         <InputWithButton>
           <StyledFormInput
             type='string'
