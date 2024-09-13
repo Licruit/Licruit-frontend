@@ -1,9 +1,9 @@
-# 🥃 Licruit
+# 🥃 전통주 공동구매 서비스, Licruit
 
 ![커버디자인](https://github.com/user-attachments/assets/e0846510-c70c-4343-b873-1559e6818da4)
 
-> *전통주류 공동구매 매칭 서비스, Licruit*
-> 
+> _**프로그래머스 웹 풀사이클 데브코스 2기 최종 프로젝트 최우수상**_
+
 - **프로젝트 기간**: 2024.07.10 ~ 2024.08.30
 - **사이트 주소**: [www.licruit.site](https://www.licruit.site)
 - **팀 노션**: [Team Licruit 노션](https://www.notion.so/Licruit-3edfdb47d8184e89be785cc5d586348f?pvs=21)
@@ -69,16 +69,22 @@
 <img width="1707" alt="스크린샷 2024-09-04 오후 2 53 22" src="https://github.com/user-attachments/assets/cef03c5d-c8f3-46a6-8485-45d7df338584">
 
 <br />
+<br />
 
 # 📑 프로젝트 진행 과정
 
 <img width="1546" alt="스크린샷 2024-09-04 오후 2 54 47" src="https://github.com/user-attachments/assets/b9b72d4b-5d3b-4a13-b064-1c8ad283984d">
 
 <br />
+<br />
 
 # 👥 Team Licruit
 
-<img width="963" alt="스크린샷 2024-09-04 오후 5 01 15" src="https://github.com/user-attachments/assets/c4849769-5690-4063-8115-4453d7864a8b">
+![2기 웹풀사이클_리크루트](https://github.com/user-attachments/assets/9cc7353f-d1e9-42e1-94ee-55fb4b3ae974)
+
+<img width="963" alt="스크린샷 2024-09-04 오후 5 01 15" src="https://github.com/user-attachments/assets/c4849769-5690-4063-8115-4453d7864a8b">
+
+<br />
 
 ## Front-end
 
@@ -117,6 +123,8 @@
     - 에러 추적을 위한 Sentry 통합 및 설정
     - SEO를 위한 메타 태그 추가
     - 페이지 렌더링 최적화를 위한 Prerenderer 설정
+
+<br />
 
 ## Back-end
 
