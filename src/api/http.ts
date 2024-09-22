@@ -68,6 +68,11 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
         scope.setTag('type', 'api');
         scope.setTag('url', err.config.url);
         scope.setLevel('error');
+
+        const { method, url } = err.config;
+        const { status } = err.response;
+        scope.setFingerprint([method, status.toString(), url]);
+
         Sentry.captureException(err);
       });
 
