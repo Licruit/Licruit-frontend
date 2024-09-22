@@ -64,6 +64,13 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
         }
       }
 
+      Sentry.withScope((scope) => {
+        scope.setTag('type', 'api');
+        scope.setTag('url', err.config.url);
+        scope.setLevel('error');
+        Sentry.captureException(err);
+      });
+
       return Promise.reject(err);
     }
   );
