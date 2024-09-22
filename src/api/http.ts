@@ -5,6 +5,7 @@ import { deleteAllFromStorage, getTokenFromStorage } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import useLoginStore from '@/store/loginStore';
 import { toast } from 'react-toastify';
+import * as Sentry from '@sentry/react';
 
 const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
   const axiosInstance = axios.create({
@@ -27,7 +28,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
 
   axiosInstance.interceptors.response.use(
     (res) => {
-      return res;
+      return Promise.reject(res);
     },
     async (err) => {
       const { isLoggedIn, setIsLoggedIn } = useLoginStore.getState();
@@ -60,6 +61,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
           return Promise.reject(error);
         }
       }
+      Sentry.captureException(err);
       return Promise.reject(err);
     }
   );
