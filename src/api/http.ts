@@ -5,6 +5,7 @@ import { deleteAllFromStorage, getTokenFromStorage } from '@/utils/storage';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import useLoginStore from '@/store/loginStore';
 import { toast } from 'react-toastify';
+import * as Sentry from '@sentry/react';
 
 const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
   const axiosInstance = axios.create({
@@ -27,7 +28,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
 
   axiosInstance.interceptors.response.use(
     (res) => {
-      return res;
+      return Promise.reject(res);
     },
     async (err) => {
       const { isLoggedIn, setIsLoggedIn } = useLoginStore.getState();
@@ -53,6 +54,8 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
           }
           return axiosInstance(originRequest);
         } catch (error) {
+          Sentry.captureException(error);
+
           setIsLoggedIn(false);
           deleteAllFromStorage();
           toast.info('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
@@ -60,6 +63,7 @@ const createClient = (config?: AxiosRequestConfig): AxiosInstance => {
           return Promise.reject(error);
         }
       }
+
       return Promise.reject(err);
     }
   );
