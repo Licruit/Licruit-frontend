@@ -1,6 +1,5 @@
 import { httpClient } from '@/api/http';
 import { DropdownItem } from '@/components/Input/Dropdown';
-
 import { SignupFormType } from '../types/signup';
 
 export const signup = async (userData: Omit<SignupFormType, 'isVerified'>) => {
