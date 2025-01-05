@@ -164,6 +164,8 @@
     - ESlint 설정
     - 유닛 테스트 및 통합 테스트를 위한 Jest 테스트 환경을 구축
     - 에러 추적을 위한 Sentry 통합 및 설정
+      
+[이학영 CTO Licruit 프로젝트 리뷰.pdf](https://github.com/user-attachments/files/18310451/KDT.pdf)
 
 <br />
 
